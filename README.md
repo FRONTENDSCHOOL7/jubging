@@ -1,8 +1,24 @@
 # final-06-jubging
 
 ## 0. 목차
+1. [컨벤션](#convention)
+2. [팀 소개](#2-👥-팀-소개)
 
-## Convention
+
+
+
+## 2. 👥 팀 소개
+
+|                                                                                 **김지헌**                                                                                  |                                                                                                 **서동주**                                                                                                 |                                                                                                **김하영**                                                                                                |                                                                                             **정현지**                                                                                             |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|                                                 <img src="https://github.com/FRONTENDSCHOOL7/final-06-jubging/assets/85389685/c2188ab9-6bcd-4679-a61b-85d55ddefb2e" height=180 >                                                  |                                        <img src="https://github.com/FRONTENDSCHOOL7/final-06-jubging/assets/85389685/3fa5a5a6-f1f0-42f9-9929-fbab7cd862c7" height=180 >                                         |                                                                <img src="https://github.com/FRONTENDSCHOOL7/final-06-jubging/assets/85389685/f0ba2116-f617-4363-ad15-74e7b7c430d3" height=180 >                                                                 |                                                             <img src="https://github.com/FRONTENDSCHOOL7/final-06-jubging/assets/85389685/80d59089-c7a9-402b-a5cf-964562c55981" height=180 >                                                              |
+| [🔗 GitHub](https://github.com/kkang123)<br/> ![Frontend](https://img.shields.io/badge/-Frontend-green) <br/> ![Team%20Leader](https://img.shields.io/badge/-Team%20leader-blue) | [🔗 GitHub](https://github.com/WestEastZ)<br/> ![Frontend](https://img.shields.io/badge/-Frontend-green)  <br/> ![PM,Comunication%20Leader](https://img.shields.io/badge/-PM,%20Comunication%20leader-yellow) | [🔗 GitHub](https://github.com/hangnik)<br/> ![Frontend](https://img.shields.io/badge/-Frontend-green) <br/> ![Design,Technique%20Leader](https://img.shields.io/badge/-Design,Technique%20Leader-orange) | [🔗 GitHub](https://github.com/aicul313)<br/> ![Frontend](https://img.shields.io/badge/-Frontend-green) <br/> ![Development%20Leader](https://img.shields.io/badge/-Development%20Leader-purple) |
+
+<p align="right"><a href="#top">(🔼 Top)</a></p>
+
+
+
+## 3. Convention
 ### ⚙️ Git Commit Convention
 - 커밋 메시지에 이슈 번호 남기기 → 해당 이슈에 커밋 내역이 자동으로 남겨짐
 
