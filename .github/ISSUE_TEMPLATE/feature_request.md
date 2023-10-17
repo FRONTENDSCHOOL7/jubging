@@ -9,12 +9,12 @@ assignees: ''
 
 Title : [이슈종류] 주된 작업 내역
 
-📑 Description
+# 📑 Description
 설명을 작성해주세요.
 
-📝 Todo
-- todo 1
-- todo 2
+# 📝 Todo
+- [ ] todo 1
+- [x] todo 2
 
-📍 ETC
+# 📍 ETC
 기타사항
