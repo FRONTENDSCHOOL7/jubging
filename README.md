@@ -36,17 +36,8 @@
 ### ⚙️ Issue Convention
 
 ```markdown
-Title : git Emogi 구현 내용
+<!-- Title : git Emogi 구현 내용 -->
 
----
-
-name: Feature request
-about: Suggest an idea for this project
-title: ''
-labels: ''
-assignees: ''
-
----
 
 # 📑 Description
 
@@ -67,15 +58,15 @@ assignees: ''
 ### ⚙️ PR Convention
 
 ```markdown
-Title : git Emogi 작업 내용
+<!-- Title : git Emogi 작업 내용 -->
 
 # ⚡ PR 요약
 
-<!-- ex) 회원가입 기능 구현-->
+<!-- ex) 회원가입 기능 구현 -->
 
 # 🔍 주요 변경 사항
 
-<!-- 주요 변경사항 목록을 작성-->
+<!-- 주요 변경사항 목록을 작성 -->
 
 # 💡 관련 이슈
 
