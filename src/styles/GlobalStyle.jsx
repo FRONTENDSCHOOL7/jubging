@@ -11,7 +11,7 @@ const GlobalStyle = createGlobalStyle`
 }
 
 :root {
-  font-size: 14px;
+  font-size: 16px;
   font-family: 'GmarketSansMedium';
 }
 

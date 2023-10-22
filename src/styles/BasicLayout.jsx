@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const BasicContainer = styled.div`
+  position: relative;
   margin: 0 auto;
   max-width: 390px;
   min-height: 100vh;
