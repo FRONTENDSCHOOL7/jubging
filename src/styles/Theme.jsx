@@ -1,6 +1,7 @@
 export const colors = {
   mainColor: "#40A6DE",
   disabledColor: "#9ACEF8",
+  undisabledColor: "#DBDBDB",
   placeHolderColor: "#DBDBDB",
   textColor: "#767676",
   blackColor: "#000000",
@@ -8,10 +9,10 @@ export const colors = {
 };
 
 export const fontSize = {
-  xsmall: "0.625rem",
-  small: " 0.6875rem",
-  medium: "0.875rem",
-  large: "1.5rem",
+  xsmall: "0.625rem", //10px
+  small: " 0.75rem", //12px
+  medium: "0.875rem", //14px
+  large: "1.5rem", //24px
 };
 
 const Theme = {
