@@ -1,7 +1,7 @@
 export const colors = {
   mainColor: "#40A6DE",
   disabledColor: "#9ACEF8",
-  placeHolderColor: "#DBDBDB",
+  placeHolderColor: "#C4C4C4",
   textColor: "#767676",
   blackColor: "#000000",
   alertColor: "#EB5757",
