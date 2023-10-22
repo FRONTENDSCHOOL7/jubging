@@ -5,14 +5,17 @@ import profile from "../../../assets/icons/icon-profile.svg";
 import post from "../../../assets/icons/icon-post.svg";
 import newLetter from "../../../assets/icons/icon-news-letter.svg";
 import { Button, Logo, NewsLetter, Title } from "./BarButtonStyle";
+import { Link } from "react-router-dom";
 
 export default function BarButton() {
   return (
     <>
       {/* 라우터 추가하면 Link로 변경 */}
       <Button>
-        <Logo src={home} alt="홈" />
-        <Title>홈</Title>
+        <Link to="/home">
+          <Logo src={home} alt="홈" />
+          <Title>홈</Title>
+        </Link>
       </Button>
       <Button>
         <Logo src={post} alt="게시물 작성" />
