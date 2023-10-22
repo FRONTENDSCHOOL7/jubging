@@ -15,4 +15,5 @@ export const EmailSignUp = styled.p`
   text-align: center;
   color: ${(props) => props.theme.colors.textColor};
   font-size: ${(props) => props.theme.fontSize.small};
+  margin-top: 12px;
 `;
