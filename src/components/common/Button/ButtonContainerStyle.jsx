@@ -7,4 +7,6 @@ export const Button = styled.button`
     props.bgColor ? props.bgColor : props.theme.colors.disabledColor};
   color: ${(props) => (props.color ? props.color : "#ffffff")};
   border-radius: 30px;
+  font-size: ${(props) =>
+    props.fontSize ? props.fontSize : props.theme.fontSize.small};
 `;
