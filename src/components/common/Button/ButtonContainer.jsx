@@ -14,14 +14,14 @@ export default function ButtonContainer({
 }) {
   return (
     <Button
-      type={type || "button"}
-      color={color}
-      bgColor={bgColor}
-      width={width}
-      height={height}
-      disabled={disabled}
-      onClick={onClick}
-      rmargin={rmargin}
+      $type={type || "button"}
+      $color={color}
+      $bgColor={bgColor}
+      $width={width}
+      $height={height}
+      $disabled={disabled}
+      $onClick={onClick}
+      $rmargin={rmargin}
     >
       {children}
     </Button>
