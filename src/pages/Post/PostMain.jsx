@@ -1,10 +1,11 @@
 import React from "react";
+import { PostImages } from "./PostMainStyle";
 
 function PostMain({ postImage }) {
   return (
-    <div className="postMain">
+    <PostImages>
       <img src={postImage} alt="게시글 이미지" />
-    </div>
+    </PostImages>
   );
 }
 

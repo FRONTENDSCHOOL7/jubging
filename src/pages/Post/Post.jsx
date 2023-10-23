@@ -23,3 +23,5 @@ function Post(props) {
 }
 
 export default Post;
+
+이럴 댄 깃모지 머 달아야 하나요
