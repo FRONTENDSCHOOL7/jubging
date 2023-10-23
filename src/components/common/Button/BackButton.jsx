@@ -5,7 +5,7 @@ import { BackIcon } from "./BackButtonStyle";
 
 export default function BackButton() {
   return (
-    <ButtonContainer width={"50px"} bgColor={"#ffffff"}>
+    <ButtonContainer width={"50px"} $bgColor={"#ffffff"}>
       <BackIcon src={back} />
     </ButtonContainer>
   );
