@@ -3,9 +3,7 @@ import styled from "styled-components";
 export const PostHeaderGroup = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-left: 17px;
-  margin-right: 28px;
-  margin-bottom: 10.35px;
+  margin: 19px 28px 10.35px 17px;
 `;
 
 export const ProfilePhoto = styled.div`
@@ -13,6 +11,7 @@ export const ProfilePhoto = styled.div`
   height: 42px;
   border: 1px solid ${(props) => props.theme.colors.placeHolderColor};
   border-radius: 50%;
+  object-fit: cover;
   overflow: hidden;
 `;
 
