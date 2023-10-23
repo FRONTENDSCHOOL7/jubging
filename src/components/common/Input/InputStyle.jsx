@@ -16,12 +16,11 @@ export const InputField = styled.input`
   padding: 0 5px 5px 0;
   border-bottom: ${(props) =>
     props.value.length === 0 ? "1px solid #DBDBDB" : "1px solid #40A6DE"};
+  outline: none;
 
   &:focus {
-    outline: none;
     border-bottom-color: ${(props) => props.theme.colors.mainColor};
   }
-  /* focus 안 넣으면 테두리 선이 삭제가 안됨 */
 
   &::placeholder {
     color: ${(props) => props.theme.colors.placeHolderColor};
