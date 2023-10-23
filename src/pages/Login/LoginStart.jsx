@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import logo from "../../assets/images/logo.svg";
 import Bear from "../../components/Splash/Character/Bear";
 import Rabbit from "../../components/Splash/Character/Rabbit";
@@ -27,10 +28,14 @@ export default function LoginStart() {
       <SubTitle>깨끗한 지구 함께 만들어가요</SubTitle>
 
       <LoginBox>
-        <ButtonCotainer bgColor={"#40A6DE"}>로그인</ButtonCotainer>
-        <ButtonCotainer color={"black"} bgColor={"#ffffff"}>
-          회원가입
-        </ButtonCotainer>
+        <Link to="/login">
+          <ButtonCotainer bgColor={"#40A6DE"}>로그인</ButtonCotainer>
+        </Link>
+        <Link to="/signup">
+          <ButtonCotainer color={"black"} bgColor={"#ffffff"}>
+            회원가입
+          </ButtonCotainer>
+        </Link>
       </LoginBox>
 
       <LoginSection>

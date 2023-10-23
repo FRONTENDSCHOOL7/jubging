@@ -6,7 +6,7 @@ import { Title, Form, Selfchange } from "./ProfileStartStyle";
 import Button from "../../components/common/Button/ButtonContainer";
 import BackSpaceHeader from "../../components/common/Header/BackSpaceHeader";
 
-const ProfileStartPage = () => {
+const ProfileStart = () => {
   const [selfIntroduction, setUserSelf] = useState("");
 
   return (
@@ -30,4 +30,4 @@ const ProfileStartPage = () => {
   );
 };
 
-export default ProfileStartPage;
+export default ProfileStart;
