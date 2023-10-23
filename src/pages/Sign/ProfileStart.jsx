@@ -15,7 +15,12 @@ const ProfileStart = () => {
       <Form>
         <Title>프로필 설정</Title>
         <Selfchange>나중에 언제든지 변경할 수 있습니다.</Selfchange>
-        <UserProfile />
+        <UserProfile
+          tmargin={"30px"}
+          lmargin={"103px"}
+          rmargin={"103px"}
+          bmargin={"35px"}
+        ></UserProfile>
         <Input
           label="소개"
           type="text"

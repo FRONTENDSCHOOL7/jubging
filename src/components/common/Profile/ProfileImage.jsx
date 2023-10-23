@@ -1,8 +1,31 @@
-import React from "react";
-import { UserImage } from "./ProfileImageStyle";
+import React, { Children } from "react";
+import { ImageContainer, UserImage, ImageButton } from "./ProfileImageStyle";
 
-const ProfileChange = ({}) => {
-  return <UserImage />;
-};
+// const ProfileChange = ({}) => {
+//   return <UserImage />;
+//   <ChangeImageButton />;
+// };
 
-export default ProfileChange;
+export default function ProfileChange({
+  children,
+  tmargin,
+  lmargin,
+  rmargin,
+  bmargin,
+}) {
+  return (
+    <>
+      <ImageContainer>
+        <UserImage
+          $tmargin={tmargin}
+          $lmargin={lmargin}
+          $rmargin={rmargin}
+          $bmargin={bmargin}
+        >
+          {children}
+        </UserImage>
+        <ImageButton />
+      </ImageContainer>
+    </>
+  );
+}
