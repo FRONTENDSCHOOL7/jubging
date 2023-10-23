@@ -2,10 +2,7 @@ import { ThemeProvider } from "styled-components";
 import BasicLayout from "./styles/BasicLayout";
 import GlobalStyle from "./styles/GlobalStyle";
 import Theme from "./styles/Theme";
-import Followers from "./pages/Follow/Followers";
-// import Following from "./pages/Follow/Following";
-// import AppRouter from "./routes/AppRouter";
-// import Search from "./pages/Search/Search";
+import NotFound from "./pages/NotFound/NotFound";
 
 function App() {
   return (
@@ -14,7 +11,7 @@ function App() {
         <GlobalStyle />
         <BasicLayout>
           {/* <AppRouter /> */}
-          <Followers />
+          <NotFound />
         </BasicLayout>
       </ThemeProvider>
     </>
