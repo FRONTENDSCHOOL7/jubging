@@ -1,16 +1,18 @@
 import React from "react";
 import HeaderBar from "../../components/common/Header/HomeHeader";
-import HomePosting from "./HomePosting";
+import HomePosting from "../Home/HomePosting";
+import PostDetail from "./PostDetail";
 import Navbar from "../../components/common/Navbar/Navbar";
 
-function Home() {
+function Post() {
   return (
     <>
       <HeaderBar />
       <HomePosting />
+      <PostDetail />
       <Navbar />
     </>
   );
 }
 
-export default Home;
+export default Post;

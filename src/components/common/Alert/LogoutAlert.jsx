@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import AlertOveray from "./AlertOveray";
 import { useState } from "react";
+import LogoutAlertOveray from "./LogoutAlertOveray";
 
 export const Backdrop = styled.div`
   position: fixed;
@@ -13,7 +13,7 @@ export const Backdrop = styled.div`
   z-index: 999;
 `;
 
-export default function Alert() {
+export default function LogoutAlert() {
   // test 하고 싶으면 기본값 true로 변경
   const [isOpen, setIsOpen] = useState(true);
 
@@ -24,7 +24,7 @@ export default function Alert() {
   return isOpen ? (
     <>
       <Backdrop onClick={openAlertHandler} />
-      <AlertOveray />
+      <LogoutAlertOveray />
     </>
   ) : null;
 }

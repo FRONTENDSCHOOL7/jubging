@@ -1,18 +1,20 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Input from "../../components/common/Input/Input";
 import { Title, EmailSignUp, Form } from "./LoginStyle";
 import Button from "../../components/common/Button/ButtonContainer";
 import BackSpaceHeader from "../../components/common/Header/BackSpaceHeader";
 
-const LoginPage = () => {
+const Login = () => {
   const [userEmail, setUserEmail] = useState("");
   const [password, setPassword] = useState("");
 
   return (
     <>
-      <BackSpaceHeader />
-
+      <Link to="/loginStart">
+        <BackSpaceHeader />
+      </Link>
       <Form>
         <Title>로그인</Title>
         <Input
@@ -33,13 +35,18 @@ const LoginPage = () => {
           placeholder="비밀번호를 입력하세요."
           // error="이미 있는 비밀번호입니다."
         />
-        <Button width="332px">로그인</Button>
-        <EmailSignUp>이메일로 회원가입하기</EmailSignUp>
+
+        <Link to="/home">
+          <Button width="332px">로그인</Button>
+        </Link>
+        <Link to="/signup">
+          <EmailSignUp>이메일로 회원가입하기</EmailSignUp>
+        </Link>
       </Form>
     </>
   );
 };
 
-export default LoginPage;
+export default Login;
 
 // error 부분 및 @ 인식 추가

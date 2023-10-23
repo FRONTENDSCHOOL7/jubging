@@ -1,10 +1,11 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import Input from "../../components/common/Input/Input";
 import { Form, Title } from "./SignUpStyle";
 import Button from "../../components/common/Button/ButtonContainer";
 import BackSpaceHeader from "../../components/common/Header/BackSpaceHeader";
 
-const SignUpPage = () => {
+const SignUp = () => {
   const [userEmail, setUserEmail] = useState("");
   const [password, setPassword] = useState("");
   const [userName, setUserName] = useState("");
@@ -12,7 +13,9 @@ const SignUpPage = () => {
 
   return (
     <>
-      <BackSpaceHeader />
+      <Link to="/login">
+        <BackSpaceHeader />
+      </Link>
       <Form>
         <Title>이메일 회원가입</Title>
         <Input
@@ -52,10 +55,12 @@ const SignUpPage = () => {
           // error="이미 있는 이메일입니다."
         />
 
-        <Button width="322px">다음</Button>
+        <Link to="/signup/profile">
+          <Button width="322px">다음</Button>
+        </Link>
       </Form>
     </>
   );
 };
 
-export default SignUpPage;
+export default SignUp;
