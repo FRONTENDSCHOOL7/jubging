@@ -1,11 +1,11 @@
 import React from "react";
-import Post from "../Post/Post";
+import Posting from "../Post/Posting";
 import profileImage from "../../assets/images/rabbit-face.svg";
 
 function HomePosting() {
   return (
     <div>
-      <Post
+      <Posting
         profilePhoto = {profileImage}
         nickname = "다 줍는 착한 하영"
         userId = "hangnik"

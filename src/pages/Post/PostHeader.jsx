@@ -5,9 +5,9 @@ import {
   ProfileLink,
   ProfileName,
   Nickname,
-  MoreBtn,
   UserId,
 } from "./PostHeaderStyle"; 
+import MoreButton from './../../components/common/Button/MoreButton';
 
 function PostHeader({ profilePhoto, nickname, userId }) {
   return (
@@ -21,7 +21,7 @@ function PostHeader({ profilePhoto, nickname, userId }) {
           <UserId>{`@${userId}`}</UserId>
         </ProfileName>
       </ProfileLink>
-      <MoreBtn></MoreBtn>
+      <MoreButton />
     </PostHeaderGroup>
   );
 }

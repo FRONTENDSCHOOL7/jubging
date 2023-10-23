@@ -3,20 +3,19 @@ import styled from "styled-components";
 export const CommentGroup = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 17px 28px 17px 17px;
+  margin: 17px 0 17px 17px;
 `;
 
 export const CommentHeaderGroup = styled.div`
   display: flex;
 `;
 
-export const ProfileImage = styled.img`
-  width: 36px;
+export const ProfileImage = styled.div`
+  width: 42px;
   height: 36px;
-  overflow: hidden;
-  object-fit: cover;
+  border: 1px solid ${(props) => props.theme.colors.placeHolderColor};
   border-radius: 50%;
-  border: 1px solid ${(props) => props.theme.colors.placeHolderColor};;
+  overflow: hidden;
 `;
 
 export const CommentInfoGroup = styled.div`
@@ -44,19 +43,9 @@ export const InfoTime = styled.span`
 
 export const CommentText = styled.p`
   margin-top: 4px;
-  margin-left: 42px;
+  margin-left: 46px;
   font-size: ${(props) => props.theme.fontSize.medium};
 `;
-
-export const MoreBtn = styled.button`
-  background-color: skyblue;
-  width: 2px;
-  height: 16.66px;
-  margin: 5px;
-  margin-top: -5px;
-  float: right;
-`;
-
 
 const PostCommentStyle = {
   CommentGroup,
@@ -67,7 +56,6 @@ const PostCommentStyle = {
   InfoNickname,
   InfoTime,
   CommentText,
-  MoreBtn
 };
 
 export default PostCommentStyle;

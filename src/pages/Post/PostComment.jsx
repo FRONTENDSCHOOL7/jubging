@@ -8,20 +8,22 @@ import {
   InfoNickname,
   InfoTime,
   CommentText,
-  MoreBtn
 } from "./PostCommentStyle";
+import MoreButton from "../../components/common/Button/MoreButton";
 
-function PostComment({profileImage, nickname, minutesAgo, comment}) {
+function PostComment({profilePhoto, nickname, minutesAgo, comment}) {
   return (
     <CommentGroup>
       <CommentHeaderGroup>
-        <ProfileImage src={profileImage} alt="Profile" />
+        <ProfileImage>
+          <img src={profilePhoto} alt="프로필 사진" />
+        </ProfileImage>
         <CommentInfoGroup>
           <InfoHeader>
             <InfoNickname>{nickname}</InfoNickname>
             <InfoTime>{minutesAgo} 분 전</InfoTime>
           </InfoHeader>
-          <MoreBtn></MoreBtn>
+          <MoreButton />
         </CommentInfoGroup>
       </CommentHeaderGroup>
       <CommentText>{comment}</CommentText>
