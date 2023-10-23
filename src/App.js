@@ -2,8 +2,7 @@ import { ThemeProvider } from "styled-components";
 import BasicLayout from "./styles/BasicLayout";
 import GlobalStyle from "./styles/GlobalStyle";
 import Theme from "./styles/Theme";
-import LoginStart from "./pages/Login/LoginStart";
-import SplashScreen from "./pages/SplashScreen/SplashScreen";
+import AppRouter from "./routes/AppRouter";
 
 function App() {
   return (
@@ -11,8 +10,7 @@ function App() {
       <ThemeProvider theme={Theme}>
         <GlobalStyle />
         <BasicLayout>
-          <SplashScreen />
-          <LoginStart />
+          <AppRouter />
         </BasicLayout>
       </ThemeProvider>
     </>
