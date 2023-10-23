@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Bear from "../../components/Splash/Character/Bear";
 import Rabbit from "../../components/Splash/Character/Rabbit";
 import Dog from "../../components/Splash/Character/Dog";
@@ -16,7 +17,9 @@ export default function SplashScreen() {
         <Dog splashScreen={true} />
         <Earth splashScreen={true} />
       </Imagebox>
-      <StartBtn fontSize={"36px"}>시작하기</StartBtn>
+      <Link to="/loginStart">
+        <StartBtn fontSize={"36px"}>시작하기</StartBtn>
+      </Link>
     </Container>
   );
 }
