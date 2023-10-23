@@ -7,4 +7,6 @@ export const Button = styled.button`
     props.bgColor ? props.bgColor : props.theme.colors.disabledColor};
   color: ${(props) => (props.color ? props.color : "#ffffff")};
   border-radius: 30px;
+  // margin right 추가
+  margin-right: ${(props) => (props.rmargin ? props.rmargin : "")};
 `;

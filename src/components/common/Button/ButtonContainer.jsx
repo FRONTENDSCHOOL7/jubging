@@ -10,6 +10,7 @@ export default function ButtonContainer({
   height,
   disabled = false,
   onClick,
+  rmargin,
 }) {
   return (
     <Button
@@ -20,6 +21,7 @@ export default function ButtonContainer({
       height={height}
       disabled={disabled}
       onClick={onClick}
+      rmargin={rmargin}
     >
       {children}
     </Button>
