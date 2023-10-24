@@ -2,27 +2,20 @@ import styled from "styled-components";
 
 export const PostFooterGroup = styled.div`
   margin-top: 16px;
-  margin-left: 15%;
+  /* margin-left: 15%; */
   margin-right: 23px;
-`;
-
-export const PostText = styled.p`
-  color: ${(props) => props.theme.colors.blackColor};
-  font-size: ${(props) => props.theme.fontSize.medium};
-`;
-
-export const BtnInfo = styled.div`
   display: flex;
-  margin-top: 16px;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
 `;
 
 export const BtnGroup = styled.div`
-  font-size: ${(props) => props.theme.fontSize.medium};
-  color: ${(props) => props.theme.colors.textColor};
   display: flex;
-  height: 17.4px;
+  align-items: center;
+  padding-left: 64px;
+  font-size: ${(props) => props.theme.fontSize.small};
+  color: ${(props) => props.theme.colors.textColor};
 `;
 
 export const LikeGroup = styled.button`
@@ -54,13 +47,11 @@ export const CommentCnt = styled.span`
 
 export const PostDate = styled.span`
   color: ${(props) => props.theme.colors.textColor};
-  font-size: ${(props) => props.theme.fontSize.medium};
+  font-size: ${(props) => props.theme.fontSize.xsmall};
 `;
 
 const PostFooterStyle = {
   PostFooterGroup,
-  PostText,
-  BtnInfo,
   BtnGroup,
   LikeGroup,
   LikeIcon,

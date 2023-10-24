@@ -1,13 +1,13 @@
 import React from "react";
 import HeaderBar from "../../components/common/Header/HomeHeader";
-import NewsLetterPosting from "./NewsLetterPosting";
+import Posting from "../../components/Post/Posting";
 import Navbar from "../../components/common/Navbar/Navbar";
 
 function NewsLetter() {
   return (
     <>
       <HeaderBar />
-      <NewsLetterPosting />
+      <Posting />
       <Navbar />
     </>
   );

@@ -6,6 +6,8 @@ import LoginStart from "../pages/Login/LoginStart";
 import Login from "../pages/Login/Login";
 import SignUp from "../pages/Sign/SignUp";
 import ProfileStart from "../pages/Sign/ProfileStart";
+import Post from "../pages/Post/Post";
+import NewsLetter from "../pages/NewsLetter/NewsLetter";
 
 export default function AppRouter() {
   return (
@@ -17,8 +19,8 @@ export default function AppRouter() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signup/profile" element={<ProfileStart />} />
-        <Route path="/post" />
-        <Route path="/newletter" />
+        <Route path="/post" element={<Post />} />
+        <Route path="/newsletter" element={<NewsLetter />} />
         <Route path="/chat" />
         <Route path="/profile" />
       </Routes>
