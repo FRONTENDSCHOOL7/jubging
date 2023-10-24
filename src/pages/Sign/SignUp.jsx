@@ -13,9 +13,7 @@ const SignUp = () => {
 
   return (
     <>
-      <Link to="/login">
-        <BackSpaceHeader />
-      </Link>
+      <BackSpaceHeader />
       <Form>
         <Title>이메일 회원가입</Title>
         <Input

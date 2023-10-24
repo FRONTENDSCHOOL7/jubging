@@ -1,18 +1,27 @@
-import React, { Children } from "react";
+import React, { useState } from "react";
 import { ImageContainer, UserImage, ImageButton } from "./ProfileImageStyle";
 
-// const ProfileChange = ({}) => {
-//   return <UserImage />;
-//   <ChangeImageButton />;
-// };
-
 export default function ProfileChange({
-  children,
   tmargin,
   lmargin,
   rmargin,
   bmargin,
+  setImage,
 }) {
+  const [previewUrl, setPreviewUrl] = useState(null);
+
+  const handleImageChange = (event) => {
+    if (event.target.files && event.target.files[0]) {
+      let reader = new FileReader();
+
+      reader.onloadend = () => {
+        setPreviewUrl(reader.result);
+      };
+
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  };
+
   return (
     <>
       <ImageContainer>
@@ -22,9 +31,19 @@ export default function ProfileChange({
           $rmargin={rmargin}
           $bmargin={bmargin}
         >
-          {children}
+          {previewUrl && <img src={previewUrl} alt="profile" />}
         </UserImage>
-        <ImageButton />
+
+        <input
+          type="file"
+          style={{ display: "none" }}
+          id="upload-button-file"
+          onChange={handleImageChange}
+        />
+
+        <ImageButton
+          onClick={() => document.getElementById("upload-button-file").click()}
+        />
       </ImageContainer>
     </>
   );

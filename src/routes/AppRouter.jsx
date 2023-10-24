@@ -8,6 +8,11 @@ import SignUp from "../pages/Sign/SignUp";
 import ProfileStart from "../pages/Sign/ProfileStart";
 import Post from "../pages/Post/Post";
 import NewsLetter from "../pages/NewsLetter/NewsLetter";
+import Chat from "../pages/Chat/Chat";
+import Profile from "../pages/Profile/Profile";
+import ProfileModification from "../pages/Profile/ProfileModification";
+import AddCourse from "../pages/AddCourse/AddCourse";
+import Upload from "../pages/Upload/Upload";
 
 export default function AppRouter() {
   return (
@@ -21,8 +26,11 @@ export default function AppRouter() {
         <Route path="/signup/profile" element={<ProfileStart />} />
         <Route path="/post" element={<Post />} />
         <Route path="/newsletter" element={<NewsLetter />} />
-        <Route path="/chat" />
-        <Route path="/profile" />
+        <Route path="/chat" element={<Chat />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/profile/edit" element={<ProfileModification />} />
+        <Route path="/profile/addcourse" element={<AddCourse />} />
+        <Route path="/upload" element={<Upload />} />
       </Routes>
     </BrowserRouter>
   );
