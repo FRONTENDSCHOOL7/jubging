@@ -4,7 +4,8 @@ export const Button = styled.button`
   width: ${(props) => (props.$width ? props.$width : "120px")};
   height: ${(props) => (props.$height ? props.$height : "44px")};
 
-  background-color: ${(props) => props.$bgColor};
+  background-color: ${(props) =>
+    props.$bgColor ? props.$bgColor : props.theme.colors.mainColor};
 
   color: ${(props) => (props.$color ? props.$color : "#ffffff")};
   border-radius: 30px;
@@ -12,6 +13,5 @@ export const Button = styled.button`
   // margin right 추가
   margin-right: ${(props) => (props.$rmargin ? props.$rmargin : "")};
   font-size: ${(props) =>
-    props.fontSize ? props.fontSize : props.theme.fontSize.small};
-
+    props.$fontSize ? props.$fontSize : props.theme.fontSize.small};
 `;

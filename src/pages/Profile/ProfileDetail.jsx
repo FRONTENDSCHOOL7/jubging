@@ -57,17 +57,22 @@ export default function ProfileDetail() {
       </ProfileButtonContainer>
 
       {/* 팔로워 프로필 */}
-      {/* <FollowButtonContainer>
+      <FollowButtonContainer>
         <ChatButton>
           <Logo src={chat} />
         </ChatButton>
-        <ButtonContainer fontSize={"14px"} bgColor={"#41A6DE"} height={"34px"}>
-          프로필 수정
+        <ButtonContainer
+          fontSize={"14px"}
+          bgColor={"#ffffff"}
+          color={"#000000"}
+          height={"34px"}
+        >
+          언팔로우
         </ButtonContainer>
         <ShareButton>
           <Logo src={share} />
         </ShareButton>
-      </FollowButtonContainer> */}
+      </FollowButtonContainer>
     </>
   );
 }

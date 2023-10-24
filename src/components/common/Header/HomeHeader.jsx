@@ -8,7 +8,7 @@ import ButtonContainer from "../Button/ButtonContainer";
 const Logo = styled.img`
   width: 39px;
   height: 27px;
-  margin-left: 15 px;
+  margin-left: 15px;
 `;
 
 const SearchIcon = styled.img`

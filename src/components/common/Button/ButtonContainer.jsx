@@ -5,23 +5,25 @@ export default function ButtonContainer({
   children,
   type,
   color,
-  $bgColor,
+  bgColor,
   width,
   height,
   disabled = false,
   onClick,
   rmargin,
+  fontSize,
 }) {
   return (
     <Button
       $type={type || "button"}
       $color={color}
-      $bgColor={$bgColor}
+      $bgColor={bgColor}
       $width={width}
       $height={height}
       $disabled={disabled}
       $onClick={onClick}
       $rmargin={rmargin}
+      $fontSize={fontSize}
     >
       {children}
     </Button>

@@ -55,6 +55,10 @@ export const FollowButtonContainer = styled.div`
   justify-content: center;
   gap: 34px;
   margin-top: 26px;
+
+  button:nth-child(2) {
+    border: 1px solid #dbdbdb;
+  }
 `;
 
 export const ChatButton = styled.button`
