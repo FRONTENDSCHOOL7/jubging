@@ -21,7 +21,7 @@ export default function ButtonContainer({
       $width={width}
       $height={height}
       $disabled={disabled}
-      $onClick={onClick}
+      onClick={onClick}
       $rmargin={rmargin}
       $fontSize={fontSize}
     >
