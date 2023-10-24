@@ -18,6 +18,7 @@ function Posting(props) {
         profilePhoto={props.profilePhoto}
         nickname={props.nickname}
         userId={props.userId}
+        pageName={props.pageName}
       />
       <PostMain postImage={props.postImage} />
       <PostFooter
