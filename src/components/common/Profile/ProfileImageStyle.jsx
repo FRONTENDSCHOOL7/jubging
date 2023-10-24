@@ -60,5 +60,5 @@ export const ImageButton = styled.button`
   position: absolute; // 상위 엘리먼트인 ImageContainer에 대해 절대적으로 위치가 결정됩니다.
   bottom: 35px; // 이미지 버튼의 위치 조절
   right: 103px; // 이미지 버튼의 위치 조절
-  z-index: 999;
+  z-index: 99;
 `;
