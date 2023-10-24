@@ -1,5 +1,5 @@
 import React from "react";
-import HeaderBar from "../../components/common/Header/HomeHeader";
+import BackSpaceHeader from "../../components/common/Header/BackSpaceHeader";
 import Navbar from "../../components/common/Navbar/Navbar";
 import Posting from "../../components/Post/Posting";
 import PostComment from "./PostComment";
@@ -7,7 +7,7 @@ import PostComment from "./PostComment";
 function Post() {
   return (
     <>
-      <HeaderBar />
+      <BackSpaceHeader />
       <Posting />
       <PostComment />
       <Navbar />

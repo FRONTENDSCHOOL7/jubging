@@ -3,6 +3,7 @@ import ProfileChange from "../../components/common/Profile/ProfileImage";
 import ButtonContainer from "../../components/common/Button/ButtonContainer";
 import chat from "../../assets/icons/icon-chat.svg";
 import share from "../../assets/icons/icon-share.svg";
+import { Link } from "react-router-dom";
 import {
   ChatButton,
   FollowButtonContainer,
@@ -42,18 +43,28 @@ export default function ProfileDetail() {
 
       {/* 유저 정보에 따라 버튼 다르게 보여주기 */}
       {/* 내프로필 */}
+
       <ProfileButtonContainer>
-        <ButtonContainer fontSize={"14px"} bgColor={"#41A6DE"} height={"34px"}>
-          프로필 수정
-        </ButtonContainer>
-        <ButtonContainer
-          fontSize={"14px"}
-          bgColor={"#ffffff"}
-          color={"#000000"}
-          height={"34px"}
-        >
-          추천 코스 등록
-        </ButtonContainer>
+        <Link to="/profile/edit">
+          <ButtonContainer
+            fontSize={"14px"}
+            bgColor={"#41A6DE"}
+            height={"34px"}
+          >
+            프로필 수정
+          </ButtonContainer>
+        </Link>
+
+        <Link to="/profile/addcourse">
+          <ButtonContainer
+            fontSize={"14px"}
+            bgColor={"#ffffff"}
+            color={"#000000"}
+            height={"34px"}
+          >
+            추천 코스 등록
+          </ButtonContainer>
+        </Link>
       </ProfileButtonContainer>
 
       {/* 팔로워 프로필 */}

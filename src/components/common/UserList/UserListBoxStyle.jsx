@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
-export const Contanier = styled.button`
+export const ProfileLink = styled(Link)`
   display: flex;
   align-items: center;
 
@@ -21,7 +22,7 @@ export const Image = styled.img`
   height: 42px;
   margin-right: 5px;
 
-  background-image: url(${(props) => props.image});
+  background-image: url(${({ $image }) => $image});
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;

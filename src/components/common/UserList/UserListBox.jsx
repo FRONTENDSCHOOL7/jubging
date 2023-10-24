@@ -1,7 +1,8 @@
 import React from "react";
 import bear from "../../../assets/images/bear-face.svg";
+
 import {
-  Contanier,
+  ProfileLink,
   Image,
   Section,
   UserName,
@@ -10,13 +11,14 @@ import {
 
 export default function UserListBox() {
   return (
-    <Contanier>
-      <Image image={bear}></Image>
+    <ProfileLink to="/profile">
+      <Image $image={bear}></Image>
       <Section>
         {/* 기능 구현 시 변수로 교체 */}
+
         <UserName>사용자 이름</UserName>
-        <SubText>추가적인 내용</SubText>
+        <SubText>id태그</SubText>
       </Section>
-    </Contanier>
+    </ProfileLink>
   );
 }

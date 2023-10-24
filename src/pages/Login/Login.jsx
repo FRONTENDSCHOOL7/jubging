@@ -11,9 +11,7 @@ const Login = () => {
 
   return (
     <>
-      <Link to="/loginStart">
-        <BackSpaceHeader />
-      </Link>
+      <BackSpaceHeader />
       <Form>
         <Title>로그인</Title>
         <Input
