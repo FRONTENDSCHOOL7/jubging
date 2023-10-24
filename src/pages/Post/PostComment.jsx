@@ -11,7 +11,7 @@ import {
 } from "./PostCommentStyle";
 import MoreButton from "../../components/common/Button/MoreButton";
 
-function PostComment({profilePhoto, nickname, minutesAgo, comment}) {
+function PostComment({ profilePhoto, nickname, minutesAgo, comment }) {
   return (
     <CommentGroup>
       <CommentHeaderGroup>
@@ -20,13 +20,13 @@ function PostComment({profilePhoto, nickname, minutesAgo, comment}) {
         </ProfileImage>
         <CommentInfoGroup>
           <InfoHeader>
-            <InfoNickname>{nickname}</InfoNickname>
-            <InfoTime>{minutesAgo} 분 전</InfoTime>
+            <InfoNickname>{nickname}항상 도움을 주시는 재웅</InfoNickname>
+            <InfoTime>{minutesAgo} 5분 전</InfoTime>
           </InfoHeader>
           <MoreButton />
         </CommentInfoGroup>
       </CommentHeaderGroup>
-      <CommentText>{comment}</CommentText>
+      <CommentText>{comment}sdsd</CommentText>
     </CommentGroup>
   );
 }

@@ -49,7 +49,7 @@ const SignUp = () => {
           label="계정ID"
           type="text"
           name="userId"
-          value={userName}
+          value={userId}
           onChange={(e) => setUserId(e.target.value)}
           placeholder="영문, 숫자, 특수문자(.),(_)만 사용 가능합니다."
           // error="이미 있는 이메일입니다."
