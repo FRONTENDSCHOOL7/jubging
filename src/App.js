@@ -2,7 +2,7 @@ import { ThemeProvider } from "styled-components";
 import BasicLayout from "./styles/BasicLayout";
 import GlobalStyle from "./styles/GlobalStyle";
 import Theme from "./styles/Theme";
-import NotFound from "./pages/NotFound/NotFound";
+import AppRouter from "./routes/AppRouter";
 
 function App() {
   return (
@@ -10,8 +10,7 @@ function App() {
       <ThemeProvider theme={Theme}>
         <GlobalStyle />
         <BasicLayout>
-          {/* <AppRouter /> */}
-          <NotFound />
+          <AppRouter />
         </BasicLayout>
       </ThemeProvider>
     </>
