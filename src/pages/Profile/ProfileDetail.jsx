@@ -1,19 +1,20 @@
 import React from "react";
-import ProfileChange from "../../components/common/Profile/ProfileImage";
+import { Link } from "react-router-dom";
 import ButtonContainer from "../../components/common/Button/ButtonContainer";
 import chat from "../../assets/icons/icon-chat.svg";
 import share from "../../assets/icons/icon-share.svg";
-import { Link } from "react-router-dom";
 import {
-  ChatButton,
+  ChatLink,
   FollowButtonContainer,
   FollowNum,
   FollowTitle,
+  ImageContainer,
   Logo,
   ProfileButtonContainer,
   ProfileContainer,
   ShareButton,
   UserId,
+  UserImage,
   UserInfoContainer,
   UserIntro,
   UserName,
@@ -24,15 +25,23 @@ export default function ProfileDetail() {
     <>
       {/* 나중에 유저 정보 props 추가 */}
       <ProfileContainer>
-        <div>
-          <FollowNum>2950</FollowNum>
-          <FollowTitle>팔로워</FollowTitle>
-        </div>
-        <ProfileChange />
-        <div>
-          <FollowNum>128</FollowNum>
-          <FollowTitle>팔로워</FollowTitle>
-        </div>
+        <Link to="/profile/follower">
+          <div>
+            <FollowNum>2950</FollowNum>
+            <FollowTitle>팔로워</FollowTitle>
+          </div>
+        </Link>
+
+        <ImageContainer>
+          <UserImage />
+        </ImageContainer>
+
+        <Link to="/profile/following">
+          <div>
+            <FollowNum>128</FollowNum>
+            <FollowTitle>팔로잉</FollowTitle>
+          </div>
+        </Link>
       </ProfileContainer>
 
       <UserInfoContainer>
@@ -43,7 +52,6 @@ export default function ProfileDetail() {
 
       {/* 유저 정보에 따라 버튼 다르게 보여주기 */}
       {/* 내프로필 */}
-
       <ProfileButtonContainer>
         <Link to="/profile/edit">
           <ButtonContainer
@@ -69,9 +77,9 @@ export default function ProfileDetail() {
 
       {/* 팔로워 프로필 */}
       <FollowButtonContainer>
-        <ChatButton>
+        <ChatLink to="/chat">
           <Logo src={chat} />
-        </ChatButton>
+        </ChatLink>
         <ButtonContainer
           fontSize={"14px"}
           bgColor={"#ffffff"}

@@ -1,4 +1,6 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
+import baseprofile from "../../assets/icons/baseprofile.svg";
 
 export const ProfileContainer = styled.section`
   display: flex;
@@ -17,6 +19,20 @@ export const FollowTitle = styled.p`
   text-align: center;
   font-size: ${(props) => props.theme.fontSize.xsmall};
   color: ${(props) => props.theme.colors.textColor};
+`;
+
+export const ImageContainer = styled.div`
+  position: relative;
+  display: inline-block;
+`;
+
+export const UserImage = styled.img.attrs({
+  src: baseprofile,
+})`
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  z-index: 50;
 `;
 
 export const UserInfoContainer = styled.div`
@@ -53,6 +69,7 @@ export const ProfileButtonContainer = styled.div`
 export const FollowButtonContainer = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 34px;
   margin-top: 26px;
 
@@ -61,12 +78,15 @@ export const FollowButtonContainer = styled.div`
   }
 `;
 
-export const ChatButton = styled.button`
+export const ChatLink = styled(Link)`
+  display: flex;
+  justify-content: center;
   width: 50px;
 `;
 
 export const ShareButton = styled.button`
   width: 50px;
+  height: 100%;
 `;
 
 export const Logo = styled.img`

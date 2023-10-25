@@ -4,6 +4,7 @@ import logo from "../../../assets/images/logo.svg";
 import search from "../../../assets/icons/icon-search.svg";
 import HeaderContainer from "./HeaderContainer";
 import ButtonContainer from "../Button/ButtonContainer";
+import { Link } from "react-router-dom";
 
 const Logo = styled.img`
   width: 39px;
@@ -20,9 +21,11 @@ export default function HomeHeader() {
   return (
     <HeaderContainer justisfy={"space-between"}>
       <Logo src={logo} />
-      <ButtonContainer width={"50px"} bgColor={"#ffffff"}>
-        <SearchIcon src={search} />
-      </ButtonContainer>
+      <Link to="/search">
+        <ButtonContainer width={"50px"} bgColor={"#ffffff"}>
+          <SearchIcon src={search} />
+        </ButtonContainer>
+      </Link>
     </HeaderContainer>
   );
 }
