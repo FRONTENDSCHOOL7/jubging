@@ -13,6 +13,7 @@ import ProfileModification from "../pages/Profile/ProfileModification";
 import AddCourse from "../pages/AddCourse/AddCourse";
 import Upload from "../pages/Upload/Upload";
 import ChatListPage from "./../pages/ChatList/ChatListPage";
+import Chat from "../pages/Chat/Chat";
 import Followrs from "./../pages/Follow/Followers";
 import Following from "./../pages/Follow/Following";
 import Search from "./../pages/Search/Search";
@@ -31,6 +32,7 @@ export default function AppRouter() {
         <Route path="/post" element={<Post />} />
         <Route path="/newsletter" element={<NewsLetter />} />
         <Route path="/chat" element={<ChatListPage />} />
+        <Route path="/chat/room" element={<Chat />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/profile/follower" element={<Followrs />} />
         <Route path="/profile/following" element={<Following />} />
