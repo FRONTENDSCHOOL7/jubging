@@ -37,7 +37,7 @@ export const InfoNickname = styled.h3`
 
 export const InfoTime = styled.span`
   font-size: ${(props) => props.theme.fontSize.small};
-  color: ${(props) => props.theme.colors.textColor};;
+  color: ${(props) => props.theme.colors.textColor};
   margin-left: 6px;
 `;
 
@@ -46,16 +46,3 @@ export const CommentText = styled.p`
   margin-left: 46px;
   font-size: ${(props) => props.theme.fontSize.medium};
 `;
-
-const PostCommentStyle = {
-  CommentGroup,
-  CommentHeaderGroup,
-  ProfileImage,
-  CommentInfoGroup,
-  InfoHeader,
-  InfoNickname,
-  InfoTime,
-  CommentText,
-};
-
-export default PostCommentStyle;

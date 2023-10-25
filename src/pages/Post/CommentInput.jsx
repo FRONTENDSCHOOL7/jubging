@@ -1,17 +1,21 @@
 import React from "react";
 import { useState } from "react";
-import { ChatBar, InputWrapper, Button } from "./ChatInputStyle";
-import PlusIcon from "../../assets/icons/icon-plus.svg";
 import RoundInput from "../../components/common/Input/RoundInput";
+import {
+  Button,
+  ChatBar,
+  InputWrapper,
+  ProfileImage,
+} from "./CommentInputStyle";
 
-function ChatInput() {
+function CommentInput({ profilePhoto }) {
   const [message, setMessage] = useState("");
   return (
     <ChatBar>
       <InputWrapper>
-        <Button>
-          <img src={PlusIcon} alt="plus" />
-        </Button>
+        <ProfileImage>
+          <img src={profilePhoto} alt="프로필 사진" />
+        </ProfileImage>
         <RoundInput
           label=""
           type="text"
@@ -20,10 +24,10 @@ function ChatInput() {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />
-        <Button $active={message !== ""}>전송</Button>
+        <Button $active={message !== ""}>등록</Button>
       </InputWrapper>
     </ChatBar>
   );
 }
 
-export default ChatInput;
+export default CommentInput;

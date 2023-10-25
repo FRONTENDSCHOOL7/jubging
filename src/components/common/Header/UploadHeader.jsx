@@ -7,12 +7,7 @@ export default function UploadHeader() {
   return (
     <HeaderContainer justisfy={"space-between"}>
       <BackButton />
-      <ButtonContainer
-        $bgColor={"#40A6DE"}
-        width={"90px"}
-        height={"32px"}
-        rmargin={"12px"}
-      >
+      <ButtonContainer width={"90px"} height={"32px"} rmargin={"12px"}>
         저장
       </ButtonContainer>
     </HeaderContainer>
