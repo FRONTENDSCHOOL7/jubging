@@ -7,14 +7,31 @@ import useModalControl from "../../hook/useModalControl";
 
 function Home() {
   const { ModalComponent } = useModalControl("Home");
+  const modifyFuc = () => {
+    console.log("modify");
+  };
+  const deleteFuc = () => {
+    console.log("delete");
+  };
+  // const reportFuc = () => {
+  //   console.log("report");
+  // };
+
   return (
     <>
       <HeaderBar />
       <Posting pageName="Home" />
       <Navbar />
+
+      {/* 조건부 렌더링 본인, 타인  */}
       <ModalComponent>
-        <Modal />
+        <Modal contents={["수정"]} handleFunc={modifyFuc} />
+        <Modal contents={["삭제"]} handleFunc={deleteFuc} />
       </ModalComponent>
+
+      {/* <ModalComponent>
+        <Modal contents={["신고하기"]} handleFunc={reportFuc} />
+      </ModalComponent> */}
     </>
   );
 }

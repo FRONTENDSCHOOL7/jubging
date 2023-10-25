@@ -17,7 +17,7 @@ const ImgEarth = styled.img`
   z-index: 10;
 
   ${(props) =>
-    props.splashScreen
+    props.$splashScreen
       ? css`
           animation: ${rotate} 20s infinite linear;
         `
@@ -25,5 +25,5 @@ const ImgEarth = styled.img`
 `;
 
 export default function Earth({ splashScreen }) {
-  return <ImgEarth src={earth} splashScreen={splashScreen} />;
+  return <ImgEarth src={earth} $splashScreen={splashScreen} />;
 }
