@@ -10,7 +10,7 @@ export const ImgBox = styled.section`
 
   position: relative;
   ${(props) =>
-    props.splashScreen
+    props.$splashScreen
       ? css``
       : css`
           position: absolute;
@@ -18,5 +18,5 @@ export const ImgBox = styled.section`
 `;
 
 export default function Imagebox({ children, splashScreen }) {
-  return <ImgBox splashScreen={splashScreen}>{children}</ImgBox>;
+  return <ImgBox $splashScreen={splashScreen}>{children}</ImgBox>;
 }

@@ -4,13 +4,26 @@ import Navbar from "../../components/common/Navbar/Navbar";
 import ChatPage from "./ChatPage";
 import ChatInput from "./ChatInput";
 
+import { Modal } from "../../components/common/Modal/Modal";
+import useModalControl from "../../hook/useModalControl";
+
 function Chat() {
+  const { ModalComponent } = useModalControl("Chat");
+
+  const exitChat = () => {
+    console.log("Exit Chat");
+  };
+
   return (
     <>
-      <ChatRoomHeader />
+      <ChatRoomHeader pageName="Chat" />
       <ChatPage />
       <ChatInput />
       <Navbar />
+
+      <ModalComponent>
+        <Modal contents={["채팅방 나가기"]} handleFunc={exitChat} />
+      </ModalComponent>
     </>
   );
 }

@@ -47,7 +47,7 @@ const BigRabbit = styled.img`
   left: 10px;
   z-index: 20;
   ${(props) =>
-    props.splashScreen
+    props.$splashScreen
       ? css`
           animation: ${jumpRabbit} 1.5s infinite linear;
         `
@@ -55,5 +55,5 @@ const BigRabbit = styled.img`
 `;
 
 export default function Rabbit({ splashScreen }) {
-  return <BigRabbit src={bigRabbit} splashScreen={splashScreen} />;
+  return <BigRabbit src={bigRabbit} $splashScreen={splashScreen} />;
 }

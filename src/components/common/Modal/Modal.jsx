@@ -4,10 +4,17 @@ import { ModalBar, ModalBox } from "./ModalStyle";
 export function Modal({ contents, handleFunc }) {
   return (
     <ModalBox>
-      <ModalBar />
+      {/* <ModalBar /> */}
       <ul>
-        <li>수정</li>
-        <li>삭제</li>
+        {contents.map((item, index) => {
+          return (
+            <li key={index}>
+              <button className="modalList" onClick={handleFunc}>
+                {item}
+              </button>
+            </li>
+          );
+        })}
       </ul>
     </ModalBox>
   );

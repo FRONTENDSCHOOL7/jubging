@@ -18,7 +18,7 @@ export default function SplashScreen() {
         <Earth splashScreen={true} />
       </Imagebox>
       <Link to="/loginStart">
-        <StartBtn fontSize={"36px"}>시작하기</StartBtn>
+        <StartBtn $fontSize={"36px"}>시작하기</StartBtn>
       </Link>
     </Container>
   );

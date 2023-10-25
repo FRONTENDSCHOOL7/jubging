@@ -48,7 +48,7 @@ export const BigDog = styled.img`
   z-index: 20;
 
   ${(props) =>
-    props.splashScreen
+    props.$splashScreen
       ? css`
           animation: ${jumpDog} 1.5s infinite linear;
         `
@@ -56,5 +56,5 @@ export const BigDog = styled.img`
 `;
 
 export default function Dog({ splashScreen }) {
-  return <BigDog src={bigDog} splashScreen={splashScreen} />;
+  return <BigDog src={bigDog} $splashScreen={splashScreen} />;
 }

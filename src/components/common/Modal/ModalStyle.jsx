@@ -6,25 +6,14 @@ export const ModalBox = styled.div`
   align-items: center;
 
   width: 390px;
-  /* 높이는 추후에 삭제 컨텐츠 갯수에 따라 변동 */
-  height: 200px;
 
-  position: fixed;
-  z-index: 1000;
-  bottom: 0;
+  .modalList {
+    width: 390px;
+    height: 46px;
 
-  padding-top: 16px;
+    padding-left: 26px;
 
-  background-color: royalblue;
-  border-radius: 10px 10px 0 0;
-  box-shadow: 0 2px 40px rgba(0, 0, 0, 0.15);
-`;
-
-export const ModalBar = styled.div`
-  width: 50px;
-  height: 4px;
-
-  margin-bottom: 16px;
-  background-color: #dbdbdb;
-  border-radius: 5px;
+    text-align: left;
+    background-color: white;
+  }
 `;

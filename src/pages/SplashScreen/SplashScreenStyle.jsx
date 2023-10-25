@@ -21,7 +21,7 @@ export const StartBtn = styled.button`
   z-index: 10;
   background-color: transparent;
   font-size: ${(props) =>
-    props.fontSize ? props.fontSize : props.theme.fontSize.medium};
+    props.$fontSize ? props.$fontSize : props.theme.fontSize.medium};
 
   animation: ${start} 5s;
 `;

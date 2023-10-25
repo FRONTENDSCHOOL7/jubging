@@ -12,7 +12,7 @@ export const ContainerBox = styled.div`
   overflow: hidden;
 
   ${(props) =>
-    props.splashScreen
+    props.$splashScreen
       ? css`
           display: flex;
           flex-direction: column;
@@ -23,5 +23,5 @@ export const ContainerBox = styled.div`
 `;
 
 export default function Container({ children, splashScreen }) {
-  return <ContainerBox splashScreen={splashScreen}>{children}</ContainerBox>;
+  return <ContainerBox $splashScreen={splashScreen}>{children}</ContainerBox>;
 }

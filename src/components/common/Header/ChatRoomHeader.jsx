@@ -13,14 +13,14 @@ export const UserName = styled.h2`
   font-size: ${(props) => props.theme.fontSize.medium};
 `;
 
-export default function ChatRoomHeader() {
+export default function ChatRoomHeader(props) {
   return (
     <HeaderContainer justisfy={"space-between"}>
       <Section>
         <BackButton />
         <UserName>다 버리는 동주</UserName>
       </Section>
-      <MoreButton />
+      <MoreButton pageName={props.pageName} />
     </HeaderContainer>
   );
 }

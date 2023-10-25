@@ -48,7 +48,7 @@ const BigBear = styled.img`
   z-index: 20;
 
   ${(props) =>
-    props.splashScreen
+    props.$splashScreen
       ? css`
           animation: ${jumpBear} 1s infinite linear;
         `
@@ -56,5 +56,5 @@ const BigBear = styled.img`
 `;
 
 export default function Bear({ splashScreen }) {
-  return <BigBear src={bigBear} splashScreen={splashScreen} />;
+  return <BigBear src={bigBear} $splashScreen={splashScreen} />;
 }
