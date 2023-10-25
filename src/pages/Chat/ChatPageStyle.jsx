@@ -9,13 +9,13 @@ export const Wrapper = styled.div`
 export const MessageGroup = styled.div`
   display: flex;
   align-items: start;
-  justify-content:${props => props.isMine ? 'flex-end' : 'flex-start'};
+  justify-content:${props => props.$isMine ? 'flex-end' : 'flex-start'};
 
   & > * {
     margin-right:10px; 
   }
   
-  ${props => props.isMine && `
+  ${props => props.$isMine && `
     & > img {
       display:none; 
     }
@@ -26,15 +26,15 @@ export const MessageContainer = styled.div`
   width: 100%;
   margin: 0;
   display: flex; 
-  flex-direction: ${props => props.isMine ? 'row-reverse' : 'row'};  
+  flex-direction: ${props => props.$isMine ? 'row-reverse' : 'row'};  
   align-items: flex-end;
-  flex-shrink: ${props => props.isMine ? '0' : '0'};
+  flex-shrink: ${props => props.$isMine ? '0' : '0'};
 
   & > div {
     display: flex;
-    flex-direction: ${props => props.isMine ? 'row-reverse' : 'colum'};
+    flex-direction: ${props => props.$isMine ? 'row-reverse' : 'colum'};
     align-items: flex-end;
-    justify-content: ${props => props.isMine ? 'space-between' : 'flex-start'};
+    justify-content: ${props => props.$isMine ? 'space-between' : 'flex-start'};
   }
 `;
 
@@ -43,10 +43,10 @@ export const Message = styled.div`
   margin-bottom: 17px;
   padding :10px; 
   line-height: 18px;
-  color: ${props => props.isMine ? '#FFFFFF' : '#000000'};
-  background-color:${props => props.isMine ? props.theme.colors.mainColor : '#FFFFFF'};
-  border-radius: ${props => props.isMine ? '10px 0 10px 10px' : '0 10px 10px 10px'}; 
-  border: 1px solid ${props => props.isMine ? 'none' : props.theme.colors.placeHolderColor};
+  color: ${props => props.$isMine ? '#FFFFFF' : '#000000'};
+  background-color:${props => props.$isMine ? props.theme.colors.mainColor : '#FFFFFF'};
+  border-radius: ${props => props.$isMine ? '10px 0 10px 10px' : '0 10px 10px 10px'}; 
+  border: 1px solid ${props => props.$isMine ? 'none' : props.theme.colors.placeHolderColor};
 `;
 
 export const ProfilePhoto = styled.div`
@@ -69,6 +69,6 @@ export const Time = styled.span`
   font-size: ${(props) => props.theme.fontSize.small};
   color:${(props) => props.theme.colors.placeHolderColor};
   transform: translateY(-100%);
-  margin-right: ${props => props.isMine ? '16px' : '0'};
-  margin-left: ${props => props.isMine ? '0' : '16px'};
+  margin-right: ${props => props.$isMine ? '16px' : '0'};
+  margin-left: ${props => props.$isMine ? '0' : '16px'};
 `;
