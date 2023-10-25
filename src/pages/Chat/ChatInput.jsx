@@ -23,7 +23,7 @@ function ChatInput() {
           placeholder="메시지 입력하기..."
           value={message}
           onChange={(e) => setMessage(e.target.value)}/>
-        <Button active={message !== ''}>전송</Button>
+        <Button $active={message !== ''}>전송</Button>
       </InputWrapper>
     </ChatBar>
   );

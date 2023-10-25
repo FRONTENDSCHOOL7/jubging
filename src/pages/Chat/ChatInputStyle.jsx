@@ -22,6 +22,6 @@ export const Button = styled.button`
   background-color: transparent;
   border:none; 
   margin: 0 16px;
-  color:${(props) => props.active ? props.theme.colors.mainColor : props.theme.colors.placeHolderColor};
+  color:${(props) => props.$active ? props.theme.colors.mainColor : props.theme.colors.placeHolderColor};
   font-size: ${(props) => props.theme.fontSize.medium};
 `;
