@@ -17,7 +17,7 @@ function ChatPage({profilePhoto}) {
         </ProfilePhoto>
         <MessageContainer isMine={false}>
           <div>
-            <Message isMin={false}>그동안 정말 뜻깊은 시간이었어! 많은 분들과 함께 해서 즐거웠고 매니저님, 강사님들께 감사인사를 드리고 싶다!!!</Message>
+            <Message isMine={false}>그동안 정말 뜻깊은 시간이었어! 많은 분들과 함께 해서 즐거웠고 매니저님, 강사님들께 감사인사를 드리고 싶다!!!</Message>
             <Time isMine={false}>12:39</Time>
           </div>
         </MessageContainer>
