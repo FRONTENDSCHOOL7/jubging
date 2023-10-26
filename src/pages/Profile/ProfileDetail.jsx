@@ -1,12 +1,15 @@
 // react
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-//atom
-import { userInfoAtom } from "../../recoil/userAtom";
+// API
+import { getMyinfo } from "../../../api/profileAPI";
+
+// atom
+import { userInfoAtom } from "../../../recoil/userAtom";
 
 // recoil
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 
 // component
 import ButtonContainer from "../../components/common/Button/ButtonContainer";
@@ -30,9 +33,30 @@ import {
 } from "./ProfileDetailStyle";
 
 export default function ProfileDetail() {
-  const userInfo = useRecoilValue(userInfoAtom);
+  // const userInfo = useRecoilValue(userInfoAtom);
 
-  console.log("userinfo ", userInfo.username);
+  // console.log("userinfo ", userInfo.username);
+
+  const token = localStorage.getItem("token");
+  const name = localStorage.getItem("accoutname");
+
+  const [userInfo, setUserInfo] = useRecoilState(userInfoAtom);
+
+  // 내 프로필 가져오기
+  useEffect(() => {
+    const fetchMyInfo = async () => {
+      const response = await getMyinfo(token);
+      setUserInfo({
+        ...userInfo,
+        username: response.user.username,
+        accountname: response.user.accountname,
+        intro: response.user.intro,
+        image: response.user.image,
+      });
+    };
+    fetchMyInfo();
+    console.log(name);
+  }, []);
 
   return (
     <>
