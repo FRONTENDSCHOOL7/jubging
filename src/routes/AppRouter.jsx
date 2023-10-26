@@ -17,6 +17,7 @@ import Chat from "../pages/Chat/Chat";
 import Followrs from "./../pages/Follow/Followers";
 import Following from "./../pages/Follow/Following";
 import Search from "./../pages/Search/Search";
+import NotFound from "../pages/NotFound/NotFound";
 
 export default function AppRouter() {
   return (
@@ -29,17 +30,22 @@ export default function AppRouter() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signup/profile" element={<ProfileStart />} />
-        <Route path="/post" element={<Post />} />
+        <Route path="/post/:accountname" element={<Post />} />
         <Route path="/newsletter" element={<NewsLetter />} />
         <Route path="/chat" element={<ChatListPage />} />
         <Route path="/chat/room" element={<Chat />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/profile/follower" element={<Followrs />} />
-        <Route path="/profile/following" element={<Following />} />
-        <Route path="/profile/edit" element={<ProfileModification />} />
-        <Route path="/profile/addcourse" element={<AddCourse />} />
+        <Route path="/myprofile" element={<Profile />} />
+        <Route path="/profile/:accountname" element={<Profile />} />
+        <Route path="/profile/:accountname/follower" element={<Followrs />} />
+        <Route path="/profile/:accountname/following" element={<Following />} />
+        <Route
+          path="/profile/:accountname/edit"
+          element={<ProfileModification />}
+        />
+        <Route path="/profile/:accountname/addcourse" element={<AddCourse />} />
         <Route path="/upload" element={<Upload />} />
         <Route path="/search" element={<Search />} />
+        <Route path="/*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );

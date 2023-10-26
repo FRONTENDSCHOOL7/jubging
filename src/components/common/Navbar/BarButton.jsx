@@ -1,4 +1,11 @@
-import React from "react";
+// reacrt
+import React, { useEffect } from "react";
+import { useLocation, useParams } from "react-router";
+
+// recoil
+import { useRecoilState } from "recoil";
+
+// components
 import home from "../../../assets/icons/icon-home.svg";
 import chat from "../../../assets/icons/icon-chat.svg";
 import profile from "../../../assets/icons/icon-profile.svg";
@@ -44,7 +51,7 @@ export default function BarButton() {
       </Navli>
 
       <Navli>
-        <NavbarLink to="/profile">
+        <NavbarLink to={`/myprofile`}>
           <Logo src={profile} alt="프로필" />
           <Title>프로필</Title>
         </NavbarLink>

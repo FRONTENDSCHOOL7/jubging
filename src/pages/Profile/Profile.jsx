@@ -1,15 +1,6 @@
 // react
 import React, { useEffect } from "react";
 
-// API
-import { getMyinfo } from "../../api/profileAPI";
-
-// atom
-import { userInfoAtom } from "../../recoil/userAtom";
-
-// recoil
-import { useRecoilState } from "recoil";
-
 // components
 import MoreHeader from "../../components/common/Header/MoreHeader";
 import Navbar from "../../components/common/Navbar/Navbar";
@@ -22,27 +13,6 @@ import Posting from "../../components/Post/Posting";
 import bear from "../../assets/images/big-bear.svg";
 
 export default function Profile() {
-  const token = localStorage.getItem("token");
-
-  const [userInfo, setUserInfo] = useRecoilState(userInfoAtom);
-
-  // 내 프로필 가져오기
-  useEffect(() => {
-    const fetchMyInfo = async () => {
-      const response = await getMyinfo(token);
-      setUserInfo({
-        ...userInfo,
-        username: response.user.username,
-        accountname: response.user.accountname,
-        intro: response.user.intro,
-        image: response.user.image,
-      });
-    };
-    fetchMyInfo();
-  }, []);
-
-  console.log(userInfo);
-
   return (
     <div>
       <MoreHeader />
