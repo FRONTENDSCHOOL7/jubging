@@ -7,7 +7,12 @@ import useModalControl from "../../../hook/useModalControl";
 export default function MoreButton(props) {
   const { openModal } = useModalControl(props.pageName);
   return (
-    <ButtonContainer onClick={openModal} width={"50px"} bgColor={"#ffffff"}>
+    <ButtonContainer
+      onClick={openModal}
+      width={"50px"}
+      height={"0"}
+      bgColor={"#ffffff"}
+    >
       <MoreIcon src={more} />
     </ButtonContainer>
   );
