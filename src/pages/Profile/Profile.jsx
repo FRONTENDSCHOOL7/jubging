@@ -1,6 +1,15 @@
 // react
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+
+// API
+import { getUserProfile } from "../../api/profileAPI";
+
+// atom
+import { userInfoAtom } from "../../recoil/userAtom";
+
+// recoil
+import { useRecoilValue } from "recoil";
 
 // components
 import MoreHeader from "../../components/common/Header/MoreHeader";
@@ -13,13 +22,42 @@ import gallery from "../../assets/icons/icon-post-album.svg";
 import Posting from "../../components/Post/Posting";
 import bear from "../../assets/images/big-bear.svg";
 
+import useModalControl from "../../hook/useModalControl";
+import { Modal } from "../../components/common/Modal/Modal";
+
 export default function Profile() {
   const { accountname } = useParams();
+  const { ModalComponent } = useModalControl("Profile");
+
+  const userInfo = useRecoilValue(userInfoAtom);
+  const [profile, setProfile] = useState({});
+
+  // 개인프로필 가져오기
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      const response = await getUserProfile(accountname);
+
+      if (response && response.profile) {
+        setProfile(response.profile);
+      }
+      return response.profile;
+    };
+    fetchUserInfo();
+  }, []);
+
+  // modal test 메서드
+  const modify = () => {
+    console.log("modify");
+  };
+
+  const logout = () => {
+    console.log("logout");
+  };
 
   return (
-    <div>
-      <MoreHeader />
-      <ProfileDetail accountname={accountname} />
+    <>
+      <MoreHeader pageName="Profile" />
+      <ProfileDetail profile={profile} />
 
       <ViewButtonContainer>
         <ViewButton>
@@ -42,7 +80,23 @@ export default function Profile() {
       </GalleryContainer>
 
       <Navbar />
-    </div>
+
+      <ModalComponent>
+        {userInfo.accountname === profile.accountname ? (
+          <>
+            <Modal contents={["수정"]} handleFunc={modify}></Modal>
+            <Modal contents={["로그아웃"]} handleFunc={logout}></Modal>
+          </>
+        ) : (
+          <Modal
+            contents={["신고하기"]}
+            handleFunc={() => {
+              console.log("no");
+            }}
+          ></Modal>
+        )}
+      </ModalComponent>
+    </>
   );
 }
 
