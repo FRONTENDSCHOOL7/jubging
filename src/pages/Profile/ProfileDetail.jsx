@@ -1,5 +1,14 @@
-import React from "react";
+// react
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+
+//atom
+import { userInfoAtom } from "../../recoil/userAtom";
+
+// recoil
+import { useRecoilValue } from "recoil";
+
+// component
 import ButtonContainer from "../../components/common/Button/ButtonContainer";
 import chat from "../../assets/icons/icon-chat.svg";
 import share from "../../assets/icons/icon-share.svg";
@@ -21,6 +30,10 @@ import {
 } from "./ProfileDetailStyle";
 
 export default function ProfileDetail() {
+  const userInfo = useRecoilValue(userInfoAtom);
+
+  console.log("userinfo ", userInfo.username);
+
   return (
     <>
       {/* 나중에 유저 정보 props 추가 */}
