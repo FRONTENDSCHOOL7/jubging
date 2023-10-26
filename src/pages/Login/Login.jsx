@@ -1,7 +1,16 @@
+// react
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
+// API
 import { postLogin } from "../../api/loginAPI";
+
+// recoil
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { userInfoAtom } from "../../recoil/userAtom";
+import { loginAtom } from "../../recoil/loginAtom";
+
+// components
 import { Title, EmailSignUp, Form } from "./LoginStyle";
 import Input from "../../components/common/Input/Input";
 import Button from "../../components/common/Button/ButtonContainer";
@@ -10,14 +19,30 @@ import BackSpaceHeader from "../../components/common/Header/BackSpaceHeader";
 const Login = () => {
   const navigate = useNavigate();
 
+  const [userInfo, setUserInfo] = useRecoilState(userInfoAtom);
+  const setLogin = useSetRecoilState(loginAtom);
+
+  const [errorMsg, setErrorMsg] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  // 로그인 요청 함수
   const handleLogin = async (e) => {
     e.preventDefault();
     const loginData = await postLogin(email, password);
-    console.log(loginData);
-    navigate("/home");
+    console.log("loginData ", loginData);
+
+    // 유효성 검사
+    if (loginData.status === 422) {
+      setErrorMsg("비밀번호가 일치하지 않습니다.");
+    } else {
+      // localStorage에 token 값 저장
+      localStorage.setItem("token", loginData.user.token);
+
+      // 유저 정보 변경할 것 setUserInfo()
+      setLogin(true);
+      navigate("/home");
+    }
   };
 
   return (
@@ -44,11 +69,10 @@ const Login = () => {
           // error="이미 있는 비밀번호입니다."
         />
 
-        {/* <Link to="/home"> */}
         <Button type="submit" width="332px">
           로그인
         </Button>
-        {/* </Link> */}
+        {/* 에러 메세지 컴포넌트 작성할 것 */}
         <Link to="/signup">
           <EmailSignUp>이메일로 회원가입하기</EmailSignUp>
         </Link>

@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+
 import MoreHeader from "../../components/common/Header/MoreHeader";
 import Navbar from "../../components/common/Navbar/Navbar";
 import ProfileDetail from "./ProfileDetail";
@@ -8,35 +9,6 @@ import thread from "../../assets/icons/icon-post-list.svg";
 import gallery from "../../assets/icons/icon-post-album.svg";
 import Posting from "../../components/Post/Posting";
 import bear from "../../assets/images/big-bear.svg";
-
-export const ViewButtonContainer = styled.header`
-  border-top: 1px solid #dbdbdb;
-  border-bottom: 1px solid #dbdbdb;
-  margin-top: 28px;
-`;
-
-export const ViewButton = styled.button`
-  width: 195px;
-  height: 44px;
-`;
-
-export const GalleryContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 13px;
-  padding: 28px 17px;
-`;
-
-export const ThumbnailButton = styled.button`
-  background-color: ${(props) => props.theme.colors.placeHolderColor};
-  border-radius: 8px;
-  object-fit: cover;
-`;
-
-export const Thumbnail = styled.img`
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-`;
 
 export default function Profile() {
   return (
@@ -68,3 +40,32 @@ export default function Profile() {
     </div>
   );
 }
+
+export const ViewButtonContainer = styled.header`
+  border-top: 1px solid #dbdbdb;
+  border-bottom: 1px solid #dbdbdb;
+  margin-top: 28px;
+`;
+
+export const ViewButton = styled.button`
+  width: 195px;
+  height: 44px;
+`;
+
+export const GalleryContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 13px;
+  padding: 28px 17px;
+`;
+
+export const ThumbnailButton = styled.button`
+  background-color: ${(props) => props.theme.colors.placeHolderColor};
+  border-radius: 8px;
+  object-fit: cover;
+`;
+
+export const Thumbnail = styled.img`
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+`;
