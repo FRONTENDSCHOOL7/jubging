@@ -3,10 +3,10 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 // API
-import { getMyinfo } from "../../../api/profileAPI";
+import { getUserProfile } from "../../api/profileAPI";
 
 // atom
-import { userInfoAtom } from "../../../recoil/userAtom";
+import { userInfoAtom } from "../../recoil/userAtom";
 
 // recoil
 import { useRecoilState, useRecoilValue } from "recoil";
@@ -32,31 +32,24 @@ import {
   UserName,
 } from "./ProfileDetailStyle";
 
-export default function ProfileDetail() {
-  // const userInfo = useRecoilValue(userInfoAtom);
+export default function ProfileDetail({ accountname }) {
+  const userInfo = useRecoilValue(userInfoAtom);
+  console.log(userInfo);
 
-  // console.log("userinfo ", userInfo.username);
+  const [profile, setProfile] = useState({});
 
-  const token = localStorage.getItem("token");
-  const name = localStorage.getItem("accoutname");
-
-  const [userInfo, setUserInfo] = useRecoilState(userInfoAtom);
-
-  // 내 프로필 가져오기
+  // 개인프로필 가져오기
   useEffect(() => {
-    const fetchMyInfo = async () => {
-      const response = await getMyinfo(token);
-      setUserInfo({
-        ...userInfo,
-        username: response.user.username,
-        accountname: response.user.accountname,
-        intro: response.user.intro,
-        image: response.user.image,
-      });
+    const fetchUserInfo = async () => {
+      const response = await getUserProfile(accountname);
+      console.log(response.profile);
+      setProfile(response.profile);
+      return response.profile;
     };
-    fetchMyInfo();
-    console.log(name);
+    fetchUserInfo();
   }, []);
+
+  console.log(profile.accountname);
 
   return (
     <>
