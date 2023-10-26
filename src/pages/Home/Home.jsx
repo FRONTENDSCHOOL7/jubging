@@ -18,7 +18,8 @@ import { Modal } from "../../components/common/Modal/Modal";
 import useModalControl from "../../hook/useModalControl";
 
 function Home() {
-  const { token } = localStorage.getItem("token");
+  const token = localStorage.getItem("token");
+  console.log(token);
   const { ModalComponent } = useModalControl("Home");
 
   const [userInfo, setUserInfo] = useRecoilState(userInfoAtom);
@@ -34,18 +35,20 @@ function Home() {
   useEffect(() => {
     const fetchMyInfo = async () => {
       const response = await getMyInfo(token);
-      setUserInfo({
-        ...userInfo,
-        username: response.user.username,
-        accountname: response.user.accountname,
-        intro: response.user.intro,
-        image: response.user.image,
-      });
+      if (response && response.user) {
+        setUserInfo({
+          ...userInfo,
+          username: response.user.username,
+          accountname: response.user.accountname,
+          intro: response.user.intro,
+          image: response.user.image,
+        });
+      }
     };
     fetchMyInfo();
   }, []);
 
-  console.log(userInfo);
+  console.log("userInfo ", userInfo);
 
   return (
     <>

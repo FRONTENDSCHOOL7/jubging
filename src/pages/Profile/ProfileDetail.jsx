@@ -9,7 +9,7 @@ import { getUserProfile } from "../../api/profileAPI";
 import { userInfoAtom } from "../../recoil/userAtom";
 
 // recoil
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilValue } from "recoil";
 
 // component
 import ButtonContainer from "../../components/common/Button/ButtonContainer";
@@ -34,7 +34,7 @@ import {
 
 export default function ProfileDetail({ accountname }) {
   const userInfo = useRecoilValue(userInfoAtom);
-  console.log(userInfo);
+  console.log("userinforAtom ", userInfo);
 
   const [profile, setProfile] = useState({});
 
@@ -42,14 +42,17 @@ export default function ProfileDetail({ accountname }) {
   useEffect(() => {
     const fetchUserInfo = async () => {
       const response = await getUserProfile(accountname);
-      console.log(response.profile);
-      setProfile(response.profile);
+
+      if (response && response.profile) {
+        setProfile(response.profile);
+      }
       return response.profile;
     };
     fetchUserInfo();
   }, []);
 
-  console.log(profile.accountname);
+  console.log(profile);
+  console.log("profile.accountname ", profile.accountname);
 
   return (
     <>
