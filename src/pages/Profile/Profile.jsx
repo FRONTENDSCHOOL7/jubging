@@ -1,5 +1,6 @@
 // react
-import React, { useEffect } from "react";
+import React from "react";
+import { useParams } from "react-router-dom";
 
 // components
 import MoreHeader from "../../components/common/Header/MoreHeader";
@@ -13,10 +14,12 @@ import Posting from "../../components/Post/Posting";
 import bear from "../../assets/images/big-bear.svg";
 
 export default function Profile() {
+  const { accountname } = useParams();
+
   return (
     <div>
       <MoreHeader />
-      <ProfileDetail />
+      <ProfileDetail accountname={accountname} />
 
       <ViewButtonContainer>
         <ViewButton>

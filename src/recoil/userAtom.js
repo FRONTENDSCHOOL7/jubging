@@ -4,6 +4,7 @@ import { recoilPersist } from "recoil-persist";
 //
 const { persistAtom } = recoilPersist();
 
+// 사용자 정보 불러오기
 export const userInfoAtom = atom({
   key: "userInfoAtom",
   default: {
