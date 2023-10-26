@@ -2,8 +2,11 @@
 import React, { useEffect } from "react";
 import { useLocation, useParams } from "react-router";
 
+// atom
+import { userInfoAtom } from "../../../recoil/userAtom";
+
 // recoil
-import { useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 
 // components
 import home from "../../../assets/icons/icon-home.svg";
@@ -21,6 +24,8 @@ import {
 } from "./BarButtonStyle";
 
 export default function BarButton() {
+  const userInfo = useRecoilValue(userInfoAtom);
+
   return (
     <NavUl>
       <Navli>
@@ -50,8 +55,9 @@ export default function BarButton() {
         </NavbarLink>
       </Navli>
 
+      {/* 프로필 클릭 시 로그인된 계정의 프로필로 이동 */}
       <Navli>
-        <NavbarLink to={`/myprofile`}>
+        <NavbarLink to={`/profile/${userInfo.accountname}`}>
           <Logo src={profile} alt="프로필" />
           <Title>프로필</Title>
         </NavbarLink>
