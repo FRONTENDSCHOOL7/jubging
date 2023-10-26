@@ -10,7 +10,7 @@ export default function MoreButton(props) {
     <ButtonContainer
       onClick={openModal}
       width={"50px"}
-      height={"0"}
+      height={"50px"}
       bgColor={"#ffffff"}
     >
       <MoreIcon src={more} />
