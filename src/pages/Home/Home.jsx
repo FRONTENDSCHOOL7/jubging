@@ -19,7 +19,7 @@ import useModalControl from "../../hook/useModalControl";
 
 function Home() {
   const token = localStorage.getItem("token");
-  console.log(token);
+
   const { ModalComponent } = useModalControl("Home");
 
   const [userInfo, setUserInfo] = useRecoilState(userInfoAtom);
@@ -47,8 +47,6 @@ function Home() {
     };
     fetchMyInfo();
   }, []);
-
-  console.log("userInfo ", userInfo);
 
   return (
     <>

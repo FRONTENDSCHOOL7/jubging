@@ -19,3 +19,28 @@ export const getUserProfile = async (accountname) => {
     console.log(error);
   }
 };
+
+// 프로필 수정하기
+export const setUserProfile = async ({
+  username,
+  accountname,
+  intro,
+  image,
+}) => {
+  try {
+    const userData = {
+      user: {
+        username: username,
+        accountname: accountname,
+        intro: intro,
+        image: image,
+      },
+    };
+
+    console.log(userData);
+    const response = await authAxios.put("/user", userData);
+    return response.data;
+  } catch (error) {
+    console.log("현재 에러입니다. ", error);
+  }
+};
