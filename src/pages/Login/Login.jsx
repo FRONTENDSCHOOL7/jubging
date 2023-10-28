@@ -17,6 +17,17 @@ import Button from "../../components/common/Button/ButtonContainer";
 import BackSpaceHeader from "../../components/common/Header/BackSpaceHeader";
 import { styled } from 'styled-components';
 
+// 이메일 유효성 검사 함수
+const validateEmail = (email) => {
+  const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
+}
+
+// 비밀번호 유효성 검사 함수
+const validatePassword = (password) => {
+  return password.length >= 6 && password.length <=12;
+}
+
 const Login = () => {
   const navigate = useNavigate();
 
@@ -41,6 +52,20 @@ const Login = () => {
   // 로그인 요청 함수
   const handleLogin = async (e) => {
     e.preventDefault();
+
+    if (!isFormComplete) return;
+
+    // 유효성 검사
+    if (!validateEmail(email)) {
+      alert("이메일 형식이 올바르지 않습니다.");
+      return;
+    }
+
+    if (!validatePassword(password)) {
+      alert("비밀번호는 6~12자 이내여야 합니다.");
+      return;
+    }
+    
     const loginData = await postLogin(email, password);
     console.log("loginData ", loginData);
 
