@@ -1,5 +1,5 @@
 // react
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 // api
 import { getMyInfo } from "../../api/profileAPI";
@@ -16,13 +16,23 @@ import Navbar from "../../components/common/Navbar/Navbar";
 import Posting from "../../components/Post/Posting";
 import { Modal } from "../../components/common/Modal/Modal";
 import useModalControl from "../../hook/useModalControl";
+import { getFollowFeed } from "../../api/postAPI";
+import Loading from "./../Loading/Loading";
+import styled from "styled-components";
+import NoFollowHome from "./NoFollowHome";
 
 function Home() {
   const token = localStorage.getItem("token");
+  const limit = 5;
+  // console.log(token);
 
   const { ModalComponent } = useModalControl("Home");
 
   const [userInfo, setUserInfo] = useRecoilState(userInfoAtom);
+
+  const [isLoading, setIsLoading] = useState(true);
+  const [skip, setSkip] = useState(0);
+  const [data, setData] = useState([]);
 
   const modifyFuc = () => {
     console.log("modify");
@@ -48,10 +58,37 @@ function Home() {
     fetchMyInfo();
   }, []);
 
+  console.log("userInfo ", userInfo);
+
+  // 팔로우한 유저 피드 가져오기
+  const fetchFollowFeed = useCallback(async () => {
+    try {
+      const newData = await getFollowFeed(limit, skip, token);
+      setIsLoading(false);
+      if (newData.length > 0) {
+        setData((prevData) => [...prevData, ...newData]);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }, [limit, skip, token]);
+
+  useEffect(() => {
+    fetchFollowFeed();
+  }, [fetchFollowFeed]);
+
   return (
     <>
       <HeaderBar />
-      <Posting pageName="Home" />
+      {isLoading ? (
+        <Loading />
+      ) : data.length === 0 ? (
+        <NoFollowHome />
+      ) : (
+        <PostingContainer>
+          <Posting pageName="Home" posts={data} />
+        </PostingContainer>
+      )}
       <Navbar />
 
       {/* 조건부 렌더링 본인, 타인  */}
@@ -66,5 +103,9 @@ function Home() {
     </>
   );
 }
+
+const PostingContainer = styled.section`
+  margin-bottom: 60px;
+`;
 
 export default Home;

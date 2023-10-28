@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import bear from "../../../assets/images/bear-face.svg";
 
 import {
@@ -10,17 +10,15 @@ import {
   SubText,
 } from "./UserListBoxStyle";
 
-export default function UserListBox() {
-  const { accountname } = useParams();
-
+export default function UserListBox({ profileImage, userName, accountName }) {
   return (
-    <ProfileLink to={`/profile/${accountname}`}>
-      <Image $image={bear}></Image>
+    <ProfileLink to={`/profile/${accountName}`}>
+      <Image $image={profileImage}></Image>
       <Section>
         {/* 기능 구현 시 변수로 교체 */}
 
-        <UserName>사용자 이름</UserName>
-        <SubText>id태그</SubText>
+        <UserName>{userName}</UserName>
+        <SubText>{accountName}</SubText>
       </Section>
     </ProfileLink>
   );
