@@ -36,33 +36,47 @@ const SignUp = () => {
   const [username, setUsername] = useState("");
   const [accountname, setAccountname] = useState("");
 
+  const [emailErrorMsg, setEmailErrorMsg] = useState("");
+  const [passwordErrorMsg, setPasswordErrorMsg] = useState("");
+  const [usernameErrorMsg, setUsernameErrorMsg] = useState("");
+  const [accountnameErrorMsg, setAccountnameErrorMsg] = useState("");
+
   const [isFormComplete, setIsFormComplete] = useState(false);
 
   const handleSignup = async (e) => {
     e.preventDefault();
+
 
     // 폼이 완성되지 않은 경우 함수 종료
     if(!isFormComplete) return;
 
     // 유효성 검사
     if (!validateEmail(email)) {
-      alert("이메일 형식이 올바르지 않습니다.");
+      setEmailErrorMsg("이메일 형식이 올바르지 않습니다.");
       return;
+    } else {
+      setEmailErrorMsg("");
     }
 
     if (!validatePassword(password)) {
-      alert("비밀번호는 6~12자 이내여야 합니다.");
+      setPasswordErrorMsg("비밀번호는 6~12자 이내여야 합니다.");
       return;
+    } else {
+      setPasswordErrorMsg("");
     }
 
     if (!validateUsername(username)) {
-      alert("이름은 2~10자 이내여야 합니다.");
+      setUsernameErrorMsg("이름은 2~10자 이내여야 합니다.");
       return;
+    } else {
+      setUsernameErrorMsg("");
     }
 
     if (!validateAccountname(accountname)) {
-      alert("계정ID는 영문, 소문자, 특수문자 '.', '_'만 사용할 수 있습니다.");
+      setAccountnameErrorMsg("계정ID는 영문, 소문자, 특수문자 '.', '_'만 사용할 수 있습니다.");
       return;
+    } else {
+      setAccountnameErrorMsg("");
     }
 
     navigate("/signup/profile", {
@@ -95,7 +109,7 @@ const SignUp = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="이메일를 입력하세요."
-          // error="이미 있는 이메일입니다."
+          error={emailErrorMsg}
         />
         <Input
           label="비밀번호"
@@ -104,7 +118,7 @@ const SignUp = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="비밀번호를 입력하세요."
-          // error="이미 있는 비밀번호입니다."
+          error={passwordErrorMsg}
         />
         <Input
           label="이름"
@@ -113,7 +127,7 @@ const SignUp = () => {
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           placeholder="2~10자 이내여야 합니다."
-          // error="이미 있는 이메일입니다."
+          error={usernameErrorMsg}
         />
         <Input
           label="계정ID"
@@ -122,7 +136,7 @@ const SignUp = () => {
           value={accountname}
           onChange={(e) => setAccountname(e.target.value)}
           placeholder="영문, 숫자, 특수문자(.),(_)만 사용 가능합니다."
-          // error="이미 있는 이메일입니다."
+          error={accountnameErrorMsg}
         />
 
         {/* <Link to="/signup/profile"> */}
