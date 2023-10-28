@@ -15,7 +15,6 @@ import { Title, EmailSignUp, Form } from "./LoginStyle";
 import Input from "../../components/common/Input/Input";
 import Button from "../../components/common/Button/ButtonContainer";
 import BackSpaceHeader from "../../components/common/Header/BackSpaceHeader";
-import { styled } from 'styled-components';
 
 // 이메일 유효성 검사 함수
 const validateEmail = (email) => {
@@ -49,6 +48,11 @@ const Login = () => {
     // 이렇게 하면 email, password 상태가 변경될 때마다 useEffect 내부의 함수가 실행
   }, [email, password]);
 
+  // 이메일 에러 메시지
+  const [emailErrorMsg, setEmailErrorMsg] = useState("");
+  // 비밀번호 에러 메시지
+  const [passwordErrorMsg, setPasswordErrorMsg] = useState("");
+
   // 로그인 요청 함수
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -57,13 +61,17 @@ const Login = () => {
 
     // 유효성 검사
     if (!validateEmail(email)) {
-      alert("이메일 형식이 올바르지 않습니다.");
+      setEmailErrorMsg("이메일 형식이 올바르지 않습니다.");
       return;
+    } else {
+      setEmailErrorMsg("");
     }
 
     if (!validatePassword(password)) {
-      alert("비밀번호는 6~12자 이내여야 합니다.");
+      setPasswordErrorMsg("비밀번호는 6자 이상이어야 합니다.");
       return;
+    } else {
+      setPasswordErrorMsg("");
     }
     
     const loginData = await postLogin(email, password);
@@ -94,7 +102,7 @@ const Login = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="이메일를 입력하세요."
-          // error="이미 있는 이메일입니다."
+          error={emailErrorMsg}
         />
         <Input
           label="비밀번호"
@@ -103,7 +111,7 @@ const Login = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="비밀번호를 입력하세요."
-          // error="이미 있는 비밀번호입니다."
+          error={passwordErrorMsg}
         />
 
         <Button type="submit" width="332px" $disabled={!isFormComplete} bgColor={isFormComplete ? "#40A6DE" : "#94CEF8"}>
