@@ -25,6 +25,7 @@ function Home() {
   const token = localStorage.getItem("token");
   const limit = 5;
   // console.log(token);
+
   const { ModalComponent } = useModalControl("Home");
 
   const [userInfo, setUserInfo] = useRecoilState(userInfoAtom);

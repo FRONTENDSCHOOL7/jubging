@@ -1,6 +1,6 @@
 // react
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // atom
 import { userInfoAtom } from "../../recoil/userAtom";
@@ -29,13 +29,26 @@ import {
   UserName,
 } from "./ProfileDetailStyle";
 
-export default function ProfileDetail({ accountname, profile }) {
+export default function ProfileDetail({ profile }) {
   const userInfo = useRecoilValue(userInfoAtom);
+
+  console.log(profile);
+
+  // const navigate = useNavigate();
+
+  //  const handleOnClick = () => {
+  //    navigate(`/profile/${profile.accountname}/follower`, {
+  //      state: { accountname: profile.accountname },
+  //    });
+  //  };
 
   return (
     <>
       <ProfileContainer>
-        <Link to="/profile/follower">
+        <Link
+          to={`/profile/${profile.accountname}/follower`}
+          state={{ userData: profile }}
+        >
           <div>
             <FollowNum>{profile.followerCount}</FollowNum>
             <FollowTitle>팔로워</FollowTitle>
@@ -46,7 +59,10 @@ export default function ProfileDetail({ accountname, profile }) {
           <UserImage />
         </ImageContainer>
 
-        <Link to="/profile/following">
+        <Link
+          to={`/profile/${profile.accountname}/following`}
+          state={{ userData: profile }}
+        >
           <div>
             <FollowNum>{profile.followingCount}</FollowNum>
             <FollowTitle>팔로잉</FollowTitle>
@@ -63,7 +79,7 @@ export default function ProfileDetail({ accountname, profile }) {
       {/* 유저 정보에 따라 버튼 다르게 보여주기 */}
       {userInfo.accountname === profile.accountname ? (
         <ProfileButtonContainer>
-          <Link to="/profile/edit">
+          <Link to={`/profile/${userInfo.accountname}/edit`}>
             <ButtonContainer
               fontSize={"14px"}
               bgColor={"#41A6DE"}
