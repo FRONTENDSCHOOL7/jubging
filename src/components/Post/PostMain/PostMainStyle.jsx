@@ -13,6 +13,12 @@ export const PostImages = styled.div`
   border-radius: 10px;
   background-color: ${(props) => props.theme.colors.placeHolderColor};
   overflow: hidden;
+
+  img {
+    width: 100%;
+    aspect-ratio: 304 / 228;
+    object-fit: cover;
+  }
 `;
 
 export const PostText = styled.p`

@@ -1,11 +1,15 @@
 import React from "react";
-import PostFooterStyle from "./PostFooterStyle";
+import {
+  BtnGroup,
+  LikeCnt,
+  LikeGroup,
+  LikeIcon,
+  PostDate,
+  PostFooterGroup,
+} from "./PostFooterStyle";
 import iconLike from "../../../assets/icons/icon-like.svg";
 
 function NewsPostFooter({ likes, comments, postDate }) {
-  const { PostFooterGroup, BtnGroup, LikeGroup, LikeIcon, LikeCnt, PostDate } =
-    PostFooterStyle;
-
   return (
     <PostFooterGroup>
       <BtnGroup>

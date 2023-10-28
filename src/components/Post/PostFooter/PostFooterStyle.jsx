@@ -1,13 +1,10 @@
 import styled from "styled-components";
 
 export const PostFooterGroup = styled.div`
-  margin-top: 16px;
-  /* margin-left: 15%; */
-  margin-right: 23px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 16px;
+  margin: 16px 23px 25px 0;
 `;
 
 export const BtnGroup = styled.div`
@@ -49,17 +46,3 @@ export const PostDate = styled.span`
   color: ${(props) => props.theme.colors.textColor};
   font-size: ${(props) => props.theme.fontSize.xsmall};
 `;
-
-const PostFooterStyle = {
-  PostFooterGroup,
-  BtnGroup,
-  LikeGroup,
-  LikeIcon,
-  LikeCnt,
-  CommentGroup,
-  CommentIcon,
-  CommentCnt,
-  PostDate,
-};
-
-export default PostFooterStyle;
