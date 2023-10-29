@@ -14,7 +14,7 @@ import {
   PostFooterGroup,
 } from "./PostFooterStyle";
 
-function PostFooter({ likes, comments, postDate }) {
+function PostFooter({ postId, heartCount, commentCount, postDate }) {
   const data = new Date(postDate);
   const formattedDate = data.toLocaleDateString("ko-KR", {
     year: "numeric",
@@ -27,12 +27,12 @@ function PostFooter({ likes, comments, postDate }) {
       <BtnGroup>
         <LikeGroup>
           <LikeIcon src={iconLike} alt="icon-like" />
-          <LikeCnt>{likes}</LikeCnt>
+          <LikeCnt>{heartCount}</LikeCnt>
         </LikeGroup>
-        <Link to="/post">
+        <Link to={`/post/${postId}`}>
           <CommentGroup>
             <CommentIcon src={iconComment} alt="icon-chat" />
-            <CommentCnt>{comments}</CommentCnt>
+            <CommentCnt>{commentCount}</CommentCnt>
           </CommentGroup>
         </Link>
       </BtnGroup>

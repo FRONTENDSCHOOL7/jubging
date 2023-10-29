@@ -30,7 +30,7 @@ export default function AppRouter() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signup/profile" element={<ProfileStart />} />
-        <Route path="/post/:accountname" element={<Post />} />
+        <Route path="/post/:postId" element={<Post />} />
         <Route path="/newsletter" element={<NewsLetter />} />
         <Route path="/chat" element={<ChatListPage />} />
         <Route path="/chat/room" element={<Chat />} />
