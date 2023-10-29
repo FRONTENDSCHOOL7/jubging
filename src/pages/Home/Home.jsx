@@ -58,7 +58,7 @@ function Home() {
     fetchMyInfo();
   }, []);
 
-  console.log("userInfo ", userInfo);
+  // console.log("userInfo ", userInfo);
 
   // 팔로우한 유저 피드 가져오기
   const fetchFollowFeed = useCallback(async () => {
@@ -86,7 +86,23 @@ function Home() {
         <NoFollowHome />
       ) : (
         <PostingContainer>
-          <Posting pageName="Home" posts={data} />
+          {data.map((post) => (
+            <Posting
+              /* posts={data} */
+              key={post.id}
+              pageName="Home"
+              accountName={post.author.accountname}
+              profileImage={post.author.image}
+              userName={post.author.username}
+              postImage={post.image}
+              postText={post.content}
+              postId={post.id}
+              heartCount={post.heartCount}
+              commentCount={post.commentCount}
+              postDate={post.createdAt}
+              hearted={post.hearted}
+            />
+          ))}
         </PostingContainer>
       )}
       <Navbar />

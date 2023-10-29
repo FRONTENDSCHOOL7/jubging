@@ -15,3 +15,13 @@ export const getFollowFeed = async (limit, skip, token) => {
     console.log(error);
   }
 };
+
+// 게시물 상세보기
+export const getPostDetail = async (postId) => {
+  try {
+    const response = await authAxios.get(`/post/${postId}`);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};

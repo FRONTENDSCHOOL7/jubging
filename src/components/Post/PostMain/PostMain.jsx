@@ -2,9 +2,9 @@ import React from "react";
 import { PostContainer, PostImages, PostText } from "./PostMainStyle";
 import { Link } from "react-router-dom";
 
-function PostMain({ postImage, postText }) {
+function PostMain({ postImage, postText, postId }) {
   return (
-    <Link to="/post">
+    <Link to={`/post/${postId}`}>
       <PostContainer>
         {postImage && (
           <PostImages>

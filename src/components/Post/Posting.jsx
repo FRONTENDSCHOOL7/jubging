@@ -4,22 +4,34 @@ import PostMain from "./PostMain/PostMain";
 import PostFooter from "./PostFooter/PostFooter";
 import styled from "styled-components";
 
-function Posting({ posts }) {
-  return posts.map((post) => (
-    <PostContainer key={post.id}>
+function Posting({
+  accountName,
+  profileImage,
+  userName,
+  postImage,
+  postText,
+  postId,
+  heartCount,
+  commentCount,
+  postDate,
+  hearted,
+}) {
+  return (
+    <PostContainer>
       <PostHeader
-        profileImage={post.author.image}
-        userName={post.author.username}
-        accountName={post.author.accountname}
+        profileImage={profileImage}
+        userName={userName}
+        accountName={accountName}
       />
-      <PostMain postImage={post.image} postText={post.content} />
+      <PostMain postImage={postImage} postText={postText} postId={postId} />
       <PostFooter
-        likes={post.heartCount}
-        comments={post.comments.length}
-        postDate={post.createdAt}
+        heartCount={heartCount}
+        commentCount={commentCount}
+        postDate={postDate}
+        postId={postId}
       />
     </PostContainer>
-  ));
+  );
 }
 
 const PostContainer = styled.article`
