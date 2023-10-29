@@ -1,9 +1,10 @@
 // react
-import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import React, { useState, useEffect, useCallback } from "react";
+import { Link, useParams, useNavigate } from "react-router-dom";
 
 // API
 import { getUserProfile } from "../../api/profileAPI";
+import { getUserFeed, getUserCourse } from "../../api/postAPI";
 
 // atom
 import { userInfoAtom } from "../../recoil/userAtom";
@@ -24,6 +25,7 @@ import bear from "../../assets/images/big-bear.svg";
 
 import useModalControl from "../../hook/useModalControl";
 import { Modal } from "../../components/common/Modal/Modal";
+import Loading from "../Loading/Loading";
 
 export default function Profile() {
   const { accountname } = useParams();
@@ -32,6 +34,33 @@ export default function Profile() {
 
   const userInfo = useRecoilValue(userInfoAtom);
   const [profile, setProfile] = useState({});
+  const [feed, setFeed] = useState([]);
+  const [course, setCourse] = useState([]);
+
+  const [isLoading, setIsLoading] = useState(true);
+  const [threadPost, setThreadPost] = useState(true);
+
+  // 수정
+  const modify = () => {
+    navigate(`/profile/${accountname}/edit`);
+  };
+
+  // 로그아웃
+  const logout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("recoil-persist");
+    navigate("/login");
+  };
+
+  // 스레드 클릭 이벤트
+  const handleThread = () => {
+    setThreadPost(true);
+  };
+
+  // 갤러리 클릭 이벤트
+  const handleGallery = () => {
+    setThreadPost(false);
+  };
 
   // 개인프로필 가져오기
   useEffect(() => {
@@ -40,47 +69,104 @@ export default function Profile() {
 
       if (response && response.profile) {
         setProfile(response.profile);
+        setIsLoading(false);
       }
       return response.profile;
     };
     fetchUserInfo();
   }, []);
 
-  // modal test 메서드
-  const modify = () => {
-    navigate(`/profile/${accountname}/edit`);
-  };
+  // 게시물 가져오기
+  const fetchUserFeed = useCallback(async () => {
+    try {
+      const response = await getUserFeed(accountname);
 
-  const logout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("recoil-persist");
-    navigate("/login");
-  };
+      if (response.length > 0) {
+        setFeed((prev) => {
+          return [...prev, ...response];
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }, [accountname]);
+
+  useEffect(() => {
+    fetchUserFeed();
+  }, [fetchUserFeed]);
+
+  // 추천 코스 가져오기
+  const fetchUserCourse = useCallback(async () => {
+    try {
+      const response = await getUserCourse(accountname);
+
+      if (response.length > 0) {
+        setCourse((prev) => {
+          return [...prev, ...response];
+        });
+      }
+    } catch (error) {
+      console.log();
+    }
+  }, [accountname]);
+
+  useEffect(() => {
+    fetchUserCourse();
+  }, [fetchUserCourse]);
 
   return (
     <>
       <MoreHeader pageName="Profile" />
-      <ProfileDetail profile={profile} />
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <>
+          <ProfileDetail profile={profile} />
 
-      <ViewButtonContainer>
-        <ViewButton>
-          <Logo src={thread} />
-        </ViewButton>
-        <ViewButton>
-          <Logo src={gallery} />
-        </ViewButton>
-      </ViewButtonContainer>
-      {/* ViewButton에 따라 다르게 보여지기 */}
-      {/* 쓰레드 버튼 클릭 시 */}
-      {/* <Posting /> */}
+          <ViewButtonContainer>
+            <ViewButton onClick={handleThread}>
+              <Logo src={thread} />
+            </ViewButton>
 
-      {/* 갤러리 버튼 클릭 시  -> map으로 처리 */}
-      <GalleryContainer>
-        {/* 나중에 Link로 변경해야 될 듯? */}
-        <ThumbnailButton>
-          <Thumbnail src={bear} alt="썸네일 이미지" />
-        </ThumbnailButton>
-      </GalleryContainer>
+            <ViewButton onClick={handleGallery}>
+              <Logo src={gallery} />
+            </ViewButton>
+          </ViewButtonContainer>
+
+          {threadPost ? (
+            <PostingContainer>
+              {feed.map((post) => (
+                // 게시글
+                <Posting
+                  key={post.id}
+                  pageName="Home"
+                  accountName={post.author.accountname}
+                  profileImage={post.author.image}
+                  userName={post.author.username}
+                  postImage={post.image}
+                  postText={post.content}
+                  postId={post.id}
+                  heartCount={post.heartCount}
+                  commentCount={post.commentCount}
+                  postDate={post.createdAt}
+                  hearted={post.hearted}
+                />
+              ))}
+            </PostingContainer>
+          ) : (
+            // 추천 코스 리스트
+            <GalleryContainer>
+              {course.map((course) => (
+                <Link to={`/profile/course/${course.id}`} key={course.id}>
+                  <ThumbnailButton>
+                    <Thumbnail src={course.itemImage} alt="썸네일 이미지" />
+                  </ThumbnailButton>
+                </Link>
+              ))}
+            </GalleryContainer>
+          )}
+        </>
+      )}
 
       <Navbar />
 
@@ -114,6 +200,10 @@ export const ViewButton = styled.button`
   height: 44px;
 `;
 
+const PostingContainer = styled.section`
+  margin-bottom: 60px;
+`;
+
 export const GalleryContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -125,6 +215,7 @@ export const ThumbnailButton = styled.button`
   background-color: ${(props) => props.theme.colors.placeHolderColor};
   border-radius: 8px;
   object-fit: cover;
+  overflow: hidden;
 `;
 
 export const Thumbnail = styled.img`

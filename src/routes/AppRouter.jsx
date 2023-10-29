@@ -11,6 +11,7 @@ import NewsLetter from "../pages/NewsLetter/NewsLetter";
 import Profile from "../pages/Profile/Profile";
 import ProfileModification from "../pages/Profile/ProfileModification";
 import AddCourse from "../pages/AddCourse/AddCourse";
+import CourseDetail from "../pages/CourseDetail/CourseDetail";
 import Upload from "../pages/Upload/Upload";
 import ChatListPage from "./../pages/ChatList/ChatListPage";
 import Chat from "../pages/Chat/Chat";
@@ -43,6 +44,7 @@ export default function AppRouter() {
           element={<ProfileModification />}
         />
         <Route path="/profile/:accountname/addcourse" element={<AddCourse />} />
+        <Route path="profile/course/:course_id" element={<CourseDetail />} />
         <Route path="/upload" element={<Upload />} />
         <Route path="/search" element={<Search />} />
         <Route path="/*" element={<NotFound />} />
