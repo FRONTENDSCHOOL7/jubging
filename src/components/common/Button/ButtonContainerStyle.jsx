@@ -14,4 +14,6 @@ export const Button = styled.button`
   margin-right: ${(props) => (props.$rmargin ? props.$rmargin : "")};
   font-size: ${(props) =>
     props.$fontSize ? props.$fontSize : props.theme.fontSize.small};
+
+  border: ${(props) => (props.$border ? props.$border : null)};
 `;

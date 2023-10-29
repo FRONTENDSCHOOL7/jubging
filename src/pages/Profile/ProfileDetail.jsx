@@ -1,6 +1,9 @@
 // react
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+
+// api
+import { setFollowUser, setUnFollowUser } from "../../api/follow";
 
 // atom
 import { userInfoAtom } from "../../recoil/userAtom";
@@ -31,16 +34,32 @@ import {
 
 export default function ProfileDetail({ profile }) {
   const userInfo = useRecoilValue(userInfoAtom);
+  const { accountname } = useParams();
 
-  console.log(profile);
+  const [follow, setFollow] = useState(profile.isfollow);
+  console.log(follow);
+  console.log(profile.followerCount);
 
-  // const navigate = useNavigate();
+  // 팔로우 이벤트
+  const handleFollow = async () => {
+    const response = await setFollowUser(accountname);
+    setFollow(!follow);
 
-  //  const handleOnClick = () => {
-  //    navigate(`/profile/${profile.accountname}/follower`, {
-  //      state: { accountname: profile.accountname },
-  //    });
-  //  };
+    console.log(follow);
+  };
+
+  // 언팔로우 이벤트
+  const handleUnFollow = async () => {
+    const response = await setUnFollowUser(accountname);
+    setFollow(!follow);
+
+    console.log(follow);
+  };
+
+  //
+  useEffect(() => {
+    setFollow(profile.isfollow);
+  }, [profile]);
 
   return (
     <>
@@ -105,14 +124,26 @@ export default function ProfileDetail({ profile }) {
           <ChatLink to="/chat">
             <Logo src={chat} />
           </ChatLink>
-          <ButtonContainer
-            fontSize={"14px"}
-            bgColor={"#ffffff"}
-            color={"#000000"}
-            height={"34px"}
-          >
-            언팔로우
-          </ButtonContainer>
+          {follow ? (
+            <ButtonContainer
+              fontSize={"14px"}
+              bgColor={"#ffffff"}
+              color={"#000000"}
+              height={"34px"}
+              onClick={handleUnFollow}
+            >
+              언팔로우
+            </ButtonContainer>
+          ) : (
+            <ButtonContainer
+              fontSize={"14px"}
+              height={"34px"}
+              onClick={handleFollow}
+            >
+              팔로우
+            </ButtonContainer>
+          )}
+
           <ShareButton>
             <Logo src={share} />
           </ShareButton>

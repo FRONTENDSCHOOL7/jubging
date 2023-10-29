@@ -12,6 +12,7 @@ export default function ButtonContainer({
   onClick,
   rmargin,
   fontSize,
+  border,
 }) {
   return (
     <Button
@@ -24,6 +25,7 @@ export default function ButtonContainer({
       $disabled={disabled}
       $rmargin={rmargin}
       $fontSize={fontSize}
+      $border={border}
     >
       {children}
     </Button>
