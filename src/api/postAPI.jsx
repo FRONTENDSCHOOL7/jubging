@@ -45,3 +45,13 @@ export const getUserCourse = async (accountname) => {
     console.log(error);
   }
 };
+
+// 코스 상세보기
+export const getCoutseDetail = async (courseId) => {
+  try {
+    const response = await authAxios.get(`/product/detail/${courseId}`);
+    return response.data.product;
+  } catch (error) {
+    console.log(error);
+  }
+};
