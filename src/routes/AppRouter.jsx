@@ -44,7 +44,7 @@ export default function AppRouter() {
           element={<ProfileModification />}
         />
         <Route path="/profile/:accountname/addcourse" element={<AddCourse />} />
-        <Route path="profile/course/:course_id" element={<CourseDetail />} />
+        <Route path="profile/course/:courseId" element={<CourseDetail />} />
         <Route path="/upload" element={<Upload />} />
         <Route path="/search" element={<Search />} />
         <Route path="/*" element={<NotFound />} />
