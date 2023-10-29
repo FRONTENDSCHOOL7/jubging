@@ -1,6 +1,6 @@
 // react
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 // API
 import { getUserProfile } from "../../api/profileAPI";
@@ -27,6 +27,7 @@ import { Modal } from "../../components/common/Modal/Modal";
 
 export default function Profile() {
   const { accountname } = useParams();
+  const navigate = useNavigate();
   const { ModalComponent } = useModalControl("Profile");
 
   const userInfo = useRecoilValue(userInfoAtom);
@@ -47,11 +48,13 @@ export default function Profile() {
 
   // modal test 메서드
   const modify = () => {
-    console.log("modify");
+    navigate(`/profile/${accountname}/edit`);
   };
 
   const logout = () => {
-    console.log("logout");
+    localStorage.removeItem("token");
+    localStorage.removeItem("recoil-persist");
+    navigate("/login");
   };
 
   return (
