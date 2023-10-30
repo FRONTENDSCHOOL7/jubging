@@ -1,5 +1,8 @@
 import styled from "styled-components";
 
-export const Form = styled.form`
-  margin: 0 34px 0;
+export const Form = styled.form``;
+
+export const ModificationContainer = styled.div`
+  padding-left: 34px;
+  padding-right: 34px;
 `;

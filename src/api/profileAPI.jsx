@@ -37,7 +37,6 @@ export const setUserProfile = async ({
       },
     };
 
-    console.log(userData);
     const response = await authAxios.put("/user", userData);
     return response.data;
   } catch (error) {
