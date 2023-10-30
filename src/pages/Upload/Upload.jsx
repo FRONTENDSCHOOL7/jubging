@@ -2,14 +2,17 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { postImgUpload } from "../../api/imageAPI";
 import { postUpload } from "../../api/postAPI";
+import UploadHeader from "../../components/common/Header/UploadHeader";
 import {
   PostContainer,
   TextArea,
   ImagePreview,
   ImgUploadButton,
   ImgLabel,
+  ImgDeleteBtn,
+  A11yHidden,
+  ImageContainer,
 } from "./UploadStyle";
-import UploadHeader from "../../components/common/Header/UploadHeader";
 
 function UploadPage() {
   const navigate = useNavigate();
@@ -51,13 +54,25 @@ function UploadPage() {
     handleImgUpload(imageFile);
   };
 
+  // 이미지 삭제
+  const handleRemoveimage = () => {
+    setImage(null);
+  };
+
   return (
     <form onSubmit={handleUploadPost}>
-      <UploadHeader type={"submit"} />
+      <UploadHeader type={"submit"} image={image} content={content} />
       <PostContainer>
         {/* {previewUrl && <ImagePreview src={previewUrl} alt="post" />} */}
         <ImgLabel htmlFor="upload-button-file">이미지 등록</ImgLabel>
-        {image && <ImagePreview src={image} alt="post" />}
+        {image && (
+          <ImageContainer>
+            <ImagePreview src={image} alt="등록 이미지" />
+            <ImgDeleteBtn type="button" onClick={handleRemoveimage}>
+              <A11yHidden>삭제</A11yHidden>
+            </ImgDeleteBtn>
+          </ImageContainer>
+        )}
         <input
           type="file"
           style={{ display: "none" }}
