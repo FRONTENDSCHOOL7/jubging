@@ -1,12 +1,13 @@
 import React, { useCallback, useEffect, useState } from "react";
-import BackSpaceHeader from "../../components/common/Header/BackSpaceHeader";
-import Posting from "../../components/Post/Posting";
-import PostComment from "./PostComment";
-import CommentInput from "./CommentInput";
 import { useParams } from "react-router-dom";
+import styled from "styled-components";
+import { getComment } from "../../api/commentAPI";
 import { getPostDetail } from "../../api/postAPI";
 import Loading from "../Loading/Loading";
-import { getComment } from "../../api/commentAPI";
+import PostComment from "./PostComment";
+import BackSpaceHeader from "../../components/common/Header/BackSpaceHeader";
+import Posting from "../../components/Post/Posting";
+import CommentInput from "./CommentInput";
 
 function Post() {
   const { postId } = useParams();
@@ -25,7 +26,9 @@ function Post() {
     }
   }, [postId]);
 
+  // 게시글 댓글 불러오기
   const fetchComments = useCallback(async () => {
+
     try{
       const commentData = await getComment(postId);
       console.log('Fetched comments: ', commentData);
@@ -35,10 +38,14 @@ function Post() {
     }
   }, [postId]);
 
-  useEffect(() => {
-    fetchPostDetail();
-    fetchComments();
+ const fetchPostDetailAndComments = useCallback(async () => {
+    await fetchPostDetail();
+    await fetchComments();
   }, [fetchPostDetail, fetchComments]);
+
+  useEffect(() => {
+    fetchPostDetailAndComments(); 
+    }, [fetchPostDetailAndComments]);
 
   return (
     <>
@@ -62,19 +69,25 @@ function Post() {
           />
         )
       )}
-      {comments.map((comment) => (
-        <PostComment 
-          key={comment.id}
-          profilePhoto={comment.author.image}
-          nickname={comment.author.username}
-          minutesAgo={comment.author.minutesAgo} 
-          comment={comment} 
-          refreshComments={fetchComments}
-        />
-      ))}
+      <CommnetContainer>
+        {comments.map((comment) => (
+          <PostComment
+            key={comment.id}
+            profilePhoto={comment.author.image}
+            nickname={comment.author.username}
+            minutesAgo={comment.author.minutesAgo}
+            comment={comment}
+            refreshComments={fetchComments}
+          />
+        ))}
+      </CommnetContainer>
       <CommentInput onCommentPosted={fetchComments} />
     </>
   );
 }
+
+const CommnetContainer = styled.section`
+  margin-bottom: 60px;
+`;
 
 export default Post;

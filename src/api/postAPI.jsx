@@ -20,7 +20,7 @@ export const getFollowFeed = async (limit, skip, token) => {
 export const getPostDetail = async (postId) => {
   try {
     const response = await authAxios.get(`/post/${postId}`);
-    return response.data.post;
+    return response.data;
   } catch (error) {
     console.log(error);
   }
