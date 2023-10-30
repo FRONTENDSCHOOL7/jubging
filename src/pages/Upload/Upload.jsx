@@ -23,7 +23,7 @@ function UploadPage() {
     e.preventDefault();
     const postData = await postUpload(content, image);
     console.log("postData: ", postData);
-    navigate(`/profile/${postData.post.author.username}`);
+    navigate(`/profile/${postData.post.author.accountname}`);
   };
 
   // 이미지 업로드
@@ -56,8 +56,8 @@ function UploadPage() {
       <UploadHeader type={"submit"} />
       <PostContainer>
         {/* {previewUrl && <ImagePreview src={previewUrl} alt="post" />} */}
-        {image && <ImagePreview src={image} alt="post" />}
         <ImgLabel htmlFor="upload-button-file">이미지 등록</ImgLabel>
+        {image && <ImagePreview src={image} alt="post" />}
         <input
           type="file"
           style={{ display: "none" }}
@@ -72,6 +72,7 @@ function UploadPage() {
           maxLength={2000}
         />
         <ImgUploadButton
+          type="button"
           onClick={() => document.getElementById("upload-button-file").click()}
         ></ImgUploadButton>
       </PostContainer>
