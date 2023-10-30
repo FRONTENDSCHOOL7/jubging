@@ -20,19 +20,43 @@ export const getFollowFeed = async (limit, skip, token) => {
 export const getPostDetail = async (postId) => {
   try {
     const response = await authAxios.get(`/post/${postId}`);
-    return response.data;
+    return response.data.post;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// 유저 별 게시글 목록
+export const getUserFeed = async (accountname) => {
+  try {
+    const response = await authAxios.get(`/post/${accountname}/userpost`);
+    return response.data.post;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// 유저 별 코스 목록
+export const getUserCourse = async (accountname) => {
+  try {
+    const response = await authAxios.get(`/product/${accountname}`);
+    return response.data.product;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// 코스 상세보기
+export const getCoutseDetail = async (courseId) => {
+  try {
+    const response = await authAxios.get(`/product/detail/${courseId}`);
+    return response.data.product;
   } catch (error) {
     console.log(error);
   }
 };
 
 // 게시글 작성
-/* export const postUpload = async (token, post) => {
-  const response = await authAxios.post("/post", post);
-  console.log(response);
-  return response.data;
-}; */
-
 export const postUpload = async (content, image, token) => {
   try {
     const postData = {
@@ -45,6 +69,6 @@ export const postUpload = async (content, image, token) => {
     const response = await authAxios.post("/post", postData);
     return response.data;
   } catch (error) {
-    console.log("현재 에러입니다. ", error);
+    console.log(error);
   }
 };

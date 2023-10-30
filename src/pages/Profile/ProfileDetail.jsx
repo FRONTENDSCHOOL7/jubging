@@ -37,28 +37,25 @@ export default function ProfileDetail({ profile }) {
   const { accountname } = useParams();
 
   const [follow, setFollow] = useState(profile.isfollow);
-  console.log(follow);
-  console.log(profile.followerCount);
+  const [followerCount, setFollowerCount] = useState(0);
 
   // 팔로우 이벤트
   const handleFollow = async () => {
     const response = await setFollowUser(accountname);
     setFollow(!follow);
-
-    console.log(follow);
+    setFollowerCount(followerCount + 1);
   };
 
   // 언팔로우 이벤트
   const handleUnFollow = async () => {
     const response = await setUnFollowUser(accountname);
     setFollow(!follow);
-
-    console.log(follow);
+    setFollowerCount(followerCount - 1);
   };
 
-  //
   useEffect(() => {
     setFollow(profile.isfollow);
+    setFollowerCount(profile.followerCount);
   }, [profile]);
 
   return (
@@ -69,7 +66,7 @@ export default function ProfileDetail({ profile }) {
           state={{ userData: profile }}
         >
           <div>
-            <FollowNum>{profile.followerCount}</FollowNum>
+            <FollowNum>{followerCount}</FollowNum>
             <FollowTitle>팔로워</FollowTitle>
           </div>
         </Link>

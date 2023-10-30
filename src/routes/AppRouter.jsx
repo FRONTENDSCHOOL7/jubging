@@ -11,6 +11,7 @@ import NewsLetter from "../pages/NewsLetter/NewsLetter";
 import Profile from "../pages/Profile/Profile";
 import ProfileModification from "../pages/Profile/ProfileModification";
 import AddCourse from "../pages/AddCourse/AddCourse";
+import CourseDetail from "../pages/CourseDetail/CourseDetail";
 import Upload from "../pages/Upload/Upload";
 import ChatListPage from "./../pages/ChatList/ChatListPage";
 import Chat from "../pages/Chat/Chat";
@@ -21,7 +22,6 @@ import NotFound from "../pages/NotFound/NotFound";
 
 export default function AppRouter() {
   return (
-    /* 나중에 필요한 Route에 id 추가 */
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<SplashScreen />} />
@@ -44,6 +44,7 @@ export default function AppRouter() {
           element={<ProfileModification />}
         />
         <Route path="/profile/:accountname/addcourse" element={<AddCourse />} />
+        <Route path="profile/course/:courseId" element={<CourseDetail />} />
         <Route path="/search" element={<Search />} />
         <Route path="/*" element={<NotFound />} />
       </Routes>
