@@ -36,7 +36,7 @@ export default function BarButton() {
       </Navli>
 
       <Navli>
-        <NavbarLink to="/upload">
+        <NavbarLink to="/post/upload">
           <Logo src={post} alt="게시물 작성" />
           <Title>게시물 작성</Title>
         </NavbarLink>

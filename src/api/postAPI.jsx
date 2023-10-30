@@ -16,7 +16,7 @@ export const getFollowFeed = async (limit, skip, token) => {
   }
 };
 
-// 게시물 상세보기
+// 게시글 상세보기
 export const getPostDetail = async (postId) => {
   try {
     const response = await authAxios.get(`/post/${postId}`);
@@ -51,6 +51,23 @@ export const getCoutseDetail = async (courseId) => {
   try {
     const response = await authAxios.get(`/product/detail/${courseId}`);
     return response.data.product;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// 게시글 작성
+export const postUpload = async (content, image, token) => {
+  try {
+    const postData = {
+      post: {
+        content: content,
+        image: image,
+      },
+    };
+
+    const response = await authAxios.post("/post", postData);
+    return response.data;
   } catch (error) {
     console.log(error);
   }

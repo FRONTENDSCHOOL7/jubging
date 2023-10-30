@@ -22,7 +22,6 @@ import NotFound from "../pages/NotFound/NotFound";
 
 export default function AppRouter() {
   return (
-    /* 나중에 필요한 Route에 id 추가 */
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<SplashScreen />} />
@@ -32,6 +31,7 @@ export default function AppRouter() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signup/profile" element={<ProfileStart />} />
         <Route path="/post/:postId" element={<Post />} />
+        <Route path="/post/upload" element={<Upload />} />
         <Route path="/newsletter" element={<NewsLetter />} />
         <Route path="/chat" element={<ChatListPage />} />
         <Route path="/chat/room" element={<Chat />} />
@@ -45,7 +45,6 @@ export default function AppRouter() {
         />
         <Route path="/profile/:accountname/addcourse" element={<AddCourse />} />
         <Route path="profile/course/:courseId" element={<CourseDetail />} />
-        <Route path="/upload" element={<Upload />} />
         <Route path="/search" element={<Search />} />
         <Route path="/*" element={<NotFound />} />
       </Routes>
