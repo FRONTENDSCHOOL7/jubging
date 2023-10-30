@@ -31,6 +31,7 @@ export default function AppRouter() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signup/profile" element={<ProfileStart />} />
         <Route path="/post/:postId" element={<Post />} />
+        <Route path="/post/upload" element={<Upload />} />
         <Route path="/newsletter" element={<NewsLetter />} />
         <Route path="/chat" element={<ChatListPage />} />
         <Route path="/chat/room" element={<Chat />} />
@@ -43,7 +44,6 @@ export default function AppRouter() {
           element={<ProfileModification />}
         />
         <Route path="/profile/:accountname/addcourse" element={<AddCourse />} />
-        <Route path="/upload" element={<Upload />} />
         <Route path="/search" element={<Search />} />
         <Route path="/*" element={<NotFound />} />
       </Routes>

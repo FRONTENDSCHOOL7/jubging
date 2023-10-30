@@ -16,12 +16,35 @@ export const getFollowFeed = async (limit, skip, token) => {
   }
 };
 
-// 게시물 상세보기
+// 게시글 상세보기
 export const getPostDetail = async (postId) => {
   try {
     const response = await authAxios.get(`/post/${postId}`);
     return response.data;
   } catch (error) {
     console.log(error);
+  }
+};
+
+// 게시글 작성
+/* export const postUpload = async (token, post) => {
+  const response = await authAxios.post("/post", post);
+  console.log(response);
+  return response.data;
+}; */
+
+export const postUpload = async (content, image, token) => {
+  try {
+    const postData = {
+      post: {
+        content: content,
+        image: image,
+      },
+    };
+
+    const response = await authAxios.post("/post", postData);
+    return response.data;
+  } catch (error) {
+    console.log("현재 에러입니다. ", error);
   }
 };

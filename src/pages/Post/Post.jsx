@@ -14,11 +14,10 @@ function Post() {
 
   // 게시글 상세 데이터 불러오기
   const fetchPostDetail = useCallback(async () => {
-    const postData = await getPostDetail(postId);
-    setIsLoaing(false);
-    setData(postData.post);
-
     try {
+      const postData = await getPostDetail(postId);
+      setIsLoaing(false);
+      setData(postData.post);
     } catch (error) {
       console.log(error);
     }

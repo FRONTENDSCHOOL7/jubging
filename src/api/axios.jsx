@@ -19,6 +19,14 @@ export const authAxios = axios.create({
   },
 });
 
+// 이미지 인스턴스
+export const imgAxios = axios.create({
+  baseURL: BASE_URL,
+  headers: {
+    "Content-type": "multipart/form-data",
+  },
+});
+
 axios.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("token");
