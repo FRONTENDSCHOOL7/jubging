@@ -23,7 +23,7 @@ function CommentInput({ profilePhoto, onCommentPosted }) {
     if (message !== "") {
       const response = await postComment(postId ,message);
       setMessage("");
-      if (response.status === 200) { // Check the status of the response
+      if (response.status === 200) {
         onCommentPosted(); 
       }
     }
@@ -39,7 +39,7 @@ function CommentInput({ profilePhoto, onCommentPosted }) {
           label=""
           type="text"
           name="message"
-          placeholder="메시지 입력하기..."
+          placeholder="댓글 입력하기..."
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />
