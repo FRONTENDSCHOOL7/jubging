@@ -1,5 +1,12 @@
+// react
 import React from "react";
 import { useState } from "react";
+import { useParams } from 'react-router-dom';
+
+// api
+import { postComment } from "../../api/commentAPI";
+
+// components
 import RoundInput from "../../components/common/Input/RoundInput";
 import {
   Button,
@@ -8,8 +15,20 @@ import {
   ProfileImage,
 } from "./CommentInputStyle";
 
-function CommentInput({ profilePhoto }) {
+function CommentInput({ profilePhoto, onCommentPosted }) {
   const [message, setMessage] = useState("");
+  const { postId } = useParams();
+
+  const handlePostComment = async () => {
+    if (message !== "") {
+      const response = await postComment(postId ,message);
+      setMessage("");
+      if (response.status === 200) { // Check the status of the response
+        onCommentPosted(); 
+      }
+    }
+  };
+
   return (
     <ChatBar>
       <InputWrapper>
@@ -24,7 +43,7 @@ function CommentInput({ profilePhoto }) {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />
-        <Button $active={message !== ""}>등록</Button>
+        <Button $active={message !== ""} onClick={handlePostComment}>등록</Button>
       </InputWrapper>
     </ChatBar>
   );

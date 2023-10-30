@@ -1,4 +1,18 @@
-import React from "react";
+// react
+import React, { useState } from "react";
+import { useParams } from 'react-router-dom';
+
+// API
+import { deleteComment } from "../../api/commentAPI";
+
+// atom
+import { userInfoAtom } from "../../recoil/userAtom";
+
+// recoil
+import { useRecoilValue } from "recoil";
+import useModalControl from "../../hook/useModalControl";
+
+// components
 import {
   CommentGroup,
   CommentHeaderGroup,
@@ -11,7 +25,24 @@ import {
 } from "./PostCommentStyle";
 import MoreButton from "../../components/common/Button/MoreButton";
 
-function PostComment({ profilePhoto, nickname, minutesAgo, comment }) {
+import { Modal } from "../../components/common/Modal/Modal";
+
+function PostComment({ profilePhoto, nickname, minutesAgo, comment, refreshComments }) {
+
+  const { ModalComponent } = useModalControl(`comment-${comment.id}`);
+  const userInfo = useRecoilValue(userInfoAtom) || {};
+  
+
+  const handleDelete = async () => {
+    try {
+      await deleteComment(comment.id);
+      console.log("Deleted successfully");
+      refreshComments();
+    } catch (error) {
+      console.error("Failed to delete comment:", error);
+    }
+  };
+  
   return (
     <CommentGroup>
       <CommentHeaderGroup>
@@ -20,13 +51,25 @@ function PostComment({ profilePhoto, nickname, minutesAgo, comment }) {
         </ProfileImage>
         <CommentInfoGroup>
           <InfoHeader>
-            <InfoNickname>{nickname}항상 도움을 주시는 재웅</InfoNickname>
-            <InfoTime>{minutesAgo} 5분 전</InfoTime>
+            <InfoNickname>{nickname}</InfoNickname>
+            <InfoTime>{minutesAgo} 1분 전</InfoTime>
           </InfoHeader>
-          <MoreButton />
+          <MoreButton pageName={`comment-${comment.id}`} />
+          <ModalComponent>
+            {userInfo.accountname === comment.author.accountname ? (
+              <>
+                <Modal contents={["삭제"]} handleFunc={handleDelete}></Modal>
+              </>
+            ) : (
+              <Modal contents={["신고하기"]} handleFunc={() => {
+                  console.log("no");
+              }}
+              ></Modal>
+            )}
+          </ ModalComponent >
         </CommentInfoGroup>
       </CommentHeaderGroup>
-      <CommentText>{comment}sdsd</CommentText>
+      <CommentText>{comment.content}</CommentText>
     </CommentGroup>
   );
 }
