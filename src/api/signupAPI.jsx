@@ -26,6 +26,29 @@ export const postSignUp = async (
   return response.data;
 };
 
+// 이메일 중복 검사 함수
+export const checkEmail = async (email) => {
+  const userEmail = {
+    user: {
+      email: email,
+    },
+  };
+
+  const response = await basicAxios.post("/user/emailvalid", userEmail);
+  return response.data;
+};
+
+// 계정ID 중복 검사 함수
+export const checkAccountname = async (accountname) => {
+  const userAccountname = {
+    user: {
+      accountname: accountname,
+    },
+  };
+  
+  const response = await basicAxios.post("/user/accountnamevalid", userAccountname);
+  return response.data;
+};
 // Request 보내야 하는 거
 // {
 // 		"user": {
