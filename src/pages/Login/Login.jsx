@@ -59,6 +59,19 @@ const Login = () => {
 
     if (!isFormComplete) return;
 
+    // 입력 값 검사
+    if (email === "" && password === "") {
+      setEmailErrorMsg("이메일 또는 비밀번호를 입력해주세요.");
+      setPasswordErrorMsg("이메일 또는 비밀번호를 입력해주세요.");
+      return;
+    } else if (email === "") {
+      setEmailErrorMsg("이메일을 입력해주세요.");
+      return;
+    } else if (password === "") {
+      setPasswordErrorMsg("비밀번호를 입력해주세요.");
+      return;
+    }
+
     // 유효성 검사
     if (!validateEmail(email)) {
       setEmailErrorMsg("이메일 형식이 올바르지 않습니다.");
@@ -73,20 +86,24 @@ const Login = () => {
     } else {
       setPasswordErrorMsg("");
     }
-    
-    const loginData = await postLogin(email, password);
-    console.log("loginData ", loginData);
 
-    // 유효성 검사
-    if (loginData.status === 422) {
-      setErrorMsg("비밀번호가 일치하지 않습니다.");
-    } else {
-      // localStorage에 token 값 저장
-      localStorage.setItem("token", loginData.user.token);
+    try {
+      const loginData = await postLogin(email, password);
 
-      // 유저 정보 변경할 것 setUserInfo()
-      setLogin(true);
-      navigate("/home");
+      // 유효성 검사
+      if (loginData.status === 422) {
+        setEmailErrorMsg("이메일 또는 비밀번호가 일치하지 않습니다.");
+        setPasswordErrorMsg("이메일 또는 비밀번호가 일치하지 않습니다.");
+      } else {
+        // localStorage에 토큰값 저장
+        localStorage.setItem("token", loginData.user.token);
+
+        // 유저 정보 변경할 것 setUserInfo()
+        setLogin(true);
+        navigate("/home");
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
