@@ -96,6 +96,11 @@ const SignUp = () => {
       if (error.response && error.response.data.message === "이미 가입된 이메일 주소 입니다.") {
         setEmailErrorMsg("이미 가입된 이메일입니다.");
       }
+
+      // 계정 ID 중복 검사
+      if (error.response && error.response.data.message === "이미 사용중인 계정 ID입니다.") {
+        setAccountnameErrorMsg("이미 사용중인 계정 ID입니다.");
+      }
     }
 
   };
