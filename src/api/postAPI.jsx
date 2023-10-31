@@ -26,6 +26,50 @@ export const getPostDetail = async (postId) => {
   }
 };
 
+// 게시글 작성
+export const postUpload = async (content, image, token) => {
+  try {
+    const postData = {
+      post: {
+        content: content,
+        image: image,
+      },
+    };
+
+    const response = await authAxios.post("/post", postData);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// 게시글 수정
+export const putEditPost = async (postId, content, image) => {
+  try {
+    const editData = {
+      post: {
+        content: content,
+        image: image,
+      },
+    };
+    const response = await authAxios.put(`/post/${postId}`, editData);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// 게시글 삭제
+export const deletePost = async (token, postId) => {
+  try {
+    const response = await authAxios.delete(`/post/${postId}`, token);
+    console.log(response);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 // 유저 별 게시글 목록
 export const getUserFeed = async (accountname) => {
   try {
@@ -51,23 +95,6 @@ export const getCoutseDetail = async (courseId) => {
   try {
     const response = await authAxios.get(`/product/detail/${courseId}`);
     return response.data.product;
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-// 게시글 작성
-export const postUpload = async (content, image, token) => {
-  try {
-    const postData = {
-      post: {
-        content: content,
-        image: image,
-      },
-    };
-
-    const response = await authAxios.post("/post", postData);
-    return response.data;
   } catch (error) {
     console.log(error);
   }
