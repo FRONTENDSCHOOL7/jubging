@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import { postSignUp } from './../../api/signupAPI';
+import { checkEmail, checkAccountname } from './../../api/signupAPI';
 
 import Input from "../../components/common/Input/Input";
 import { Form, Title } from "./SignUpStyle";
@@ -44,6 +44,59 @@ const SignUp = () => {
   const [accountnameErrorMsg, setAccountnameErrorMsg] = useState("");
 
   const [isFormComplete, setIsFormComplete] = useState(false);
+  const [isCheckingEmail, setIsCheckingEmail] = useState(false);
+  const [isCheckingAccountname, setIsCheckingAccountname] = useState(false);
+
+  const handleEmailChange = async (e) => {
+    setEmail(e.target.value);
+
+    // 이메일 유효성 검사
+    if (!validateEmail(e.target.value)) {
+      setEmailErrorMsg("이메일 형식이 올바르지 않습니다.");
+      return;
+    }
+  
+    setIsCheckingEmail(true);
+
+    try {
+      const response = await checkEmail(e.target.value);
+
+      if (response.message === "이미 가입된 이메일 주소 입니다.") {
+        setEmailErrorMsg("이미 가입된 이메일입니다.");
+      } else {
+        setEmailErrorMsg("");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    setIsCheckingEmail(false);
+  }
+
+  const handleAccountnameChange = async (e) => {
+    setAccountname(e.target.value);
+
+    // 계정ID 유효성 검사
+    if (!validateAccountname(e.target.value)) {
+      setAccountnameErrorMsg("계정ID는 영문, 소문자, 특수문자 '.', '_'만 사용할 수 있습니다.");
+      return;
+    }
+
+    setIsCheckingAccountname(true);
+
+    try {
+      const response = await checkAccountname(e.target.value);
+
+      if (response.message === "이미 가입된 계정ID 입니다.") {
+        setAccountnameErrorMsg("이미 가입된 계정ID입니다.");
+      } else {
+        setAccountnameErrorMsg("");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+
+    setIsCheckingAccountname(false);
+  }
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -53,13 +106,6 @@ const SignUp = () => {
     if(!isFormComplete) return;
 
     // 유효성 검사
-    if (!validateEmail(email)) {
-      setEmailErrorMsg("이메일 형식이 올바르지 않습니다.");
-      return;
-    } else {
-      setEmailErrorMsg("");
-    }
-
     if (!validatePassword(password)) {
       setPasswordErrorMsg("비밀번호는 6~12자 이내여야 합니다.");
       return;
@@ -74,34 +120,14 @@ const SignUp = () => {
       setUsernameErrorMsg("");
     }
 
-    if (!validateAccountname(accountname)) {
-      setAccountnameErrorMsg("계정ID는 영문, 소문자, 특수문자 '.', '_'만 사용할 수 있습니다.");
-      return;
-    } else {
-      setAccountnameErrorMsg("");
-    }
-
-    try {
-      await postSignUp(username, email, password, accountname, "", "");
-      navigate("/signup/profile", {
-        state: {
-          email: email,
-          password: password,
-          username: username,
-          accountname: accountname,
-        },
-      });
-    } catch (error) {
-      // 이메일 중복 검사
-      if (error.response && error.response.data.message === "이미 가입된 이메일 주소 입니다.") {
-        setEmailErrorMsg("이미 가입된 이메일입니다.");
-      }
-
-      // 계정 ID 중복 검사
-      if (error.response && error.response.data.message === "이미 사용중인 계정 ID입니다.") {
-        setAccountnameErrorMsg("이미 사용중인 계정 ID입니다.");
-      }
-    }
+    navigate("/signup/profile", {
+      state: {
+        email: email,
+        password: password,
+        username: username,
+        accountname: accountname,
+      },
+    });
 
   };
 
@@ -123,7 +149,7 @@ const SignUp = () => {
           type="text"
           name="email"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={handleEmailChange}
           placeholder="이메일를 입력하세요."
           error={emailErrorMsg}
         />
@@ -150,7 +176,7 @@ const SignUp = () => {
           type="text"
           name="accountname"
           value={accountname}
-          onChange={(e) => setAccountname(e.target.value)}
+          onChange={handleAccountnameChange}
           placeholder="영문, 숫자, 특수문자(.),(_)만 사용 가능합니다."
           error={accountnameErrorMsg}
         />
