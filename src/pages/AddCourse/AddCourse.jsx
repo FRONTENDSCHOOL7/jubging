@@ -1,15 +1,11 @@
 import { useState } from "react";
 import UploadHeader from "../../components/common/Header/UploadHeader";
 import Navbar from "../../components/common/Navbar/Navbar";
-import {
-  Form,
-  Title,
-  MapCanvas
-} from "./AddCourseStyle";
+import { Form, Title, MapCanvas } from "./AddCourseStyle";
 import Button from "../../components/common/Button/ButtonContainer";
 import Input from "../../components/common/Input/Input";
 
-const AddCourse = ({nickname}) => {
+const AddCourse = ({ nickname }) => {
   const [courseName, setCourseName] = useState("");
   const [courseLength, setCourseLength] = useState("");
   const [courseReview, setCourseReview] = useState("");
@@ -19,7 +15,7 @@ const AddCourse = ({nickname}) => {
       <Form>
         <Title>
           {nickname} 님 만의 <br />
-          플로깅 코스를 입력해주세요.  
+          플로깅 코스를 입력해주세요.
         </Title>
         <MapCanvas>
           <h3>Map 그리는 방법</h3>
@@ -30,7 +26,13 @@ const AddCourse = ({nickname}) => {
             <li>마지막으로 도착지점을 클릭합니다.</li>
             <li>두 손가락으로 클릭하면 경로 그리기가 종료됩니다.</li>
           </ul>
-          <Button width="100%" height="31px" $bgColor={(props) => props.theme.colors.mainColor}>경로 등록하러 가기</Button>
+          <Button
+            width="100%"
+            height="31px"
+            $bgColor={(props) => props.theme.colors.mainColor}
+          >
+            경로 등록하러 가기
+          </Button>
         </MapCanvas>
         <Input
           label="코스 이름"
@@ -60,6 +62,6 @@ const AddCourse = ({nickname}) => {
       <Navbar />
     </>
   );
-}
+};
 
 export default AddCourse;
