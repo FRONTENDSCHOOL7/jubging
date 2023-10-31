@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
+import { postSignUp } from './../../api/signupAPI';
+
 import Input from "../../components/common/Input/Input";
 import { Form, Title } from "./SignUpStyle";
 import Button from "../../components/common/Button/ButtonContainer";
@@ -79,14 +81,23 @@ const SignUp = () => {
       setAccountnameErrorMsg("");
     }
 
-    navigate("/signup/profile", {
-      state: {
-        email: email,
-        password: password,
-        username: username,
-        accountname: accountname,
-      },
-    });
+    try {
+      await postSignUp(username, email, password, accountname, "", "");
+      navigate("/signup/profile", {
+        state: {
+          email: email,
+          password: password,
+          username: username,
+          accountname: accountname,
+        },
+      });
+    } catch (error) {
+      // 이메일 중복 검사
+      if (error.response && error.response.data.message === "이미 가입된 이메일 주소 입니다.") {
+        setEmailErrorMsg("이미 가입된 이메일입니다.");
+      }
+    }
+
   };
 
   useEffect(() => {
