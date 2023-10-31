@@ -4,6 +4,25 @@ import cryRabbit from "../../assets/images/crying-rabbit.svg";
 import cryDog from "../../assets/images/crying-dog.svg";
 import styled from "styled-components";
 import ButtonContainer from "../../components/common/Button/ButtonContainer";
+import { useNavigate } from "react-router-dom";
+
+export default function NotFound() {
+  const navigate = useNavigate();
+
+  return (
+    <NotFoundPage>
+      <ImageBox>
+        <CryBear src={cryBear} />
+        <CryRabbit src={cryRabbit} />
+        <CryDog src={cryDog} />
+      </ImageBox>
+      <NotFoundText>페이지를 찾을 수 없습니다 :(</NotFoundText>
+      <ButtonContainer bgColor={"#40A6DE"} onClick={() => navigate(-1)}>
+        이전 페이지
+      </ButtonContainer>
+    </NotFoundPage>
+  );
+}
 
 const NotFoundPage = styled.div`
   min-height: 100vh;
@@ -46,17 +65,3 @@ const NotFoundText = styled.p`
   text-align: center;
   margin-bottom: 20px;
 `;
-
-export default function NotFound() {
-  return (
-    <NotFoundPage>
-      <ImageBox>
-        <CryBear src={cryBear} />
-        <CryRabbit src={cryRabbit} />
-        <CryDog src={cryDog} />
-      </ImageBox>
-      <NotFoundText>페이지를 찾을 수 없습니다 :(</NotFoundText>
-      <ButtonContainer bgColor={"#40A6DE"}>이전 페이지</ButtonContainer>
-    </NotFoundPage>
-  );
-}
