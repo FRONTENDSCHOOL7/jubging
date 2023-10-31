@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { postImgUpload } from "../../api/imageAPI";
-import { postUpload } from "../../api/postAPI";
+import { postUpload, putEditPost } from "../../api/postAPI";
 import UploadHeader from "../../components/common/Header/UploadHeader";
 import {
   PostContainer,
@@ -14,19 +14,35 @@ import {
   ImageContainer,
 } from "./UploadStyle";
 
-function UploadPage() {
+function UploadPage({ editData }) {
+  const { postId } = useParams();
   const navigate = useNavigate();
 
   const [content, setContent] = useState("");
   const [image, setImage] = useState(null);
-  // const [previewUrl, setPreviewUrl] = useState(null);
 
-  // 게시글 업로드
-  const handleUploadPost = async (e) => {
+  // editData가 있으면 게시글 불러오기
+  useEffect(() => {
+    if (editData) {
+      setContent(editData.content);
+      setImage(editData.image);
+    }
+  }, [editData]);
+
+  // 게시글 수정 및 업로드
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const postData = await postUpload(content, image);
-    console.log("postData: ", postData);
-    navigate(`/profile/${postData.post.author.accountname}`);
+    try {
+      if (editData) {
+        const response = await putEditPost(postId, content, image);
+        response && navigate(`/profile/${editData.author.accountname}`);
+      } else {
+        const postData = await postUpload(content, image);
+        postData && navigate(`/profile/${postData.post.author.accountname}`);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   // 이미지 업로드
@@ -43,10 +59,6 @@ function UploadPage() {
     }
   };
 
-  const handleContentChange = (e) => {
-    setContent(e.target.value);
-  };
-
   // 이미지 교체
   const handleImageChange = (e) => {
     e.preventDefault();
@@ -59,8 +71,12 @@ function UploadPage() {
     setImage(null);
   };
 
+  const handleContentChange = (e) => {
+    setContent(e.target.value);
+  };
+
   return (
-    <form onSubmit={handleUploadPost}>
+    <form onSubmit={handleSubmit}>
       <UploadHeader type={"submit"} image={image} content={content} />
       <PostContainer>
         {/* {previewUrl && <ImagePreview src={previewUrl} alt="post" />} */}
