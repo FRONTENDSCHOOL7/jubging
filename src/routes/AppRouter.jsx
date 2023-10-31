@@ -1,5 +1,12 @@
+// react
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+// recoil
+import { useRecoilValue } from 'recoil';
+import { loginAtom } from "../recoil/loginAtom";
+
+// components
 import Home from "../pages/Home/Home";
 import SplashScreen from "../pages/SplashScreen/SplashScreen";
 import LoginStart from "../pages/Login/LoginStart";
@@ -21,10 +28,11 @@ import Search from "./../pages/Search/Search";
 import NotFound from "../pages/NotFound/NotFound";
 
 export default function AppRouter() {
+  const isLoggedIn = useRecoilValue(loginAtom);
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<SplashScreen />} />
+        <Route path="/" element={isLoggedIn ? <Home /> : <SplashScreen />} /> 
         <Route path="/loginStart" element={<LoginStart />} />
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
