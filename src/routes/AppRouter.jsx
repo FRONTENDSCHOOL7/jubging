@@ -3,7 +3,7 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 // recoil
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue } from "recoil";
 import { loginAtom } from "../recoil/loginAtom";
 
 // components
@@ -33,7 +33,7 @@ export default function AppRouter() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={isLoggedIn ? <Home /> : <SplashScreen />} /> 
+        <Route path="/" element={isLoggedIn ? <Home /> : <SplashScreen />} />
         <Route path="/loginStart" element={<LoginStart />} />
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
