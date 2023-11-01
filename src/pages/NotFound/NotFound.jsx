@@ -17,8 +17,12 @@ export default function NotFound() {
         <CryDog src={cryDog} />
       </ImageBox>
       <NotFoundText>페이지를 찾을 수 없습니다 :(</NotFoundText>
-      <ButtonContainer bgColor={"#40A6DE"} onClick={() => navigate(-1)}>
-        이전 페이지
+      <ButtonContainer
+        bgColor={"#40A6DE"}
+        onClick={() => navigate("/home")}
+        hoverFilter
+      >
+        홈으로 이동하기
       </ButtonContainer>
     </NotFoundPage>
   );

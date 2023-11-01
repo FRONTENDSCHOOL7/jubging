@@ -150,6 +150,7 @@ const Login = () => {
           width="100%"
           disabled={!isFormComplete}
           bgColor={isFormComplete ? "#40A6DE" : "#94CEF8"}
+          hoverFilter
         >
           로그인
         </Button>

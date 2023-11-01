@@ -15,7 +15,7 @@ function NoFollowHome() {
     <NoFollowHomeGroup>
       <NoFollowRabbitImg src={noFollowRabbit} alt="팔로워가 없어서 우는 토끼" />
       <SearchForUser>유저를 검색해 팔로우 해보세요!</SearchForUser>
-      <ButtonContainer onClick={() => navigate("/search")}>
+      <ButtonContainer onClick={() => navigate("/search")} hoverFilter>
         검색하기
       </ButtonContainer>
     </NoFollowHomeGroup>

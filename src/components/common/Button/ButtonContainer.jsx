@@ -13,6 +13,7 @@ export default function ButtonContainer({
   rmargin,
   fontSize,
   border,
+  hoverFilter,
 }) {
   return (
     <Button
@@ -26,6 +27,7 @@ export default function ButtonContainer({
       $rmargin={rmargin}
       $fontSize={fontSize}
       $border={border}
+      $hoverFilter={hoverFilter}
     >
       {children}
     </Button>

@@ -29,10 +29,12 @@ export default function LoginStart() {
 
       <LoginBox>
         <Link to="/login">
-          <ButtonCotainer bgColor={"#40A6DE"}>로그인</ButtonCotainer>
+          <ButtonCotainer bgColor={"#40A6DE"} hoverFilter>
+            로그인
+          </ButtonCotainer>
         </Link>
         <Link to="/signup">
-          <ButtonCotainer color={"black"} bgColor={"#ffffff"}>
+          <ButtonCotainer color={"black"} bgColor={"#ffffff"} hoverFilter>
             회원가입
           </ButtonCotainer>
         </Link>

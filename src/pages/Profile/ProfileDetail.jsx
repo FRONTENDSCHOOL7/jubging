@@ -100,6 +100,7 @@ export default function ProfileDetail({ profile }) {
               fontSize={"14px"}
               bgColor={"#41A6DE"}
               height={"34px"}
+              hoverFilter
             >
               프로필 수정
             </ButtonContainer>
@@ -114,6 +115,7 @@ export default function ProfileDetail({ profile }) {
               bgColor={"#ffffff"}
               color={"#000000"}
               height={"34px"}
+              hoverFilter
             >
               추천 코스 등록
             </ButtonContainer>

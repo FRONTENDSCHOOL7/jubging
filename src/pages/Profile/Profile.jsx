@@ -9,6 +9,7 @@ import { getUserFeed, getUserCourse } from "../../api/postAPI";
 
 // atom
 import { userInfoAtom } from "../../recoil/userAtom";
+import { loginAtom } from "../../recoil/loginAtom";
 
 // recoil
 import { useRecoilValue, useResetRecoilState } from "recoil";
@@ -35,6 +36,7 @@ export default function Profile() {
 
   const userInfo = useRecoilValue(userInfoAtom);
   const resetUserInfo = useResetRecoilState(userInfoAtom);
+  const resetLogin = useResetRecoilState(loginAtom);
 
   const [ref, inView] = useInView();
   const [profile, setProfile] = useState({});
@@ -53,6 +55,7 @@ export default function Profile() {
   const logout = () => {
     localStorage.removeItem("token");
     resetUserInfo();
+    resetLogin();
     navigate("/login");
   };
 

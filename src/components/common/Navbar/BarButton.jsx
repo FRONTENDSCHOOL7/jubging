@@ -1,14 +1,7 @@
-// reacrt
-import React, { useEffect } from "react";
-import { useLocation, useParams } from "react-router";
-
-// atom
 import { userInfoAtom } from "../../../recoil/userAtom";
 
-// recoil
 import { useRecoilValue } from "recoil";
 
-// components
 import home from "../../../assets/icons/icon-home.svg";
 import chat from "../../../assets/icons/icon-chat.svg";
 import profile from "../../../assets/icons/icon-profile.svg";
@@ -18,6 +11,7 @@ import {
   NavUl,
   Navli,
   NavbarLink,
+  NewLetterLink,
   Logo,
   NewsLetter,
   Title,
@@ -43,9 +37,9 @@ export default function BarButton() {
       </Navli>
 
       <Navli>
-        <NavbarLink to="/newsletter">
+        <NewLetterLink to="/newsletter">
           <NewsLetter src={newsLetter} alt="뉴스레터" />
-        </NavbarLink>
+        </NewLetterLink>
       </Navli>
 
       <Navli>
@@ -55,7 +49,6 @@ export default function BarButton() {
         </NavbarLink>
       </Navli>
 
-      {/* 프로필 클릭 시 로그인된 계정의 프로필로 이동 */}
       <Navli>
         <NavbarLink to={`/profile/${userInfo.accountname}`}>
           <Logo src={profile} alt="프로필" />
