@@ -7,9 +7,9 @@ export const ImageContainer = styled.div`
   display: inline-block; /* 이 부분은 필요에 따라 변경 가능합니다 */
 `;
 
-export const UserImage = styled.img.attrs({
-  src: baseprofile,
-})`
+export const UserImage = styled.img.attrs((props) => ({
+  src: props.previewUrl || baseprofile,
+}))`
   margin-top: ${(props) => (props.$tmargin ? props.$tmargin : "")};
   margin-left: ${(props) => (props.$lmargin ? props.$lmargin : "")};
   margin-right: ${(props) => (props.$rmargin ? props.$rmargin : "")};
