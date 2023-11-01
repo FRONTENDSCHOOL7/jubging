@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
 import { postSignUp } from "../../api/signupAPI";
+import { postImgUpload } from "../../api/imageAPI";
 
 import UserProfile from "../../components/common/Profile/ProfileImage";
 import Input from "../../components/common/Input/Input";
@@ -22,6 +23,7 @@ const ProfileStart = () => {
 
   const handleProfileSignup = async (e) => {
     e.preventDefault();
+
     const signupData = await postSignUp(
       username,
       email,
@@ -32,6 +34,17 @@ const ProfileStart = () => {
     );
     console.log("signup data " + signupData);
     navigate("/login");
+  };
+
+  // 이미지 업로드 핸들러
+  const handleImageUpload = async (e) => {
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append("file", file);
+
+    const uploadData = await postImgUpload(formData);
+    // 서버에서 반환된 이미지 경로 stat에 저장
+    setImage(uploadData.imagePath);
   };
 
   return (
@@ -45,6 +58,7 @@ const ProfileStart = () => {
           lmargin={"103px"}
           rmargin={"103px"}
           bmargin={"35px"}
+          handleImageUpload={handleImageUpload}
         ></UserProfile>
         <Input
           label="소개"

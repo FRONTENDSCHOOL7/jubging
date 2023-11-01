@@ -7,10 +7,11 @@ export default function ProfileChange({
   rmargin,
   bmargin,
   setImage,
+  handleImageUpload,
 }) {
   const [previewUrl, setPreviewUrl] = useState(null);
 
-  const handleImageChange = (event) => {
+  const handleImageChange = async (event) => {
     if (event.target.files && event.target.files[0]) {
       let reader = new FileReader();
 
@@ -19,6 +20,9 @@ export default function ProfileChange({
       };
 
       reader.readAsDataURL(event.target.files[0]);
+
+      // 이미지 업로드
+      await handleImageUpload(event);
     }
   };
 
@@ -26,23 +30,27 @@ export default function ProfileChange({
     <>
       <ImageContainer>
         <UserImage
+          previewUrl={previewUrl}
           $tmargin={tmargin}
           $lmargin={lmargin}
           $rmargin={rmargin}
           $bmargin={bmargin}
-        >
-          {previewUrl && <img src={previewUrl} alt="profile" />}
-        </UserImage>
+          alt="profile"
+        />
 
         <input
           type="file"
           style={{ display: "none" }}
           id="upload-button-file"
           onChange={handleImageChange}
+          accept=".jpg, .jpeg, .png, .bmp"
         />
 
         <ImageButton
-          onClick={() => document.getElementById("upload-button-file").click()}
+          onClick={(event) => {
+            event.preventDefault();
+            document.getElementById("upload-button-file").click();
+          }}
         />
       </ImageContainer>
     </>
