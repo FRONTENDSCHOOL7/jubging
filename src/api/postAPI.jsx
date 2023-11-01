@@ -88,9 +88,14 @@ export const getPostAll = async (limit, skip, token) => {
 };
 
 // 유저 별 게시글 목록
-export const getUserFeed = async (accountname) => {
+export const getUserFeed = async (limit, skip, accountname) => {
   try {
-    const response = await authAxios.get(`/post/${accountname}/userpost`);
+    const response = await authAxios.get(`/post/${accountname}/userpost`, {
+      params: {
+        limit,
+        skip,
+      },
+    });
     return response.data.post;
   } catch (error) {
     console.log(error);
