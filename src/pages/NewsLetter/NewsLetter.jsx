@@ -1,16 +1,17 @@
 import React, { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
 
-import { getFollowFeed } from "../../api/postAPI";
+import { getFollowFeed, getPostAll } from "../../api/postAPI";
 
 import HeaderBar from "../../components/common/Header/HomeHeader";
-import Posting from "../../components/Post/NewsPosting";
+import NewsPosting from "../../components/Post/NewsPosting";
 import Navbar from "../../components/common/Navbar/Navbar";
 import Loading from "../Loading/Loading";
 import NoFollowHome from "../Home/NoFollowHome";
 
 function NewsLetter() {
   const limit = 5;
+  const adminAccountName = "jub2";
   const token = localStorage.getItem("token");
 
   const [isLoading, setIsLoading] = useState(true);
@@ -20,7 +21,11 @@ function NewsLetter() {
   // 팔로우한 유저 피드 가져오기
   const fetchFollowFeed = useCallback(async () => {
     try {
-      const newData = await getFollowFeed(limit, skip, token);
+      let newData = await getPostAll(limit, skip, token);
+      newData = newData.filter(
+        (post) => post.author.accountname === adminAccountName
+      );
+      console.log(newData);
       setIsLoading(false);
       if (newData.length > 0) {
         setData((prevData) => [...prevData, ...newData]);
@@ -42,9 +47,9 @@ function NewsLetter() {
       ) : data.length === 0 ? (
         <NoFollowHome />
       ) : (
-        <PostingContainer>
+        <NewsLetterContainer>
           {data.map((post) => (
-            <Posting
+            <NewsPosting
               key={post.id}
               accountName={post.author.accountname}
               profileImage={post.author.image}
@@ -58,14 +63,14 @@ function NewsLetter() {
               hearted={post.hearted}
             />
           ))}
-        </PostingContainer>
+        </NewsLetterContainer>
       )}
       <Navbar />
     </>
   );
 }
 
-const PostingContainer = styled.section`
+const NewsLetterContainer = styled.section`
   margin-bottom: 60px;
 `;
 

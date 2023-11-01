@@ -16,4 +16,9 @@ export const Button = styled.button`
     props.$fontSize ? props.$fontSize : props.theme.fontSize.small};
 
   border: ${(props) => (props.$border ? props.$border : null)};
+
+  /* &:hover {
+    filter: brightness(0.9);
+    transition: all 0.2s ease-in-out;
+  } */
 `;

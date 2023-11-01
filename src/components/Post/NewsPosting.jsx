@@ -3,36 +3,40 @@ import styled from "styled-components";
 
 import PostHeader from "./PostHeader/PostHeader";
 import PostMain from "./PostMain/PostMain";
-import PostFooter from "./PostFooter/NewsPostFooter";
+import NewsPostFooter from "./PostFooter/NewsPostFooter";
 
-function Posting(props) {
+function Posting({
+  accountName,
+  profileImage,
+  userName,
+  postImage,
+  postText,
+  postId,
+  heartCount,
+  commentCount,
+  postDate,
+  hearted,
+}) {
   return (
     <PostContainer>
       <PostHeader
-        profilePhoto={props.profilePhoto}
-        nickname={props.nickname}
-        userId={props.userId}
+        profileImage={profileImage}
+        userName={userName}
+        accountName={accountName}
       />
-      <PostMain postImage={props.postImage} />
-      <PostFooter
-        postText={props.postText}
-        likes={props.likes}
-        postDate={props.postDate}
+      <PostMain postImage={postImage} postText={postText} postId={postId} />
+      <NewsPostFooter
+        heartCount={heartCount}
+        postDate={postDate}
+        postId={postId}
       />
-      <DividingLine />
     </PostContainer>
   );
 }
 
 export const PostContainer = styled.div`
   margin-top: 25px;
-`;
-
-export const DividingLine = styled.div`
-  height: 2px;
-  width: 100%;
-  margin-top: 25px;
-  background-color: #d9d9d9;
+  border-bottom: 1px solid #d9d9d9;
 `;
 
 export default Posting;

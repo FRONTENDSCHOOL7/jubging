@@ -57,32 +57,45 @@ const Login = () => {
   useEffect(() => {
     if (userInfo && JSON.stringify !== localStorage.getItem("userInfo")) {
       localStorage.setItem("userInfo", JSON.stringify(userInfo));
-      console.table(userInfo);
+      console.log(userInfo);
     }
-  }, [userInfo]);
+  });
 
   // 로그인 요청 핸들러
   const handleLogin = async (e) => {
     e.preventDefault();
 
+    // 입력 값 검사
+    if (email === "" && password === "") {
+      setEmailErrorMsg("이메일 또는 비밀번호를 입력해주세요.");
+      setPasswordErrorMsg("이메일 또는 비밀번호를 입력해주세요.");
+      return;
+    } else if (email === "") {
+      setEmailErrorMsg("이메일을 입력해주세요.");
+      return;
+    } else if (password === "") {
+      setPasswordErrorMsg("비밀번호를 입력해주세요.");
+      return;
+    }
+
+    if (!isFormComplete) return;
+
+    // 유효성 검사
+    if (!validateEmail(email)) {
+      setEmailErrorMsg("이메일 형식이 올바르지 않습니다.");
+      return;
+    } else {
+      setEmailErrorMsg("");
+    }
+
+    if (!validatePassword(password)) {
+      setPasswordErrorMsg("비밀번호는 6자 이상이어야 합니다.");
+      return;
+    } else {
+      setPasswordErrorMsg("");
+    }
+
     try {
-      if (!isFormComplete) return;
-
-      // 유효성 검사
-      if (!validateEmail(email)) {
-        setEmailErrorMsg("이메일 형식이 올바르지 않습니다.");
-        return;
-      } else {
-        setEmailErrorMsg("");
-      }
-
-      if (!validatePassword(password)) {
-        setPasswordErrorMsg("비밀번호는 6자 이상이어야 합니다.");
-        return;
-      } else {
-        setPasswordErrorMsg("");
-      }
-
       // 로그인 요청
       const loginData = await postLogin(email, password);
       console.log("loginData ", loginData);
@@ -135,7 +148,7 @@ const Login = () => {
         <Button
           type="submit"
           width="100%"
-          disabled={!isFormComplete}
+          $disabled={!isFormComplete}
           bgColor={isFormComplete ? "#40A6DE" : "#94CEF8"}
         >
           로그인
