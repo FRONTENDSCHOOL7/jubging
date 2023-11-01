@@ -1,7 +1,11 @@
 import React, { useCallback, useEffect, useState } from "react";
+import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
 
-import { getFollowFeed, getPostAll } from "../../api/postAPI";
+import { getUserFeed } from "../../api/postAPI";
+
+import { jobgingAtom } from "../../recoil/jobgingAtom";
+import { useRecoilValue } from "recoil";
 
 import HeaderBar from "../../components/common/Header/HomeHeader";
 import NewsPosting from "../../components/Post/NewsPosting";
@@ -10,34 +14,41 @@ import Loading from "../Loading/Loading";
 import NoFollowHome from "../Home/NoFollowHome";
 
 function NewsLetter() {
-  const limit = 5;
-  const adminAccountName = "jub2";
-  const token = localStorage.getItem("token");
+  const limit = 10;
 
+  const jobgingData = useRecoilValue(jobgingAtom);
+  const accountname = jobgingData.accountname;
+
+  const [ref, inView] = useInView();
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState([]);
   const [skip, setSkip] = useState(0);
 
-  // 팔로우한 유저 피드 가져오기
-  const fetchFollowFeed = useCallback(async () => {
+  // 뉴스레터 게시글 가져오기
+  const fetchNewLetterFeed = useCallback(async () => {
     try {
-      let newData = await getPostAll(limit, skip, token);
-      newData = newData.filter(
-        (post) => post.author.accountname === adminAccountName
-      );
-      console.log(newData);
+      const response = await getUserFeed(limit, skip, accountname);
       setIsLoading(false);
-      if (newData.length > 0) {
-        setData((prevData) => [...prevData, ...newData]);
+      if (response.length > 0) {
+        setData((prev) => {
+          return [...prev, ...response];
+        });
       }
     } catch (error) {
       console.log(error);
     }
-  }, [limit, skip, token]);
+  }, [limit, skip, accountname]);
 
   useEffect(() => {
-    fetchFollowFeed();
-  }, [fetchFollowFeed]);
+    fetchNewLetterFeed();
+  }, [fetchNewLetterFeed]);
+
+  // 무한스크롤
+  useEffect(() => {
+    if (inView & !isLoading) {
+      setSkip((prevSkip) => prevSkip + limit);
+    }
+  }, [inView, isLoading]);
 
   return (
     <>
@@ -47,23 +58,26 @@ function NewsLetter() {
       ) : data.length === 0 ? (
         <NoFollowHome />
       ) : (
-        <NewsLetterContainer>
-          {data.map((post) => (
-            <NewsPosting
-              key={post.id}
-              accountName={post.author.accountname}
-              profileImage={post.author.image}
-              userName={post.author.username}
-              postImage={post.image}
-              postText={post.content}
-              postId={post.id}
-              heartCount={post.heartCount}
-              commentCount={post.commentCount}
-              postDate={post.createdAt}
-              hearted={post.hearted}
-            />
-          ))}
-        </NewsLetterContainer>
+        <>
+          <NewsLetterContainer>
+            {data.map((post) => (
+              <NewsPosting
+                key={post.id}
+                accountName={post.author.accountname}
+                profileImage={post.author.image}
+                userName={post.author.username}
+                postImage={post.image}
+                postText={post.content}
+                postId={post.id}
+                heartCount={post.heartCount}
+                commentCount={post.commentCount}
+                postDate={post.createdAt}
+                hearted={post.hearted}
+              />
+            ))}
+          </NewsLetterContainer>
+          <div ref={ref} />
+        </>
       )}
       <Navbar />
     </>

@@ -1,6 +1,7 @@
 // react
 import React, { useState, useEffect, useCallback } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
+import { useInView } from "react-intersection-observer";
 
 // API
 import { getUserProfile } from "../../api/profileAPI";
@@ -21,13 +22,13 @@ import { Logo } from "./ProfileDetailStyle";
 import thread from "../../assets/icons/icon-post-list.svg";
 import gallery from "../../assets/icons/icon-post-album.svg";
 import Posting from "../../components/Post/Posting";
-import bear from "../../assets/images/big-bear.svg";
 
 import useModalControl from "../../hook/useModalControl";
 import { Modal } from "../../components/common/Modal/Modal";
 import Loading from "../Loading/Loading";
 
 export default function Profile() {
+  const limit = 10;
   const { accountname } = useParams();
   const navigate = useNavigate();
   const { ModalComponent } = useModalControl("Profile");
@@ -35,10 +36,11 @@ export default function Profile() {
   const userInfo = useRecoilValue(userInfoAtom);
   const resetUserInfo = useResetRecoilState(userInfoAtom);
 
+  const [ref, inView] = useInView();
   const [profile, setProfile] = useState({});
   const [feed, setFeed] = useState([]);
   const [course, setCourse] = useState([]);
-
+  const [skip, setSkip] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [threadPost, setThreadPost] = useState(true);
 
@@ -50,8 +52,6 @@ export default function Profile() {
   // 로그아웃
   const logout = () => {
     localStorage.removeItem("token");
-    // localStorage.removeItem("recoil-persist");
-
     resetUserInfo();
     navigate("/login");
   };
@@ -70,7 +70,6 @@ export default function Profile() {
   useEffect(() => {
     const fetchUserInfo = async () => {
       const response = await getUserProfile(accountname);
-
       if (response && response.profile) {
         setProfile(response.profile);
         setIsLoading(false);
@@ -83,8 +82,8 @@ export default function Profile() {
   // 게시물 가져오기
   const fetchUserFeed = useCallback(async () => {
     try {
-      const response = await getUserFeed(accountname);
-
+      const response = await getUserFeed(limit, skip, accountname);
+      setIsLoading(false);
       if (response.length > 0) {
         setFeed((prev) => {
           return [...prev, ...response];
@@ -93,11 +92,18 @@ export default function Profile() {
     } catch (error) {
       console.log(error);
     }
-  }, [accountname]);
+  }, [limit, skip, accountname]);
 
   useEffect(() => {
     fetchUserFeed();
   }, [fetchUserFeed]);
+
+  // 무한스크롤
+  useEffect(() => {
+    if (inView & !isLoading) {
+      setSkip((prevSkip) => prevSkip + limit);
+    }
+  }, [inView, isLoading]);
 
   // 추천 코스 가져오기
   const fetchUserCourse = useCallback(async () => {
@@ -138,25 +144,28 @@ export default function Profile() {
           </ViewButtonContainer>
 
           {threadPost ? (
-            <PostingContainer>
-              {feed.map((post) => (
-                // 게시글
-                <Posting
-                  key={post.id}
-                  pageName="Home"
-                  accountName={post.author.accountname}
-                  profileImage={post.author.image}
-                  userName={post.author.username}
-                  postImage={post.image}
-                  postText={post.content}
-                  postId={post.id}
-                  heartCount={post.heartCount}
-                  commentCount={post.commentCount}
-                  postDate={post.createdAt}
-                  hearted={post.hearted}
-                />
-              ))}
-            </PostingContainer>
+            <>
+              <PostingContainer>
+                {feed.map((post) => (
+                  // 게시글
+                  <Posting
+                    key={post.id}
+                    pageName="Home"
+                    accountName={post.author.accountname}
+                    profileImage={post.author.image}
+                    userName={post.author.username}
+                    postImage={post.image}
+                    postText={post.content}
+                    postId={post.id}
+                    heartCount={post.heartCount}
+                    commentCount={post.commentCount}
+                    postDate={post.createdAt}
+                    hearted={post.hearted}
+                  />
+                ))}
+              </PostingContainer>
+              <div ref={ref} />
+            </>
           ) : (
             // 추천 코스 리스트
             <GalleryContainer>

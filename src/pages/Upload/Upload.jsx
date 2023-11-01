@@ -13,6 +13,7 @@ import {
   A11yHidden,
   ImageContainer,
 } from "./UploadStyle";
+import { BASE_URL } from "../../api/axios";
 
 function UploadPage({ editData }) {
   const { postId } = useParams();
@@ -52,7 +53,7 @@ function UploadPage({ editData }) {
 
     try {
       const imageData = await postImgUpload(form);
-      const imageUrl = "https://api.mandarin.weniv.co.kr/" + imageData.filename;
+      const imageUrl = BASE_URL + imageData.filename;
       setImage(imageUrl);
     } catch (error) {
       console.log(error);

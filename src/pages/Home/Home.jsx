@@ -1,35 +1,24 @@
-// react
 import React, { useCallback, useEffect, useState } from "react";
+import { useInView } from "react-intersection-observer";
+import styled from "styled-components";
 
-// api
-import { getMyInfo } from "../../api/profileAPI";
+import { getFollowFeed } from "../../api/postAPI";
 
-// recoil
-import { useRecoilState } from "recoil";
-
-// atom
-import { userInfoAtom } from "../../recoil/userAtom";
-
-// components
+import useModalControl from "../../hook/useModalControl";
+import Loading from "./../Loading/Loading";
+import NoFollowHome from "./NoFollowHome";
+import Posting from "../../components/Post/Posting";
 import HeaderBar from "../../components/common/Header/HomeHeader";
 import Navbar from "../../components/common/Navbar/Navbar";
-import Posting from "../../components/Post/Posting";
 import { Modal } from "../../components/common/Modal/Modal";
-import useModalControl from "../../hook/useModalControl";
-import { getFollowFeed } from "../../api/postAPI";
-import Loading from "./../Loading/Loading";
-import styled from "styled-components";
-import NoFollowHome from "./NoFollowHome";
 
 function Home() {
+  const limit = 10;
   const token = localStorage.getItem("token");
-  const limit = 5;
-  // console.log(token);
 
   const { ModalComponent } = useModalControl("Home");
 
-  // const [userInfo, setUserInfo] = useRecoilState(userInfoAtom);
-
+  const [ref, inView] = useInView();
   const [isLoading, setIsLoading] = useState(true);
   const [skip, setSkip] = useState(0);
   const [data, setData] = useState([]);
@@ -40,23 +29,6 @@ function Home() {
   const deleteFuc = () => {
     console.log("delete");
   };
-
-  // 내 프로필 가져오기
-  /* useEffect(() => {
-    const fetchMyInfo = async () => {
-      const response = await getMyInfo(token);
-      if (response && response.user) {
-        setUserInfo({
-          ...userInfo,
-          username: response.user.username,
-          accountname: response.user.accountname,
-          intro: response.user.intro,
-          image: response.user.image,
-        });
-      }
-    };
-    fetchMyInfo();
-  }, []); */
 
   // 팔로우한 유저 피드 가져오기
   const fetchFollowFeed = useCallback(async () => {
@@ -79,6 +51,14 @@ function Home() {
     token
   );
 
+  // 무한스크롤
+  useEffect(() => {
+    if (inView & !isLoading) {
+      console.log(inView, "무한스크롤 실행~");
+      setSkip((prevSkip) => prevSkip + limit);
+    }
+  }, [inView, isLoading]);
+
   return (
     <>
       <HeaderBar />
@@ -87,24 +67,27 @@ function Home() {
       ) : data.length === 0 ? (
         <NoFollowHome />
       ) : (
-        <PostingContainer>
-          {data.map((post) => (
-            <Posting
-              key={post.id}
-              pageName="Home"
-              accountName={post.author.accountname}
-              profileImage={post.author.image}
-              userName={post.author.username}
-              postImage={post.image}
-              postText={post.content}
-              postId={post.id}
-              heartCount={post.heartCount}
-              commentCount={post.commentCount}
-              postDate={post.createdAt}
-              hearted={post.hearted}
-            />
-          ))}
-        </PostingContainer>
+        <>
+          <PostingContainer>
+            {data.map((post) => (
+              <Posting
+                key={post.id}
+                pageName="Home"
+                accountName={post.author.accountname}
+                profileImage={post.author.image}
+                userName={post.author.username}
+                postImage={post.image}
+                postText={post.content}
+                postId={post.id}
+                heartCount={post.heartCount}
+                commentCount={post.commentCount}
+                postDate={post.createdAt}
+                hearted={post.hearted}
+              />
+            ))}
+          </PostingContainer>
+          <div ref={ref} />
+        </>
       )}
       <Navbar />
 

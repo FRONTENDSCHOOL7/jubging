@@ -13,7 +13,6 @@ function Posting({
   postText,
   postId,
   heartCount,
-  commentCount,
   postDate,
   hearted,
 }) {
