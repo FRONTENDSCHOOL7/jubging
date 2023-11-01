@@ -28,7 +28,7 @@ function Home() {
 
   const { ModalComponent } = useModalControl("Home");
 
-  const [userInfo, setUserInfo] = useRecoilState(userInfoAtom);
+  // const [userInfo, setUserInfo] = useRecoilState(userInfoAtom);
 
   const [isLoading, setIsLoading] = useState(true);
   const [skip, setSkip] = useState(0);
@@ -42,7 +42,7 @@ function Home() {
   };
 
   // 내 프로필 가져오기
-  useEffect(() => {
+  /* useEffect(() => {
     const fetchMyInfo = async () => {
       const response = await getMyInfo(token);
       if (response && response.user) {
@@ -56,9 +56,7 @@ function Home() {
       }
     };
     fetchMyInfo();
-  }, []);
-
-  // console.log("userInfo ", userInfo);
+  }, []); */
 
   // 팔로우한 유저 피드 가져오기
   const fetchFollowFeed = useCallback(async () => {
@@ -73,9 +71,13 @@ function Home() {
     }
   }, [limit, skip, token]);
 
-  useEffect(() => {
-    fetchFollowFeed();
-  }, [fetchFollowFeed]);
+  useEffect(
+    () => {
+      fetchFollowFeed();
+    },
+    [fetchFollowFeed],
+    token
+  );
 
   return (
     <>
@@ -88,7 +90,6 @@ function Home() {
         <PostingContainer>
           {data.map((post) => (
             <Posting
-              /* posts={data} */
               key={post.id}
               pageName="Home"
               accountName={post.author.accountname}

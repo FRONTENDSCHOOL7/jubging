@@ -1,3 +1,4 @@
+import { async } from "q";
 import { authAxios } from "./axios";
 
 // 팔로우한 유저의 게시글 불러오기
@@ -65,6 +66,22 @@ export const deletePost = async (token, postId) => {
     const response = await authAxios.delete(`/post/${postId}`, token);
     console.log(response);
     return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// 게시글 전체 불러오기
+export const getPostAll = async (limit, skip, token) => {
+  try {
+    const response = await authAxios.get("/post", {
+      params: {
+        limit,
+        skip,
+      },
+    });
+    const { posts } = response.data;
+    return posts;
   } catch (error) {
     console.log(error);
   }

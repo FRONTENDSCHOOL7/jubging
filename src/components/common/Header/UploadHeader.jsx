@@ -3,7 +3,7 @@ import HeaderContainer from "./HeaderContainer";
 import BackButton from "../Button/BackButton";
 import ButtonContainer from "../Button/ButtonContainer";
 
-export default function UploadHeader({ type, isD }) {
+export default function UploadHeader({ type }) {
   return (
     <HeaderContainer justisfy={"space-between"}>
       <BackButton />

@@ -9,16 +9,23 @@ import {
 } from "./PostFooterStyle";
 import iconLike from "../../../assets/icons/icon-like.svg";
 
-function NewsPostFooter({ likes, comments, postDate }) {
+function NewsPostFooter({ heartCount, postDate }) {
+  const data = new Date(postDate);
+  const formattedDate = data.toLocaleDateString("ko-KR", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
   return (
     <PostFooterGroup>
       <BtnGroup>
         <LikeGroup>
           <LikeIcon src={iconLike} alt="icon-like" />
-          <LikeCnt>{likes}1</LikeCnt>
+          <LikeCnt>{heartCount}</LikeCnt>
         </LikeGroup>
       </BtnGroup>
-      <PostDate>{postDate}2020년 10월 21일</PostDate>
+      <PostDate>{formattedDate}</PostDate>
     </PostFooterGroup>
   );
 }

@@ -10,7 +10,7 @@ import { getUserFeed, getUserCourse } from "../../api/postAPI";
 import { userInfoAtom } from "../../recoil/userAtom";
 
 // recoil
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useResetRecoilState } from "recoil";
 
 // components
 import MoreHeader from "../../components/common/Header/MoreHeader";
@@ -33,6 +33,8 @@ export default function Profile() {
   const { ModalComponent } = useModalControl("Profile");
 
   const userInfo = useRecoilValue(userInfoAtom);
+  const resetUserInfo = useResetRecoilState(userInfoAtom);
+
   const [profile, setProfile] = useState({});
   const [feed, setFeed] = useState([]);
   const [course, setCourse] = useState([]);
@@ -48,7 +50,9 @@ export default function Profile() {
   // 로그아웃
   const logout = () => {
     localStorage.removeItem("token");
-    localStorage.removeItem("recoil-persist");
+    // localStorage.removeItem("recoil-persist");
+
+    resetUserInfo();
     navigate("/login");
   };
 

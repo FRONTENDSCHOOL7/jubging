@@ -20,14 +20,14 @@ function Post() {
   const { postId } = useParams();
   const { accountname } = useRecoilValue(userInfoAtom);
   const [data, setData] = useState();
-  const [isLoading, setIsLoaing] = useState([true]);
+  const [isLoading, setIsLoading] = useState(true);
   const [comments, setComments] = useState([]);
 
   // 게시글 상세 데이터 불러오기
   const fetchPostDetail = useCallback(async () => {
     try {
       const postData = await getPostDetail(postId);
-      setIsLoaing(false);
+      setIsLoading(false);
       setData(postData.post);
     } catch (error) {
       console.log(error);
