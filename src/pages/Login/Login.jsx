@@ -18,14 +18,15 @@ import BackSpaceHeader from "../../components/common/Header/BackSpaceHeader";
 
 // 이메일 유효성 검사 함수
 const validateEmail = (email) => {
-  const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  const re =
+    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(String(email).toLowerCase());
-}
+};
 
 // 비밀번호 유효성 검사 함수
 const validatePassword = (password) => {
-  return password.length >= 6 && password.length <=12;
-}
+  return password.length >= 6 && password.length <= 12;
+};
 
 const Login = () => {
   const navigate = useNavigate();
@@ -57,8 +58,6 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    if (!isFormComplete) return;
-
     // 입력 값 검사
     if (email === "" && password === "") {
       setEmailErrorMsg("이메일 또는 비밀번호를 입력해주세요.");
@@ -71,6 +70,8 @@ const Login = () => {
       setPasswordErrorMsg("비밀번호를 입력해주세요.");
       return;
     }
+
+    if (!isFormComplete) return;
 
     // 유효성 검사
     if (!validateEmail(email)) {
@@ -131,7 +132,12 @@ const Login = () => {
           error={passwordErrorMsg}
         />
 
-        <Button type="submit" width="332px" $disabled={!isFormComplete} bgColor={isFormComplete ? "#40A6DE" : "#94CEF8"}>
+        <Button
+          type="submit"
+          width="332px"
+          $disabled={!isFormComplete}
+          bgColor={isFormComplete ? "#40A6DE" : "#94CEF8"}
+        >
           로그인
         </Button>
         {/* 에러 메세지 컴포넌트 작성할 것 */}
