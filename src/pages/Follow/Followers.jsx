@@ -66,6 +66,7 @@ export default function Followers() {
                       bgColor={"white"}
                       border={"1px solid #DBDBDB"}
                       onClick={() => handleUnFollow(follower)}
+                      hoverFilter
                     >
                       취소
                     </ButtonContainer>
@@ -75,6 +76,7 @@ export default function Followers() {
                       height={"28px"}
                       bgColor={"#40A6DE"}
                       onClick={() => handleFollow(follower)}
+                      hoverFilter
                     >
                       팔로우
                     </ButtonContainer>

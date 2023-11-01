@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 export const NavUl = styled.ul`
   display: flex;
@@ -11,7 +11,24 @@ export const Navli = styled.li`
   width: 78px;
 `;
 
-export const NavbarLink = styled(Link)`
+export const NavbarLink = styled(NavLink)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &.active {
+    img {
+      filter: invert(71%) sepia(25%) saturate(5570%) hue-rotate(172deg)
+        brightness(93%) contrast(86%);
+    }
+
+    p {
+      color: #40a6de;
+    }
+  }
+`;
+
+export const NewLetterLink = styled(NavLink)`
   display: flex;
   flex-direction: column;
   align-items: center;

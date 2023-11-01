@@ -69,6 +69,7 @@ export default function Following() {
                     bgColor={"white"}
                     border={"1px solid #DBDBDB"}
                     onClick={() => handleUnFollow(following)}
+                    hoverFilter
                   >
                     취소
                   </ButtonContainer>

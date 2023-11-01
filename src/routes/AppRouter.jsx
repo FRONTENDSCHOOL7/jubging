@@ -27,11 +27,13 @@ import Followrs from "./../pages/Follow/Followers";
 import Following from "./../pages/Follow/Following";
 import Search from "./../pages/Search/Search";
 import NotFound from "../pages/NotFound/NotFound";
+import ScrollTop from "./../hook/useScrollTop";
 
 export default function AppRouter() {
   const isLoggedIn = useRecoilValue(loginAtom);
   return (
     <BrowserRouter>
+      <ScrollTop />
       <Routes>
         <Route path="/" element={isLoggedIn ? <Home /> : <SplashScreen />} />
         <Route path="/loginStart" element={<LoginStart />} />
