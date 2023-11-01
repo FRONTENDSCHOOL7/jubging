@@ -105,7 +105,10 @@ export default function ProfileDetail({ profile }) {
             </ButtonContainer>
           </Link>
 
-          <Link to="/profile/addcourse">
+          <Link
+            to={`/profile/${profile.accountname}/addcourse`}
+            state={{ userData: profile }}
+          >
             <ButtonContainer
               fontSize={"14px"}
               bgColor={"#ffffff"}

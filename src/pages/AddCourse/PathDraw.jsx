@@ -5,9 +5,11 @@ import Kakao from "../../components/kakaomap/KakaoMap";
 import { Wrapper, Title, MapCanvas } from "./PathDrawStyle";
 
 const PathDraw = ({ nickname }) => {
+  const kakaoMap = Kakao();
+
   return (
     <>
-      <UploadHeader />
+      <UploadHeader onClick={kakaoMap.createStaticMap} />
       <Wrapper>
         <Title>
           {nickname} 님 만의 <br />
