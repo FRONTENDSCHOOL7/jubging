@@ -148,7 +148,7 @@ const Login = () => {
         <Button
           type="submit"
           width="100%"
-          $disabled={!isFormComplete}
+          disabled={!isFormComplete}
           bgColor={isFormComplete ? "#40A6DE" : "#94CEF8"}
         >
           로그인
