@@ -3,9 +3,13 @@ import { useEffect, useState, useRef } from "react";
 function KakaoMap() {
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
-  const [distanceOverlay, setDistanceOverlay] = useState(null);
+  const [staticMapUrl, setStaticMapUrl] = useState(null); // 정적 지도 URL을 저장할 상태
 
   const { kakao } = window;
+
+  // 시작점과 끝점의 좌표를 저장할 상태
+  const [startPoint, setStartPoint] = useState(null);
+  const [endPoint, setEndPoint] = useState(null);
 
   // useEffect 내부에서는 distanceOverlay의 최신 상태를 접근할 수 없기 때문에, useRef를 이용하여 distanceOverlay의 최신 상태를 항상 참조
   const distanceOverlayRef = useRef(null);
@@ -83,6 +87,9 @@ function KakaoMap() {
 
           clickLine.setPath(path);
         }
+
+        // 시작점 좌표 저장
+        setStartPoint(mouseEvent.latLng);
       });
 
       // 지도에 마우스무브 이벤트를 등록합니다
@@ -127,6 +134,9 @@ function KakaoMap() {
           distanceOverlayRef.current = newDistanceOverlay; // state 업데이트
 
           drawingFlag = false;
+
+          // 끝점 좌표 저장
+          setEndPoint(mouseEvent.latLng);
         }
       });
 
@@ -137,7 +147,35 @@ function KakaoMap() {
         }
       }
     }
-  }, [latitude, longitude]);
+    // DOM이 완전히 로드된 후에 createStaticMap 함수 호출
+    createStaticMap();
+  }, [latitude, longitude, endPoint]);
+
+  // 시작점과 끝점의 좌표를 이용해 정적 이미지를 생성하는 함수
+  const createStaticMap = () => {
+    if (startPoint && endPoint) {
+      const staticMapContainer = document.getElementById("staticMap");
+
+      // DOM 요소가 존재하는지 확인
+      if (staticMapContainer) {
+        const staticMapOption = {
+          center: new kakao.maps.LatLng(
+            (startPoint.getLat() + endPoint.getLat()) / 2,
+            (startPoint.getLng() + endPoint.getLng()) / 2
+          ),
+          level: 3,
+        };
+
+        const staticMap = new kakao.maps.StaticMap(
+          staticMapContainer,
+          staticMapOption
+        );
+
+        // 정적 이미지 URL 저장
+        setStaticMapUrl(staticMap.imageUrl);
+      }
+    }
+  };
 
   const accessToGeo = (position) => {
     setLatitude(position.coords.latitude);
@@ -153,6 +191,9 @@ function KakaoMap() {
   return (
     <>
       <div id="map" style={{ width: "100%", height: "80vh" }}></div>
+      <div id="staticMap" style={{ width: "100%", height: "80vh" }}></div>{" "}
+      {/* 정적 지도를 표시할 DOM 요소 추가 */}
+      {staticMapUrl && <img src={staticMapUrl} alt="static map" />}
     </>
   );
 }

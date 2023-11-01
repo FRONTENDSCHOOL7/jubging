@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
+
 import UploadHeader from "../../components/common/Header/UploadHeader";
 import Navbar from "../../components/common/Navbar/Navbar";
 import { Form, Title, MapCanvas } from "./AddCourseStyle";
@@ -26,13 +28,16 @@ const AddCourse = ({ nickname }) => {
             <li>마지막으로 도착지점을 클릭합니다.</li>
             <li>두 손가락으로 클릭하면 경로 그리기가 종료됩니다.</li>
           </ul>
-          <Button
-            width="100%"
-            height="31px"
-            $bgColor={(props) => props.theme.colors.mainColor}
-          >
-            경로 등록하러 가기
-          </Button>
+
+          <Link to="/profile/addcourse/drawcoursecourse">
+            <Button
+              width="100%"
+              height="31px"
+              $bgColor={(props) => props.theme.colors.mainColor}
+            >
+              경로 등록하러 가기
+            </Button>
+          </Link>
         </MapCanvas>
         <Input
           label="코스 이름"
