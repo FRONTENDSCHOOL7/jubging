@@ -15,11 +15,11 @@ export const SearchBar = styled.input`
   }
 `;
 
-export default function SearchHeader() {
+export default function SearchHeader({ onChange }) {
   return (
     <HeaderContainer>
       <BackButton />
-      <SearchBar type="text" placeholder="계정 검색" />
+      <SearchBar type="text" placeholder="계정 검색" onChange={onChange} />
     </HeaderContainer>
   );
 }
