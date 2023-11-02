@@ -1,44 +1,29 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import styled from "styled-components";
 
-import { AuthContextStore } from "../../context/AuthContext";
+import { getUserSearch } from "../../api/profileAPI";
+import useDebounce from "../../hook/useDebounce";
 
 import SearchHeader from "../../components/common/Header/SearchHeader";
 import Navbar from "../../components/common/Navbar/Navbar";
-import Contents from "./Contents";
-
-import useDebounce from "../../hook/useDebounce";
-// import { Helmet } from "react-helmet";
+import UserListBox from "../../components/common/UserList/UserListBox";
+import ButtonContainer from "../../components/common/Button/ButtonContainer";
 
 const Search = () => {
-  const { userToken } = useContext(AuthContextStore);
+  let limitedData = [];
+
   const [inputTxt, setInputTxt] = useState("");
-  const [userList, setUserList] = useState([]);
+  const [result, setResult] = useState([]);
+  const [resultShow, setResultShow] = useState(15);
 
   const debounceValue = useDebounce(inputTxt);
 
   const handleSearchList = async () => {
     try {
-      const response = await fetch(
-        `https://api.mandarin.weniv.co.kr/user/searchuser/?keyword=${debounceValue}`,
-        {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${userToken}`,
-            "Content-type": "application/json",
-          },
-        }
-      );
-
-      const data = await response.json();
-
-      if (response.ok) {
-        console.log(data);
-        setUserList(data);
-      } else {
-        console.error("요청에 실패했습니다.");
-      }
+      const response = await getUserSearch(debounceValue);
+      setResult(response);
     } catch (error) {
-      console.error("실패:", error);
+      console.log(error);
     }
   };
 
@@ -46,7 +31,7 @@ const Search = () => {
     if (debounceValue.length > 0) {
       handleSearchList();
     } else {
-      setUserList([]);
+      setResult([]);
     }
   }, [debounceValue]);
 
@@ -55,13 +40,61 @@ const Search = () => {
     setInputTxt(inputEvent);
   };
 
+  // 검색 결과 15개씩 보여주기
+  const handleLoadMore = () => {
+    setResultShow((prev) => prev + 15);
+  };
+
+  if (Array.isArray(result)) {
+    limitedData = result.slice(0, resultShow);
+  } else {
+    return null;
+  }
+
   return (
     <>
       <SearchHeader onChange={handleSearchId} />
-      <Contents userList={userList} inputTxt={inputTxt} />
+      {inputTxt && result.length === 0 ? (
+        <NoResult>검색 결과가 없습니다.</NoResult>
+      ) : (
+        <UerListContainer>
+          {limitedData.map((item) => (
+            <UserListBox
+              key={limitedData.id}
+              profileImage={item.image}
+              userName={item.username}
+              accountName={item.accountname}
+              inputTxt={inputTxt}
+            />
+          ))}
+          {result && result.length > resultShow && (
+            <MoreBtn type="button" onClick={handleLoadMore} hoverFilter>
+              더보기
+            </MoreBtn>
+          )}
+        </UerListContainer>
+      )}
       <Navbar />
     </>
   );
 };
+
+const UerListContainer = styled.section`
+  padding: 16px 16px 60px 0;
+
+  a {
+    margin-bottom: 16px;
+  }
+`;
+
+const MoreBtn = styled.button`
+  width: 100%;
+  margin: 20px auto;
+  color: ${(props) => props.theme.colors.mainColor};
+`;
+
+const NoResult = styled.p`
+  margin: 20px auto;
+`;
 
 export default Search;

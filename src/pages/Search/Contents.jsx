@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 import UserListBox from "../../components/common/UserList/UserListBox";
 
@@ -7,10 +7,8 @@ import UserListBox from "../../components/common/UserList/UserListBox";
 // import PostUserProfileImg from "../../components/common/Profile/ProfileImage";
 
 const Contents = ({ userList, inputTxt }) => {
-  console.log(userList);
-  console.log(inputTxt, userList);
   return (
-    <>
+    <UerListContainer>
       {userList.map((item) => (
         <UserListBox
           key={userList.id}
@@ -18,10 +16,18 @@ const Contents = ({ userList, inputTxt }) => {
           userName={item.username}
           accountName={item.accountname}
           inputTxt={inputTxt}
-        ></UserListBox>
+        />
       ))}
-    </>
+    </UerListContainer>
   );
 };
+
+const UerListContainer = styled.section`
+  padding: 16px 16px 60px 0;
+
+  a {
+    margin-bottom: 16px;
+  }
+`;
 
 export default Contents;

@@ -54,13 +54,6 @@ const Login = () => {
   // 비밀번호 에러 메시지
   const [passwordErrorMsg, setPasswordErrorMsg] = useState("");
 
-  useEffect(() => {
-    if (userInfo && JSON.stringify !== localStorage.getItem("userInfo")) {
-      localStorage.setItem("userInfo", JSON.stringify(userInfo));
-      console.log(userInfo);
-    }
-  });
-
   // 로그인 요청 핸들러
   const handleLogin = async (e) => {
     e.preventDefault();

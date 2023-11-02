@@ -4,7 +4,6 @@ export const PostContainer = styled.div`
   width: 100%;
   padding-left: 64px;
   padding-right: 23px;
-  margin-top: 16px;
 `;
 
 export const PostImages = styled.div`
@@ -21,7 +20,8 @@ export const PostImages = styled.div`
 `;
 
 export const PostText = styled.p`
-  margin-top: 16px;
+  margin-top: 12px;
+  word-break: break-all;
   color: ${(props) => props.theme.colors.blackColor};
   font-size: ${(props) => props.theme.fontSize.medium};
   letter-spacing: -0.28px;

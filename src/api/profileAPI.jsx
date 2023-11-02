@@ -43,3 +43,15 @@ export const setUserProfile = async ({
     console.log("현재 에러입니다. ", error);
   }
 };
+
+// 프로필 검색
+export const getUserSearch = async (keyword) => {
+  try {
+    const response = await authAxios.get(
+      `/user/searchuser/?keyword=${keyword}`
+    );
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
