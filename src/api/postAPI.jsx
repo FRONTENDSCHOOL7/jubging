@@ -4,6 +4,9 @@ import { authAxios } from "./axios";
 export const getFollowFeed = async (limit, skip, token) => {
   try {
     const response = await authAxios.get("/post/feed", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
       params: {
         limit,
         skip,

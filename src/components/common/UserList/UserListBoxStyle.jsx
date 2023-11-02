@@ -6,41 +6,40 @@ import baseprofile from "../../../assets/icons/baseprofile.svg";
 export const ProfileLink = styled(Link)`
   display: flex;
   align-items: center;
-
   width: 100%;
-
   padding-left: 16px;
-`;
-
-export const ImageDiv = styled.div`
-  display: block;
-  width: 42px;
-  height: 42px;
-  margin-top: 10px;
-  margin-right: 5px;
-
-  /* ? */
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-
-  background-image: url(${({ $image }) => ($image ? $image : baseprofile)});
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-
-  border: 1px solid black;
-  border-radius: 50%;
 `;
 
 export const Maindiv = styled.div`
   display: flex;
+  align-items: center;
+`;
+
+export const ImageDiv = styled.div`
+  position: relative;
+  width: 42px;
+  height: 42px;
+  margin-right: 5px;
+  border: 1px solid #dbdbdb;
+  border-radius: 50%;
+  overflow: hidden;
+
+  img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 `;
 
 export const Section = styled.section`
   display: flex;
   align-items: flex-start;
   flex-direction: column;
-  margin: 15px auto;
+  margin: auto;
 `;
 
 export const UserName = styled.p`
@@ -49,8 +48,15 @@ export const UserName = styled.p`
   font-size: ${(props) => props.theme.fontSize.medium};
   overflow: hidden;
 `;
+
 export const SubText = styled.p`
   color: ${(props) => props.theme.colors.textColor};
   font-size: ${(props) => props.theme.fontSize.small};
   overflow: hidden;
+  white-space: normal;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
 `;
