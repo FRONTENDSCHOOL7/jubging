@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 
 // api
 import { setUserProfile } from "../../api/profileAPI";
+import { postImgUpload } from "../../api/imageAPI"
 
 // atom
 import { userInfoAtom } from "../../recoil/userAtom";
@@ -22,6 +23,7 @@ const ProfileStartPage = () => {
   const [username, setUsername] = useState("");
   const [accountname, setAccountname] = useState("");
   const [intro, setIntro] = useState("");
+  const [[image, setImage]] = useState("");
 
   // 로그인 계정 프로필 atom 변경
   const handleModifyProfile = async (e) => {
@@ -33,6 +35,17 @@ const ProfileStartPage = () => {
       intro: intro,
     });
   };
+
+    // 이미지 업로드 핸들러
+    const handleImageUpload = async (e) => {
+      const file = e.target.files[0];
+      const formData = new FormData();
+      formData.append("file", file);
+  
+      const uploadData = await postImgUpload(formData);
+      // 서버에서 반환된 이미지 경로 state에 저장
+      setImage(uploadData.imagePath);
+    }
 
   // 로그인 계정 프로필 변경
   useEffect(() => {
@@ -60,6 +73,7 @@ const ProfileStartPage = () => {
             lmargin={"103px"}
             rmargin={"103px"}
             bmargin={"35px"}
+            handleImageUpload={handleImageUpload}
           ></UserProfile>
           <Input
             label="이름"
