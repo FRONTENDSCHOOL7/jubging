@@ -9,7 +9,6 @@ export const PostContainer = styled.div`
 
 export const PostImages = styled.div`
   width: 100%;
-  height: 228px;
   border-radius: 10px;
   background-color: ${(props) => props.theme.colors.placeHolderColor};
   overflow: hidden;
