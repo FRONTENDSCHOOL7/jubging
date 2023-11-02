@@ -26,6 +26,7 @@ function Posting({
       <PostMain postImage={postImage} postText={postText} postId={postId} />
       <PostFooter
         heartCount={heartCount}
+        hearted={hearted}
         commentCount={commentCount}
         postDate={postDate}
         postId={postId}
