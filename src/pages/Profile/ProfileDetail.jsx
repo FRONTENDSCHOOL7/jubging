@@ -88,7 +88,7 @@ export default function ProfileDetail({ profile }) {
 
       <UserInfoContainer>
         <UserName>{profile.username}</UserName>
-        <UserId>{profile.accountname}</UserId>
+        <UserId>@{profile.accountname}</UserId>
         <UserIntro>{profile.intro}</UserIntro>
       </UserInfoContainer>
 

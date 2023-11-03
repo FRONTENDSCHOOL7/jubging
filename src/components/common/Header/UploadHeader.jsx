@@ -1,21 +1,8 @@
-import { useEffect, useState } from "react";
-import { useLocation } from "react-router";
 import HeaderContainer from "./HeaderContainer";
 import BackButton from "../Button/BackButton";
 import ButtonContainer from "../Button/ButtonContainer";
 
-export default function UploadHeader({ type, image, content }) {
-  const { pathname } = useLocation();
-  const [isFormComplete, setIsFormComplete] = useState(false);
-
-  useEffect(() => {
-    if (pathname === "/post/upload" && (image || content)) {
-      setIsFormComplete(true);
-    } else {
-      setIsFormComplete(false);
-    }
-  }, [pathname, image, content]);
-
+export default function UploadHeader({ type, bgColor, disabled }) {
   return (
     <HeaderContainer justisfy={"space-between"}>
       <BackButton />
@@ -24,7 +11,8 @@ export default function UploadHeader({ type, image, content }) {
         width={"90px"}
         height={"32px"}
         rmargin={"12px"}
-        bgColor={isFormComplete ? "#40A6DE" : "#94CEF8"}
+        bgColor={bgColor}
+        disabled={disabled}
         hoverFilter
       >
         저장
