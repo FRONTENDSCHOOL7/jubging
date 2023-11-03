@@ -22,6 +22,7 @@ function Posting({
         profileImage={profileImage}
         userName={userName}
         accountName={accountName}
+        postId={postId}
       />
       <PostMain postImage={postImage} postText={postText} postId={postId} />
       <PostFooter
