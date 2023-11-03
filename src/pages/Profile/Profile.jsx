@@ -1,6 +1,6 @@
 // react
 import React, { useState, useEffect, useCallback } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useInView } from "react-intersection-observer";
 
 // API
@@ -9,10 +9,10 @@ import { getUserFeed, getUserCourse } from "../../api/postAPI";
 
 // atom
 import { userInfoAtom } from "../../recoil/userAtom";
-import { loginAtom } from "../../recoil/loginAtom";
+// import { loginAtom } from "../../recoil/loginAtom";
 
 // recoil
-import { useRecoilValue, useResetRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 
 // components
 import MoreHeader from "../../components/common/Header/MoreHeader";
@@ -24,19 +24,13 @@ import thread from "../../assets/icons/icon-post-list.svg";
 import gallery from "../../assets/icons/icon-post-album.svg";
 import Posting from "../../components/Post/Posting";
 
-import useModalControl from "../../hook/useModalControl";
-import { Modal } from "../../components/common/Modal/Modal";
 import Loading from "../Loading/Loading";
 
 export default function Profile() {
   const limit = 10;
   const { accountname } = useParams();
-  const navigate = useNavigate();
-  const { ModalComponent } = useModalControl("Profile");
 
   const userInfo = useRecoilValue(userInfoAtom);
-  const resetUserInfo = useResetRecoilState(userInfoAtom);
-  const resetLogin = useResetRecoilState(loginAtom);
 
   const [ref, inView] = useInView();
   const [profile, setProfile] = useState({});
@@ -45,19 +39,6 @@ export default function Profile() {
   const [skip, setSkip] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [threadPost, setThreadPost] = useState(true);
-
-  // 수정
-  const modify = () => {
-    navigate(`/profile/${accountname}/edit`);
-  };
-
-  // 로그아웃
-  const logout = () => {
-    localStorage.removeItem("token");
-    resetUserInfo();
-    resetLogin();
-    navigate("/login");
-  };
 
   // 스레드 클릭 이벤트
   const handleThread = () => {
@@ -129,7 +110,7 @@ export default function Profile() {
 
   return (
     <>
-      <MoreHeader pageName="Profile" />
+      <MoreHeader userInfo={userInfo} pageName="Profile" />
       {isLoading ? (
         <Loading />
       ) : (
@@ -183,24 +164,7 @@ export default function Profile() {
           )}
         </>
       )}
-
       <Navbar />
-
-      <ModalComponent>
-        {userInfo.accountname === profile.accountname ? (
-          <>
-            <Modal contents={["수정"]} handleFunc={modify}></Modal>
-            <Modal contents={["로그아웃"]} handleFunc={logout}></Modal>
-          </>
-        ) : (
-          <Modal
-            contents={["신고하기"]}
-            handleFunc={() => {
-              console.log("no");
-            }}
-          ></Modal>
-        )}
-      </ModalComponent>
     </>
   );
 }
