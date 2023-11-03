@@ -40,7 +40,7 @@ export const Section = styled.section`
   align-items: flex-start;
   flex-direction: column;
   margin: auto;
-  width: 390px;
+  width: 280px; // 홈 page에서 게시글 더보기 버튼이 밖으로 튀어나가는 걸 맞춰놓음
 `;
 
 export const UserName = styled.p`
