@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+
+import { BASE_URL } from "../../api/axios";
 import { postImgUpload } from "../../api/imageAPI";
 import { postUpload, putEditPost } from "../../api/postAPI";
+
 import UploadHeader from "../../components/common/Header/UploadHeader";
 import {
   PostContainer,
@@ -13,7 +16,6 @@ import {
   A11yHidden,
   ImageContainer,
 } from "./UploadStyle";
-import { BASE_URL } from "../../api/axios";
 
 function UploadPage({ editData }) {
   const { postId } = useParams();
@@ -80,7 +82,6 @@ function UploadPage({ editData }) {
     <form onSubmit={handleSubmit}>
       <UploadHeader type={"submit"} image={image} content={content} />
       <PostContainer>
-        {/* {previewUrl && <ImagePreview src={previewUrl} alt="post" />} */}
         <ImgLabel htmlFor="upload-button-file">이미지 등록</ImgLabel>
         {image && (
           <ImageContainer>
