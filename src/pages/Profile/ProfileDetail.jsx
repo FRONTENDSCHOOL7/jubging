@@ -72,7 +72,7 @@ export default function ProfileDetail({ profile }) {
         </Link>
 
         <ImageContainer>
-          <UserImage />
+          <UserImage src={profile.image} alt="프로필 이미지" />
         </ImageContainer>
 
         <Link

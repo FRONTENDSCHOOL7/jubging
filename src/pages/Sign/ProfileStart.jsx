@@ -40,11 +40,13 @@ const ProfileStart = () => {
   const handleImageUpload = async (e) => {
     const file = e.target.files[0];
     const formData = new FormData();
-    formData.append("file", file);
+    formData.append("image", file);
 
-    const uploadData = await postImgUpload(formData);
-    // 서버에서 반환된 이미지 경로 stat에 저장
-    setImage(uploadData.imagePath);
+    const imgData = await postImgUpload(formData);
+    // 서버에서 반환된 이미지 경로 state에 저장
+    const imageUrl = "https://api.mandarin.weniv.co.kr/" + imgData.filename;
+    setImage(imageUrl);
+    console.log(imageUrl);
   };
 
   return (
