@@ -7,7 +7,6 @@ import useDebounce from "../../hook/useDebounce";
 import SearchHeader from "../../components/common/Header/SearchHeader";
 import Navbar from "../../components/common/Navbar/Navbar";
 import UserListBox from "../../components/common/UserList/UserListBox";
-import ButtonContainer from "../../components/common/Button/ButtonContainer";
 
 const Search = () => {
   let limitedData = [];

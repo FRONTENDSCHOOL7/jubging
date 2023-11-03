@@ -15,6 +15,7 @@ import { useRecoilValue } from "recoil";
 import ButtonContainer from "../../components/common/Button/ButtonContainer";
 import chat from "../../assets/icons/icon-chat.svg";
 import share from "../../assets/icons/icon-share.svg";
+import baseprofile from "../../assets/icons/baseprofile.svg";
 import {
   ChatLink,
   FollowButtonContainer,
@@ -33,6 +34,8 @@ import {
 } from "./ProfileDetailStyle";
 
 export default function ProfileDetail({ profile }) {
+  const numberRegex =
+    /^https:\/\/api\.mandarin\.weniv\.co\.kr\/(?:(?!null|undefined)[\w.]*)$/;
   const userInfo = useRecoilValue(userInfoAtom);
   const { accountname } = useParams();
 
@@ -72,7 +75,10 @@ export default function ProfileDetail({ profile }) {
         </Link>
 
         <ImageContainer>
-          <UserImage src={profile.image} alt="프로필 이미지" />
+          <UserImage
+            src={numberRegex.test(profile.image) ? profile.image : baseprofile}
+            alt="프로필 이미지"
+          />
         </ImageContainer>
 
         <Link
@@ -133,6 +139,7 @@ export default function ProfileDetail({ profile }) {
               color={"#000000"}
               height={"34px"}
               onClick={handleUnFollow}
+              hoverFilter
             >
               언팔로우
             </ButtonContainer>
@@ -141,6 +148,7 @@ export default function ProfileDetail({ profile }) {
               fontSize={"14px"}
               height={"34px"}
               onClick={handleFollow}
+              hoverFilter
             >
               팔로우
             </ButtonContainer>

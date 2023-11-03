@@ -4,31 +4,28 @@ import { Link } from "react-router-dom";
 export const ProfileLink = styled(Link)`
   display: flex;
   align-items: center;
-
   width: 100%;
-
-  /* margin-top: 25px; */
   padding-left: 16px;
-  /* padding-top: 16px; */
-
-  /* margin-bottom: 16px; */
-
-  /* background-color: red; */
 `;
 
-export const Image = styled.img`
-  display: block;
+export const ImageDiv = styled.div`
+  position: relative;
   width: 42px;
   height: 42px;
   margin-right: 5px;
-
-  background-image: url(${({ $image }) => $image});
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-
-  border: 1px solid black;
+  border: 1px solid #dbdbdb;
   border-radius: 50%;
+  overflow: hidden;
+
+  img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 `;
 
 export const Section = styled.section`

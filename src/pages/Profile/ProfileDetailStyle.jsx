@@ -23,16 +23,21 @@ export const FollowTitle = styled.p`
 
 export const ImageContainer = styled.div`
   position: relative;
-  display: inline-block;
-`;
-
-export const UserImage = styled.img.attrs({
-  src: baseprofile,
-})`
   width: 110px;
   height: 110px;
+  border: 1px solid #dbdbdb;
   border-radius: 50%;
-  z-index: 50;
+  overflow: hidden;
+`;
+
+export const UserImage = styled.img`
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 `;
 
 export const UserInfoContainer = styled.div`
