@@ -18,7 +18,7 @@ export const ImagePreview = styled.img`
 
 export const TextArea = styled.textarea`
   width: 100%;
-  min-height: 420px;
+  min-height: 410px;
   overflow: hidden auto;
   font-size: ${(props) =>
     props.fontSize ? props.fontSize : props.theme.fontSize.medium};
@@ -56,6 +56,7 @@ export const ImageContainer = styled.div`
   aspect-ratio: 3 / 2;
   border: 1px solid #dbdbdb;
   border-radius: 10px;
+  overflow: hidden;
 `;
 
 export const ImgDeleteBtn = styled.button`
