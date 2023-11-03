@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 // API
 import { postLogin } from "../../api/loginAPI";
+import { getMyInfo } from "../../api/profileAPI";
 
 // recoil
 import { useRecoilState, useSetRecoilState } from "recoil";
@@ -97,12 +98,16 @@ const Login = () => {
       if (loginData.status === 422) {
         setErrorMsg(loginData.message);
       } else {
+        // 사용자 프로필 정보 불러오기
+        const myInfo = await getMyInfo(loginData.user.token);
+        console.log("myInfo", myInfo);
+
         setUserInfo({
           ...userInfo,
-          username: loginData.user.username,
-          accountname: loginData.user.accountname,
-          intro: loginData.user.intro,
-          image: loginData.user.image,
+          username: myInfo.user.username,
+          accountname: myInfo.user.accountname,
+          intro: myInfo.user.intro,
+          image: myInfo.user.image,
         });
         setLogin(true);
         // localStorage에 token 값 저장
