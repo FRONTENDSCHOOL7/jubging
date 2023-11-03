@@ -40,6 +40,7 @@ export const Section = styled.section`
   align-items: flex-start;
   flex-direction: column;
   margin: auto;
+  width: 390px;
 `;
 
 export const UserName = styled.p`
@@ -53,10 +54,12 @@ export const SubText = styled.p`
   color: ${(props) => props.theme.colors.textColor};
   font-size: ${(props) => props.theme.fontSize.small};
   overflow: hidden;
-  white-space: normal;
+  /* white-space: normal; */
+  white-space: nowrap;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   word-break: break-all;
+  width: 80%;
 `;
