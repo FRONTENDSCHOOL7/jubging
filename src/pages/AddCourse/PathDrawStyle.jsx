@@ -16,7 +16,7 @@ export const Title = styled.h1`
 export const MapCanvas = styled.div`
   border-radius: 4px;
   width: 100%;
-  height: 100vh;
+  height: 80vh;
   background-color: #f2f2f2;
   z-index: 1;
 `;
