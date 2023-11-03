@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+
+import { BASE_URL } from "../../api/axios";
 import { postImgUpload } from "../../api/imageAPI";
 import { postUpload, putEditPost } from "../../api/postAPI";
+
 import UploadHeader from "../../components/common/Header/UploadHeader";
 import {
   PostContainer,
@@ -13,7 +16,6 @@ import {
   A11yHidden,
   ImageContainer,
 } from "./UploadStyle";
-import { BASE_URL } from "../../api/axios";
 
 function UploadPage({ editData }) {
   const { postId } = useParams();
@@ -21,6 +23,7 @@ function UploadPage({ editData }) {
 
   const [content, setContent] = useState("");
   const [image, setImage] = useState(null);
+  const [enableUpload, setEnableUpload] = useState(false);
 
   // editData가 있으면 게시글 불러오기
   useEffect(() => {
@@ -76,11 +79,19 @@ function UploadPage({ editData }) {
     setContent(e.target.value);
   };
 
+  // 저장 버튼 활성화
+  useEffect(() => {
+    setEnableUpload(!!(image || content));
+  }, [image, content]);
+
   return (
     <form onSubmit={handleSubmit}>
-      <UploadHeader type={"submit"} image={image} content={content} />
+      <UploadHeader
+        type={"submit"}
+        disabled={!enableUpload}
+        bgColor={enableUpload ? "#40A6DE" : "#94CEF8"}
+      />
       <PostContainer>
-        {/* {previewUrl && <ImagePreview src={previewUrl} alt="post" />} */}
         <ImgLabel htmlFor="upload-button-file">이미지 등록</ImgLabel>
         {image && (
           <ImageContainer>

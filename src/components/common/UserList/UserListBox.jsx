@@ -42,6 +42,7 @@ export default function UserListBox({
                 )}
           </UserName>
           <SubText>
+            @
             {accountName &&
               accountName
                 .split(new RegExp(`(${inputTxt})`, "i"))
