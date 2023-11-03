@@ -1,3 +1,5 @@
+// Login.jsx
+
 // react
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -5,6 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 // API
 import { postLogin } from "../../api/loginAPI";
 import { getMyInfo } from "../../api/profileAPI";
+import { updateAuthToken } from "../../api/axios";
 
 // recoil
 import { useRecoilState, useSetRecoilState } from "recoil";
@@ -98,6 +101,8 @@ const Login = () => {
       if (loginData.status === 422) {
         setErrorMsg(loginData.message);
       } else {
+        localStorage.setItem("token", loginData.user.token);
+        updateAuthToken();
         // 사용자 프로필 정보 불러오기
         const myInfo = await getMyInfo(loginData.user.token);
         console.log("myInfo", myInfo);

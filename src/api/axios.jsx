@@ -1,3 +1,5 @@
+// axios
+
 import axios from "axios";
 
 export const BASE_URL = "https://api.mandarin.weniv.co.kr/";
@@ -18,6 +20,11 @@ export const authAxios = axios.create({
     "Content-type": "application/json",
   },
 });
+
+// 토큰 업데이트 함수
+export const updateAuthToken = () => {
+  authAxios.defaults.headers.Authorization = `Bearer ${localStorage.getItem("token")}`
+}
 
 // 이미지 인스턴스
 export const imgAxios = axios.create({
