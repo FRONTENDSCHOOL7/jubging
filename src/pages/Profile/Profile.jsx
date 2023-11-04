@@ -31,6 +31,7 @@ export default function Profile() {
   const { accountname } = useParams();
 
   const userInfo = useRecoilValue(userInfoAtom);
+  console.log(userInfo);
 
   const [ref, inView] = useInView();
   const [profile, setProfile] = useState({});
@@ -53,7 +54,7 @@ export default function Profile() {
   // 개인프로필 가져오기
   useEffect(() => {
     const fetchUserInfo = async () => {
-      const response = await getUserProfile(accountname);
+      const response = await getUserProfile(userInfo.accountname);
       if (response && response.profile) {
         setProfile(response.profile);
         setIsLoading(false);

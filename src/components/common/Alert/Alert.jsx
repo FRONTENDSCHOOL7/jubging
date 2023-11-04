@@ -69,3 +69,10 @@ export function AlertReport({ onClose }) {
     </ButtonContainer>
   );
 }
+export function AlertChange({ onChange }) {
+  return (
+    <ButtonContainer color={"#41A6DE"} width={"252px"} onClick={onChange}>
+      확인
+    </ButtonContainer>
+  );
+}

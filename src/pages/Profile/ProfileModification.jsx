@@ -1,5 +1,6 @@
 // react
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 // api
 import { setUserProfile } from "../../api/profileAPI";
@@ -16,16 +17,23 @@ import { Form, ModificationContainer } from "./ProfileModificationStyle";
 import UserProfile from "../../components/common/Profile/ProfileImage";
 import Input from "../../components/common/Input/Input";
 import UploadHeader from "../../components/common/Header/UploadHeader";
+import { Alert, AlertChange } from "../../components/common/Alert/Alert";
 
 const ProfileStartPage = () => {
   const [userInfo, setUserInfo] = useRecoilState(userInfoAtom);
+  const navigate = useNavigate();
 
   console.log(userInfo);
 
   const [username, setUsername] = useState("");
   const [accountname, setAccountname] = useState("");
   const [intro, setIntro] = useState("");
+  const [submitState, setSubmitState] = useState(false);
   const [[image, setImage]] = useState("");
+
+  const handleChange = () => {
+    navigate(`/profile/${userInfo.accountname}`);
+  };
 
   // 로그인 계정 프로필 atom 변경
   const handleModifyProfile = async (e) => {
@@ -36,6 +44,7 @@ const ProfileStartPage = () => {
       accountname: accountname,
       intro: intro,
     });
+    setSubmitState(!submitState);
   };
 
   // 이미지 업로드 핸들러
@@ -63,7 +72,7 @@ const ProfileStartPage = () => {
     };
 
     modifyUserProfile();
-  }, [userInfo]);
+  }, [submitState]);
 
   return (
     <>
@@ -105,6 +114,12 @@ const ProfileStartPage = () => {
           />
         </ModificationContainer>
       </Form>
+
+      {submitState && (
+        <Alert message="프로필이 변경되었습니다.">
+          <AlertChange onChange={handleChange} />
+        </Alert>
+      )}
     </>
   );
 };
