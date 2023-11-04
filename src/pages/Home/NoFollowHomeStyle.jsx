@@ -19,4 +19,6 @@ export const SearchForUser = styled.span`
   color: ${(props) => props.theme.colors.textColor};
   font-size: ${(props) => props.theme.fontSize.medium};
   margin: 20px 0;
+
+  white-space: nowrap;
 `;
