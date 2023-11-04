@@ -54,7 +54,7 @@ function Home() {
       {isLoading ? (
         <Loading />
       ) : data.length === 0 ? (
-        <NoFollowHome />
+        <NoFollowHome message="유저를 검색해 팔로우 해보세요!" />
       ) : (
         <>
           <PostingContainer>
