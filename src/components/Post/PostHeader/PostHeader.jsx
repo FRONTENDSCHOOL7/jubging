@@ -1,20 +1,33 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+
+import { deletePost, reportPost } from "../../../api/postAPI";
+
+import { userInfoAtom } from "../../../recoil/userAtom";
+
+import { useRecoilValue } from "recoil";
+
 import MoreButton from "../../common/Button/MoreButton";
 import UserListBox from "../../common/UserList/UserListBox";
 import { PostHeaderContaniner } from "./PostHeaderStyle";
 import { AnotherfeedModal, FeedModal, Modal } from "../../common/Modal/Modal";
-import { useRecoilValue } from "recoil";
-import { userInfoAtom } from "../../../recoil/userAtom";
+import { Alert, AlertDeleteFeed, AlertReport } from "../../common/Alert/Alert";
 
 export default function PostHeader({
+  dataPost,
   profileImage,
   userName,
   accountName,
   pageName,
   postId,
+  fetch,
 }) {
+  const token = localStorage.getItem("token");
+  const location = useLocation();
   const userInfo = useRecoilValue(userInfoAtom);
+  const navigate = useNavigate();
   const [openModalId, setOpenModalId] = useState(null);
+  const [openAlertId, setOpenAlertId] = useState(null);
 
   // 모달
   const handleOpenModal = () => {
@@ -25,14 +38,45 @@ export default function PostHeader({
     setOpenModalId(null);
   };
 
-  // 클릭 이벤트
-  const modify = () => {
-    console.log("수정");
+  // 경고창
+  const handleAlertOpen = () => {
+    setOpenAlertId(postId);
+    setOpenModalId(false);
   };
 
-  const report = () => {
-    console.log("신고");
+  const handleAlertClose = () => {
+    setOpenAlertId(null);
   };
+
+  // 게시글 수정 클릭이벤트
+  const handleEditPost = () => {
+    navigate(`/post/${postId}/edit`, {
+      // state 넘기는 이유? 물어보기
+      state: { dataPost },
+    });
+  };
+
+  // 게시글 삭제 클릭이벤트
+  const handleDeletePost = async () => {
+    try {
+      const response = await deletePost(token, postId);
+      handleAlertClose();
+      location.pathname.includes(`edit`) && navigate(-1);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // 게시글 신고 클릭 이벤트
+  const handleReport = async () => {
+    try {
+      const response = await reportPost(token, postId);
+      handleAlertOpen();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <PostHeaderContaniner>
@@ -44,15 +88,31 @@ export default function PostHeader({
         <MoreButton onClick={handleOpenModal} pageName={pageName} />
       </PostHeaderContaniner>
 
+      {/* 모달 */}
       {postId === openModalId && (
         <Modal onClose={handleCloseModal}>
           {userInfo.accountname === accountName ? (
-            <FeedModal modify={modify} />
+            <FeedModal modify={handleEditPost} deleteFeed={handleAlertOpen} />
           ) : (
-            <AnotherfeedModal report={report} />
+            <AnotherfeedModal report={handleReport} />
           )}
         </Modal>
       )}
+
+      {/* 경고창 */}
+      {postId === openAlertId &&
+        (userInfo.accountname === accountName ? (
+          <Alert message="게시글을 삭제할까요?">
+            <AlertDeleteFeed
+              deleteFeed={handleDeletePost}
+              onClose={handleAlertClose}
+            />
+          </Alert>
+        ) : (
+          <Alert message="신고되었습니다.">
+            <AlertReport onClose={handleAlertClose} />
+          </Alert>
+        ))}
     </>
   );
 }

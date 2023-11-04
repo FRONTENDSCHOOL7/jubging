@@ -54,26 +54,6 @@ function Post() {
     fetchPostDetailAndComments();
   }, [fetchPostDetailAndComments]);
 
-  /* 모달 뜨는거 해결하면 내 계정 / 타인 계정 나눠서 이벤트 주기 */
-  /* 내 계정 -> 게시글 수정, 삭제 / 타인 계정 -> 신고 */
-  // 게시글 수정 클릭이벤트
-  const handleEditPost = () => {
-    navigate(`/post/${postId}/edit`, {
-      state: { data },
-    });
-  };
-
-  // 게시글 삭제 클릭이벤트
-  const handleDeletePost = async () => {
-    try {
-      const response = await deletePost(token, postId);
-      /* 삭제 성공 시 코드 추가 */
-      navigate(`/profile/${accountname}`);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   return (
     <>
       <BackSpaceHeader />
@@ -83,6 +63,7 @@ function Post() {
         data && (
           <Posting
             pageName="Post"
+            data={data}
             accountName={data.author.accountname}
             profileImage={data.author.image}
             userName={data.author.username}
@@ -96,8 +77,6 @@ function Post() {
           />
         )
       )}
-      <button onClick={handleEditPost}>수정</button>
-      <button onClick={handleDeletePost}>삭제</button>
       <CommnetContainer>
         {comments.map((comment) => (
           <PostComment

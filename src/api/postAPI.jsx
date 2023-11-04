@@ -73,6 +73,16 @@ export const deletePost = async (token, postId) => {
   }
 };
 
+// 게시물 신고
+export const reportPost = async (token, postId) => {
+  try {
+    const response = await authAxios.post(`/post/${postId}/report`);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 // 게시글 전체 불러오기
 export const getPostAll = async (limit, skip, token) => {
   try {

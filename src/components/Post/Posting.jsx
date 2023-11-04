@@ -5,6 +5,7 @@ import PostFooter from "./PostFooter/PostFooter";
 import styled from "styled-components";
 
 function Posting({
+  dataPost,
   accountName,
   profileImage,
   userName,
@@ -15,14 +16,17 @@ function Posting({
   commentCount,
   postDate,
   hearted,
+  fetch,
 }) {
   return (
     <PostContainer>
       <PostHeader
+        dataPost={dataPost}
         profileImage={profileImage}
         userName={userName}
         accountName={accountName}
         postId={postId}
+        fetch={fetch}
       />
       <PostMain postImage={postImage} postText={postText} postId={postId} />
       <PostFooter
