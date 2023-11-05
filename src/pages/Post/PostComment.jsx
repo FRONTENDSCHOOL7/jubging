@@ -1,8 +1,8 @@
 // react
-import React from "react";
+import React, { useState } from "react";
 
 // API
-import { deleteComment } from "../../api/commentAPI";
+import { deleteComment, reportComment } from "../../api/commentAPI";
 
 // atom
 import { userInfoAtom } from "../../recoil/userAtom";
@@ -23,6 +23,8 @@ import {
   CommentText,
 } from "./PostCommentStyle";
 import MoreButton from "../../components/common/Button/MoreButton";
+
+import { Alert, AlertReport } from "../../components/common/Alert/Alert"
 
 import { Modal, FeedModal, AnotherfeedModal } from "../../components/common/Modal/Modal";
 
@@ -49,9 +51,17 @@ function PostComment({ profilePhoto, nickname, comment, refreshComments, postId 
       console.error("Failed to delete comment:", error);
     }
   };
+
+  const [isReportAlertOpen, setReportAlertOpen] = useState(false);
   
-  const handleReport = () => {
+  const handleReport = async () => {
     console.log("Reporting comment");
+    try {
+      await reportComment(postId, comment.id);
+      setReportAlertOpen(true)
+    } catch (error) {
+      console.error("Failed to report comment:", error);
+    }
   };
 
   return (
@@ -73,6 +83,13 @@ function PostComment({ profilePhoto, nickname, comment, refreshComments, postId 
               <AnotherfeedModal report={handleReport} />
             )}
           </ModalComponent>
+          <Alert
+            isAlertOpen={isReportAlertOpen}
+            onClose={() => setReportAlertOpen(false)}
+            message="신고되었습니다."
+          >
+            <AlertReport onClose={() => setReportAlertOpen(false)} />
+          </Alert>
         </CommentInfoGroup>
       </CommentHeaderGroup>
       <CommentText>{comment.content}</CommentText>
