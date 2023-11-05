@@ -51,7 +51,7 @@ function PostComment({ profilePhoto, nickname, minutesAgo, comment, refreshComme
         <CommentInfoGroup>
           <InfoHeader>
             <InfoNickname>{nickname}</InfoNickname>
-            <InfoTime>{minutesAgo} 1분 전</InfoTime>
+            <InfoTime> 1분 전</InfoTime>
           </InfoHeader>
           <MoreButton pageName={`comment-${comment.id}`} />
           <ModalComponent>

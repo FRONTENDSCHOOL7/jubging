@@ -16,6 +16,12 @@ export const ProfileImage = styled.div`
   border: 1px solid ${(props) => props.theme.colors.placeHolderColor};
   border-radius: 50%;
   overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 `;
 
 export const CommentInfoGroup = styled.div`
