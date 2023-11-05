@@ -26,15 +26,23 @@ import MoreButton from "../../components/common/Button/MoreButton";
 
 import { Modal, FeedModal, AnotherfeedModal } from "../../components/common/Modal/Modal";
 
-function PostComment({ profilePhoto, nickname, comment, refreshComments }) {
+function PostComment({ profilePhoto, nickname, comment, refreshComments, postId }) {
+
+  const handleDeleteAndCloseModal = () => {
+    handleDelete();
+    closeModal();
+  }
 
   const { ModalComponent, openModal, closeModal } = useModalControl(`comment-${comment.id}`);
   const userInfo = useRecoilValue(userInfoAtom) || {};
   
 
   const handleDelete = async () => {
+    console.log("handleDelete called");
+    console.log("postId:", postId);
+    console.log("commentID:", comment.id);
     try {
-      await deleteComment(comment.id);
+      await deleteComment(postId, comment.id);
       console.log("Deleted successfully");
       refreshComments();
     } catch (error) {
@@ -60,7 +68,7 @@ function PostComment({ profilePhoto, nickname, comment, refreshComments }) {
           <MoreButton pageName={`comment-${comment.id}`} onClick={openModal} />
           <ModalComponent>
             {userInfo.accountname === comment.author.accountname ? (
-              <FeedModal modify={handleDelete} deleteFeed={closeModal} />
+              <FeedModal modify={handleDeleteAndCloseModal} deleteFeed={closeModal} />
             ) : (
               <AnotherfeedModal report={handleReport} />
             )}

@@ -49,7 +49,7 @@ export function FeedModal({ modify, deleteFeed }) {
     <ModalBox>
       <li className="modalList">
         <button onClick={modify}>수정</button>
-        <button onClick={deleteFeed}>삭제</button>
+        <button onClick={modify}>삭제</button>
       </li>
     </ModalBox>
   );

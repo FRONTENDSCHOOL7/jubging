@@ -23,6 +23,7 @@ export const getComment = async (postId) => {
     return response.data;
   } catch (error) {
     console.log(error);
+    throw error;
   }
 };
 

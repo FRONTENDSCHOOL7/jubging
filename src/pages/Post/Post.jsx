@@ -85,6 +85,7 @@ function Post() {
             nickname={comment.author.username}
             comment={comment}
             refreshComments={fetchComments}
+            postId={postId}
           />
         ))}
       </CommnetContainer>

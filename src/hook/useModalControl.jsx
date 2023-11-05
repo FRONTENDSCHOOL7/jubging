@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 import { useRecoilState } from "recoil";
 import modalStateAtomFamily from "../recoil/modalStateAtom";
@@ -62,9 +62,13 @@ export default function useModalControl(pageName) {
     modalStateAtomFamily(pageName)
   );
 
+  useEffect(() => {
+    console.log(modalState);
+  }, [modalState]);
+
   const openModal = () => {
     setModalState(true);
-    console.log(modalState);
+    // console.log(modalState);
   };
   const closeModal = () => {
     setModalState(false);
@@ -84,5 +88,5 @@ export default function useModalControl(pageName) {
       </>
     );
   };
-  return { openModal, ModalComponent };
+  return { openModal, closeModal, ModalComponent };
 }
