@@ -1,42 +1,21 @@
-import React, { useState } from "react";
-import { ImageContainer, UserImage, ImageButton } from "./ProfileImageStyle";
+import {
+  ImageContainer,
+  UserImage,
+  ImageButton,
+  Container,
+} from "./ProfileImageStyle";
 
-export default function ProfileChange({
-  tmargin,
-  lmargin,
-  rmargin,
-  bmargin,
-  setImage,
-  handleImageUpload,
-}) {
-  const [previewUrl, setPreviewUrl] = useState(null);
-
-  const handleImageChange = async (event) => {
-    if (event.target.files && event.target.files[0]) {
-      let reader = new FileReader();
-
-      reader.onloadend = () => {
-        setPreviewUrl(reader.result);
-      };
-
-      reader.readAsDataURL(event.target.files[0]);
-
-      // 이미지 업로드
-      await handleImageUpload(event);
-    }
+export default function ProfileChange({ handleImgUpload, profileImage }) {
+  const handleImageChange = (e) => {
+    e.preventDefault();
+    const imageFile = e.target.files[0];
+    handleImgUpload(imageFile);
   };
 
   return (
-    <>
+    <Container>
       <ImageContainer>
-        <UserImage
-          previewUrl={previewUrl}
-          $tmargin={tmargin}
-          $lmargin={lmargin}
-          $rmargin={rmargin}
-          $bmargin={bmargin}
-          alt="profile"
-        />
+        <UserImage $profileImage={profileImage} alt="프로필 이미지" />
 
         <input
           type="file"
@@ -45,14 +24,14 @@ export default function ProfileChange({
           onChange={handleImageChange}
           accept=".jpg, .jpeg, .png, .bmp"
         />
-
-        <ImageButton
-          onClick={(event) => {
-            event.preventDefault();
-            document.getElementById("upload-button-file").click();
-          }}
-        />
       </ImageContainer>
-    </>
+
+      <ImageButton
+        onClick={(event) => {
+          event.preventDefault();
+          document.getElementById("upload-button-file").click();
+        }}
+      />
+    </Container>
   );
 }

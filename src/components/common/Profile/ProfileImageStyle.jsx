@@ -2,35 +2,38 @@ import styled from "styled-components";
 import baseprofile from "../../../assets/icons/baseprofile.svg";
 import profileicon from "../../../assets/icons/icon-photo.svg";
 
+export const Container = styled.section`
+  position: relative;
+  margin-bottom: 37px;
+`;
+
 export const ImageContainer = styled.div`
   position: relative;
-  display: inline-block; /* 이 부분은 필요에 따라 변경 가능합니다 */
+  width: 110px;
+  height: 110px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 50%;
 `;
 
 export const UserImage = styled.img.attrs((props) => ({
-  src: props.previewUrl || baseprofile,
+  src: props.$profileImage || baseprofile,
 }))`
-  margin-top: ${(props) => (props.$tmargin ? props.$tmargin : "")};
-  margin-left: ${(props) => (props.$lmargin ? props.$lmargin : "")};
-  margin-right: ${(props) => (props.$rmargin ? props.$rmargin : "")};
-  margin-bottom: ${(props) => (props.$bmargin ? props.$bmargin : "")};
-  width: 110px;
-  height: 110px;
-  border-radius: 50%;
-  z-index: 50;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 `;
 
 export const ImageButton = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-image: url(${profileicon});
-  background-repeat: no-repeat;
-  background-position: center center;
+  background: url(${profileicon}) no-repeat center center;
   width: 36px;
   height: 36px;
-  position: absolute; // 상위 엘리먼트인 ImageContainer에 대해 절대적으로 위치가 결정됩니다.
-  bottom: 35px; // 이미지 버튼의 위치 조절
-  right: 103px; // 이미지 버튼의 위치 조절
+  position: absolute;
+  right: 100px;
+  bottom: 0;
   z-index: 999;
 `;

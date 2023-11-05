@@ -33,9 +33,12 @@ export const checkEmail = async (email) => {
       email: email,
     },
   };
-
-  const response = await basicAxios.post("/user/emailvalid", userEmail);
-  return response.data;
+  try {
+    const response = await basicAxios.post("/user/emailvalid", userEmail);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 // 계정ID 중복 검사 함수
@@ -45,9 +48,15 @@ export const checkAccountname = async (accountname) => {
       accountname: accountname,
     },
   };
-  
-  const response = await basicAxios.post("/user/accountnamevalid", userAccountname);
-  return response.data;
+  try {
+    const response = await basicAxios.post(
+      "/user/accountnamevalid",
+      userAccountname
+    );
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
 };
 // Request 보내야 하는 거
 // {
