@@ -24,11 +24,11 @@ import {
 } from "./PostCommentStyle";
 import MoreButton from "../../components/common/Button/MoreButton";
 
-import { Modal } from "../../components/common/Modal/Modal";
+import { Modal, FeedModal, AnotherfeedModal } from "../../components/common/Modal/Modal";
 
-function PostComment({ profilePhoto, nickname, minutesAgo, comment, refreshComments }) {
+function PostComment({ profilePhoto, nickname, comment, refreshComments }) {
 
-  const { ModalComponent } = useModalControl(`comment-${comment.id}`);
+  const { ModalComponent, openModal, closeModal } = useModalControl(`comment-${comment.id}`);
   const userInfo = useRecoilValue(userInfoAtom) || {};
   
 
@@ -42,6 +42,10 @@ function PostComment({ profilePhoto, nickname, minutesAgo, comment, refreshComme
     }
   };
   
+  const handleReport = () => {
+    console.log("Reporting comment");
+  };
+
   return (
     <CommentGroup>
       <CommentHeaderGroup>
@@ -53,19 +57,14 @@ function PostComment({ profilePhoto, nickname, minutesAgo, comment, refreshComme
             <InfoNickname>{nickname}</InfoNickname>
             <InfoTime> 1분 전</InfoTime>
           </InfoHeader>
-          <MoreButton pageName={`comment-${comment.id}`} />
+          <MoreButton pageName={`comment-${comment.id}`} onClick={openModal} />
           <ModalComponent>
             {userInfo.accountname === comment.author.accountname ? (
-              <>
-                <Modal contents={["삭제"]} handleFunc={handleDelete}></Modal>
-              </>
+              <FeedModal modify={handleDelete} deleteFeed={closeModal} />
             ) : (
-              <Modal contents={["신고하기"]} handleFunc={() => {
-                  console.log("no");
-              }}
-              ></Modal>
+              <AnotherfeedModal report={handleReport} />
             )}
-          </ ModalComponent >
+          </ModalComponent>
         </CommentInfoGroup>
       </CommentHeaderGroup>
       <CommentText>{comment.content}</CommentText>
