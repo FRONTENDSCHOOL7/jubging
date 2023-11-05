@@ -2,9 +2,13 @@
 import React from "react";
 import { useState } from "react";
 import { useParams } from 'react-router-dom';
+import { useRecoilValue } from "recoil";
 
 // api
 import { postComment } from "../../api/commentAPI";
+
+// atom
+import { userInfoAtom } from "../../recoil/userAtom";
 
 // components
 import RoundInput from "../../components/common/Input/RoundInput";
@@ -18,6 +22,8 @@ import {
 function CommentInput({ profilePhoto, onCommentPosted }) {
   const [message, setMessage] = useState("");
   const { postId } = useParams();
+
+  const userInfo = useRecoilValue(userInfoAtom);
 
   const handlePostComment = async () => {
     if (message !== "") {
@@ -33,7 +39,7 @@ function CommentInput({ profilePhoto, onCommentPosted }) {
     <ChatBar>
       <InputWrapper>
         <ProfileImage>
-          <img src={profilePhoto} alt="프로필 사진" />
+          <img src={userInfo.image} alt="프로필 사진" />
         </ProfileImage>
         <RoundInput
           label=""

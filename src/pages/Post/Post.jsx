@@ -83,7 +83,6 @@ function Post() {
             key={comment.id}
             profilePhoto={comment.author.image}
             nickname={comment.author.username}
-            minutesAgo={comment.author.minutesAgo}
             comment={comment}
             refreshComments={fetchComments}
           />
