@@ -24,21 +24,52 @@ import {
 } from "./PostCommentStyle";
 import MoreButton from "../../components/common/Button/MoreButton";
 
-import { Alert, AlertReport } from "../../components/common/Alert/Alert"
+import { Alert, AlertReport } from "../../components/common/Alert/Alert";
 
-import { Modal, FeedModal, AnotherfeedModal } from "../../components/common/Modal/Modal";
+import {
+  AnotherfeedModal,
+  CommentModal,
+} from "../../components/common/Modal/Modal";
 
-function PostComment({ profilePhoto, nickname, comment, refreshComments, postId }) {
+function PostComment({
+  profilePhoto,
+  nickname,
+  comment,
+  refreshComments,
+  postId,
+  commentData,
+}) {
+  const userInfo = useRecoilValue(userInfoAtom) || {};
+  const [isReportAlertOpen, setReportAlertOpen] = useState(false);
+
+  const { ModalComponent, openModal, closeModal } = useModalControl(
+    `comment-${comment.id}`
+  );
+
+  const calculateTimeAgo = (date) => {
+    const commentTime = new Date(date);
+    const currentTime = new Date();
+    const diffSeconds = Math.floor((currentTime - commentTime) / 1000);
+
+    if (diffSeconds < 60) {
+      return `${diffSeconds}초 전`;
+    } else if (diffSeconds < 3600) {
+      return `${Math.floor(diffSeconds / 60)}분 전`;
+    } else if (diffSeconds < 86400) {
+      return `${Math.floor(diffSeconds / 3600)}시간 전`;
+    } else {
+      return `${Math.floor(diffSeconds / 86400)}일 전`;
+    }
+  };
+
+  const commentTimeAgo = calculateTimeAgo(commentData);
 
   const handleDeleteAndCloseModal = () => {
     handleDelete();
     closeModal();
-  }
+  };
 
-  const { ModalComponent, openModal, closeModal } = useModalControl(`comment-${comment.id}`);
-  const userInfo = useRecoilValue(userInfoAtom) || {};
-  
-
+  // 댓글 삭제
   const handleDelete = async () => {
     console.log("handleDelete called");
     console.log("postId:", postId);
@@ -52,13 +83,12 @@ function PostComment({ profilePhoto, nickname, comment, refreshComments, postId 
     }
   };
 
-  const [isReportAlertOpen, setReportAlertOpen] = useState(false);
-  
+  // 댓글 신고
   const handleReport = async () => {
     console.log("Reporting comment");
     try {
       await reportComment(postId, comment.id);
-      setReportAlertOpen(true)
+      setReportAlertOpen(true);
     } catch (error) {
       console.error("Failed to report comment:", error);
     }
@@ -74,20 +104,23 @@ function PostComment({ profilePhoto, nickname, comment, refreshComments, postId 
         <CommentInfoGroup>
           <InfoHeader>
             <InfoNickname>{nickname}</InfoNickname>
-            <InfoTime>1분 전</InfoTime>
+            <InfoTime>{commentTimeAgo}</InfoTime>
           </InfoHeader>
           <CommentText>{comment.content}</CommentText>
         </CommentInfoGroup>
-  
+
         <MoreButton pageName={`comment-${comment.id}`} onClick={openModal} />
         <ModalComponent>
           {userInfo.accountname === comment.author.accountname ? (
-            <FeedModal modify={handleDeleteAndCloseModal} deleteFeed={closeModal} />
+            <CommentModal
+              modify={handleDeleteAndCloseModal}
+              deleteFeed={closeModal}
+            />
           ) : (
             <AnotherfeedModal report={handleReport} />
           )}
         </ModalComponent>
-  
+
         <Alert
           isAlertOpen={isReportAlertOpen}
           onClose={() => setReportAlertOpen(false)}

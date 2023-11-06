@@ -54,11 +54,22 @@ export function FeedModal({ modify, deleteFeed }) {
     </ModalBox>
   );
 }
+
 export function AnotherfeedModal({ report }) {
   return (
     <ModalBox>
       <li className="modalList">
         <button onClick={report}>신고</button>
+      </li>
+    </ModalBox>
+  );
+}
+
+export function CommentModal({ modify, deleteFeed }) {
+  return (
+    <ModalBox>
+      <li className="modalList">
+        <button onClick={modify}>삭제</button>
       </li>
     </ModalBox>
   );

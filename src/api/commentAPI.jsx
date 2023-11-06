@@ -15,11 +15,14 @@ export const postComment = async (postId, comment) => {
 };
 
 /* 댓글 리스트 */
-export const getComment = async (postId) => {
+export const getComment = async (postId, limit, skip) => {
   try {
-    const response = await authAxios.get(
-      `/post/${postId}/comments`
-    );
+    const response = await authAxios.get(`/post/${postId}/comments`, {
+      params: {
+        limit,
+        skip,
+      },
+    });
     return response.data;
   } catch (error) {
     console.log(error);

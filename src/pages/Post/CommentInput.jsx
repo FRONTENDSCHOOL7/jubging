@@ -1,7 +1,7 @@
 // react
 import React from "react";
 import { useState } from "react";
-import { useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 
 // api
@@ -20,37 +20,39 @@ import {
 } from "./CommentInputStyle";
 
 function CommentInput({ profilePhoto, onCommentPosted }) {
-  const [message, setMessage] = useState("");
   const { postId } = useParams();
+  const [message, setMessage] = useState("");
 
   const userInfo = useRecoilValue(userInfoAtom);
 
-  const handlePostComment = async () => {
+  // 댓글 등록
+  const handlePostComment = async (e) => {
+    e.preventDefault();
+
     if (message !== "") {
-      const response = await postComment(postId ,message);
+      const response = await postComment(postId, message);
+      console.log(response);
       setMessage("");
-      if (response.status === 200) {
-        onCommentPosted(); 
-      }
+      onCommentPosted();
     }
   };
 
   return (
     <ChatBar>
-      <InputWrapper>
-        <ProfileImage>
-          <img src={userInfo.image} alt="프로필 사진" />
-        </ProfileImage>
-        <RoundInput
-          label=""
-          type="text"
-          name="message"
-          placeholder="댓글 입력하기..."
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-        />
-        <Button $active={message !== ""} onClick={handlePostComment}>등록</Button>
-      </InputWrapper>
+      <ProfileImage>
+        <img src={userInfo.image} alt="프로필 사진" />
+      </ProfileImage>
+      <RoundInput
+        label=""
+        type="text"
+        name="message"
+        placeholder="댓글 입력하기..."
+        value={message}
+        onChange={(e) => setMessage(e.target.value)}
+      />
+      <Button $active={message !== ""} onClick={handlePostComment}>
+        등록
+      </Button>
     </ChatBar>
   );
 }
