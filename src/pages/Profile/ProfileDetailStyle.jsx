@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import baseprofile from "../../assets/icons/baseprofile.svg";
 
 export const ProfileContainer = styled.section`
   display: flex;
@@ -46,6 +45,7 @@ export const UserInfoContainer = styled.div`
   align-items: center;
   gap: 15px;
   margin-top: 15px;
+  padding: 0 30px;
 `;
 
 export const UserName = styled.p``;

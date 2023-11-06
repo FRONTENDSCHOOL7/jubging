@@ -1,5 +1,6 @@
 // react
-import React, { useState } from "react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
 // API
 import { deleteComment, reportComment } from "../../api/commentAPI";
@@ -23,7 +24,6 @@ import {
   CommentText,
 } from "./PostCommentStyle";
 import MoreButton from "../../components/common/Button/MoreButton";
-
 import { Alert, AlertReport } from "../../components/common/Alert/Alert";
 
 import {
