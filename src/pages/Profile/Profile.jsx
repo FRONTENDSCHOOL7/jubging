@@ -27,7 +27,7 @@ import Posting from "../../components/Post/Posting";
 import Loading from "../Loading/Loading";
 
 export default function Profile() {
-  const limit = 10;
+  // const limit = 10;
   const { accountname } = useParams();
 
   const userInfo = useRecoilValue(userInfoAtom);
@@ -54,7 +54,7 @@ export default function Profile() {
   // 개인프로필 가져오기
   useEffect(() => {
     const fetchUserInfo = async () => {
-      const response = await getUserProfile(userInfo.accountname);
+      const response = await getUserProfile(accountname);
       if (response && response.profile) {
         setProfile(response.profile);
         setIsLoading(false);
@@ -62,33 +62,31 @@ export default function Profile() {
       return response.profile;
     };
     fetchUserInfo();
-  }, []);
+  }, [accountname]);
 
   // 게시물 가져오기
   const fetchUserFeed = useCallback(async () => {
     try {
-      const response = await getUserFeed(limit, skip, accountname);
+      const response = await getUserFeed(Infinity, skip, accountname);
       setIsLoading(false);
       if (response.length > 0) {
-        setFeed((prev) => {
-          return [...prev, ...response];
-        });
+        setFeed(() => [...response]);
       }
     } catch (error) {
       console.log(error);
     }
-  }, [limit, skip, accountname]);
+  }, [skip, accountname]);
 
   useEffect(() => {
     fetchUserFeed();
   }, [fetchUserFeed]);
 
   // 무한스크롤
-  useEffect(() => {
+  /* useEffect(() => {
     if (inView & !isLoading) {
       setSkip((prevSkip) => prevSkip + limit);
     }
-  }, [inView, isLoading]);
+  }, [inView, isLoading]); */
 
   // 추천 코스 가져오기
   const fetchUserCourse = useCallback(async () => {
@@ -131,25 +129,27 @@ export default function Profile() {
           {threadPost ? (
             <>
               <PostingContainer>
-                {feed.map((post) => (
-                  // 게시글
-                  <Posting
-                    key={post.id}
-                    pageName="Home"
-                    accountName={post.author.accountname}
-                    profileImage={post.author.image}
-                    userName={post.author.username}
-                    postImage={post.image}
-                    postText={post.content}
-                    postId={post.id}
-                    heartCount={post.heartCount}
-                    commentCount={post.commentCount}
-                    postDate={post.createdAt}
-                    hearted={post.hearted}
-                    dataPost={feed}
-                    fetch={fetchUserFeed}
-                  />
-                ))}
+                {feed
+                  .filter((post) => post.author.accountname === accountname)
+                  .map((post) => (
+                    // 게시글
+                    <Posting
+                      key={post.id}
+                      pageName="Home"
+                      accountName={post.author.accountname}
+                      profileImage={post.author.image}
+                      userName={post.author.username}
+                      postImage={post.image}
+                      postText={post.content}
+                      postId={post.id}
+                      heartCount={post.heartCount}
+                      commentCount={post.commentCount}
+                      postDate={post.createdAt}
+                      hearted={post.hearted}
+                      dataPost={feed}
+                      fetch={fetchUserFeed}
+                    />
+                  ))}
               </PostingContainer>
               <div ref={ref} />
             </>
