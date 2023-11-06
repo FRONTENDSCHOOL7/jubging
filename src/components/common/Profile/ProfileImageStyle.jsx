@@ -14,6 +14,7 @@ export const ImageContainer = styled.div`
   margin: 0 auto;
   overflow: hidden;
   border-radius: 50%;
+  border: 1px solid #dbdbdb;
 `;
 
 export const UserImage = styled.img.attrs((props) => ({

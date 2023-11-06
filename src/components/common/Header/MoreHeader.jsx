@@ -75,7 +75,7 @@ export default function MoreHeader({ userInfo, pageName }) {
       </Modal>
 
       {/* 경고창 */}
-      <Alert isAlertOpen={isAlertOpen} message="로그아웃하시겠어요?">
+      <Alert isAlertOpen={isAlertOpen} message="로그아웃 하시겠어요?">
         <AlertLogout logout={handleLogout} onClose={handleAlertClose} />
       </Alert>
     </>
