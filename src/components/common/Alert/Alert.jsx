@@ -1,30 +1,78 @@
-import styled from "styled-components";
-import AlertOveray from "./AlertOveray";
-import { useState } from "react";
+import ReactDOM from "react-dom";
+import ButtonContainer from "../Button/ButtonContainer";
+import {
+  AlertContainer,
+  AlertBox,
+  Message,
+  ButtonWrraper,
+} from "./AlertStyled";
 
-export const Backdrop = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.55);
+export function Alert({ isAlertOpen, onClose, children, message }) {
+  if (isAlertOpen === false) {
+    return null;
+  }
 
-  z-index: 999;
-`;
+  return ReactDOM.createPortal(
+    <AlertContainer>
+      <AlertBox>
+        <Message>{message}</Message>
+        <ButtonWrraper onClose={onClose}>{children}</ButtonWrraper>
+      </AlertBox>
+    </AlertContainer>,
+    document.getElementById("alert-root")
+  );
+}
 
-export default function Alert() {
-  // test 하고 싶으면 기본값 true로 변경
-  const [isOpen, setIsOpen] = useState(true);
-
-  const openAlertHandler = () => {
-    setIsOpen(!isOpen);
-  };
-
-  return isOpen ? (
+export function AlertDeleteFeed({ onClose, deleteFeed }) {
+  return (
     <>
-      <Backdrop onClick={openAlertHandler} />
-      <AlertOveray />
+      <ButtonContainer onClick={onClose} width={"126px"} color={"#000000"}>
+        취소
+      </ButtonContainer>
+      <ButtonContainer onClick={deleteFeed} width={"126px"} color={"#41A6DE"}>
+        삭제
+      </ButtonContainer>
     </>
-  ) : null;
+  );
+}
+
+export function AlertDeleteCourse({ onClose, deleteCourse }) {
+  return (
+    <>
+      <ButtonContainer onClick={onClose} width={"126px"} color={"#000000"}>
+        취소
+      </ButtonContainer>
+      <ButtonContainer onClick={deleteCourse} width={"126px"} color={"#41A6DE"}>
+        삭제
+      </ButtonContainer>
+    </>
+  );
+}
+
+export function AlertLogout({ onClose, logout }) {
+  return (
+    <>
+      <ButtonContainer onClick={onClose} width={"126px"} color={"#000000"}>
+        취소
+      </ButtonContainer>
+      <ButtonContainer onClick={logout} width={"126px"} color={"#41A6DE"}>
+        로그아웃
+      </ButtonContainer>
+    </>
+  );
+}
+
+export function AlertReport({ onClose }) {
+  return (
+    <ButtonContainer color={"#41A6DE"} width={"252px"} onClick={onClose}>
+      확인
+    </ButtonContainer>
+  );
+}
+export function AlertChange({ onChange }) {
+  return (
+    <ButtonContainer color={"#41A6DE"} width={"252px"} onClick={onChange}>
+      확인
+    </ButtonContainer>
+  );
 }

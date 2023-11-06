@@ -4,7 +4,6 @@ import UploadPage from "../Upload/Upload";
 
 export default function PostEdit() {
   const location = useLocation();
-  const data = location.state.data;
-  console.log(data);
+  const data = location.state.postData;
   return <UploadPage editData={data} />;
 }

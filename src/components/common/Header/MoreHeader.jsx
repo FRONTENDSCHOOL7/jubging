@@ -7,11 +7,13 @@ import HeaderContainer from "./HeaderContainer";
 import BackButton from "../Button/BackButton";
 import MoreButton from "../Button/MoreButton";
 import { AnotherProfileModal, Modal, ProfileModal } from "../Modal/Modal";
+import { Alert, AlertLogout } from "../Alert/Alert";
 
 export default function MoreHeader({ userInfo, pageName }) {
   const { accountname } = useParams();
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isAlertOpen, setIsAlertOpen] = useState(false);
 
   const resetUserInfo = useResetRecoilState(userInfoAtom);
   const resetLogin = useResetRecoilState(loginAtom);
@@ -25,21 +27,31 @@ export default function MoreHeader({ userInfo, pageName }) {
     setIsModalOpen(false);
   };
 
+  // 경고창 -> 로그아웃
+  const handleAlertOpenLogout = () => {
+    setIsAlertOpen(true);
+    setIsModalOpen(false);
+  };
+  const handleAlertClose = () => {
+    setIsAlertOpen(false);
+  };
+
   // 클릭 이벤트
   // 수정
-  const modify = () => {
+  const handleModify = () => {
     navigate(`/profile/${accountname}/edit`);
   };
 
   // 로그아웃
-  const logout = () => {
+  const handleLogout = () => {
     localStorage.removeItem("token");
     resetUserInfo();
     resetLogin();
     navigate("/login");
   };
 
-  const report = () => {
+  // 신고하기
+  const handleReport = () => {
     console.log("신고");
   };
 
@@ -50,13 +62,22 @@ export default function MoreHeader({ userInfo, pageName }) {
         <MoreButton pageName={pageName} onClick={handleOpenModal} />
       </HeaderContainer>
 
+      {/* 모달 */}
       <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
         {accountname === userInfo.accountname ? (
-          <ProfileModal modify={modify} logout={logout} />
+          <ProfileModal
+            modify={handleModify}
+            openLogout={handleAlertOpenLogout}
+          />
         ) : (
-          <AnotherProfileModal report={report} />
+          <AnotherProfileModal report={handleReport} />
         )}
       </Modal>
+
+      {/* 경고창 */}
+      <Alert isAlertOpen={isAlertOpen} message="로그아웃 하시겠어요?">
+        <AlertLogout logout={handleLogout} onClose={handleAlertClose} />
+      </Alert>
     </>
   );
 }

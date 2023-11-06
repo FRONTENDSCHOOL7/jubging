@@ -10,12 +10,15 @@ import FollowingHeader from "../../components/common/Header/FollowingHeader";
 import FollowerList from "./FollowList/FollowerList";
 import ButtonContainer from "../../components/common/Button/ButtonContainer";
 import styled from "styled-components";
+import NoFollowHome from "../Home/NoFollowHome";
+import Loading from "../Loading/Loading";
 
 export default function Following() {
   const { accountname } = useParams();
 
   const [following, setFollowing] = useState([]);
-  const [follow, setFollow] = useState(following.isfollow);
+  // const [follow, setFollow] = useState(following.isfollow);
+  const [isLoading, setIsLoading] = useState(true);
 
   // 팔로우 이벤트
   const handleFollow = async (followingUser) => {
@@ -48,6 +51,7 @@ export default function Following() {
     const fetchFollwingList = async () => {
       const response = await getFollowingList(accountname);
       setFollowing(response.data);
+      setIsLoading(false);
     };
     fetchFollwingList();
   }, []);
@@ -55,39 +59,47 @@ export default function Following() {
   return (
     <>
       <FollowingHeader />
-      <UserContainer>
-        <ul>
-          {following.map((following, index) => {
-            return (
-              <li className="userList" key={index}>
-                <FollowerList following={following}></FollowerList>
-                {following.isfollow ? (
-                  <ButtonContainer
-                    width={"65px"}
-                    height={"28px"}
-                    color={"black"}
-                    bgColor={"white"}
-                    border={"1px solid #DBDBDB"}
-                    onClick={() => handleUnFollow(following)}
-                    hoverFilter
-                  >
-                    취소
-                  </ButtonContainer>
-                ) : (
-                  <ButtonContainer
-                    width={"65px"}
-                    height={"28px"}
-                    bgColor={"#40A6DE"}
-                    onClick={() => handleFollow(following)}
-                  >
-                    팔로우
-                  </ButtonContainer>
-                )}
-              </li>
-            );
-          })}
-        </ul>
-      </UserContainer>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <UserContainer>
+          <ul>
+            {following.length > 0 ? (
+              following.map((following, index) => {
+                return (
+                  <li className="userList" key={index}>
+                    <FollowerList following={following}></FollowerList>
+                    {following.isfollow ? (
+                      <ButtonContainer
+                        width={"65px"}
+                        height={"28px"}
+                        color={"black"}
+                        bgColor={"white"}
+                        border={"1px solid #DBDBDB"}
+                        onClick={() => handleUnFollow(following)}
+                        hoverFilter
+                      >
+                        취소
+                      </ButtonContainer>
+                    ) : (
+                      <ButtonContainer
+                        width={"65px"}
+                        height={"28px"}
+                        bgColor={"#40A6DE"}
+                        onClick={() => handleFollow(following)}
+                      >
+                        팔로우
+                      </ButtonContainer>
+                    )}
+                  </li>
+                );
+              })
+            ) : (
+              <NoFollowHome message="유저를 검색하여 팔로우 해보세요!" />
+            )}
+          </ul>
+        </UserContainer>
+      )}
     </>
   );
 }

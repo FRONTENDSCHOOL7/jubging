@@ -15,20 +15,26 @@ export const postComment = async (postId, comment) => {
 };
 
 /* 댓글 리스트 */
-export const getComment = async (postId) => {
+export const getComment = async (postId, limit, skip) => {
   try {
-    const response = await authAxios.get(`/post/${postId}/comments`);
+    const response = await authAxios.get(`/post/${postId}/comments`, {
+      params: {
+        limit,
+        skip,
+      },
+    });
     return response.data;
   } catch (error) {
     console.log(error);
+    throw error;
   }
 };
 
 /* 댓글 삭제 */
-export const deleteComment = async (commentId) => { // postId, comment -> commentId 변경
+export const deleteComment = async (postId, commentId) => {
   try {
     const response = await authAxios.delete(
-      `/comments/${commentId}` // `/post/${postId}/comments/${comment.id}` -> `/comments/${commentId}` 변경
+      `/post/${postId}/comments/${commentId}`
     );
     return response.data;
   } catch (error) {
@@ -37,10 +43,10 @@ export const deleteComment = async (commentId) => { // postId, comment -> commen
 };
 
 /* 댓글 신고 */
-export const reportComment = async (postId, comment) => {
+export const reportComment = async (postId, commentId) => {
   try {
     const response = await authAxios.post(
-      `/post/${postId}/comments/${comment.id}/report`
+      `/post/${postId}/comments/${commentId}/report`
     );
     return response.data;
   } catch (error) {

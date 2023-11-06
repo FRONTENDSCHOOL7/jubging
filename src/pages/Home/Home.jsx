@@ -4,31 +4,20 @@ import styled from "styled-components";
 
 import { getFollowFeed } from "../../api/postAPI";
 
-import useModalControl from "../../hook/useModalControl";
 import Loading from "./../Loading/Loading";
 import NoFollowHome from "./NoFollowHome";
 import Posting from "../../components/Post/Posting";
 import HeaderBar from "../../components/common/Header/HomeHeader";
 import Navbar from "../../components/common/Navbar/Navbar";
-import { Modal } from "../../components/common/Modal/Modal";
 
 function Home() {
   const limit = 10;
   const token = localStorage.getItem("token");
 
-  const { ModalComponent } = useModalControl("Home");
-
   const [ref, inView] = useInView();
   const [isLoading, setIsLoading] = useState(true);
   const [skip, setSkip] = useState(0);
   const [data, setData] = useState([]);
-
-  const modifyFuc = () => {
-    console.log("modify");
-  };
-  const deleteFuc = () => {
-    console.log("delete");
-  };
 
   // 팔로우한 유저 피드 가져오기
   const fetchFollowFeed = useCallback(async () => {
@@ -65,7 +54,7 @@ function Home() {
       {isLoading ? (
         <Loading />
       ) : data.length === 0 ? (
-        <NoFollowHome />
+        <NoFollowHome message="유저를 검색해 팔로우 해보세요!" />
       ) : (
         <>
           <PostingContainer>
@@ -83,6 +72,7 @@ function Home() {
                 commentCount={post.commentCount}
                 postDate={post.createdAt}
                 hearted={post.hearted}
+                dataPost={data}
               />
             ))}
           </PostingContainer>
@@ -90,16 +80,6 @@ function Home() {
         </>
       )}
       <Navbar />
-
-      {/* 조건부 렌더링 본인, 타인  */}
-      <ModalComponent>
-        <Modal contents={["수정"]} handleFunc={modifyFuc} />
-        <Modal contents={["삭제"]} handleFunc={deleteFuc} />
-      </ModalComponent>
-
-      {/* <ModalComponent>
-        <Modal contents={["신고하기"]} handleFunc={reportFuc} />
-      </ModalComponent> */}
     </>
   );
 }

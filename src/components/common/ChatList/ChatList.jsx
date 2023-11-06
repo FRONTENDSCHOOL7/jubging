@@ -13,22 +13,22 @@ import {
 } from "./ChatListStyle";
 import { Link } from "react-router-dom";
 
-function ChatList({ profilePhoto }) {
+function ChatList({ chat }) {
   return (
-    <Link to="/chat/room">
+    <Link to={`/chat/room/`}>
       <Wrapper>
         <RoomItem>
           <ProfileGroup>
             <ActiveStatus />
             <ProfilePhoto>
-              <img src={profilePhoto} alt="프로필 사진" />
+              <img src={chat.profilePhoto} alt="프로필 사진" />
             </ProfilePhoto>
           </ProfileGroup>
           <ChatGroup>
-            <ChatName>닉네임</ChatName>
+          <ChatName>{chat.nickname}</ChatName>
             <ChatInfoGroup>
-              <LastMessage>채팅 내용</LastMessage>
-              <ChatDate>2023년 10월 22일</ChatDate>
+              <LastMessage>{chat.lastMessage}</LastMessage>
+              <ChatDate>{chat.lastMessageDate}</ChatDate>
             </ChatInfoGroup>
           </ChatGroup>
         </RoomItem>

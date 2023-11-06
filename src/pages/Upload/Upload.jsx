@@ -111,7 +111,7 @@ function UploadPage({ editData }) {
           value={content}
           onChange={handleContentChange}
           placeholder="내용을 입력하세요.
-(최대 2000자 입력, 사진 최대 3장 업로드)"
+(최대 2000자 입력, 사진 최대 1장 업로드)"
           maxLength={2000}
         />
         <ImgUploadButton

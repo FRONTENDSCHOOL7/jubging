@@ -2,12 +2,13 @@ import styled from "styled-components";
 
 export const CommentGroup = styled.div`
   display: flex;
-  flex-direction: column;
   margin: 17px 0 17px 17px;
 `;
 
 export const CommentHeaderGroup = styled.div`
+  width: 100%;
   display: flex;
+  justify-content: space-between;
 `;
 
 export const ProfileImage = styled.div`
@@ -16,19 +17,24 @@ export const ProfileImage = styled.div`
   border: 1px solid ${(props) => props.theme.colors.placeHolderColor};
   border-radius: 50%;
   overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 `;
 
 export const CommentInfoGroup = styled.div`
+  width: 80%;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-left: 8px;
-  width: 100%;
+  flex-direction: column;
+  margin-top: 5px;
+  margin-left: 5px
 `;
 
 export const InfoHeader = styled.div`
   display: flex;
-  justify-content: space-between;
 `;
 
 export const InfoNickname = styled.h3`
@@ -42,7 +48,6 @@ export const InfoTime = styled.span`
 `;
 
 export const CommentText = styled.p`
-  margin-top: 4px;
-  margin-left: 46px;
+  margin-top: 6px;
   font-size: ${(props) => props.theme.fontSize.medium};
 `;

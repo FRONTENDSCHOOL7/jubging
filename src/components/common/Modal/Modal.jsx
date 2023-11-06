@@ -23,12 +23,12 @@ export function Modal({ isOpen, children, onClose }) {
   );
 }
 
-export function ProfileModal({ modify, logout }) {
+export function ProfileModal({ modify, openLogout }) {
   return (
     <ModalBox>
       <li className="modalList">
-        <button onClick={modify}>수정</button>
-        <button onClick={logout}>로그아웃</button>
+        <button onClick={modify}>프로필 수정</button>
+        <button onClick={openLogout}>로그아웃</button>
       </li>
     </ModalBox>
   );
@@ -44,20 +44,32 @@ export function AnotherProfileModal({ report }) {
   );
 }
 
-export function FeedModal({ modify }) {
+export function FeedModal({ modify, deleteFeed }) {
   return (
     <ModalBox>
       <li className="modalList">
         <button onClick={modify}>수정</button>
+        <button onClick={modify}>삭제</button>
       </li>
     </ModalBox>
   );
 }
+
 export function AnotherfeedModal({ report }) {
   return (
     <ModalBox>
       <li className="modalList">
         <button onClick={report}>신고</button>
+      </li>
+    </ModalBox>
+  );
+}
+
+export function CommentModal({ modify, deleteFeed }) {
+  return (
+    <ModalBox>
+      <li className="modalList">
+        <button onClick={modify}>삭제</button>
       </li>
     </ModalBox>
   );
