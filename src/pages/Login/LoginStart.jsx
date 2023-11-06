@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from "../../assets/images/logo.svg";
+import logo from "../../assets/images/logo-white.png";
 import Bear from "../../components/Splash/Character/Bear";
 import Rabbit from "../../components/Splash/Character/Rabbit";
 import Dog from "../../components/Splash/Character/Dog";
