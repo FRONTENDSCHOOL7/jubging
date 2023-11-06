@@ -51,7 +51,6 @@ export default function PostHeader({
   // 게시글 수정 클릭이벤트
   const handleEditPost = () => {
     navigate(`/post/${postId}/edit`, {
-      // state 넘기는 이유? 물어보기
       state: { postData },
     });
   };
