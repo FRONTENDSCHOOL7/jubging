@@ -3,7 +3,7 @@ import HeaderContainer from "./HeaderContainer";
 import BackButton from "../Button/BackButton";
 import ButtonContainer from "../Button/ButtonContainer";
 
-export default function UploadHeader({ type, onClick }) {
+export default function UploadHeader({ type, onClick, bgColor, disabled }) {
   return (
     <HeaderContainer justisfy={"space-between"}>
       <BackButton />
@@ -13,6 +13,9 @@ export default function UploadHeader({ type, onClick }) {
         width={"90px"}
         height={"32px"}
         rmargin={"12px"}
+        bgColor={bgColor}
+        disabled={disabled}
+        hoverFilter
       >
         저장
       </ButtonContainer>

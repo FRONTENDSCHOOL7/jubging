@@ -60,7 +60,8 @@ export default function PostHeader({
     try {
       const response = await deletePost(token, postId);
       handleAlertClose();
-      location.pathname.includes(`edit`) && navigate(-1);
+      navigate(`/profile/${accountName}`);
+      fetch();
     } catch (error) {
       console.log(error);
     }
