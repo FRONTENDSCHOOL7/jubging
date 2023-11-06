@@ -6,6 +6,7 @@ import { userInfoAtom } from "../../recoil/userAtom";
 import { useRecoilValue } from "recoil";
 
 import Button from "../common/Button/ButtonContainer";
+import { Alert, AlertUploadMap } from "../common/Alert/Alert";
 
 function KakaoMap() {
   const [latitude, setLatitude] = useState(null);
@@ -218,14 +219,38 @@ function KakaoMap() {
     }
   };
 
+  const [openAlertId, setOpenAlertId] = useState(null);
+
+  const handleModalMapOpen = () => {
+    setOpenAlertId(true);
+  };
+  const handleModalMapClose = () => {
+    setOpenAlertId(false);
+  };
+
   console.log(mapInfo);
   return (
     <>
-      <div id="map" style={{ width: "100%", height: "73vh" }}></div>
-      <Button onClick={drawLineOnNewMap} width="100%" height="40px" hoverFilter>
-        경로 등록
+      <div id="map" style={{ width: "100%", height: "80vh" }}></div>
+      <Button
+        onClick={handleModalMapOpen}
+        width="100%"
+        height="40px"
+        hoverFilter
+      >
+        경로 등록1
       </Button>
       <div id="newMap"></div>
+
+      {/* 경고창 */}
+      {openAlertId && (
+        <Alert message="경로를 등록하시겠습니까?">
+          <AlertUploadMap
+            upload={drawLineOnNewMap}
+            cansle={handleModalMapClose}
+          ></AlertUploadMap>
+        </Alert>
+      )}
     </>
   );
 }

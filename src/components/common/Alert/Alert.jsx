@@ -76,3 +76,16 @@ export function AlertChange({ onChange }) {
     </ButtonContainer>
   );
 }
+
+export function AlertUploadMap({ cansle, upload }) {
+  return (
+    <>
+      <ButtonContainer width={"126px"} color={"#000000"} onClick={cansle}>
+        취소
+      </ButtonContainer>
+      <ButtonContainer width={"126px"} color={"#41A6DE"} onClick={upload}>
+        확인
+      </ButtonContainer>
+    </>
+  );
+}
