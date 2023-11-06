@@ -61,7 +61,7 @@ export default function AppRouter() {
           path="/profile/addcourse/drawcoursecourse"
           element={<DrawCourse />}
         />
-        <Route path="profile/course/:courseId" element={<CourseDetail />} />
+        <Route path="profile/:courseId/course" element={<CourseDetail />} />
         <Route path="/search" element={<Search />} />
         <Route path="/*" element={<NotFound />} />
       </Routes>
