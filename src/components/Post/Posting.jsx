@@ -5,7 +5,7 @@ import PostFooter from "./PostFooter/PostFooter";
 import styled from "styled-components";
 
 function Posting({
-  dataPost,
+  data,
   accountName,
   profileImage,
   userName,
@@ -21,7 +21,7 @@ function Posting({
   return (
     <PostContainer>
       <PostHeader
-        dataPost={dataPost}
+        postData={data}
         profileImage={profileImage}
         userName={userName}
         accountName={accountName}

@@ -14,7 +14,7 @@ import { AnotherfeedModal, FeedModal, Modal } from "../../common/Modal/Modal";
 import { Alert, AlertDeleteFeed, AlertReport } from "../../common/Alert/Alert";
 
 export default function PostHeader({
-  dataPost,
+  postData,
   profileImage,
   userName,
   accountName,
@@ -52,7 +52,7 @@ export default function PostHeader({
   const handleEditPost = () => {
     navigate(`/post/${postId}/edit`, {
       // state 넘기는 이유? 물어보기
-      state: { dataPost },
+      state: { postData },
     });
   };
 
