@@ -66,33 +66,36 @@ function PostComment({ profilePhoto, nickname, comment, refreshComments, postId 
 
   return (
     <CommentGroup>
+      <ProfileImage>
+        <img src={profilePhoto} alt="프로필 사진" />
+      </ProfileImage>
+
       <CommentHeaderGroup>
-        <ProfileImage>
-          <img src={profilePhoto} alt="프로필 사진" />
-        </ProfileImage>
         <CommentInfoGroup>
           <InfoHeader>
             <InfoNickname>{nickname}</InfoNickname>
-            <InfoTime> 1분 전</InfoTime>
+            <InfoTime>1분 전</InfoTime>
           </InfoHeader>
-          <MoreButton pageName={`comment-${comment.id}`} onClick={openModal} />
-          <ModalComponent>
-            {userInfo.accountname === comment.author.accountname ? (
-              <FeedModal modify={handleDeleteAndCloseModal} deleteFeed={closeModal} />
-            ) : (
-              <AnotherfeedModal report={handleReport} />
-            )}
-          </ModalComponent>
-          <Alert
-            isAlertOpen={isReportAlertOpen}
-            onClose={() => setReportAlertOpen(false)}
-            message="신고되었습니다."
-          >
-            <AlertReport onClose={() => setReportAlertOpen(false)} />
-          </Alert>
+          <CommentText>{comment.content}</CommentText>
         </CommentInfoGroup>
+  
+        <MoreButton pageName={`comment-${comment.id}`} onClick={openModal} />
+        <ModalComponent>
+          {userInfo.accountname === comment.author.accountname ? (
+            <FeedModal modify={handleDeleteAndCloseModal} deleteFeed={closeModal} />
+          ) : (
+            <AnotherfeedModal report={handleReport} />
+          )}
+        </ModalComponent>
+  
+        <Alert
+          isAlertOpen={isReportAlertOpen}
+          onClose={() => setReportAlertOpen(false)}
+          message="신고되었습니다."
+        >
+          <AlertReport onClose={() => setReportAlertOpen(false)} />
+        </Alert>
       </CommentHeaderGroup>
-      <CommentText>{comment.content}</CommentText>
     </CommentGroup>
   );
 }
