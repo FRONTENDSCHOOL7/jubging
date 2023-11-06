@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Title = styled.h1`
   margin-top: 22px;
@@ -15,12 +15,12 @@ export const Label = styled.h3`
   margin-left: 33px;
 `;
 
-export const Detail = styled.span`
+export const Detail = styled.p`
   margin-bottom: 13px;
   margin-top: 9px;
   margin-left: 33px;
   color: ${(props) => props.theme.colors.blackColor};
-  font-size: ${(props) => props.theme.fontSize.small};
+  font-size: ${(props) => props.theme.fontSize.medium};
 `;
 
 export const MapCanvas = styled.div`
