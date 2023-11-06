@@ -104,6 +104,17 @@ export const getUserFeed = async (limit, skip, accountname) => {
   }
 };
 
+// 코스 등록
+export const postCourseUpload = async (product) => {
+  console.log(product);
+  try {
+    const response = await authAxios.post(`/product`, product);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 // 유저 별 코스 목록
 export const getUserCourse = async (accountname) => {
   try {
@@ -118,7 +129,7 @@ export const getUserCourse = async (accountname) => {
 export const getCoutseDetail = async (courseId) => {
   try {
     const response = await authAxios.get(`/product/detail/${courseId}`);
-    return response.data.product;
+    return response.data;
   } catch (error) {
     console.log(error);
   }

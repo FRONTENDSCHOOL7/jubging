@@ -108,6 +108,8 @@ export default function Profile() {
     fetchUserCourse();
   }, [fetchUserCourse]);
 
+  console.log("course list :", course);
+
   return (
     <>
       <MoreHeader userInfo={userInfo} pageName="Profile" />
@@ -153,11 +155,12 @@ export default function Profile() {
           ) : (
             // 추천 코스 리스트
             <GalleryContainer>
-              {course.map((course) => (
-                <Link to={`/profile/course/${course.id}`} key={course.id}>
+              {course.map((item) => (
+                <Link to={`/profile/${item.id}/course`} key={item.id}>
                   <ThumbnailButton>
-                    <Thumbnail src={course.itemImage} alt="썸네일 이미지" />
+                    <Thumbnail src={item.itemImage} alt="썸네일 이미지" />
                   </ThumbnailButton>
+                  {/* 지도 */}
                 </Link>
               ))}
             </GalleryContainer>
