@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import { userInfoAtom } from "../../recoil/userAtom";
 import { useRecoilValue } from "recoil";
@@ -7,7 +7,13 @@ import { postCourseUpload } from "../../api/postAPI";
 
 import UploadHeader from "../../components/common/Header/UploadHeader";
 import Navbar from "../../components/common/Navbar/Navbar";
-import { Form, Title, MapCanvas, InputContainer } from "./AddCourseStyle";
+import {
+  Form,
+  Title,
+  MapCanvas,
+  InputContainer,
+  CourseLink,
+} from "./AddCourseStyle";
 import Button from "../../components/common/Button/ButtonContainer";
 import Input from "../../components/common/Input/Input";
 
@@ -15,12 +21,12 @@ const { kakao } = window;
 
 const AddCourse = ({ nickname }) => {
   const location = useLocation();
+  const navigate = useNavigate();
   const userInfo = useRecoilValue(userInfoAtom);
 
   const [courseName, setCourseName] = useState("");
-  const [courseLength, setCourseLength] = useState(0);
+  const [courseLength, setCourseLength] = useState("");
   const [courseReview, setCourseReview] = useState("");
-  const [courseMap, setCourseMap] = useState({});
 
   // 지도
   useEffect(() => {
@@ -73,7 +79,7 @@ const AddCourse = ({ nickname }) => {
       },
     };
     const response = await postCourseUpload(mapData);
-    // setCourseMap(response);
+    response && navigate(`/profile/${userInfo.accountname}`);
     console.log(response);
   };
 
@@ -96,10 +102,10 @@ const AddCourse = ({ nickname }) => {
               <li>지도를 클릭하면 거리 그리기가 시작됩니다.</li>
               <li>지도를 드래그하며 이동하고 경유할 지점을 클릭합니다.</li>
               <li>마지막으로 도착지점을 클릭합니다.</li>
-              <li>두 손가락으로 클릭하면 경로 그리기가 종료됩니다.</li>
+              <li>오른쪽 마우스를 클릭하면 경로 그리기가 종료됩니다.</li>
             </ul>
 
-            <Link to="/profile/addcourse/drawcoursecourse">
+            <CourseLink to="/profile/addcourse/drawcoursecourse">
               <Button
                 width="100%"
                 height="31px"
@@ -108,7 +114,7 @@ const AddCourse = ({ nickname }) => {
               >
                 경로 등록하러 가기
               </Button>
-            </Link>
+            </CourseLink>
           </MapCanvas>
         )}
 

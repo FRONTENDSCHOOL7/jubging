@@ -1,22 +1,24 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  margin-top: 30px;
+  margin-top: 20px;
 `;
 
 export const Title = styled.h1`
-  font-size: ${(props) => props.theme.fontSize.medium};
-  margin-bottom: 27px;
-  margin-left: 29px;
+  font-size: 1.2rem;
+  margin: 0 0 20px 20px;
   text-align: left;
   color: ${(props) => props.theme.colors.blackColor};
   line-height: 18px;
 `;
 
-export const MapCanvas = styled.div`
+export const MapCanvas = styled.section`
   border-radius: 4px;
   width: 100%;
   height: 80vh;
   background-color: #f2f2f2;
-  z-index: 1;
+
+  button {
+    border-radius: 0;
+  }
 `;

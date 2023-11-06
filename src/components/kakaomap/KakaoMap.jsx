@@ -221,7 +221,7 @@ function KakaoMap() {
   console.log(mapInfo);
   return (
     <>
-      <div id="map" style={{ width: "100%", height: "80vh" }}></div>
+      <div id="map" style={{ width: "100%", height: "73vh" }}></div>
       <Button onClick={drawLineOnNewMap} width="100%" height="40px" hoverFilter>
         경로 등록
       </Button>

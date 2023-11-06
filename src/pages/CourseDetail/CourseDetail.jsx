@@ -75,9 +75,9 @@ const CourseDetail = () => {
         <>
           <BackSpaceHeader />
           <Title>
-            {courseInfo.author.username}님만의
+            {courseInfo.author.username} 님 만의
             <br />
-            {courseInfo.itemName}
+            {courseInfo.itemName} 플로깅 코스
           </Title>
           <MapCanvas>
             {mapCenter && (

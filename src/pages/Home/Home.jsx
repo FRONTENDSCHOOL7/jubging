@@ -23,6 +23,7 @@ function Home() {
   const fetchFollowFeed = useCallback(async () => {
     try {
       const newData = await getFollowFeed(limit, skip, token);
+      console.log(newData);
       setIsLoading(false);
       if (newData.length > 0) {
         setData((prevData) => [...prevData, ...newData]);
@@ -32,13 +33,9 @@ function Home() {
     }
   }, [limit, skip, token]);
 
-  useEffect(
-    () => {
-      fetchFollowFeed();
-    },
-    [fetchFollowFeed],
-    token
-  );
+  useEffect(() => {
+    fetchFollowFeed();
+  }, [fetchFollowFeed, skip]);
 
   // 무한스크롤
   useEffect(() => {
@@ -75,8 +72,8 @@ function Home() {
                 dataPost={data}
               />
             ))}
+            <div ref={ref} />
           </PostingContainer>
-          <div ref={ref} />
         </>
       )}
       <Navbar />

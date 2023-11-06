@@ -75,8 +75,8 @@ function NewsLetter() {
                 hearted={post.hearted}
               />
             ))}
+            <div ref={ref} />
           </NewsLetterContainer>
-          <div ref={ref} />
         </>
       )}
       <Navbar />
