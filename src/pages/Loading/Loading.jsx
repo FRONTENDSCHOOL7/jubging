@@ -1,8 +1,8 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
-import faceBear from "../../assets/images/bear-face.svg";
-import faceRabbit from "../../assets/images/rabbit-face.svg";
-import faceDog from "../../assets/images/dog-face.svg";
+import faceBear from "../../assets/images/bear-face.png";
+import faceRabbit from "../../assets/images/rabbit-face.png";
+import faceDog from "../../assets/images/dog-face.png";
 
 const pingBear = keyframes`
   0% {

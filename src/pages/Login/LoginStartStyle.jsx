@@ -13,6 +13,7 @@ export const LoginSection = styled.section`
   text-align: center;
   width: 100%;
   padding: 43px;
+  margin-bottom: 40px;
 `;
 
 export const SnsLoginText = styled.span`

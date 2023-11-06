@@ -9,11 +9,11 @@ export const MainTitle = styled.img`
 
   margin: 0 auto;
   margin-top: 72px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 `;
 
 export const SubTitle = styled.h2`
-  margin-bottom: 150px;
+  margin-bottom: 70px;
 
   text-align: center;
   color: white;
