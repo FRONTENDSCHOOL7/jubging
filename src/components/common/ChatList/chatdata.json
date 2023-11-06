@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "profilePhoto": "/baseprofile.svg",
+    "nickname": "다 버리는 동주",
+    "lastMessage": "동주 님 수고",
+    "lastMessageDate": "2023년 10월 22일"
+  },
+  {
+    "id": 2,
+    "profilePhoto": "/baseprofile.svg",
+    "nickname": "다줍는 착한 하영",
+    "lastMessage": "하영 님 짱",
+    "lastMessageDate": "2023년 10월 20일"
+  }
+]
