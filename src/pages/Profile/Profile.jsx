@@ -146,7 +146,7 @@ export default function Profile() {
                       commentCount={post.commentCount}
                       postDate={post.createdAt}
                       hearted={post.hearted}
-                      dataPost={feed}
+                      data={post}
                       fetch={fetchUserFeed}
                     />
                   ))}
