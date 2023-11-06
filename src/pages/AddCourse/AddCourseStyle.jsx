@@ -1,9 +1,10 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const Form = styled.form``;
 
 export const Title = styled.h1`
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   padding: 22px 30px 0;
   margin-bottom: 15px;
   text-align: left;
@@ -11,12 +12,11 @@ export const Title = styled.h1`
 `;
 
 export const MapCanvas = styled.section`
-  border-radius: 4px;
+  border-radius: 5px;
   border: 0.5px solid #dbdbdb;
   background-color: #f2f2f2;
   margin: 0 30px 26px;
-  padding: 9px;
-  height: 195px;
+  padding: 12px;
 
   h3 {
     margin-bottom: 10px;
@@ -26,7 +26,8 @@ export const MapCanvas = styled.section`
 
   ul {
     margin-bottom: 9px;
-    border-radius: 4px;
+    padding: 0 8px;
+    border-radius: 5px;
     border: 0.5px solid #ffffff;
     background-color: #ffffff;
   }
@@ -41,4 +42,9 @@ export const MapCanvas = styled.section`
 
 export const InputContainer = styled.section`
   padding: 0 30px;
+`;
+
+export const CourseLink = styled(Link)`
+  display: block;
+  height: 31px;
 `;
