@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-import baseprofile from "../../../assets/icons/baseprofile.svg";
-
 export const ProfileLink = styled(Link)`
   display: flex;
   align-items: center;
@@ -40,26 +38,21 @@ export const Section = styled.section`
   align-items: flex-start;
   flex-direction: column;
   margin: auto;
-  width: 280px; // 홈 page에서 게시글 더보기 버튼이 밖으로 튀어나가는 걸 맞춰놓음
 `;
 
 export const UserName = styled.p`
   margin-bottom: 6px;
   color: ${(props) => props.theme.colors.blackColor};
   font-size: ${(props) => props.theme.fontSize.medium};
-  overflow: hidden;
 `;
 
 export const SubText = styled.p`
   color: ${(props) => props.theme.colors.textColor};
   font-size: ${(props) => props.theme.fontSize.small};
-  overflow: hidden;
-  /* white-space: normal; */
-  white-space: nowrap;
+  white-space: normal;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   word-break: break-all;
-  width: 80%;
 `;

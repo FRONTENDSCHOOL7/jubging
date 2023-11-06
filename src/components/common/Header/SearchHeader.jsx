@@ -3,6 +3,15 @@ import HeaderContainer from "./HeaderContainer";
 import BackButton from "../Button/BackButton";
 import styled from "styled-components";
 
+export default function SearchHeader({ onChange }) {
+  return (
+    <HeaderContainer>
+      <BackButton />
+      <SearchBar type="text" placeholder="계정 검색" onChange={onChange} />
+    </HeaderContainer>
+  );
+}
+
 export const SearchBar = styled.input`
   width: 316px;
   height: 30px;
@@ -13,13 +22,8 @@ export const SearchBar = styled.input`
   &::placeholder {
     color: ${(props) => props.theme.colors.placeHolderColor};
   }
-`;
 
-export default function SearchHeader({ onChange }) {
-  return (
-    <HeaderContainer>
-      <BackButton />
-      <SearchBar type="text" placeholder="계정 검색" onChange={onChange} />
-    </HeaderContainer>
-  );
-}
+  &:focus {
+    outline: none;
+  }
+`;
