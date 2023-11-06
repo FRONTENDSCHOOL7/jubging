@@ -23,7 +23,7 @@ export const AlertBox = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   width: 252px;
-  height: 110px;
+  height: 130px;
   background-color: #ffffff;
   border-radius: 10px;
   box-shadow: 0 2px 40px rgba(0, 0, 0, 0.15);
@@ -32,7 +32,7 @@ export const AlertBox = styled.div`
 `;
 
 export const Message = styled.p`
-  padding-top: 26px;
+  padding-top: 36px;
   text-align: center;
 `;
 

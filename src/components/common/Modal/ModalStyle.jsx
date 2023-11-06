@@ -41,7 +41,7 @@ export const ModalContent = styled.div`
   background-color: white;
   border-radius: 10px 10px 0 0;
   box-shadow: 0 2px 40px rgba(0, 0, 0, 0.15);
-  animation: ${moveTop} 0.7s ease-in-out;
+  animation: ${moveTop} 0.5s ease-in-out;
 `;
 
 export const ModalBar = styled.div`
@@ -65,13 +65,19 @@ export const ModalBox = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     gap: 28px;
 
     width: 390px;
 
-    padding: 16px 0 14px 26px;
+    padding: 16px 0 14px;
 
     background-color: white;
+
+    button {
+      &:hover {
+        color: ${(props) => props.theme.colors.mainColor};
+      }
+    }
   }
 `;

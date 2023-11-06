@@ -27,7 +27,7 @@ export function ProfileModal({ modify, openLogout }) {
   return (
     <ModalBox>
       <li className="modalList">
-        <button onClick={modify}>수정</button>
+        <button onClick={modify}>프로필 수정</button>
         <button onClick={openLogout}>로그아웃</button>
       </li>
     </ModalBox>
