@@ -15,10 +15,9 @@ import Posting from "../../components/Post/Posting";
 import CommentInput from "./CommentInput";
 
 function Post() {
-  const navigate = useNavigate();
-  const token = localStorage.getItem("token");
   const { postId } = useParams();
-  const { accountname } = useRecoilValue(userInfoAtom);
+
+  const [skip, setSkip] = useState();
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [comments, setComments] = useState([]);
@@ -37,13 +36,13 @@ function Post() {
   // 게시글 댓글 불러오기
   const fetchComments = useCallback(async () => {
     try {
-      const commentData = await getComment(postId);
+      const commentData = await getComment(postId, Infinity, skip);
       console.log("Fetched comments: ", commentData);
-      setComments(commentData.comments);
+      setComments(commentData.comments.reverse());
     } catch (error) {
       console.log(error);
     }
-  }, [postId]);
+  }, [postId, skip]);
 
   const fetchPostDetailAndComments = useCallback(async () => {
     await fetchPostDetail();
@@ -81,11 +80,12 @@ function Post() {
         {comments.map((comment) => (
           <PostComment
             key={comment.id}
+            postId={postId}
             profilePhoto={comment.author.image}
             nickname={comment.author.username}
             comment={comment}
+            commentData={comment.createdAt}
             refreshComments={fetchComments}
-            postId={postId}
           />
         ))}
       </CommnetContainer>

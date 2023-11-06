@@ -9,7 +9,7 @@ export const InputField = styled.input`
     props.value.length === 0 ? "1px solid #DBDBDB" : "1px solid #40A6DE"};
 
   &:focus {
-    border-bottom-color: ${(props) => props.theme.colors.mainColor};
+    outline: ${(props) => props.theme.colors.mainColor};
   }
 
   &::placeholder {

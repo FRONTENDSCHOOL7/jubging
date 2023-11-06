@@ -31,7 +31,6 @@ export default function Profile() {
   const { accountname } = useParams();
 
   const userInfo = useRecoilValue(userInfoAtom);
-  console.log(userInfo);
 
   const [ref, inView] = useInView();
   const [profile, setProfile] = useState({});
