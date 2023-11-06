@@ -17,7 +17,8 @@ export default function Following() {
   const { accountname } = useParams();
 
   const [following, setFollowing] = useState([]);
-  const [follow, setFollow] = useState(following.isfollow);
+  // const [follow, setFollow] = useState(following.isfollow);
+  const [isLoading, setIsLoading] = useState(true);
 
   // 팔로우 이벤트
   const handleFollow = async (followingUser) => {
@@ -50,6 +51,7 @@ export default function Following() {
     const fetchFollwingList = async () => {
       const response = await getFollowingList(accountname);
       setFollowing(response.data);
+      setIsLoading(false);
     };
     fetchFollwingList();
   }, []);
@@ -57,7 +59,9 @@ export default function Following() {
   return (
     <>
       <FollowingHeader />
-      {following ? (
+      {isLoading ? (
+        <Loading />
+      ) : (
         <UserContainer>
           <ul>
             {following.length > 0 ? (
@@ -95,8 +99,6 @@ export default function Following() {
             )}
           </ul>
         </UserContainer>
-      ) : (
-        <Loading />
       )}
     </>
   );

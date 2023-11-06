@@ -22,6 +22,7 @@ export default function Followers() {
 
   const [follower, setFollower] = useState([]);
   const [follow, setFollow] = useState(follower.isfollow);
+  const [isLoading, setIsLoading] = useState(true);
 
   // 팔로우 이벤트
   const handleFollow = async (follower) => {
@@ -43,6 +44,7 @@ export default function Followers() {
   const fetchFollwerList = async () => {
     const response = await getFollowerList(accountname);
     setFollower(response.data);
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -52,7 +54,9 @@ export default function Followers() {
   return (
     <>
       <FollowerHeader />
-      {follower ? (
+      {isLoading ? (
+        <Loading />
+      ) : (
         <UserContainer>
           <ul>
             {follower.length > 0 ? (
@@ -91,8 +95,6 @@ export default function Followers() {
             )}
           </ul>
         </UserContainer>
-      ) : (
-        <Loading />
       )}
     </>
   );
