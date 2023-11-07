@@ -1,8 +1,8 @@
-import React from "react";
 import styled, { keyframes } from "styled-components";
-import faceBear from "../../assets/images/bear-face.svg";
-import faceRabbit from "../../assets/images/rabbit-face.svg";
-import faceDog from "../../assets/images/dog-face.svg";
+
+import faceBear from "../../assets/images/bear-face.png";
+import faceRabbit from "../../assets/images/rabbit-face.png";
+import faceDog from "../../assets/images/dog-face.png";
 
 const pingBear = keyframes`
   0% {
@@ -66,6 +66,19 @@ const pingDog = keyframes`
   }
 `;
 
+export default function Loading({ color }) {
+  return (
+    <LoadingPage>
+      <ImageBox>
+        <FaceBear src={faceBear} />
+        <FaceRabbit src={faceRabbit} />
+        <FaceDog src={faceDog} />
+      </ImageBox>
+      <LoadingText color={color}>잠시만 기다려주세요.</LoadingText>
+    </LoadingPage>
+  );
+}
+
 const LoadingPage = styled.div`
   height: 100%;
   min-height: 100vh;
@@ -108,16 +121,3 @@ const LoadingText = styled.p`
   color: ${(props) =>
     props.color ? props.color : props.theme.colors.textColor};
 `;
-
-export default function Loading({ color }) {
-  return (
-    <LoadingPage>
-      <ImageBox>
-        <FaceBear src={faceBear} />
-        <FaceRabbit src={faceRabbit} />
-        <FaceDog src={faceDog} />
-      </ImageBox>
-      <LoadingText color={color}>잠시만 기다려주세요.</LoadingText>
-    </LoadingPage>
-  );
-}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
 import { BASE_URL } from "../../api/axios";
@@ -14,6 +14,7 @@ import BackSpaceHeader from "../../components/common/Header/BackSpaceHeader";
 const ProfileStart = () => {
   const location = useLocation();
   const navigate = useNavigate();
+
   const [intro, setIntro] = useState("");
   const [image, setImage] = useState("");
 
@@ -33,7 +34,6 @@ const ProfileStart = () => {
       intro,
       image
     );
-    console.log("signup data " + signupData);
     navigate("/login");
   };
 

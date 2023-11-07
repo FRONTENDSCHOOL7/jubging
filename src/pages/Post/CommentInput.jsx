@@ -1,25 +1,15 @@
-// react
-import React from "react";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 
-// api
 import { postComment } from "../../api/commentAPI";
 
-// atom
 import { userInfoAtom } from "../../recoil/userAtom";
 
-// components
 import RoundInput from "../../components/common/Input/RoundInput";
-import {
-  Button,
-  ChatBar,
-  InputWrapper,
-  ProfileImage,
-} from "./CommentInputStyle";
+import { Button, ChatBar, ProfileImage } from "./CommentInputStyle";
 
-function CommentInput({ profilePhoto, onCommentPosted }) {
+function CommentInput({ onCommentPosted }) {
   const { postId } = useParams();
   const [message, setMessage] = useState("");
 

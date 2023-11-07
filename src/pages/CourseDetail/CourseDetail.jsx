@@ -1,5 +1,6 @@
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
+
 import { Map, Polyline } from "react-kakao-maps-sdk";
 import { getCoutseDetail } from "../../api/postAPI";
 
@@ -64,8 +65,6 @@ const CourseDetail = () => {
       setLine(parsedLine);
     }
   }, [courseInfo]);
-
-  // 객체와 를 시켜야합니다 방법을 찾아봅시다.
 
   return (
     <>

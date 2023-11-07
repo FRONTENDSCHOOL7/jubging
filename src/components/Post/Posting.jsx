@@ -1,8 +1,8 @@
-import React from "react";
+import styled from "styled-components";
+
 import PostHeader from "./PostHeader/PostHeader";
 import PostMain from "./PostMain/PostMain";
 import PostFooter from "./PostFooter/PostFooter";
-import styled from "styled-components";
 
 function Posting({
   data,

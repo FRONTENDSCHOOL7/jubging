@@ -63,6 +63,7 @@ export default function ChatRoomHeader(props) {
     </>
   );
 }
+
 export const Section = styled.section`
   display: flex;
   align-items: center;

@@ -1,17 +1,12 @@
-// react
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
-// api
 import { setFollowUser, setUnFollowUser } from "../../api/follow";
 
-// atom
 import { userInfoAtom } from "../../recoil/userAtom";
 
-// recoil
 import { useRecoilValue } from "recoil";
 
-// component
 import ButtonContainer from "../../components/common/Button/ButtonContainer";
 import chat from "../../assets/icons/icon-chat.svg";
 import share from "../../assets/icons/icon-share.svg";
@@ -60,6 +55,18 @@ export default function ProfileDetail({ profile }) {
     setFollow(profile.isfollow);
     setFollowerCount(profile.followerCount);
   }, [profile]);
+
+  // url 공유
+  const handleShare = () => {
+    navigator.clipboard
+      .writeText(window.location.href)
+      .then(() => {
+        alert("URL이 복사되었습니다 ✨");
+      })
+      .catch((error) => {
+        alert("URL 복사에 실패했습니다: ", error);
+      });
+  };
 
   return (
     <>
@@ -154,7 +161,7 @@ export default function ProfileDetail({ profile }) {
             </ButtonContainer>
           )}
 
-          <ShareButton>
+          <ShareButton onClick={handleShare}>
             <Logo src={share} />
           </ShareButton>
         </FollowButtonContainer>

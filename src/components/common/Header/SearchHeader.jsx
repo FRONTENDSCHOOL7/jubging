@@ -1,7 +1,7 @@
-import React from "react";
+import styled from "styled-components";
+
 import HeaderContainer from "./HeaderContainer";
 import BackButton from "../Button/BackButton";
-import styled from "styled-components";
 
 export default function SearchHeader({ onChange }) {
   return (

@@ -9,7 +9,5 @@ export const postLogin = async (email, password) => {
   };
 
   const response = await basicAxios.post("/user/login", loginData);
-  console.log("response data", response);
-
   return response.data;
 };

@@ -1,12 +1,12 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
+
 import noFollowRabbit from "../../assets/images/crying-rabbit.svg";
+import ButtonContainer from "../../components/common/Button/ButtonContainer";
 import {
   NoFollowHomeGroup,
   NoFollowRabbitImg,
   SearchForUser,
 } from "./NoFollowHomeStyle";
-import ButtonContainer from "../../components/common/Button/ButtonContainer";
 
 function NoFollowHome({ message }) {
   const navigate = useNavigate();

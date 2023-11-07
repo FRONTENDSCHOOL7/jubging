@@ -1,14 +1,24 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 import Bear from "../../components/Splash/Character/Bear";
 import Rabbit from "../../components/Splash/Character/Rabbit";
 import Dog from "../../components/Splash/Character/Dog";
 import Earth from "../../components/Splash/Character/Earth";
 import Container from "../../components/Splash/Frame/Container";
 import Imagebox from "../../components/Splash/Frame/Imagebox";
-import { StartBtn } from "./SplashScreenStyle";
 
 export default function SplashScreen() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      navigate(`/loginStart`);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, [navigate]);
+
   return (
     <Container splashScreen={true}>
       <Imagebox splashScreen={true}>
@@ -17,9 +27,6 @@ export default function SplashScreen() {
         <Dog splashScreen={true} />
         <Earth splashScreen={true} />
       </Imagebox>
-      <Link to="/loginStart">
-        <StartBtn $fontSize={"36px"}>시작하기</StartBtn>
-      </Link>
     </Container>
   );
 }

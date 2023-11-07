@@ -1,12 +1,9 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useCallback, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
-import { userInfoAtom } from "../../recoil/userAtom";
-import { useRecoilValue } from "recoil";
-
 import { getComment } from "../../api/commentAPI";
-import { deletePost, getPostDetail } from "../../api/postAPI";
+import { getPostDetail } from "../../api/postAPI";
 
 import Loading from "../Loading/Loading";
 import PostComment from "./PostComment";
@@ -37,7 +34,6 @@ function Post() {
   const fetchComments = useCallback(async () => {
     try {
       const commentData = await getComment(postId, Infinity, skip);
-      console.log("Fetched comments: ", commentData);
       setComments(commentData.comments.reverse());
     } catch (error) {
       console.log(error);
@@ -80,6 +76,7 @@ function Post() {
         {comments.map((comment) => (
           <PostComment
             key={comment.id}
+            accountName={comment.author.accountname}
             postId={postId}
             profilePhoto={comment.author.image}
             nickname={comment.author.username}

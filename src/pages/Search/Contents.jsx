@@ -1,10 +1,6 @@
-import React from "react";
 import styled from "styled-components";
 
 import UserListBox from "../../components/common/UserList/UserListBox";
-
-// 프로필 사진 추후 컴포넌트 추가 예정
-// import PostUserProfileImg from "../../components/common/Profile/ProfileImage";
 
 const Contents = ({ userList, inputTxt }) => {
   return (
