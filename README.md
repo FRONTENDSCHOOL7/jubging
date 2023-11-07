@@ -7,14 +7,31 @@
 
 ## 2. 👥 팀 소개
 
-|                                                                                    **김지헌**                                                                                    |                                                                                                  **서동주**                                                                                                  |                                                                                                **김하영**                                                                                                 |                                                                                            **정현지**                                                                                            |
-| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-|                         <img src="https://github.com/FRONTENDSCHOOL7/final-06-jubging/assets/85389685/6494887b-2c19-443e-afae-52604fa7cb77" height=180 >                         |                                       <img src="https://github.com/FRONTENDSCHOOL7/final-06-jubging/assets/85389685/30458ecc-e656-4ec1-b106-738b521eed2e" height=180 >                                       |                                     <img src="https://github.com/FRONTENDSCHOOL7/final-06-jubging/assets/85389685/487afe48-8f88-4815-997a-c9563931de06" height=180 >                                      |                                 <img src="https://github.com/FRONTENDSCHOOL7/final-06-jubging/assets/85389685/c4e82a04-7a19-41bb-9aa8-413bb0c282c1" height=180 >                                 |
-| [🔗 GitHub](https://github.com/kkang123)<br/> ![Frontend](https://img.shields.io/badge/-Frontend-green) <br/> ![Team%20Leader](https://img.shields.io/badge/-Team%20leader-blue) | [🔗 GitHub](https://github.com/WestEastZ)<br/> ![Frontend](https://img.shields.io/badge/-Frontend-green) <br/> ![PM,Comunication%20Leader](https://img.shields.io/badge/-PM,%20Comunication%20leader-yellow) | [🔗 GitHub](https://github.com/hangnik)<br/> ![Frontend](https://img.shields.io/badge/-Frontend-green) <br/> ![Design,Technique%20Leader](https://img.shields.io/badge/-Design,Technique%20Leader-orange) | [🔗 GitHub](https://github.com/aicul313)<br/> ![Frontend](https://img.shields.io/badge/-Frontend-green) <br/> ![Development%20Leader](https://img.shields.io/badge/-Development%20Leader-purple) |
+|                                                            **김지헌**                                                            |                                                            **서동주**                                                            |                                                            **김하영**                                                            |                                                            **정현지**                                                            |
+| :------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------: |
+| <img src="https://github.com/FRONTENDSCHOOL7/final-06-jubging/assets/85389685/6494887b-2c19-443e-afae-52604fa7cb77" height=180 > | <img src="https://github.com/FRONTENDSCHOOL7/final-06-jubging/assets/85389685/30458ecc-e656-4ec1-b106-738b521eed2e" height=180 > | <img src="https://github.com/FRONTENDSCHOOL7/final-06-jubging/assets/85389685/487afe48-8f88-4815-997a-c9563931de06" height=180 > | <img src="https://github.com/FRONTENDSCHOOL7/final-06-jubging/assets/85389685/c4e82a04-7a19-41bb-9aa8-413bb0c282c1" height=180 > |
+|             [🔗 GitHub](https://github.com/kkang123)<br/> ![Frontend](https://img.shields.io/badge/-Frontend-green)              |             [🔗 GitHub](https://github.com/WestEastZ)<br/> ![Frontend](https://img.shields.io/badge/-Frontend-green)             |              [🔗 GitHub](https://github.com/hangnik)<br/> ![Frontend](https://img.shields.io/badge/-Frontend-green)              |             [🔗 GitHub](https://github.com/aicul313)<br/> ![Frontend](https://img.shields.io/badge/-Frontend-green)              |
 
 <p align="right"><a href="#top">(🔼 Top)</a></p>
 
 ## 3. Convention
+
+### ⚙️ Code Convention
+
+### prettier
+
+```
+{
+  "bracketSpacing": true, // 객체 리터럴에서 괄호에 공백 삽입
+  "jsxBracketSameLine": false, // JSX의 마지막 `>`를 다음 줄로 내릴지 여부
+  "jsxSingleQuote": true, // JSX에 홑따옴표 사용 여부
+  "semi": true, // 세미콜론 사용 여부
+  "printWidth": 80, // 줄 바꿈 할 폭 길이
+  "useTabs": false, // 탭 사용 여부
+  "tabWidth": 2, // 탭 너비
+  "arrowParens": "always" // 화살표 함수 괄호 사용 여부
+}
+```
 
 ### ⚙️ Git Commit Convention
 
@@ -38,7 +55,6 @@
 ```markdown
 <!-- Title : git Emogi 구현 내용 -->
 
-
 # 📑 Description
 
 설명을 작성해주세요.
@@ -53,7 +69,7 @@
 기타사항
 ```
 
-- 브랜치 이름 : #이슈번호-기능이름
+- 브랜치 이름 : `#이슈번호-기능이름`
 
 ### ⚙️ PR Convention
 
@@ -70,8 +86,69 @@
 
 # 💡 관련 이슈
 
-Resolve #{이슈번호}
+Resolve {#이슈번호}
 ```
 
-- pr 규칙
-  - pr 올리면 공유하기
+### 📦 폴더 구조
+
+```
+🏃 jubging
+├─ 📦 public
+│  └─ 📄 index.html
+├─ 📦 src
+│  ├─ 📂 api
+│  ├─ 📂 assets
+│  │  ├─ 📂 fonts
+│  │  ├─ 📂 icon
+│  │  └─ 📂 images
+│  ├─ 📂 components
+│  │  ├─ 📂 common
+│  │  │  ├─ 📂 Alert
+│  │  │  ├─ 📂 Button
+│  │  │  ├─ 📂 ChatList
+│  │  │  ├─ 📂 Header
+│  │  │  ├─ 📂 Input
+│  │  │  ├─ 📂 Modal
+│  │  │  ├─ 📂 Navbar
+│  │  │  ├─ 📂 Profile
+│  │  │  └─ 📂 UserList
+│  │  ├─ 📂 kakaomap
+│  │  ├─ 📂 Post
+│  │  │  ├─ 📂 PostFooter
+│  │  │  ├─ 📂 PostHeader
+│  │  │  ├─ 📂 PostMain
+│  │  │  ├─ 📄 NewsPosting.jsx
+│  │  │  └─ 📄 Posting.jsx
+│  │  ├─ 📂 Splash
+│  │  │  ├─ 📂 Character
+│  │  │  └─ 📂 Frame
+│  ├─ 📂 context
+│  ├─ 📂 hooks
+│  ├─ 📂 pages
+│  │  ├─ 📂 AddCourse
+│  │  ├─ 📂 Chat
+│  │  ├─ 📂 ChatList
+│  │  ├─ 📂 CourseDetail
+│  │  ├─ 📂 Follow
+│  │  │  └─ 📂 FollowList
+│  │  ├─ 📂 Home
+│  │  ├─ 📂 Loading
+│  │  ├─ 📂 Login
+│  │  ├─ 📂 NewsLetter
+│  │  ├─ 📂 NotFound
+│  │  ├─ 📂 Post
+│  │  ├─ 📂 Profile
+│  │  ├─ 📂 Search
+│  │  ├─ 📂 Sign
+│  │  ├─ 📂 SplashScreen
+│  │  └─ 📂 Upload
+│  │  ├─ 📂 recoil
+│  │  ├─ 📂 Postroutes
+│  │  ├─ 📂 Poststyles
+│  |  ├─ 📄 App.js
+│  |  ├─ 📄 index.js
+│  |  ├─ 📄 .gitignore
+│  |  ├─ 📄 package-lock.json
+│  |  ├─ 📄 package.json
+│  |  └─ 📄 README.md
+```
