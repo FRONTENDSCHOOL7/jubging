@@ -1,16 +1,16 @@
 [
   {
     "id": 1,
-    "profilePhoto": "/baseprofile.svg",
+    "profilePhoto": "https://api.mandarin.weniv.co.kr/1699182779030.jpg",
     "nickname": "다 버리는 동주",
     "lastMessage": "동주 님 수고",
     "lastMessageDate": "2023년 10월 22일"
   },
   {
     "id": 2,
-    "profilePhoto": "/baseprofile.svg",
-    "nickname": "다줍는 착한 하영",
-    "lastMessage": "하영 님 짱",
+    "profilePhoto": "https://api.mandarin.weniv.co.kr/1699322057065.jpg",
+    "nickname": "다 줍는 착한 하영",
+    "lastMessage": "오늘 러닝 즐거웠어용~",
     "lastMessageDate": "2023년 10월 20일"
   }
 ]

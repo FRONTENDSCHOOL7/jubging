@@ -1,3 +1,5 @@
+import profile from "../../assets/images/rabbit-face.png";
+
 import {
   Wrapper,
   MessageGroup,
@@ -7,18 +9,17 @@ import {
   Time,
 } from "./ChatPageStyle";
 
-function ChatPage({ profilePhoto }) {
+function ChatPage() {
   return (
     <Wrapper>
       <MessageGroup $isMine={false}>
         <ProfilePhoto>
-          <img src={profilePhoto} alt="프로필 사진" />
+          <img src={profile} alt="프로필 사진" />
         </ProfilePhoto>
         <MessageContainer $isMine={false}>
           <div>
             <Message $isMine={false}>
-              그동안 정말 뜻깊은 시간이었어! 많은 분들과 함께 해서 즐거웠고
-              매니저님, 강사님들께 감사인사를 드리고 싶다!!!
+              오늘 처음 플로깅 해봤는데 넘 뿌듯하네요! 다음에도 같이 해요^_^
             </Message>
             <Time $isMine={false}>12:39</Time>
           </div>
@@ -27,7 +28,7 @@ function ChatPage({ profilePhoto }) {
 
       <MessageGroup $isMine={true}>
         <MessageContainer $isMine={true}>
-          <Message $isMine={true}>동주 님 수고</Message>
+          <Message $isMine={true}>오늘 러닝 즐거웠어용~</Message>
           <Time $isMine={true}>12:50</Time>
         </MessageContainer>
       </MessageGroup>
