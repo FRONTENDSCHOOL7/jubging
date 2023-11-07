@@ -1,4 +1,5 @@
-import React from "react";
+import { Link } from "react-router-dom";
+
 import {
   Wrapper,
   RoomItem,
@@ -11,7 +12,6 @@ import {
   LastMessage,
   ChatDate,
 } from "./ChatListStyle";
-import { Link } from "react-router-dom";
 
 function ChatList({ chat }) {
   return (
@@ -25,7 +25,7 @@ function ChatList({ chat }) {
             </ProfilePhoto>
           </ProfileGroup>
           <ChatGroup>
-          <ChatName>{chat.nickname}</ChatName>
+            <ChatName>{chat.nickname}</ChatName>
             <ChatInfoGroup>
               <LastMessage>{chat.lastMessage}</LastMessage>
               <ChatDate>{chat.lastMessageDate}</ChatDate>

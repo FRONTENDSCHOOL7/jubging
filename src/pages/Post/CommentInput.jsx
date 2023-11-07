@@ -21,7 +21,6 @@ function CommentInput({ onCommentPosted }) {
 
     if (message !== "") {
       const response = await postComment(postId, message);
-      console.log(response);
       setMessage("");
       onCommentPosted();
     }
