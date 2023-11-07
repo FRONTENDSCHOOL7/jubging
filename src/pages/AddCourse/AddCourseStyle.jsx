@@ -16,7 +16,8 @@ export const MapCanvas = styled.section`
   border: 0.5px solid #dbdbdb;
   background-color: #f2f2f2;
   margin: 0 30px 26px;
-  padding: 12px;
+  padding: 9px;
+  height: 195px;
 
   h3 {
     margin-bottom: 10px;

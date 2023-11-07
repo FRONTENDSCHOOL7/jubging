@@ -16,6 +16,7 @@ import { Logo } from "./ProfileDetailStyle";
 import thread from "../../assets/icons/icon-post-list.svg";
 import gallery from "../../assets/icons/icon-post-album.svg";
 import Posting from "../../components/Post/Posting";
+import Map from "../../components/kakaomap/MapComponent";
 
 import Loading from "../Loading/Loading";
 
@@ -77,8 +78,8 @@ export default function Profile() {
       const response = await getUserCourse(accountname);
 
       if (response.length > 0) {
-        setCourse((prev) => {
-          return [...prev, ...response];
+        setCourse(() => {
+          return [...response];
         });
       }
     } catch (error) {
@@ -140,10 +141,7 @@ export default function Profile() {
             <GalleryContainer>
               {course.map((item) => (
                 <Link to={`/profile/${item.id}/course`} key={item.id}>
-                  <ThumbnailButton>
-                    <Thumbnail src={item.itemImage} alt="썸네일 이미지" />
-                  </ThumbnailButton>
-                  {/* 지도 */}
+                  <Map data={item} />
                 </Link>
               ))}
             </GalleryContainer>
@@ -175,16 +173,5 @@ export const GalleryContainer = styled.div`
   grid-template-columns: repeat(3, 1fr);
   gap: 13px;
   padding: 28px 17px;
-`;
-
-export const ThumbnailButton = styled.button`
-  background-color: ${(props) => props.theme.colors.placeHolderColor};
-  border-radius: 8px;
-  object-fit: cover;
-  overflow: hidden;
-`;
-
-export const Thumbnail = styled.img`
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
+  height: 250px;
 `;
