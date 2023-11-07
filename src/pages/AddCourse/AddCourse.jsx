@@ -60,8 +60,8 @@ const AddCourse = ({ nickname }) => {
         strokeOpacity: 1,
         strokeStyle: "solid",
       });
-      console.log("lineInfo : ", lineInfo);
-      console.log("mapinfo : ", mapInfo);
+      // console.log("lineInfo : ", lineInfo);
+      // console.log("mapinfo : ", mapInfo);
     }
   }, [location.state.data]);
 
@@ -80,7 +80,6 @@ const AddCourse = ({ nickname }) => {
     };
     const response = await postCourseUpload(mapData);
     response && navigate(`/profile/${userInfo.accountname}`);
-    console.log(response);
   };
 
   return (
