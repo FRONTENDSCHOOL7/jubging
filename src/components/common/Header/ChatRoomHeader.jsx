@@ -4,15 +4,6 @@ import BackButton from "../Button/BackButton";
 import MoreButton from "../Button/MoreButton";
 import styled from "styled-components";
 
-export const Section = styled.section`
-  display: flex;
-  align-items: center;
-`;
-
-export const UserName = styled.h2`
-  font-size: ${(props) => props.theme.fontSize.medium};
-`;
-
 export default function ChatRoomHeader(props) {
   return (
     <HeaderContainer justisfy={"space-between"}>
@@ -24,3 +15,12 @@ export default function ChatRoomHeader(props) {
     </HeaderContainer>
   );
 }
+
+export const Section = styled.section`
+  display: flex;
+  align-items: center;
+`;
+
+export const UserName = styled.h2`
+  font-size: ${(props) => props.theme.fontSize.medium};
+`;

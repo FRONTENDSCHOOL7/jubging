@@ -6,17 +6,6 @@ import HeaderContainer from "./HeaderContainer";
 import ButtonContainer from "../Button/ButtonContainer";
 import { Link } from "react-router-dom";
 
-const Logo = styled.img`
-  width: 39px;
-  height: 27px;
-  margin-left: 15px;
-`;
-
-const SearchIcon = styled.img`
-  width: 24px;
-  height: 24px;
-`;
-
 export default function HomeHeader() {
   return (
     <HeaderContainer justisfy={"space-between"}>
@@ -29,3 +18,14 @@ export default function HomeHeader() {
     </HeaderContainer>
   );
 }
+
+const Logo = styled.img`
+  width: 39px;
+  height: 27px;
+  margin-left: 15px;
+`;
+
+const SearchIcon = styled.img`
+  width: 24px;
+  height: 24px;
+`;

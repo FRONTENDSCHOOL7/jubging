@@ -1,15 +1,12 @@
-// react
-import React, { useCallback, useEffect, useState } from "react";
-import { useParams, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
-// api
 import {
   getFollowerList,
   setFollowUser,
   setUnFollowUser,
 } from "../../api/follow";
 
-// components
 import FollowerHeader from "../../components/common/Header/FollowerHeader";
 import FollowerList from "./FollowList/FollowerList";
 import ButtonContainer from "../../components/common/Button/ButtonContainer";
@@ -27,7 +24,6 @@ export default function Followers() {
   // 팔로우 이벤트
   const handleFollow = async (follower) => {
     const response = await setFollowUser(follower.accountname);
-    console.log(response);
     setFollow(!follow);
     fetchFollwerList();
   };
@@ -35,7 +31,6 @@ export default function Followers() {
   // 언팔로우 이벤트
   const handleUnFollow = async (follower) => {
     const response = await setUnFollowUser(follower.accountname);
-    console.log(response);
     setFollow(!follow);
     fetchFollwerList();
   };

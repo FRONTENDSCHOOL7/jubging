@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { checkEmail, checkAccountname } from "./../../api/signupAPI";
 
@@ -187,7 +187,6 @@ const SignUp = () => {
           error={accountnameErrorMsg}
         />
 
-        {/* <Link to="/signup/profile"> */}
         <Button
           type="submit"
           width="322px"
@@ -197,7 +196,6 @@ const SignUp = () => {
         >
           다음
         </Button>
-        {/* </Link> */}
       </Form>
     </>
   );

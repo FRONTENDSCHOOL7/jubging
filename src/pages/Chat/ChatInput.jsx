@@ -1,8 +1,8 @@
-import React from "react";
 import { useState } from "react";
+
 import { ChatBar, InputWrapper, Button } from "./ChatInputStyle";
-import PlusIcon from "../../assets/icons/icon-plus.svg";
 import RoundInput from "../../components/common/Input/RoundInput";
+import PlusIcon from "../../assets/icons/icon-plus.svg";
 
 function ChatInput() {
   const [message, setMessage] = useState("");

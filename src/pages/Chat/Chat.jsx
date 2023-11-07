@@ -1,10 +1,9 @@
-import React from "react";
-import ChatRoomHeader from "../../components/common/Header/ChatRoomHeader";
-import ChatPage from "./ChatPage";
-import ChatInput from "./ChatInput";
+import useModalControl from "../../hook/useModalControl";
 
 import { Modal } from "../../components/common/Modal/Modal";
-import useModalControl from "../../hook/useModalControl";
+import ChatPage from "./ChatPage";
+import ChatInput from "./ChatInput";
+import ChatRoomHeader from "../../components/common/Header/ChatRoomHeader";
 
 function Chat() {
   const { ModalComponent } = useModalControl("Chat");

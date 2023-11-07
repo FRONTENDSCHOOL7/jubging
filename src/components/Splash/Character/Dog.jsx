@@ -1,4 +1,3 @@
-import React from "react";
 import styled, { keyframes, css } from "styled-components";
 import bigDog from "../../../assets/images/big-dog.svg";
 

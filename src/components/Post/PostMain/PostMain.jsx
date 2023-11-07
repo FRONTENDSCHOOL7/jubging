@@ -1,6 +1,5 @@
-import React from "react";
-import { PostContainer, PostImages, PostText } from "./PostMainStyle";
 import { Link } from "react-router-dom";
+import { PostContainer, PostImages, PostText } from "./PostMainStyle";
 
 function PostMain({ postImage, postText, postId }) {
   return (

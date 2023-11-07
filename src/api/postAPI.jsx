@@ -66,7 +66,6 @@ export const putEditPost = async (postId, content, image) => {
 export const deletePost = async (token, postId) => {
   try {
     const response = await authAxios.delete(`/post/${postId}`, token);
-    console.log(response);
     return response.data;
   } catch (error) {
     console.log(error);

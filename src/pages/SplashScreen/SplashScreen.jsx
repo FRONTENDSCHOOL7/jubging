@@ -1,12 +1,12 @@
-import React, { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 import Bear from "../../components/Splash/Character/Bear";
 import Rabbit from "../../components/Splash/Character/Rabbit";
 import Dog from "../../components/Splash/Character/Dog";
 import Earth from "../../components/Splash/Character/Earth";
 import Container from "../../components/Splash/Frame/Container";
 import Imagebox from "../../components/Splash/Frame/Imagebox";
-import { StartBtn } from "./SplashScreenStyle";
 
 export default function SplashScreen() {
   const navigate = useNavigate();

@@ -1,4 +1,3 @@
-import React from "react";
 import { InputField, ErrorMessage, Label, InputContainer } from "./InputStyle";
 
 const Input = ({

@@ -1,18 +1,19 @@
-// react
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-// API
 import { deleteComment, reportComment } from "../../api/commentAPI";
 
-// atom
 import { userInfoAtom } from "../../recoil/userAtom";
 
-// recoil
 import { useRecoilValue } from "recoil";
 import useModalControl from "../../hook/useModalControl";
 
-// components
+import MoreButton from "../../components/common/Button/MoreButton";
+import { Alert, AlertReport } from "../../components/common/Alert/Alert";
+import {
+  AnotherfeedModal,
+  CommentModal,
+} from "../../components/common/Modal/Modal";
 import {
   CommentGroup,
   CommentHeaderGroup,
@@ -23,13 +24,6 @@ import {
   InfoTime,
   CommentText,
 } from "./PostCommentStyle";
-import MoreButton from "../../components/common/Button/MoreButton";
-import { Alert, AlertReport } from "../../components/common/Alert/Alert";
-
-import {
-  AnotherfeedModal,
-  CommentModal,
-} from "../../components/common/Modal/Modal";
 
 function PostComment({
   profilePhoto,
@@ -72,12 +66,8 @@ function PostComment({
 
   // 댓글 삭제
   const handleDelete = async () => {
-    console.log("handleDelete called");
-    console.log("postId:", postId);
-    console.log("commentID:", comment.id);
     try {
       await deleteComment(postId, comment.id);
-      console.log("Deleted successfully");
       refreshComments();
     } catch (error) {
       console.error("Failed to delete comment:", error);
@@ -86,7 +76,6 @@ function PostComment({
 
   // 댓글 신고
   const handleReport = async () => {
-    console.log("Reporting comment");
     try {
       await reportComment(postId, comment.id);
       setReportAlertOpen(true);

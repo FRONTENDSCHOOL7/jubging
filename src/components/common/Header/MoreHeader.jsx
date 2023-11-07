@@ -1,22 +1,25 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+
 import { userInfoAtom } from "../../../recoil/userAtom";
 import { loginAtom } from "../../../recoil/loginAtom";
 import { useResetRecoilState } from "recoil";
+
+import { Alert, AlertLogout } from "../Alert/Alert";
+import { AnotherProfileModal, Modal, ProfileModal } from "../Modal/Modal";
 import HeaderContainer from "./HeaderContainer";
 import BackButton from "../Button/BackButton";
 import MoreButton from "../Button/MoreButton";
-import { AnotherProfileModal, Modal, ProfileModal } from "../Modal/Modal";
-import { Alert, AlertLogout } from "../Alert/Alert";
 
 export default function MoreHeader({ userInfo, pageName }) {
-  const { accountname } = useParams();
   const navigate = useNavigate();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isAlertOpen, setIsAlertOpen] = useState(false);
+  const { accountname } = useParams();
 
   const resetUserInfo = useResetRecoilState(userInfoAtom);
   const resetLogin = useResetRecoilState(loginAtom);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isAlertOpen, setIsAlertOpen] = useState(false);
 
   // 모달
   const handleOpenModal = () => {
@@ -47,7 +50,7 @@ export default function MoreHeader({ userInfo, pageName }) {
     localStorage.removeItem("token");
     resetUserInfo();
     resetLogin();
-    navigate("/login");
+    navigate("/");
   };
 
   // 신고하기

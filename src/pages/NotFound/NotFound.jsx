@@ -1,10 +1,10 @@
-import React from "react";
+import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+
 import cryBear from "../../assets/images/crying-bear.svg";
 import cryRabbit from "../../assets/images/crying-rabbit.svg";
 import cryDog from "../../assets/images/crying-dog.svg";
-import styled from "styled-components";
 import ButtonContainer from "../../components/common/Button/ButtonContainer";
-import { useNavigate } from "react-router-dom";
 
 export default function NotFound() {
   const navigate = useNavigate();

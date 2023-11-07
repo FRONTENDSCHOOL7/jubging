@@ -1,20 +1,13 @@
-// react
-import React, { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Link, useParams } from "react-router-dom";
-import { useInView } from "react-intersection-observer";
 
-// API
 import { getUserProfile } from "../../api/profileAPI";
 import { getUserFeed, getUserCourse } from "../../api/postAPI";
 
-// atom
 import { userInfoAtom } from "../../recoil/userAtom";
-// import { loginAtom } from "../../recoil/loginAtom";
 
-// recoil
 import { useRecoilValue } from "recoil";
 
-// components
 import MoreHeader from "../../components/common/Header/MoreHeader";
 import Navbar from "../../components/common/Navbar/Navbar";
 import ProfileDetail from "./ProfileDetail";
@@ -27,12 +20,10 @@ import Posting from "../../components/Post/Posting";
 import Loading from "../Loading/Loading";
 
 export default function Profile() {
-  // const limit = 10;
   const { accountname } = useParams();
 
   const userInfo = useRecoilValue(userInfoAtom);
 
-  const [ref, inView] = useInView();
   const [profile, setProfile] = useState({});
   const [feed, setFeed] = useState([]);
   const [course, setCourse] = useState([]);
@@ -80,13 +71,6 @@ export default function Profile() {
     fetchUserFeed();
   }, [fetchUserFeed]);
 
-  // 무한스크롤
-  /* useEffect(() => {
-    if (inView & !isLoading) {
-      setSkip((prevSkip) => prevSkip + limit);
-    }
-  }, [inView, isLoading]); */
-
   // 추천 코스 가져오기
   const fetchUserCourse = useCallback(async () => {
     try {
@@ -105,8 +89,6 @@ export default function Profile() {
   useEffect(() => {
     fetchUserCourse();
   }, [fetchUserCourse]);
-
-  console.log("course list :", course);
 
   return (
     <>
@@ -152,7 +134,6 @@ export default function Profile() {
                     />
                   ))}
               </PostingContainer>
-              <div ref={ref} />
             </>
           ) : (
             // 추천 코스 리스트

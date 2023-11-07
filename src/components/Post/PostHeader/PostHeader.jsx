@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
 import { deletePost, reportPost } from "../../../api/postAPI";
 
 import { userInfoAtom } from "../../../recoil/userAtom";
-
 import { useRecoilValue } from "recoil";
 
 import MoreButton from "../../common/Button/MoreButton";
@@ -23,9 +22,10 @@ export default function PostHeader({
   fetch,
 }) {
   const token = localStorage.getItem("token");
-  const location = useLocation();
-  const userInfo = useRecoilValue(userInfoAtom);
   const navigate = useNavigate();
+
+  const userInfo = useRecoilValue(userInfoAtom);
+
   const [openModalId, setOpenModalId] = useState(null);
   const [openAlertId, setOpenAlertId] = useState(null);
 
