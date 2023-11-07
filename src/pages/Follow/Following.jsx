@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import {
@@ -6,6 +6,7 @@ import {
   setFollowUser,
   setUnFollowUser,
 } from "../../api/follow";
+
 import FollowingHeader from "../../components/common/Header/FollowingHeader";
 import FollowerList from "./FollowList/FollowerList";
 import ButtonContainer from "../../components/common/Button/ButtonContainer";
@@ -17,13 +18,11 @@ export default function Following() {
   const { accountname } = useParams();
 
   const [following, setFollowing] = useState([]);
-  // const [follow, setFollow] = useState(following.isfollow);
   const [isLoading, setIsLoading] = useState(true);
 
   // 팔로우 이벤트
   const handleFollow = async (followingUser) => {
     const response = await setFollowUser(followingUser.accountname);
-    console.log(response);
     setFollowing((prev) =>
       prev.map((user) =>
         user.accountname === followingUser.accountname
@@ -36,7 +35,6 @@ export default function Following() {
   // 언팔로우 이벤트
   const handleUnFollow = async (followingUser) => {
     const response = await setUnFollowUser(followingUser.accountname);
-    console.log(response);
     setFollowing((prev) =>
       prev.map((user) =>
         user.accountname === followingUser.accountname

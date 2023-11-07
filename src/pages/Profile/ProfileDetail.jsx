@@ -1,17 +1,12 @@
-// react
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
-// api
 import { setFollowUser, setUnFollowUser } from "../../api/follow";
 
-// atom
 import { userInfoAtom } from "../../recoil/userAtom";
 
-// recoil
 import { useRecoilValue } from "recoil";
 
-// component
 import ButtonContainer from "../../components/common/Button/ButtonContainer";
 import chat from "../../assets/icons/icon-chat.svg";
 import share from "../../assets/icons/icon-share.svg";

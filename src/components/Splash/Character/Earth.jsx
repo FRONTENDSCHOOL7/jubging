@@ -1,4 +1,3 @@
-import React from "react";
 import styled, { css, keyframes } from "styled-components";
 import earth from "../../../assets/images/earth.svg";
 

@@ -1,4 +1,3 @@
-import React from "react";
 import HeaderContainer from "./HeaderContainer";
 import BackButton from "../Button/BackButton";
 import ButtonContainer from "../Button/ButtonContainer";

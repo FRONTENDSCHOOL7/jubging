@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+
 import Navbar from "../../components/common/Navbar/Navbar";
 import BackSpaceHeader from "../../components/common/Header/BackSpaceHeader";
+import chatdata from "../../components/common/ChatList/chatdata.json";
 import ChatList from "../../components/common/ChatList/ChatList";
-import chatdata from "../../components/common/ChatList/chatdata.json"
 
 function ChatListPage() {
   const [chatList, setChatList] = useState([]);
@@ -14,7 +15,7 @@ function ChatListPage() {
   return (
     <>
       <BackSpaceHeader />
-      {chatList.map((chat) =>(
+      {chatList.map((chat) => (
         <ChatList chat={chat} />
       ))}
       <Navbar />

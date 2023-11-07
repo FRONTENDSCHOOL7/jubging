@@ -1,20 +1,14 @@
-// Login.jsx
-
-// react
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-// API
 import { postLogin } from "../../api/loginAPI";
 import { getMyInfo } from "../../api/profileAPI";
 import { updateAuthToken } from "../../api/axios";
 
-// recoil
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { userInfoAtom } from "../../recoil/userAtom";
 import { loginAtom } from "../../recoil/loginAtom";
 
-// components
 import { Title, EmailSignUp, Form, ErrMsg } from "./LoginStyle";
 import Input from "../../components/common/Input/Input";
 import Button from "../../components/common/Button/ButtonContainer";
@@ -49,8 +43,6 @@ const Login = () => {
     } else {
       setIsFormComplete(false);
     }
-    // useEffect의 의존성 배열에 email과 password를 추가
-    // 이렇게 하면 email, password 상태가 변경될 때마다 useEffect 내부의 함수가 실행
   }, [email, password]);
 
   // 이메일 에러 메시지
@@ -95,7 +87,6 @@ const Login = () => {
     try {
       // 로그인 요청
       const loginData = await postLogin(email, password);
-      console.log("loginData ", loginData);
 
       // 유효성 검사
       if (loginData.status === 422) {
@@ -103,9 +94,8 @@ const Login = () => {
       } else {
         localStorage.setItem("token", loginData.user.token);
         updateAuthToken();
-        // 사용자 프로필 정보 불러오기
+
         const myInfo = await getMyInfo(loginData.user.token);
-        console.log("myInfo", myInfo);
 
         setUserInfo({
           ...userInfo,
@@ -115,7 +105,6 @@ const Login = () => {
           image: myInfo.user.image,
         });
         setLogin(true);
-        // localStorage에 token 값 저장
         localStorage.setItem("token", loginData.user.token);
         navigate("/home");
       }
@@ -166,5 +155,3 @@ const Login = () => {
 };
 
 export default Login;
-
-// error 부분 및 @ 인식 추가

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
 
@@ -23,7 +23,6 @@ function Home() {
   const fetchFollowFeed = useCallback(async () => {
     try {
       const newData = await getFollowFeed(limit, skip, token);
-      console.log(newData);
       setIsLoading(false);
       if (newData.length > 0) {
         setData((prevData) => [...prevData, ...newData]);
@@ -40,7 +39,6 @@ function Home() {
   // 무한스크롤
   useEffect(() => {
     if (inView & !isLoading) {
-      console.log(inView, "무한스크롤 실행~");
       setSkip((prevSkip) => prevSkip + limit);
     }
   }, [inView, isLoading]);
