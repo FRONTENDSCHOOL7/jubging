@@ -80,6 +80,7 @@ function Post() {
         {comments.map((comment) => (
           <PostComment
             key={comment.id}
+            accountName={comment.author.accountname}
             postId={postId}
             profilePhoto={comment.author.image}
             nickname={comment.author.username}

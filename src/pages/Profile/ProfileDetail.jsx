@@ -61,6 +61,18 @@ export default function ProfileDetail({ profile }) {
     setFollowerCount(profile.followerCount);
   }, [profile]);
 
+  // url 공유
+  const handleShare = () => {
+    navigator.clipboard
+      .writeText(window.location.href)
+      .then(() => {
+        alert("URL이 복사되었습니다 ✨");
+      })
+      .catch((error) => {
+        alert("URL 복사에 실패했습니다: ", error);
+      });
+  };
+
   return (
     <>
       <ProfileContainer>
@@ -154,7 +166,7 @@ export default function ProfileDetail({ profile }) {
             </ButtonContainer>
           )}
 
-          <ShareButton>
+          <ShareButton onClick={handleShare}>
             <Logo src={share} />
           </ShareButton>
         </FollowButtonContainer>

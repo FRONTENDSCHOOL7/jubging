@@ -33,6 +33,7 @@ import {
 
 function PostComment({
   profilePhoto,
+  accountName,
   nickname,
   comment,
   refreshComments,
@@ -97,7 +98,9 @@ function PostComment({
   return (
     <CommentGroup>
       <ProfileImage>
-        <img src={profilePhoto} alt="프로필 사진" />
+        <Link to={`/profile/${accountName}`}>
+          <img src={profilePhoto} alt="프로필 사진" />
+        </Link>
       </ProfileImage>
 
       <CommentHeaderGroup>
