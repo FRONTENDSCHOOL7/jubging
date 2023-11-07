@@ -61,7 +61,6 @@ const ProfileStartPage = () => {
   // 로그인 계정 프로필 atom 변경
   const handleModifyProfile = async (e) => {
     e.preventDefault();
-    console.log("submit");
     setUserInfo({
       username: username,
       accountname: accountname,
