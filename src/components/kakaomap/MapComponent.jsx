@@ -12,8 +12,6 @@ export default function MapComponet({ data }) {
   // 선 상태
   const [line, setLine] = useState([]);
 
-  console.log("data", data);
-
   useEffect(() => {
     if (data.itemImage) {
       let pathdata = JSON.parse(data.itemImage);
@@ -22,14 +20,8 @@ export default function MapComponet({ data }) {
         new kakao.maps.LatLng(parsedMap.center.lat, parsedMap.center.lng)
       );
       setMapLevel(parsedMap.level);
-
-      console.log("path : ", pathdata);
-      console.log("parsedMap", parsedMap);
-
       let parsedLine = JSON.parse(pathdata.line);
       setLine(parsedLine);
-
-      console.log("Line1111 :", parsedLine);
     }
   }, []);
 

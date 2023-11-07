@@ -1,5 +1,3 @@
-import React from "react";
-
 import { userInfoAtom } from "../../recoil/userAtom";
 import { useRecoilValue } from "recoil";
 
