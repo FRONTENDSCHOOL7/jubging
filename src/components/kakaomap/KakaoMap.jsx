@@ -247,7 +247,7 @@ function KakaoMap() {
         <Alert message="경로를 등록하시겠습니까?">
           <AlertUploadMap
             upload={drawLineOnNewMap}
-            cansle={handleModalMapClose}
+            onClose={handleModalMapClose}
           ></AlertUploadMap>
         </Alert>
       )}

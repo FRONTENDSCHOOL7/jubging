@@ -77,13 +77,26 @@ export function AlertChange({ onChange }) {
   );
 }
 
-export function AlertUploadMap({ cansle, upload }) {
+export function AlertUploadMap({ onClose, upload }) {
   return (
     <>
-      <ButtonContainer width={"126px"} color={"#000000"} onClick={cansle}>
+      <ButtonContainer width={"126px"} color={"#000000"} onClick={onClose}>
         취소
       </ButtonContainer>
       <ButtonContainer width={"126px"} color={"#41A6DE"} onClick={upload}>
+        확인
+      </ButtonContainer>
+    </>
+  );
+}
+
+export function AlertExitChat({ onClose, exit }) {
+  return (
+    <>
+      <ButtonContainer width={"126px"} color={"#000000"} onClick={onClose}>
+        취소
+      </ButtonContainer>
+      <ButtonContainer width={"126px"} color={"#41A6DE"} onClick={exit}>
         확인
       </ButtonContainer>
     </>

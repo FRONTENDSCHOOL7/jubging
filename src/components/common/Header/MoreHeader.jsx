@@ -7,7 +7,7 @@ import HeaderContainer from "./HeaderContainer";
 import BackButton from "../Button/BackButton";
 import MoreButton from "../Button/MoreButton";
 import { AnotherProfileModal, Modal, ProfileModal } from "../Modal/Modal";
-import { Alert, AlertLogout } from "../Alert/Alert";
+import { Alert, AlertLogout, AlertReport } from "../Alert/Alert";
 
 export default function MoreHeader({ userInfo, pageName }) {
   const { accountname } = useParams();
@@ -32,6 +32,13 @@ export default function MoreHeader({ userInfo, pageName }) {
     setIsAlertOpen(true);
     setIsModalOpen(false);
   };
+
+  // 경고창 -> 사용자 신고
+  const handleReport = () => {
+    setIsAlertOpen(true);
+    setIsModalOpen(false);
+  };
+
   const handleAlertClose = () => {
     setIsAlertOpen(false);
   };
@@ -51,9 +58,6 @@ export default function MoreHeader({ userInfo, pageName }) {
   };
 
   // 신고하기
-  const handleReport = () => {
-    console.log("신고");
-  };
 
   return (
     <>
@@ -75,9 +79,16 @@ export default function MoreHeader({ userInfo, pageName }) {
       </Modal>
 
       {/* 경고창 */}
-      <Alert isAlertOpen={isAlertOpen} message="로그아웃 하시겠어요?">
-        <AlertLogout logout={handleLogout} onClose={handleAlertClose} />
-      </Alert>
+      {isAlertOpen &&
+        (userInfo.accountname === accountname ? (
+          <Alert isAlertOpen={isAlertOpen} message="로그아웃 하시겠어요?">
+            <AlertLogout logout={handleLogout} onClose={handleAlertClose} />
+          </Alert>
+        ) : (
+          <Alert message={`${accountname}님이 신고되었습니다.`}>
+            <AlertReport onClose={handleAlertClose} />
+          </Alert>
+        ))}
     </>
   );
 }
