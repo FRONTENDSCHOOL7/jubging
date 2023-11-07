@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const CommentGroup = styled.div`
+export const CommentGroup = styled.article`
   display: flex;
   margin: 17px 0 17px 17px;
 `;
@@ -30,7 +30,7 @@ export const CommentInfoGroup = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 5px;
-  margin-left: 5px
+  margin-left: 5px;
 `;
 
 export const InfoHeader = styled.div`
