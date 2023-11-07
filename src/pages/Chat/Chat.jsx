@@ -1,26 +1,16 @@
-import useModalControl from "../../hook/useModalControl";
-
-import { Modal } from "../../components/common/Modal/Modal";
+import React, { useState } from "react";
+import ChatRoomHeader from "../../components/common/Header/ChatRoomHeader";
 import ChatPage from "./ChatPage";
 import ChatInput from "./ChatInput";
-import ChatRoomHeader from "../../components/common/Header/ChatRoomHeader";
+import { Alert, AlertExitChat } from "../../components/common/Alert/Alert";
+import { ExitChat, Modal } from "../../components/common/Modal/Modal";
 
 function Chat() {
-  const { ModalComponent } = useModalControl("Chat");
-
-  const exitChat = () => {
-    console.log("Exit Chat");
-  };
-
   return (
     <>
-      <ChatRoomHeader pageName="Chat" />
+      <ChatRoomHeader />
       <ChatPage />
       <ChatInput />
-
-      <ModalComponent>
-        <Modal contents={["채팅방 나가기"]} handleFunc={exitChat} />
-      </ModalComponent>
     </>
   );
 }

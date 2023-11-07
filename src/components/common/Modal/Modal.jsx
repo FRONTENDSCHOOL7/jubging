@@ -74,3 +74,13 @@ export function CommentModal({ modify, deleteFeed }) {
     </ModalBox>
   );
 }
+
+export function ExitChat({ exit }) {
+  return (
+    <ModalBox>
+      <li className="modalList">
+        <button onClick={exit}>채팅방 나가기</button>
+      </li>
+    </ModalBox>
+  );
+}
