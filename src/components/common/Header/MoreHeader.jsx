@@ -5,8 +5,6 @@ import { userInfoAtom } from "../../../recoil/userAtom";
 import { loginAtom } from "../../../recoil/loginAtom";
 import { useResetRecoilState } from "recoil";
 
-// import { Alert, AlertLogout } from "../Alert/Alert";
-// import { AnotherProfileModal, Modal, ProfileModal } from "../Modal/Modal";
 import HeaderContainer from "./HeaderContainer";
 import BackButton from "../Button/BackButton";
 import MoreButton from "../Button/MoreButton";
