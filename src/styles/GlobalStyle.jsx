@@ -18,6 +18,7 @@ const GlobalStyle = createGlobalStyle`
 body {
   color: inherit;
   font-weight: 500;
+  overflow-y:scroll;
 }
 
 a {
