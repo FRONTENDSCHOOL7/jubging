@@ -240,7 +240,7 @@ Resolve {#이슈번호}
 
 👉[피그마 링크](https://www.figma.com/file/zfQIRSnEmTi1HDgcDQqkHG/6%EC%A1%B0-%7C-%EC%8B%9D%EC%8A%A4%EC%84%BC%EC%8A%A4---%EC%A4%8D%EA%B9%85?type=design&node-id=0-1&mode=design&t=sJld9KGQg5U0YTm8-0)
 
-![UI](https://user-images.githubusercontent.com/97607752/281443110-a8b5ec4e-c632-47bd-bb5f-21d4b337670b.jpg)
+![UI](https://user-images.githubusercontent.com/85664676/281501760-ab0a7a5a-6aa5-441f-95ee-35518f2dd4db.png)
 
 ## 8. ✨ 구현 기능
 
@@ -472,7 +472,7 @@ const handleSubmitMap = async (event) => {
 - UI 개선을 통해 사용자에게 좀 더 친절한 UX 제공
 - useMemo, useRef 등 리액트 훅을 사용하여 재렌더링 방지
 
-## 12. ❤️🧡💛💚💙💜 회고 및 소감 💜💙💚💛🧡❤️
+## 12. ❤️ 회고 및 소감 ❤️
 
 ### 김지헌
 
