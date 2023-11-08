@@ -15,7 +15,6 @@ export const Title = styled.h1`
 export const MapCanvas = styled.section`
   border-radius: 4px;
   width: 100%;
-  height: 80vh;
   background-color: #f2f2f2;
 
   button {

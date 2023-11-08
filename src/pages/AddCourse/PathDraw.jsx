@@ -1,7 +1,6 @@
 import { userInfoAtom } from "../../recoil/userAtom";
 import { useRecoilValue } from "recoil";
 
-import Navbar from "../../components/common/Navbar/Navbar";
 import Kakao from "../../components/kakaomap/KakaoMap";
 import { Wrapper, Title, MapCanvas } from "./PathDrawStyle";
 import BackSpaceHeader from "../../components/common/Header/BackSpaceHeader";
@@ -22,7 +21,6 @@ const PathDraw = ({ nickname }) => {
           <Kakao />
         </MapCanvas>
       </Wrapper>
-      <Navbar />
     </>
   );
 };
