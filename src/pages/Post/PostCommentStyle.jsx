@@ -49,5 +49,8 @@ export const InfoTime = styled.span`
 
 export const CommentText = styled.p`
   margin-top: 6px;
+  letter-spacing: -0.28px;
+  word-break: break-all;
+  font-family: "GmarketSansLight";
   font-size: ${(props) => props.theme.fontSize.medium};
 `;
