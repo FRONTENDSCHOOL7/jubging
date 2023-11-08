@@ -14,7 +14,7 @@ import ProfileDetail from "./ProfileDetail";
 import styled from "styled-components";
 import { Logo } from "./ProfileDetailStyle";
 import thread from "../../assets/icons/icon-post-list.svg";
-import gallery from "../../assets/icons/icon-post-album.svg";
+import location from "../../assets/icons/icon-location.svg";
 import Posting from "../../components/Post/Posting";
 import Map from "../../components/kakaomap/MapComponent";
 
@@ -106,7 +106,7 @@ export default function Profile() {
             </ViewButton>
 
             <ViewButton onClick={handleGallery}>
-              <Logo src={gallery} />
+              <Logo src={location} />
             </ViewButton>
           </ViewButtonContainer>
 
@@ -140,9 +140,9 @@ export default function Profile() {
             // 추천 코스 리스트
             <GalleryContainer>
               {course.map((item) => (
-                <Link to={`/profile/${item.id}/course`} key={item.id}>
+                <CourseLink to={`/profile/${item.id}/course`} key={item.id}>
                   <Map data={item} />
-                </Link>
+                </CourseLink>
               ))}
             </GalleryContainer>
           )}
@@ -154,14 +154,17 @@ export default function Profile() {
 }
 
 export const ViewButtonContainer = styled.header`
-  border-top: 1px solid #dbdbdb;
-  border-bottom: 1px solid #dbdbdb;
   margin-top: 28px;
 `;
 
 export const ViewButton = styled.button`
   width: 195px;
   height: 44px;
+  border-bottom: 1px solid #dbdbdb;
+
+  &:focus {
+    border-bottom: 1.2px solid ${(props) => props.theme.colors.mainColor};
+  }
 `;
 
 const PostingContainer = styled.section`
@@ -173,5 +176,8 @@ export const GalleryContainer = styled.div`
   grid-template-columns: repeat(3, 1fr);
   gap: 13px;
   padding: 28px 17px;
-  height: 250px;
+`;
+
+export const CourseLink = styled(Link)`
+  height: 120px;
 `;
