@@ -6,7 +6,13 @@ import { getCoutseDetail } from "../../api/postAPI";
 
 import Loading from "../Loading/Loading";
 import Navbar from "../../components/common/Navbar/Navbar";
-import { Title, Label, Detail, MapCanvas } from "./CourseDetailStyle";
+import {
+  Title,
+  Label,
+  Detail,
+  MapCanvas,
+  Container,
+} from "./CourseDetailStyle";
 import BackSpaceHeader from "../../components/common/Header/BackSpaceHeader";
 
 const CourseDetail = () => {
@@ -102,12 +108,20 @@ const CourseDetail = () => {
             )}
           </MapCanvas>
 
-          <Label>코스 이름</Label>
-          <Detail> {courseInfo.itemName}</Detail>
-          <Label>코스 길이</Label>
-          <Detail> {courseInfo.price}</Detail>
-          <Label>한줄평</Label>
-          <Detail> {courseInfo.link}</Detail>
+          <Container>
+            <div>
+              <Label>코스 이름</Label>
+              <Detail> {courseInfo.itemName}</Detail>
+            </div>
+            <div>
+              <Label>코스 길이</Label>
+              <Detail> {courseInfo.price}</Detail>
+            </div>
+            <div>
+              <Label>한줄평</Label>
+              <Detail> {courseInfo.link}</Detail>
+            </div>
+          </Container>
           <Navbar />
         </>
       )}
