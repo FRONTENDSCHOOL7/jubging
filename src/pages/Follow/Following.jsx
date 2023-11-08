@@ -7,6 +7,9 @@ import {
   setUnFollowUser,
 } from "../../api/follow";
 
+import { useRecoilValue } from "recoil";
+import { userInfoAtom } from "../../recoil/userAtom";
+
 import FollowingHeader from "../../components/common/Header/FollowingHeader";
 import FollowerList from "./FollowList/FollowerList";
 import ButtonContainer from "../../components/common/Button/ButtonContainer";
@@ -16,6 +19,7 @@ import Loading from "../Loading/Loading";
 
 export default function Following() {
   const { accountname } = useParams();
+  const userInfo = useRecoilValue(userInfoAtom);
 
   const [following, setFollowing] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -79,7 +83,8 @@ export default function Following() {
                       >
                         취소
                       </ButtonContainer>
-                    ) : (
+                    ) : userInfo.accountname ===
+                      following.accountname ? null : (
                       <ButtonContainer
                         width={"65px"}
                         height={"28px"}
