@@ -227,11 +227,15 @@ function KakaoMap() {
 
   return (
     <>
-      <div id="map" style={{ width: "100%", height: "765px" }}></div>
+      <div
+        id="map"
+        style={{ width: "100%", height: "calc(100vh - 168px)" }}
+      ></div>
       <Button
         onClick={handleModalMapOpen}
         width="100%"
         height="40px"
+        fontSize="1.05em"
         hoverFilter
       >
         경로 등록
