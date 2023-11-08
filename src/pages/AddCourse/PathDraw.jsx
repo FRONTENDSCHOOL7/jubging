@@ -6,7 +6,6 @@ import { Wrapper, Title, MapCanvas } from "./PathDrawStyle";
 import BackSpaceHeader from "../../components/common/Header/BackSpaceHeader";
 
 const PathDraw = ({ nickname }) => {
-  const kakaoMap = Kakao();
   const userInfo = useRecoilValue(userInfoAtom);
 
   return (

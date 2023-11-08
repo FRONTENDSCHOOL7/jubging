@@ -85,7 +85,6 @@ function KakaoMap() {
           clickLine.setPath(path);
 
           setLinePoints(path);
-          // console.log("linePoints ", linePoints);
         }
       });
 
@@ -185,7 +184,6 @@ function KakaoMap() {
           lng: newMap.getCenter().getLng(),
         },
         level: newMap.getLevel(),
-        // 필요한 다른 상태를 추가...
       };
       const linePointsData = linePoints.map((point) => ({
         lat: point.getLat(),
@@ -195,14 +193,8 @@ function KakaoMap() {
       // 선
       const stringifylinePointsData = JSON.stringify(linePointsData);
 
-      const parselinePointsData = JSON.parse(stringifylinePointsData);
-      console.log("stringify", stringifylinePointsData);
-      console.log("parse", parselinePointsData);
-
       // 지도
       const serialized = JSON.stringify(mapState);
-
-      console.log(serialized);
 
       const mapInfo = {
         map: serialized,
