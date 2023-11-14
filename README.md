@@ -234,7 +234,7 @@ Resolve {#이슈번호}
 
 ## 6. 👨‍🎓 역할 분담
 
-![Shot](https://user-images.githubusercontent.com/85664676/281498676-e881c6b5-7354-4a60-89fe-db985c50758a.png)
+![Shot](https://user-images.githubusercontent.com/85664676/282674595-01901747-e541-42e4-bd13-c8a3d3555669.png)
 
 ## 7. 🎨 UI
 
