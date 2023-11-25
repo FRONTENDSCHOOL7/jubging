@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 export const ProfileLink = styled(Link)`
   display: flex;
   align-items: center;
-  width: 100%;
-  padding-left: 16px;
 `;
 
 export const ImageDiv = styled.div`

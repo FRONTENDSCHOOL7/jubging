@@ -11,8 +11,8 @@ import { loginAtom } from "../../recoil/loginAtom";
 
 import { Title, EmailSignUp, Form, ErrMsg } from "./LoginStyle";
 import Input from "../../components/common/Input/Input";
-import Button from "../../components/common/Button/ButtonContainer";
 import BackSpaceHeader from "../../components/common/Header/BackSpaceHeader";
+import Button from "../../components/common/Button/Button";
 
 // 이메일 유효성 검사 함수
 const validateEmail = (email) => {
@@ -138,11 +138,9 @@ const Login = () => {
         />
         <ErrMsg>{errorMsg}</ErrMsg>
         <Button
-          type="submit"
-          width="100%"
+          size="lg"
+          variant={isFormComplete && "primary"}
           disabled={!isFormComplete}
-          bgColor={isFormComplete ? "#40A6DE" : "#94CEF8"}
-          hoverFilter
         >
           로그인
         </Button>

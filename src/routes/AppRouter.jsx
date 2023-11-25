@@ -53,10 +53,7 @@ export default function AppRouter() {
           element={<ProfileModification />}
         />
         <Route path="/profile/:accountname/addcourse" element={<AddCourse />} />
-        <Route
-          path="/profile/addcourse/drawcoursecourse"
-          element={<DrawCourse />}
-        />
+        <Route path="/profile/addcourse/drawcourse" element={<DrawCourse />} />
         <Route path="profile/:courseId/course" element={<CourseDetail />} />
         <Route path="/search" element={<Search />} />
         <Route path="/*" element={<NotFound />} />
