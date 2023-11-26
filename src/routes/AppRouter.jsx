@@ -29,7 +29,6 @@ import ScrollTop from "./../hook/useScrollTop";
 
 export default function AppRouter() {
   const isLoggedIn = useRecoilValue(loginAtom);
-  const token = localStorage.getItem("token");
 
   return (
     <BrowserRouter>
@@ -42,7 +41,7 @@ export default function AppRouter() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signup/profile" element={<ProfileStart />} />
 
-        {token ? (
+        {isLoggedIn ? (
           <>
             {/* 로그인 해야 접근 가능한 url */}
             <Route path="/home" element={<Home />} />
