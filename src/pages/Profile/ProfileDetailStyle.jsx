@@ -64,10 +64,11 @@ export const ProfileButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   gap: 14px;
-  margin-top: 26px;
+  margin-top: 1.625rem;
+  padding: 0 4.25rem;
 
-  button:last-child {
-    border: 1px solid #dbdbdb;
+  Button {
+    flex: 1 0 calc(50% - 0.5rem);
   }
 `;
 
@@ -77,20 +78,19 @@ export const FollowButtonContainer = styled.div`
   align-items: center;
   gap: 34px;
   margin-top: 26px;
+  padding: 0 4.75rem;
 
-  button:nth-child(2) {
-    border: 1px solid #dbdbdb;
+  :nth-child(2) {
+    flex: 1 0 0;
   }
 `;
 
 export const ChatLink = styled(Link)`
   display: flex;
   justify-content: center;
-  width: 50px;
 `;
 
 export const ShareButton = styled.button`
-  width: 50px;
   height: 100%;
 `;
 

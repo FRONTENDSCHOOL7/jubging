@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import logo from "../../assets/images/logo-white.png";
 import Bear from "../../components/Splash/Character/Bear";
@@ -8,8 +8,7 @@ import Earth from "../../components/Splash/Character/Earth";
 import Container from "../../components/Splash/Frame/Container";
 import { MainTitle, SubTitle } from "../../components/Splash/Frame/Title";
 import Imagebox from "../../components/Splash/Frame/Imagebox";
-import ButtonCotainer from "../../components/common/Button/ButtonContainer";
-
+import Button from "../../components/common/Button/Button";
 import {
   Facebook,
   Google,
@@ -22,22 +21,30 @@ import {
 } from "./LoginStartStyle";
 
 export default function LoginStart() {
+  const navigate = useNavigate();
+
   return (
     <Container>
       <MainTitle src={logo} />
       <SubTitle>깨끗한 지구 함께 만들어가요</SubTitle>
 
       <LoginBox>
-        <Link to="/login">
-          <ButtonCotainer bgColor={"#40A6DE"} hoverFilter>
-            로그인
-          </ButtonCotainer>
-        </Link>
-        <Link to="/signup">
-          <ButtonCotainer color={"black"} bgColor={"#ffffff"} hoverFilter>
-            회원가입
-          </ButtonCotainer>
-        </Link>
+        <Button
+          type="button"
+          size="lg"
+          variant="primary"
+          onClick={() => navigate("/login")}
+        >
+          로그인
+        </Button>
+        <Button
+          type="button"
+          size="lg"
+          variant="white"
+          onClick={() => navigate("/signup")}
+        >
+          회원가입
+        </Button>
       </LoginBox>
 
       <LoginSection>

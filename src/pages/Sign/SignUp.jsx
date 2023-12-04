@@ -5,8 +5,8 @@ import { checkEmail, checkAccountname } from "./../../api/signupAPI";
 
 import Input from "../../components/common/Input/Input";
 import { Form, Title } from "./SignUpStyle";
-import Button from "../../components/common/Button/ButtonContainer";
 import BackSpaceHeader from "../../components/common/Header/BackSpaceHeader";
+import Button from "../../components/common/Button/Button";
 
 // 이메일 유효성 검사 함수
 const validateEmail = (email) => {
@@ -188,11 +188,9 @@ const SignUp = () => {
         />
 
         <Button
-          type="submit"
-          width="322px"
-          $disabled={!isFormComplete}
-          bgColor={isFormComplete ? "#40A6DE" : "#94CEF8"}
-          hoverFilter
+          size="lg"
+          variant={isFormComplete && "primary"}
+          disabled={!isFormComplete}
         >
           다음
         </Button>

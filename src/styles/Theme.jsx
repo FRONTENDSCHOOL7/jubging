@@ -5,6 +5,7 @@ export const colors = {
   placeHolderColor: "#C4C4C4",
   textColor: "#767676",
   blackColor: "#000000",
+  whiteColor: "#ffffff",
   alertColor: "#EB5757",
 };
 

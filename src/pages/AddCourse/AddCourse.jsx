@@ -14,8 +14,8 @@ import {
   InputContainer,
   CourseLink,
 } from "./AddCourseStyle";
-import Button from "../../components/common/Button/ButtonContainer";
 import Input from "../../components/common/Input/Input";
+import Button from "../../components/common/Button/Button";
 
 const { kakao } = window;
 
@@ -104,16 +104,13 @@ const AddCourse = ({ nickname }) => {
               <li>오른쪽 마우스를 클릭하면 경로 그리기가 종료됩니다.</li>
             </ul>
 
-            <CourseLink to="/profile/addcourse/drawcoursecourse">
-              <Button
-                width="100%"
-                height="31px"
-                $bgColor={(props) => props.theme.colors.mainColor}
-                hoverFilter
-              >
-                경로 등록하러 가기
-              </Button>
-            </CourseLink>
+            <Button
+              size="md"
+              variant="primary"
+              onClick={() => navigate("/profile/addcourse/drawcourse")}
+            >
+              경로 등록하러 가기
+            </Button>
           </MapCanvas>
         )}
 

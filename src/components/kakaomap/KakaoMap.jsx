@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { userInfoAtom } from "../../recoil/userAtom";
 import { useRecoilValue } from "recoil";
 
-import Button from "../common/Button/ButtonContainer";
 import { Alert, AlertUploadMap } from "../common/Alert/Alert";
+import Button from "../common/Button/Button";
 
 function KakaoMap() {
   const [latitude, setLatitude] = useState(null);
@@ -223,13 +223,7 @@ function KakaoMap() {
         id="map"
         style={{ width: "100%", height: "calc(100vh - 168px)" }}
       ></div>
-      <Button
-        onClick={handleModalMapOpen}
-        width="100%"
-        height="40px"
-        fontSize="1.05em"
-        hoverFilter
-      >
+      <Button size="lg" variant="primary" onClick={handleModalMapOpen}>
         경로 등록
       </Button>
       <div id="newMap"></div>
