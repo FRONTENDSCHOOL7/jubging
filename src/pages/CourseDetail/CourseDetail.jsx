@@ -87,10 +87,10 @@ const CourseDetail = () => {
           <MapCanvas>
             {mapCenter && (
               <Map
-                draggable={false}
-                zoomable={false}
+                draggable={true}
+                zoomable={true}
                 isableDoubleClick={false}
-                disableDoubleClickZoom={false}
+                disableDoubleClickZoom={true}
                 center={{ lat: mapCenter.getLat(), lng: mapCenter.getLng() }}
                 level={mapLevel}
                 style={{ width: "100%", height: "100%" }}
