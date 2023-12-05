@@ -40,7 +40,6 @@ export default function AppRouter() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signup/profile" element={<ProfileStart />} />
-
         {isLoggedIn ? (
           <>
             {/* 로그인 해야 접근 가능한 url */}

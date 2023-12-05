@@ -13,10 +13,10 @@ import { userInfoAtom } from "../../recoil/userAtom";
 
 import FollowerHeader from "../../components/common/Header/FollowerHeader";
 import FollowerList from "./FollowList/FollowerList";
-import ButtonContainer from "../../components/common/Button/ButtonContainer";
 import styled from "styled-components";
 import Loading from "../Loading/Loading";
 import NoFollowHome from "../Home/NoFollowHome";
+import Button from "../../components/common/Button/Button";
 
 export default function Followers() {
   const { accountname } = useParams();
@@ -57,57 +57,54 @@ export default function Followers() {
       {isLoading ? (
         <Loading />
       ) : (
-        <UserContainer>
-          <ul>
-            {follower.length > 0 ? (
-              follower.map((follower, index) => {
-                return (
-                  <li className="useList" key={index}>
-                    <FollowerList follower={follower}></FollowerList>
-                    {follower.isfollow ? (
-                      <ButtonContainer
-                        width={"65px"}
-                        height={"28px"}
-                        color={"black"}
-                        bgColor={"white"}
-                        border={"1px solid #DBDBDB"}
-                        onClick={() => handleUnFollow(follower)}
-                        hoverFilter
-                      >
-                        취소
-                      </ButtonContainer>
-                    ) : userInfo.accountname === follower.accountname ? null : (
-                      <ButtonContainer
-                        width={"65px"}
-                        height={"28px"}
-                        bgColor={"#40A6DE"}
-                        onClick={() => handleFollow(follower)}
-                        hoverFilter
-                      >
-                        팔로우
-                      </ButtonContainer>
-                    )}
-                  </li>
-                );
-              })
-            ) : (
-              <NoFollowHome message="팔로워가 없습니다!" />
-            )}
-          </ul>
-        </UserContainer>
+        <UserList>
+          {follower.length > 0 ? (
+            follower.map((follower, index) => {
+              return (
+                <UserItem key={index}>
+                  <FollowerList follower={follower} />
+                  {follower.isfollow ? (
+                    <Button
+                      type="button"
+                      size="sm"
+                      variant="white"
+                      onClick={() => handleUnFollow(follower)}
+                    >
+                      취소
+                    </Button>
+                  ) : userInfo.accountname === follower.accountname ? null : (
+                    <Button
+                      type="button"
+                      size="sm"
+                      variant="primary"
+                      onClick={() => handleFollow(follower)}
+                    >
+                      팔로우
+                    </Button>
+                  )}
+                </UserItem>
+              );
+            })
+          ) : (
+            <NoFollowHome message="팔로워가 없습니다!" />
+          )}
+        </UserList>
       )}
     </>
   );
 }
 
-const UserContainer = styled.div`
-  margin-top: 25px;
+const UserList = styled.ul`
+  margin: 25px 10px 0;
+`;
 
-  .useList {
-    display: flex;
-    align-items: center;
+const UserItem = styled.li`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
 
-    margin-right: 16px;
-    margin-bottom: 20px;
+  Button {
+    flex: 0 0 5rem;
   }
 `;

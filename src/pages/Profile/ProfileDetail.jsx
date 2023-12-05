@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 import { setFollowUser, setUnFollowUser } from "../../api/follow";
 
@@ -7,7 +7,7 @@ import { userInfoAtom } from "../../recoil/userAtom";
 
 import { useRecoilValue } from "recoil";
 
-import ButtonContainer from "../../components/common/Button/ButtonContainer";
+import Button from "../../components/common/Button/Button";
 import chat from "../../assets/icons/icon-chat.svg";
 import share from "../../assets/icons/icon-share.svg";
 import baseprofile from "../../assets/icons/baseprofile.svg";
@@ -33,6 +33,7 @@ export default function ProfileDetail({ profile }) {
     /^https:\/\/api\.mandarin\.weniv\.co\.kr\/(?:(?!null|undefined)[\w.]*)$/;
   const userInfo = useRecoilValue(userInfoAtom);
   const { accountname } = useParams();
+  const navigate = useNavigate();
 
   const [follow, setFollow] = useState(profile.isfollow);
   const [followerCount, setFollowerCount] = useState(0);
@@ -108,31 +109,28 @@ export default function ProfileDetail({ profile }) {
       {/* 유저 정보에 따라 버튼 다르게 보여주기 */}
       {userInfo.accountname === profile.accountname ? (
         <ProfileButtonContainer>
-          <Link to={`/profile/${userInfo.accountname}/edit`}>
-            <ButtonContainer
-              fontSize={"14px"}
-              bgColor={"#41A6DE"}
-              height={"34px"}
-              hoverFilter
-            >
-              프로필 수정
-            </ButtonContainer>
-          </Link>
-
-          <Link
-            to={`/profile/${profile.accountname}/addcourse`}
-            state={{ userData: profile }}
+          <Button
+            size="md"
+            variant="primary"
+            onClick={() => navigate(`/profile/${userInfo.accountname}/edit`)}
           >
-            <ButtonContainer
-              fontSize={"14px"}
-              bgColor={"#ffffff"}
-              color={"#000000"}
-              height={"34px"}
-              hoverFilter
-            >
-              추천 코스 등록
-            </ButtonContainer>
-          </Link>
+            프로필 수정
+          </Button>
+
+          <Button
+            type="button"
+            size="md"
+            variant="white"
+            onClick={() =>
+              navigate(`/profile/${profile.accountname}/addcourse`, {
+                state: {
+                  userData: profile,
+                },
+              })
+            }
+          >
+            추천 코스 등록
+          </Button>
         </ProfileButtonContainer>
       ) : (
         <FollowButtonContainer>
@@ -140,25 +138,23 @@ export default function ProfileDetail({ profile }) {
             <Logo src={chat} />
           </ChatLink>
           {follow ? (
-            <ButtonContainer
-              fontSize={"14px"}
-              bgColor={"#ffffff"}
-              color={"#000000"}
-              height={"34px"}
+            <Button
+              type="button"
+              size="md"
+              variant="white"
               onClick={handleUnFollow}
-              hoverFilter
             >
               언팔로우
-            </ButtonContainer>
+            </Button>
           ) : (
-            <ButtonContainer
-              fontSize={"14px"}
-              height={"34px"}
+            <Button
+              type="button"
+              size="md"
+              variant="primary"
               onClick={handleFollow}
-              hoverFilter
             >
               팔로우
-            </ButtonContainer>
+            </Button>
           )}
 
           <ShareButton onClick={handleShare}>

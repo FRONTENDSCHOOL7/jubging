@@ -1,8 +1,8 @@
-import React from "react";
-import back from "../../../assets/icons/icon-arrow-left.svg";
-import ButtonContainer from "./ButtonContainer";
 import { useNavigate } from "react-router-dom";
-import { BackIcon } from "./BackButtonStyle";
+import styled from "styled-components";
+
+import Button from "./Button";
+import back from "../../../assets/icons/icon-arrow-left.svg";
 
 export default function BackButton() {
   const navigate = useNavigate();
@@ -12,8 +12,13 @@ export default function BackButton() {
   }
 
   return (
-    <ButtonContainer width={"50px"} bgColor={"#ffffff"} onClick={goBack}>
+    <Button size="md" onClick={goBack}>
       <BackIcon src={back} />
-    </ButtonContainer>
+    </Button>
   );
 }
+
+const BackIcon = styled.img`
+  width: 22px;
+  height: 22px;
+`;

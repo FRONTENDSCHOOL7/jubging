@@ -39,6 +39,10 @@ export const MapCanvas = styled.section`
     font-weight: normal;
     margin: 11px 0 10px 15px;
   }
+
+  Button {
+    width: 100%;
+  }
 `;
 
 export const InputContainer = styled.section`
