@@ -179,7 +179,6 @@ function KakaoMap() {
         zoomable: false,
         disableDoubleClick: false,
         disableDoubleClickZoom: false,
-        center: clickPosition,
         center: new kakao.maps.LatLng(centerLat, centerLng),
         level: 6,
       };
