@@ -3,9 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { userInfoAtom } from "../../recoil/userAtom";
 import { useRecoilValue } from "recoil";
 
+
 import Loading from "../../pages/Loading/Loading";
-import Button from "../common/Button/ButtonContainer";
 import { Alert, AlertUploadMap } from "../common/Alert/Alert";
+import Button from "../common/Button/Button";
 
 function KakaoMap() {
   const [latitude, setLatitude] = useState(null);
@@ -231,35 +232,24 @@ function KakaoMap() {
   };
 
   return (
-    <>
-      {isLoading ? (
-        <Loading />
-      ) : (
-        <>
-          <div
-            id="map"
-            style={{ width: "100%", height: "calc(100vh - 168px)" }}
-          ></div>
-          <Button
-            onClick={isRightClicked ? handleModalMapOpen : null} // isRightClicked가 false일 때, 클릭 이벤트를 무시
-            width="100%"
-            height="40px"
-            fontSize="1.05em"
-            hoverFilter
-            bgColor={isRightClicked ? null : "#9ACEF8"} // bgColor 속성 추가
-          >
-            경로 등록
-          </Button>
-          <div id="newMap"></div>
-          {openAlertId && (
-            <Alert message="경로를 등록하시겠습니까?">
-              <AlertUploadMap
-                upload={drawLineOnNewMap}
-                onClose={handleModalMapClose}
-              ></AlertUploadMap>
-            </Alert>
-          )}
-        </>
+    <>    
+      <div
+        id="map"
+        style={{ width: "100%", height: "calc(100vh - 168px)" }}
+      ></div>
+      <Button size="lg" variant="primary" onClick={handleModalMapOpen}>
+        경로 등록
+      </Button>
+      <div id="newMap"></div>
+
+      {/* 경고창 */}
+      {openAlertId && (
+        <Alert message="경로를 등록하시겠습니까?">
+          <AlertUploadMap
+            upload={drawLineOnNewMap}
+            onClose={handleModalMapClose}
+          ></AlertUploadMap>
+        </Alert>
       )}
     </>
   );

@@ -1,7 +1,7 @@
 import { userInfoAtom } from "../../recoil/userAtom";
 import { useRecoilValue } from "recoil";
 
-import Kakao from "../../components/kakaomap/KakaoMap";
+import KakaoMap from "../../components/kakaomap/KakaoMap";
 import { Wrapper, Title, MapCanvas } from "./PathDrawStyle";
 import BackSpaceHeader from "../../components/common/Header/BackSpaceHeader";
 
@@ -17,7 +17,7 @@ const PathDraw = ({ nickname }) => {
           플로깅 코스를 그려주세요.
         </Title>
         <MapCanvas>
-          <Kakao />
+          <KakaoMap />
         </MapCanvas>
       </Wrapper>
     </>

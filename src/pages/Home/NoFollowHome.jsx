@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
 import noFollowRabbit from "../../assets/images/crying-rabbit.svg";
-import ButtonContainer from "../../components/common/Button/ButtonContainer";
+import Button from "../../components/common/Button/Button";
 import {
   NoFollowHomeGroup,
   NoFollowRabbitImg,
@@ -15,9 +15,9 @@ function NoFollowHome({ message }) {
     <NoFollowHomeGroup>
       <NoFollowRabbitImg src={noFollowRabbit} alt="팔로워가 없어서 우는 토끼" />
       <SearchForUser>{message}</SearchForUser>
-      <ButtonContainer onClick={() => navigate("/search")} hoverFilter>
+      <Button size="lg" variant="primary" onClick={() => navigate("/search")}>
         검색하기
-      </ButtonContainer>
+      </Button>
     </NoFollowHomeGroup>
   );
 }

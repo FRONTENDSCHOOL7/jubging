@@ -6,6 +6,7 @@ import { getCoutseDetail } from "../../api/postAPI";
 
 import Loading from "../Loading/Loading";
 import Navbar from "../../components/common/Navbar/Navbar";
+import BackSpaceHeader from "../../components/common/Header/BackSpaceHeader";
 import {
   Title,
   Label,
@@ -13,7 +14,6 @@ import {
   MapCanvas,
   Container,
 } from "./CourseDetailStyle";
-import BackSpaceHeader from "../../components/common/Header/BackSpaceHeader";
 
 const CourseDetail = () => {
   const { courseId } = useParams();
@@ -87,10 +87,10 @@ const CourseDetail = () => {
           <MapCanvas>
             {mapCenter && (
               <Map
-                draggable={false}
-                zoomable={false}
+                draggable={true}
+                zoomable={true}
                 isableDoubleClick={false}
-                disableDoubleClickZoom={false}
+                disableDoubleClickZoom={true}
                 center={{ lat: mapCenter.getLat(), lng: mapCenter.getLng() }}
                 level={mapLevel}
                 style={{ width: "100%", height: "100%" }}

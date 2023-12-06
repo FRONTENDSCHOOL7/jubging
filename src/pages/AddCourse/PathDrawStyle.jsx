@@ -17,7 +17,8 @@ export const MapCanvas = styled.section`
   width: 100%;
   background-color: #f2f2f2;
 
-  button {
+  Button {
+    width: 100%;
     border-radius: 0;
   }
 `;

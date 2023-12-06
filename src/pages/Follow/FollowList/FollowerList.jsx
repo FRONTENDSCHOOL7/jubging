@@ -28,7 +28,7 @@ export default function FollowerList({ follower, following }) {
           </ImageDiv>
           <Section>
             <UserName>{follower.username}</UserName>
-            <SubText>{follower.accountname}</SubText>
+            <SubText>@{follower.accountname}</SubText>
           </Section>
         </ProfileLink>
       ) : (
@@ -45,7 +45,7 @@ export default function FollowerList({ follower, following }) {
           </ImageDiv>
           <Section>
             <UserName>{following.username}</UserName>
-            <SubText>{following.accountname}</SubText>
+            <SubText>@{following.accountname}</SubText>
           </Section>
         </ProfileLink>
       )}

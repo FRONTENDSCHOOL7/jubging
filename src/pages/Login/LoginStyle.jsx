@@ -6,6 +6,10 @@ export const Form = styled.form`
   div:nth-child(3) {
     margin-bottom: 8px;
   }
+
+  Button {
+    width: 100%;
+  }
 `;
 
 export const Title = styled.h1`

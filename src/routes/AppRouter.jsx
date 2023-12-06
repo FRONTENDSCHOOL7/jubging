@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 
 import { useRecoilValue } from "recoil";
 import { loginAtom } from "../recoil/loginAtom";
@@ -29,37 +29,56 @@ import ScrollTop from "./../hook/useScrollTop";
 
 export default function AppRouter() {
   const isLoggedIn = useRecoilValue(loginAtom);
+
   return (
     <BrowserRouter>
       <ScrollTop />
       <Routes>
+        {/* 로그인 하지 않아도 접근 가능한 url */}
         <Route path="/" element={isLoggedIn ? <Home /> : <SplashScreen />} />
         <Route path="/loginStart" element={<LoginStart />} />
-        <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signup/profile" element={<ProfileStart />} />
-        <Route path="/post/:postId" element={<Post />} />
-        <Route path="/post/upload" element={<Upload />} />
-        <Route path="/post/:postId/edit" element={<PostEdit />} />
-        <Route path="/newsletter" element={<NewsLetter />} />
-        <Route path="/chat" element={<ChatListPage />} />
-        <Route path="/chat/room" element={<Chat />} />
-        <Route path="/profile/:accountname" element={<Profile />} />
-        <Route path="/profile/:accountname/follower" element={<Followrs />} />
-        <Route path="/profile/:accountname/following" element={<Following />} />
-        <Route
-          path="/profile/:accountname/edit"
-          element={<ProfileModification />}
-        />
-        <Route path="/profile/:accountname/addcourse" element={<AddCourse />} />
-        <Route
-          path="/profile/addcourse/drawcoursecourse"
-          element={<DrawCourse />}
-        />
-        <Route path="profile/:courseId/course" element={<CourseDetail />} />
-        <Route path="/search" element={<Search />} />
-        <Route path="/*" element={<NotFound />} />
+        {isLoggedIn ? (
+          <>
+            {/* 로그인 해야 접근 가능한 url */}
+            <Route path="/home" element={<Home />} />
+            <Route path="/post/:postId" element={<Post />} />
+            <Route path="/post/upload" element={<Upload />} />
+            <Route path="/post/:postId/edit" element={<PostEdit />} />
+            <Route path="/newsletter" element={<NewsLetter />} />
+            <Route path="/chat" element={<ChatListPage />} />
+            <Route path="/chat/room" element={<Chat />} />
+            <Route path="/profile/:accountname" element={<Profile />} />
+            <Route
+              path="/profile/:accountname/follower"
+              element={<Followrs />}
+            />
+            <Route
+              path="/profile/:accountname/following"
+              element={<Following />}
+            />
+            <Route
+              path="/profile/:accountname/edit"
+              element={<ProfileModification />}
+            />
+            <Route
+              path="/profile/:accountname/addcourse"
+              element={<AddCourse />}
+            />
+            <Route
+              path="/profile/addcourse/drawcourse"
+              element={<DrawCourse />}
+            />
+            <Route path="profile/:courseId/course" element={<CourseDetail />} />
+            <Route path="/search" element={<Search />} />
+            <Route path="/*" element={<NotFound />} />
+          </>
+        ) : (
+          // 로그인 하지 않으면 loginStart url로 접근
+          <Route path="/*" element={<Navigate to="/loginStart" />} />
+        )}
       </Routes>
     </BrowserRouter>
   );

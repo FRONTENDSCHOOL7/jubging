@@ -8,8 +8,8 @@ import { postImgUpload } from "../../api/imageAPI";
 import UserProfile from "../../components/common/Profile/ProfileImage";
 import Input from "../../components/common/Input/Input";
 import { Title, Form, Selfchange } from "./ProfileStartStyle";
-import Button from "../../components/common/Button/ButtonContainer";
 import BackSpaceHeader from "../../components/common/Header/BackSpaceHeader";
+import Button from "../../components/common/Button/Button";
 
 const ProfileStart = () => {
   const location = useLocation();
@@ -69,7 +69,7 @@ const ProfileStart = () => {
           onChange={(e) => setIntro(e.target.value)}
           placeholder="한 줄 소개를 입력해주세요."
         />
-        <Button type="submit" width="100%" hoverFilter>
+        <Button size="lg" variant="primary">
           깨끗한 지구 만들러 가기
         </Button>
       </Form>

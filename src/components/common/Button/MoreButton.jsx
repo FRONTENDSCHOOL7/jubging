@@ -1,17 +1,17 @@
-import React from "react";
-import ButtonContainer from "./ButtonContainer";
+import styled from "styled-components";
+
+import Button from "./Button";
 import more from "../../../assets/icons/icon-more-vertical.svg";
-import { MoreIcon } from "./MoreButtonStyle";
 
 export default function MoreButton({ onClick }) {
   return (
-    <ButtonContainer
-      onClick={onClick}
-      width={"50px"}
-      height={"50px"}
-      bgColor={"#ffffff"}
-    >
+    <Button size="md" onClick={onClick}>
       <MoreIcon src={more} />
-    </ButtonContainer>
+    </Button>
   );
 }
+
+const MoreIcon = styled.img`
+  width: 24px;
+  height: 24px;
+`;

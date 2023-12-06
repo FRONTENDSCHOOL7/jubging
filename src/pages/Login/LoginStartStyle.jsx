@@ -7,6 +7,11 @@ export const LoginBox = styled.div`
   display: flex;
   justify-content: center;
   gap: 22px;
+  padding: 0 4.25rem;
+
+  Button {
+    flex: 1 0 6.25rem;
+  }
 `;
 
 export const LoginSection = styled.section`
