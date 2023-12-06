@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { userInfoAtom } from "../../recoil/userAtom";
 import { useRecoilValue } from "recoil";
 
+import Loading from "../../pages/Loading/Loading";
 import Button from "../common/Button/ButtonContainer";
 import { Alert, AlertUploadMap } from "../common/Alert/Alert";
 
@@ -10,8 +11,10 @@ function KakaoMap() {
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
   const [linePoints, setLinePoints] = useState([]);
-  const [clickPosition, setClickPosition] = useState(null); // clickPosition 상태 추가
+  const [clickPosition, setClickPosition] = useState(null);
   const [mapInfo, setMapInfo] = useState("");
+  const [isRightClicked, setIsRightClicked] = useState(false); // 버튼 비활성화를 위한 상태 추가
+  const [isLoading, setIsLoading] = useState(true); // 로딩창을 위해서 상태 추가
 
   const { kakao } = window;
 
@@ -24,113 +27,127 @@ function KakaoMap() {
   useEffect(() => {
     if (latitude && longitude) {
       const container = document.getElementById("map");
-      const options = {
-        center: new kakao.maps.LatLng(latitude, longitude),
-        level: 4,
-      };
-      const map = new kakao.maps.Map(container, options);
 
-      let drawingFlag = false;
-      let moveLine;
-      let clickLine;
+      // 지도를 생성하려는 요소가 DOM에 존재하는지 확인하고, 지도 생성
+      if (container) {
+        const options = {
+          center: new kakao.maps.LatLng(latitude, longitude),
+          level: 4,
+        };
+        const map = new kakao.maps.Map(container, options);
 
-      kakao.maps.event.addListener(map, "click", function (mouseEvent) {
-        const clickPosition = mouseEvent.latLng;
-        setClickPosition(clickPosition); // clickPosition 상태 업데이트
+        // 지도 로딩이 완료되면 로딩 상태를 false로 변경
+        setIsLoading(false);
 
-        if (!drawingFlag) {
-          drawingFlag = true;
-          deleteClickLine();
+        let drawingFlag = false;
+        let moveLine;
+        let clickLine;
 
-          if (distanceOverlayRef.current) {
-            distanceOverlayRef.current.setMap(null);
+        kakao.maps.event.addListener(map, "click", function (mouseEvent) {
+          const clickPosition = mouseEvent.latLng;
+          setClickPosition(clickPosition);
+
+          if (!drawingFlag) {
+            drawingFlag = true;
+            deleteClickLine();
+
+            if (distanceOverlayRef.current) {
+              distanceOverlayRef.current.setMap(null);
+            }
+
+            if (startCircleRef.current) {
+              startCircleRef.current.setMap(null);
+            }
+
+            const circle = new kakao.maps.Circle({
+              center: clickPosition,
+              radius: 15,
+              strokeWeight: 3,
+              strokeColor: "#000",
+              strokeOpacity: 0.8,
+              fillColor: "#eee",
+            });
+
+            circle.setMap(map);
+            startCircleRef.current = circle;
+
+            clickLine = new kakao.maps.Polyline({
+              map: map,
+              path: [clickPosition],
+              strokeWeight: 3,
+              strokeColor: "#db4040",
+              strokeOpacity: 1,
+              strokeStyle: "solid",
+            });
+
+            moveLine = new kakao.maps.Polyline({
+              strokeWeight: 3,
+              strokeColor: "#db4040",
+              strokeOpacity: 0.5,
+              strokeStyle: "solid",
+            });
+          } else {
+            const path = clickLine.getPath();
+
+            path.push(clickPosition);
+
+            clickLine.setPath(path);
+
+            setLinePoints(path);
           }
+        });
 
-          if (startCircleRef.current) {
-            startCircleRef.current.setMap(null);
+        kakao.maps.event.addListener(map, "mousemove", function (mouseEvent) {
+          if (drawingFlag) {
+            const mousePosition = mouseEvent.latLng;
+
+            const path = clickLine.getPath();
+
+            const movepath = [path[path.length - 1], mousePosition];
+            moveLine.setPath(movepath);
+            moveLine.setMap(map);
           }
+        });
 
-          const circle = new kakao.maps.Circle({
-            center: clickPosition,
-            radius: 15,
-            strokeWeight: 3,
-            strokeColor: "#000",
-            strokeOpacity: 0.8,
-            fillColor: "#eee",
-          });
+        kakao.maps.event.addListener(map, "rightclick", function (mouseEvent) {
+          if (drawingFlag) {
+            moveLine.setMap(null);
+            moveLine = null;
 
-          circle.setMap(map);
-          startCircleRef.current = circle;
+            const path = clickLine.getPath();
 
-          clickLine = new kakao.maps.Polyline({
-            map: map,
-            path: [clickPosition],
-            strokeWeight: 3,
-            strokeColor: "#db4040",
-            strokeOpacity: 1,
-            strokeStyle: "solid",
-          });
+            const distance =
+              "총 거리 : " + Math.round(clickLine.getLength()) + " m";
 
-          moveLine = new kakao.maps.Polyline({
-            strokeWeight: 3,
-            strokeColor: "#db4040",
-            strokeOpacity: 0.5,
-            strokeStyle: "solid",
-          });
-        } else {
-          const path = clickLine.getPath();
+            const newDistanceOverlay = new kakao.maps.CustomOverlay({
+              position: path[path.length - 1],
+              content:
+                '<div style="padding:5px;background-color:white;border-radius:50px;border:solid 1px black;">' +
+                distance +
+                "</div>",
+              yAnchor: 1,
+            });
 
-          path.push(clickPosition);
+            newDistanceOverlay.setMap(map);
+            distanceOverlayRef.current = newDistanceOverlay;
 
-          clickLine.setPath(path);
-
-          setLinePoints(path);
+            drawingFlag = false;
+            setIsRightClicked(true); // 우클릭이 발생했으므로 버튼 상태를 활성화
+          }
+        });
+        function deleteClickLine() {
+          if (clickLine) {
+            clickLine.setMap(null);
+            clickLine = null;
+          }
         }
-      });
-
-      kakao.maps.event.addListener(map, "mousemove", function (mouseEvent) {
-        if (drawingFlag) {
-          const mousePosition = mouseEvent.latLng;
-
-          const path = clickLine.getPath();
-
-          const movepath = [path[path.length - 1], mousePosition];
-          moveLine.setPath(movepath);
-          moveLine.setMap(map);
-        }
-      });
-
-      kakao.maps.event.addListener(map, "rightclick", function (mouseEvent) {
-        if (drawingFlag) {
-          moveLine.setMap(null);
-          moveLine = null;
-
-          const path = clickLine.getPath();
-
-          const distance =
-            "총 거리 : " + Math.round(clickLine.getLength()) + " m";
-
-          const newDistanceOverlay = new kakao.maps.CustomOverlay({
-            position: path[path.length - 1],
-            content:
-              '<div style="padding:5px;background-color:white;border-radius:50px;border:solid 1px black;">' +
-              distance +
-              "</div>",
-            yAnchor: 1,
-          });
-
-          newDistanceOverlay.setMap(map);
-          distanceOverlayRef.current = newDistanceOverlay;
-
-          drawingFlag = false;
-        }
-      });
-      function deleteClickLine() {
-        if (clickLine) {
-          clickLine.setMap(null);
-          clickLine = null;
-        }
+      } else {
+        // 지도를 생성하려는 요소가 DOM에 존재하지 않으면 로딩 상태를 false로 변경
+        setIsLoading(false);
       }
+    } else {
+      // 위도와 경도가 설정되지 않았으면 로딩 상태를 false로 변경
+      setIsLoading(false);
     }
   }, [latitude, longitude]);
 
@@ -149,20 +166,18 @@ function KakaoMap() {
     if (clickPosition) {
       const container = document.getElementById("newMap");
 
-      // 선의 시작점과 끝점 계산
       const startLat = linePoints[0].getLat();
       const startLng = linePoints[0].getLng();
       const endLat = linePoints[linePoints.length - 1].getLat();
       const endLng = linePoints[linePoints.length - 1].getLng();
 
-      // 선의 중간점 계산
       const centerLat = (startLat + endLat) / 2;
       const centerLng = (startLng + endLng) / 2;
 
       const options = {
         draggable: false,
         zoomable: false,
-        isableDoubleClick: false,
+        disableDoubleClick: false,
         disableDoubleClickZoom: false,
         center: clickPosition,
         center: new kakao.maps.LatLng(centerLat, centerLng),
@@ -190,10 +205,8 @@ function KakaoMap() {
         lng: point.getLng(),
       }));
 
-      // 선
       const stringifylinePointsData = JSON.stringify(linePointsData);
 
-      // 지도
       const serialized = JSON.stringify(mapState);
 
       const mapInfo = {
@@ -219,29 +232,34 @@ function KakaoMap() {
 
   return (
     <>
-      <div
-        id="map"
-        style={{ width: "100%", height: "calc(100vh - 168px)" }}
-      ></div>
-      <Button
-        onClick={handleModalMapOpen}
-        width="100%"
-        height="40px"
-        fontSize="1.05em"
-        hoverFilter
-      >
-        경로 등록
-      </Button>
-      <div id="newMap"></div>
-
-      {/* 경고창 */}
-      {openAlertId && (
-        <Alert message="경로를 등록하시겠습니까?">
-          <AlertUploadMap
-            upload={drawLineOnNewMap}
-            onClose={handleModalMapClose}
-          ></AlertUploadMap>
-        </Alert>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <>
+          <div
+            id="map"
+            style={{ width: "100%", height: "calc(100vh - 168px)" }}
+          ></div>
+          <Button
+            onClick={isRightClicked ? handleModalMapOpen : null} // isRightClicked가 false일 때, 클릭 이벤트를 무시
+            width="100%"
+            height="40px"
+            fontSize="1.05em"
+            hoverFilter
+            bgColor={isRightClicked ? null : "#9ACEF8"} // bgColor 속성 추가
+          >
+            경로 등록
+          </Button>
+          <div id="newMap"></div>
+          {openAlertId && (
+            <Alert message="경로를 등록하시겠습니까?">
+              <AlertUploadMap
+                upload={drawLineOnNewMap}
+                onClose={handleModalMapClose}
+              ></AlertUploadMap>
+            </Alert>
+          )}
+        </>
       )}
     </>
   );
