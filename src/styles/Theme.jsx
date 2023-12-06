@@ -13,7 +13,8 @@ export const fontSize = {
   xsmall: "0.625rem", // 10px
   small: " 0.75rem", // 12px
   medium: "0.875rem", // 14px
-  large: "1.5rem", // 24px
+  large: "1.125rem", // 18px
+  xlarge: "1.5rem", // 24px
 };
 
 const Theme = {
