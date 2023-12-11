@@ -13,7 +13,7 @@ export const Form = styled.form`
 `;
 
 export const Title = styled.h1`
-  font-size: ${(props) => props.theme.fontSize.large};
+  font-size: ${(props) => props.theme.fontSize.xlarge};
   margin-bottom: 41px;
   text-align: center;
   color: ${(props) => props.theme.colors.blackColor};
