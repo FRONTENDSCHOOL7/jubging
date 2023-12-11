@@ -37,6 +37,11 @@ const VARIANTS = {
     --button-background: ${(props) => props.theme.colors.whiteColor};
     --button-border: 1px solid ${(props) => props.theme.colors.placeHolderColor};
   `,
+  disabled: css`
+    --button-color: ${(props) => props.theme.colors.whiteColor};
+    --button-background: ${(props) => props.theme.colors.disabledColor};
+    --button-border: 1px solid ${(props) => props.theme.colors.disabledColor};
+  `,
 };
 
 const StyledButton = styled.button`
@@ -65,7 +70,7 @@ const StyledButton = styled.button`
     cursor: not-allowed;
   }
 
-  &:hover {
+  &:not(:disabled):hover {
     filter: brightness(0.9);
   }
 `;
