@@ -14,8 +14,10 @@ function KakaoMap() {
   const [clickPosition, setClickPosition] = useState(null);
   const [mapInfo, setMapInfo] = useState("");
 
-  const [distance, setDistanse] = useState(0);
+  const [isButtonClicked, setIsButtonClicked] = useState(false); // 버튼 비활성화를 위한 상태 추가
+  const [isLoading, setIsLoading] = useState(true); // 로딩창을 위해서 상태 추가
 
+  const [distance, setDistanse] = useState(0);
 
   const { kakao } = window;
 
@@ -122,16 +124,15 @@ function KakaoMap() {
             const distance =
               "총 거리 : " + Math.round(clickLine.getLength()) + " m";
 
-          setDistanse(Math.round(clickLine.getLength() * 0.001));
-
-          const newDistanceOverlay = new kakao.maps.CustomOverlay({
-            position: path[path.length - 1],
-            content:
-              '<div style="padding:5px;background-color:white;border-radius:50px;border:solid 1px black;">' +
-              distance +
-              "</div>",
-            yAnchor: 1,
-          });
+            setDistanse(Math.round(clickLine.getLength() * 0.001));
+            const newDistanceOverlay = new kakao.maps.CustomOverlay({
+              position: path[path.length - 1],
+              content:
+                '<div style="padding:5px;background-color:white;border-radius:50px;border:solid 1px black;">' +
+                distance +
+                "</div>",
+              yAnchor: 1,
+            });
 
             newDistanceOverlay.setMap(map);
             distanceOverlayRef.current = newDistanceOverlay;
@@ -233,8 +234,6 @@ function KakaoMap() {
   const handleModalMapClose = () => {
     setOpenAlertId(false);
   };
-
-  console.log(distance);
 
   return (
     <>
