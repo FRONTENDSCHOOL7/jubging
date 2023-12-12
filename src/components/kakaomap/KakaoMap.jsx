@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { userInfoAtom } from "../../recoil/userAtom";
 import { useRecoilValue } from "recoil";
 
-
 import Loading from "../../pages/Loading/Loading";
 import { Alert, AlertUploadMap } from "../common/Alert/Alert";
 import Button from "../common/Button/Button";
@@ -14,7 +13,7 @@ function KakaoMap() {
   const [linePoints, setLinePoints] = useState([]);
   const [clickPosition, setClickPosition] = useState(null);
   const [mapInfo, setMapInfo] = useState("");
-  const [isRightClicked, setIsRightClicked] = useState(false); // 버튼 비활성화를 위한 상태 추가
+  const [isButtonClicked, setIsButtonClicked] = useState(false); // 버튼 비활성화를 위한 상태 추가
   const [isLoading, setIsLoading] = useState(true); // 로딩창을 위해서 상태 추가
 
   const { kakao } = window;
@@ -87,6 +86,8 @@ function KakaoMap() {
               strokeOpacity: 0.5,
               strokeStyle: "solid",
             });
+
+            setIsButtonClicked(false); //우클릭 후 좌표 수정 할 때 좌클릭 시 다시 버튼 비활성화
           } else {
             const path = clickLine.getPath();
 
@@ -133,7 +134,7 @@ function KakaoMap() {
             distanceOverlayRef.current = newDistanceOverlay;
 
             drawingFlag = false;
-            setIsRightClicked(true); // 우클릭이 발생했으므로 버튼 상태를 활성화
+            setIsButtonClicked(true); // 우클릭이 발생했으므로 버튼 상태를 활성화
           }
         });
         function deleteClickLine() {
@@ -180,7 +181,6 @@ function KakaoMap() {
         zoomable: false,
         disableDoubleClick: false,
         disableDoubleClickZoom: false,
-        center: clickPosition,
         center: new kakao.maps.LatLng(centerLat, centerLng),
         level: 6,
       };
@@ -232,24 +232,38 @@ function KakaoMap() {
   };
 
   return (
-    <>    
-      <div
-        id="map"
-        style={{ width: "100%", height: "calc(100vh - 168px)" }}
-      ></div>
-      <Button size="lg" variant="primary" onClick={handleModalMapOpen}>
-        경로 등록
-      </Button>
-      <div id="newMap"></div>
+    <>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <>
+          <div
+            id="map"
+            style={{ width: "100%", height: "calc(100vh - 168px)" }}
+          ></div>
+          <Button
+            onClick={isButtonClicked ? handleModalMapOpen : null} // isButtonClicked가 false일 때, 클릭 이벤트를 무시
+            size="lg"
+            // variant="primary"
+            fontSize="1.05em"
+            hoverFilter
+            variant={isButtonClicked ? "primary" : "disabled"} // bgColor 속성 추가
+            disabled={!isButtonClicked}
+          >
+            경로 등록
+          </Button>
+          <div id="newMap"></div>
 
-      {/* 경고창 */}
-      {openAlertId && (
-        <Alert message="경로를 등록하시겠습니까?">
-          <AlertUploadMap
-            upload={drawLineOnNewMap}
-            onClose={handleModalMapClose}
-          ></AlertUploadMap>
-        </Alert>
+          {/* 경고창 */}
+          {openAlertId && (
+            <Alert message="경로를 등록하시겠습니까?">
+              <AlertUploadMap
+                upload={drawLineOnNewMap}
+                onClose={handleModalMapClose}
+              ></AlertUploadMap>
+            </Alert>
+          )}
+        </>
       )}
     </>
   );
