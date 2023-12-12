@@ -11,17 +11,17 @@ function Button({ disabled, size, variant, children, ...props }) {
 const SIZES = {
   sm: css`
     --button-font-size: ${(props) => props.theme.fontSize.xsmall};
-    --button-padding: 0 0.85rem;
+    --button-padding: 0.2rem 0.3rem;
     --button-height: 1.75rem;
   `,
   md: css`
     --button-font-size: ${(props) => props.theme.fontSize.small};
-    --button-padding: 0.5rem;
-    --button-height: 2.15rem;
+    --button-padding: 0.5rem 1.95rem;
+    --button-height: 2rem;
   `,
   lg: css`
     --button-font-size: ${(props) => props.theme.fontSize.medium};
-    --button-padding: 0 1.15rem;
+    --button-padding: 0.7rem 2.15rem;
     --button-height: 2.75rem;
   `,
 };
