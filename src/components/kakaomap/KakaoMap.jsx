@@ -13,8 +13,11 @@ function KakaoMap() {
   const [linePoints, setLinePoints] = useState([]);
   const [clickPosition, setClickPosition] = useState(null);
   const [mapInfo, setMapInfo] = useState("");
-  const [isRightClicked, setIsRightClicked] = useState(false); // 버튼 비활성화를 위한 상태 추가
+
+  const [isButtonClicked, setIsButtonClicked] = useState(false); // 버튼 비활성화를 위한 상태 추가
   const [isLoading, setIsLoading] = useState(true); // 로딩창을 위해서 상태 추가
+
+  const [distance, setDistanse] = useState(0);
 
   const { kakao } = window;
 
@@ -86,6 +89,8 @@ function KakaoMap() {
               strokeOpacity: 0.5,
               strokeStyle: "solid",
             });
+
+            setIsButtonClicked(false); //우클릭 후 좌표 수정 할 때 좌클릭 시 다시 버튼 비활성화
           } else {
             const path = clickLine.getPath();
 
@@ -119,6 +124,7 @@ function KakaoMap() {
             const distance =
               "총 거리 : " + Math.round(clickLine.getLength()) + " m";
 
+            setDistanse(Math.round(clickLine.getLength() * 0.001));
             const newDistanceOverlay = new kakao.maps.CustomOverlay({
               position: path[path.length - 1],
               content:
@@ -132,7 +138,7 @@ function KakaoMap() {
             distanceOverlayRef.current = newDistanceOverlay;
 
             drawingFlag = false;
-            setIsRightClicked(true); // 우클릭이 발생했으므로 버튼 상태를 활성화
+            setIsButtonClicked(true); // 우클릭이 발생했으므로 버튼 상태를 활성화
           }
         });
         function deleteClickLine() {
@@ -215,7 +221,7 @@ function KakaoMap() {
 
       setMapInfo(mapInfo);
       navigate(`/profile/${userInfo.accountname}/addcourse`, {
-        state: { data: mapInfo },
+        state: { data: mapInfo, distance: distance },
       });
     }
   };
@@ -240,13 +246,13 @@ function KakaoMap() {
             style={{ width: "100%", height: "calc(100vh - 168px)" }}
           ></div>
           <Button
-            onClick={isRightClicked ? handleModalMapOpen : null} // isRightClicked가 false일 때, 클릭 이벤트를 무시
+            onClick={isButtonClicked ? handleModalMapOpen : null} // isButtonClicked가 false일 때, 클릭 이벤트를 무시
             size="lg"
             // variant="primary"
             fontSize="1.05em"
             hoverFilter
-            variant={isRightClicked ? "primary" : "disabled"} // bgColor 속성 추가
-            disabled={!isRightClicked}
+            variant={isButtonClicked ? "primary" : "disabled"} // bgColor 속성 추가
+            disabled={!isButtonClicked}
           >
             경로 등록
           </Button>
