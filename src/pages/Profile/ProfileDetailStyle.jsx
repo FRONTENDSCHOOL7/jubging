@@ -66,7 +66,6 @@ export const ProfileButtonContainer = styled.div`
   gap: 14px;
   margin-top: 1.625rem;
   padding: 0 4.25rem;
-
   Button {
     /* flex: 1 0 calc(50% - 0.5rem); */
     width: 50%;

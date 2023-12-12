@@ -12,13 +12,13 @@ export default function BackButton() {
   }
 
   return (
-    <Button size="md" onClick={goBack}>
+    <Button size="sm" onClick={goBack}>
       <BackIcon src={back} />
     </Button>
   );
 }
 
 const BackIcon = styled.img`
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
 `;
