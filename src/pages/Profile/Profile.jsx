@@ -31,6 +31,7 @@ export default function Profile() {
   const [skip, setSkip] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [threadPost, setThreadPost] = useState(true);
+  const [accumulate, setAccumulate] = useState(0);
 
   // 스레드 클릭 이벤트
   const handleThread = () => {
@@ -81,6 +82,12 @@ export default function Profile() {
         setCourse(() => {
           return [...response];
         });
+
+        let sum = 0;
+        response.forEach((course) => {
+          sum += course.price;
+        });
+        setAccumulate(sum);
       }
     } catch (error) {
       console.log();
@@ -98,7 +105,7 @@ export default function Profile() {
         <Loading />
       ) : (
         <>
-          <ProfileDetail profile={profile} />
+          <ProfileDetail profile={profile} accumulate={accumulate} />
 
           <ViewButtonContainer>
             <ViewButton onClick={handleThread}>

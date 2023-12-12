@@ -28,6 +28,8 @@ const AddCourse = ({ nickname }) => {
   const [courseLength, setCourseLength] = useState("");
   const [courseReview, setCourseReview] = useState("");
 
+  console.log(location.state.distance);
+
   // 지도
   useEffect(() => {
     if (location.state.data) {
@@ -65,7 +67,7 @@ const AddCourse = ({ nickname }) => {
     }
   }, [location.state.data]);
 
-  console.log(JSON.stringify(location.state.data));
+  // console.log(JSON.stringify(location.state.data));
 
   const handleSubmitMap = async (event) => {
     event.preventDefault();
@@ -73,7 +75,7 @@ const AddCourse = ({ nickname }) => {
     const mapData = {
       product: {
         itemName: courseName,
-        price: parseInt(courseLength),
+        price: parseInt(location.state.distance),
         link: courseReview,
         itemImage: JSON.stringify(location.state.data),
       },
@@ -127,9 +129,10 @@ const AddCourse = ({ nickname }) => {
             label="코스 길이"
             type="number"
             name="courseLength"
-            value={courseLength}
+            value={location.state.distance}
             onChange={(e) => setCourseLength(e.target.value)}
             placeholder="1 이상의 숫자만 입력 가능합니다."
+            disabled
           />
           <Input
             label="한줄평"
