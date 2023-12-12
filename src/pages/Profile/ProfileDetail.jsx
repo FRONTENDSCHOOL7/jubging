@@ -13,6 +13,7 @@ import share from "../../assets/icons/icon-share.svg";
 import baseprofile from "../../assets/icons/baseprofile.svg";
 import {
   ChatLink,
+  DistanceContanier,
   FollowButtonContainer,
   FollowNum,
   FollowTitle,
@@ -28,7 +29,7 @@ import {
   UserName,
 } from "./ProfileDetailStyle";
 
-export default function ProfileDetail({ profile }) {
+export default function ProfileDetail({ profile, accumulate }) {
   const numberRegex =
     /^https:\/\/api\.mandarin\.weniv\.co\.kr\/(?:(?!null|undefined)[\w.]*)$/;
   const userInfo = useRecoilValue(userInfoAtom);
@@ -117,7 +118,7 @@ export default function ProfileDetail({ profile }) {
             프로필 수정
           </Button>
 
-          <Button
+          {/* <Button
             type="button"
             size="md"
             variant="white"
@@ -130,7 +131,7 @@ export default function ProfileDetail({ profile }) {
             }
           >
             추천 코스 등록
-          </Button>
+          </Button> */}
         </ProfileButtonContainer>
       ) : (
         <FollowButtonContainer>
@@ -162,6 +163,17 @@ export default function ProfileDetail({ profile }) {
           </ShareButton>
         </FollowButtonContainer>
       )}
+      <DistanceContanier>
+        {accumulate}Km 만큼 뛰었어요!
+        <Button
+          type="button"
+          size="sm"
+          variant="white"
+          onClick={() => navigate(`/`)}
+        >
+          거리 보러가기
+        </Button>
+      </DistanceContanier>
     </>
   );
 }

@@ -66,6 +66,10 @@ export const ProfileButtonContainer = styled.div`
   gap: 14px;
   margin-top: 1.625rem;
   padding: 0 4.25rem;
+  Button {
+    /* flex: 1 0 calc(50% - 0.5rem); */
+    width: 50%;
+  }
 `;
 
 export const FollowButtonContainer = styled.div`
@@ -79,6 +83,15 @@ export const FollowButtonContainer = styled.div`
   :nth-child(2) {
     flex: 1 0 0;
   }
+`;
+
+export const DistanceContanier = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  margin-top: 1.625rem;
 `;
 
 export const ChatLink = styled(Link)`

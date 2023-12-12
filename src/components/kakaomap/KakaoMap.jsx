@@ -13,8 +13,11 @@ function KakaoMap() {
   const [linePoints, setLinePoints] = useState([]);
   const [clickPosition, setClickPosition] = useState(null);
   const [mapInfo, setMapInfo] = useState("");
+
   const [isButtonClicked, setIsButtonClicked] = useState(false); // 버튼 비활성화를 위한 상태 추가
   const [isLoading, setIsLoading] = useState(true); // 로딩창을 위해서 상태 추가
+
+  const [distance, setDistanse] = useState(0);
 
   const { kakao } = window;
 
@@ -121,6 +124,7 @@ function KakaoMap() {
             const distance =
               "총 거리 : " + Math.round(clickLine.getLength()) + " m";
 
+            setDistanse(Math.round(clickLine.getLength() * 0.001));
             const newDistanceOverlay = new kakao.maps.CustomOverlay({
               position: path[path.length - 1],
               content:
@@ -217,7 +221,7 @@ function KakaoMap() {
 
       setMapInfo(mapInfo);
       navigate(`/profile/${userInfo.accountname}/addcourse`, {
-        state: { data: mapInfo },
+        state: { data: mapInfo, distance: distance },
       });
     }
   };
