@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 
 import { checkEmail, checkAccountname } from "./../../api/signupAPI";
 
-import Input from "../../components/common/Input/Input";
 import { Form, Title } from "./SignUpStyle";
-import BackSpaceHeader from "../../components/common/Header/BackSpaceHeader";
+import Header from "../../components/common/Header/Header";
+import Input from "../../components/common/Input/Input";
 import Button from "../../components/common/Button/Button";
 
 // 이메일 유효성 검사 함수
@@ -147,7 +147,7 @@ const SignUp = () => {
 
   return (
     <>
-      <BackSpaceHeader />
+      <Header />
       <Form onSubmit={handleSignup}>
         <Title>이메일 회원가입</Title>
         <Input

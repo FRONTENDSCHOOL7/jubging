@@ -7,11 +7,11 @@ import { getUserFeed } from "../../api/postAPI";
 import { jobgingAtom } from "../../recoil/jobgingAtom";
 import { useRecoilValue } from "recoil";
 
-import HeaderBar from "../../components/common/Header/HomeHeader";
 import NewsPosting from "../../components/Post/NewsPosting";
 import Navbar from "../../components/common/Navbar/Navbar";
 import Loading from "../Loading/Loading";
 import NoFollowHome from "../Home/NoFollowHome";
+import Header from "../../components/common/Header/Header";
 
 function NewsLetter() {
   const limit = 10;
@@ -52,7 +52,7 @@ function NewsLetter() {
 
   return (
     <>
-      <HeaderBar />
+      <Header>뉴스레터</Header>
       {isLoading ? (
         <Loading />
       ) : data.length === 0 ? (

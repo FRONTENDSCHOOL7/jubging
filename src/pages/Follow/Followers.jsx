@@ -11,12 +11,12 @@ import { useRecoilValue } from "recoil";
 
 import { userInfoAtom } from "../../recoil/userAtom";
 
-import FollowerHeader from "../../components/common/Header/FollowerHeader";
 import FollowerList from "./FollowList/FollowerList";
 import styled from "styled-components";
 import Loading from "../Loading/Loading";
 import NoFollowHome from "../Home/NoFollowHome";
 import Button from "../../components/common/Button/Button";
+import Header from "../../components/common/Header/Header";
 
 export default function Followers() {
   const { accountname } = useParams();
@@ -53,7 +53,7 @@ export default function Followers() {
 
   return (
     <>
-      <FollowerHeader />
+      <Header>팔로워</Header>
       {isLoading ? (
         <Loading />
       ) : (
@@ -105,6 +105,6 @@ const UserItem = styled.li`
   margin-bottom: 20px;
 
   Button {
-    flex: 0 0 5rem;
+    flex: 0 0 4rem;
   }
 `;

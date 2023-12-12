@@ -5,10 +5,10 @@ import { BASE_URL } from "../../api/axios";
 import { postSignUp } from "../../api/signupAPI";
 import { postImgUpload } from "../../api/imageAPI";
 
+import { Title, Form, Selfchange } from "./ProfileStartStyle";
 import UserProfile from "../../components/common/Profile/ProfileImage";
 import Input from "../../components/common/Input/Input";
-import { Title, Form, Selfchange } from "./ProfileStartStyle";
-import BackSpaceHeader from "../../components/common/Header/BackSpaceHeader";
+import Header from "../../components/common/Header/Header";
 import Button from "../../components/common/Button/Button";
 
 const ProfileStart = () => {
@@ -53,7 +53,7 @@ const ProfileStart = () => {
 
   return (
     <>
-      <BackSpaceHeader />
+      <Header />
       <Form onSubmit={handleProfileSignup}>
         <Title>프로필 설정</Title>
         <Selfchange>나중에 언제든지 변경할 수 있습니다.</Selfchange>

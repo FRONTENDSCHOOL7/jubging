@@ -1,17 +1,13 @@
 import { useState, useEffect, useCallback } from "react";
 import { Link, useParams } from "react-router-dom";
+import styled from "styled-components";
 
 import { getUserProfile } from "../../api/profileAPI";
 import { getUserFeed, getUserCourse } from "../../api/postAPI";
 
-import { userInfoAtom } from "../../recoil/userAtom";
-
-import { useRecoilValue } from "recoil";
-
-import MoreHeader from "../../components/common/Header/MoreHeader";
+import Header from "../../components/common/Header/Header";
 import Navbar from "../../components/common/Navbar/Navbar";
 import ProfileDetail from "./ProfileDetail";
-import styled from "styled-components";
 import { Logo } from "./ProfileDetailStyle";
 import thread from "../../assets/icons/icon-post-list.svg";
 import location from "../../assets/icons/icon-location.svg";
@@ -22,8 +18,6 @@ import Loading from "../Loading/Loading";
 
 export default function Profile() {
   const { accountname } = useParams();
-
-  const userInfo = useRecoilValue(userInfoAtom);
 
   const [profile, setProfile] = useState({});
   const [feed, setFeed] = useState([]);
@@ -93,7 +87,7 @@ export default function Profile() {
 
   return (
     <>
-      <MoreHeader userInfo={userInfo} pageName="Profile" />
+      <Header>@{accountname}</Header>
       {isLoading ? (
         <Loading />
       ) : (

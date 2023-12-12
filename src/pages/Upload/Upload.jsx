@@ -5,7 +5,7 @@ import { BASE_URL } from "../../api/axios";
 import { postImgUpload } from "../../api/imageAPI";
 import { postUpload, putEditPost } from "../../api/postAPI";
 
-import UploadHeader from "../../components/common/Header/UploadHeader";
+import Header from "../../components/common/Header/Header";
 import {
   PostContainer,
   TextArea,
@@ -86,11 +86,9 @@ function UploadPage({ editData }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <UploadHeader
-        type={"submit"}
-        disabled={!enableUpload}
-        bgColor={enableUpload ? "#40A6DE" : "#94CEF8"}
-      />
+      <Header variant={enableUpload && "primary"} disabled={!enableUpload}>
+        피드 작성
+      </Header>
       <PostContainer>
         <ImgLabel htmlFor="upload-button-file">이미지 등록</ImgLabel>
         {image && (
