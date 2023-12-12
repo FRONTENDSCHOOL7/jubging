@@ -13,7 +13,7 @@ function KakaoMap() {
   const [linePoints, setLinePoints] = useState([]);
   const [clickPosition, setClickPosition] = useState(null);
   const [mapInfo, setMapInfo] = useState("");
-  const [isRightClicked, setIsRightClicked] = useState(false); // 버튼 비활성화를 위한 상태 추가
+  const [isButtonClicked, setIsButtonClicked] = useState(false); // 버튼 비활성화를 위한 상태 추가
   const [isLoading, setIsLoading] = useState(true); // 로딩창을 위해서 상태 추가
 
   const { kakao } = window;
@@ -86,6 +86,8 @@ function KakaoMap() {
               strokeOpacity: 0.5,
               strokeStyle: "solid",
             });
+
+            setIsButtonClicked(false); //우클릭 후 좌표 수정 할 때 좌클릭 시 다시 버튼 비활성화
           } else {
             const path = clickLine.getPath();
 
@@ -132,7 +134,7 @@ function KakaoMap() {
             distanceOverlayRef.current = newDistanceOverlay;
 
             drawingFlag = false;
-            setIsRightClicked(true); // 우클릭이 발생했으므로 버튼 상태를 활성화
+            setIsButtonClicked(true); // 우클릭이 발생했으므로 버튼 상태를 활성화
           }
         });
         function deleteClickLine() {
@@ -240,13 +242,13 @@ function KakaoMap() {
             style={{ width: "100%", height: "calc(100vh - 168px)" }}
           ></div>
           <Button
-            onClick={isRightClicked ? handleModalMapOpen : null} // isRightClicked가 false일 때, 클릭 이벤트를 무시
+            onClick={isButtonClicked ? handleModalMapOpen : null} // isButtonClicked가 false일 때, 클릭 이벤트를 무시
             size="lg"
             // variant="primary"
             fontSize="1.05em"
             hoverFilter
-            variant={isRightClicked ? "primary" : "disabled"} // bgColor 속성 추가
-            disabled={!isRightClicked}
+            variant={isButtonClicked ? "primary" : "disabled"} // bgColor 속성 추가
+            disabled={!isButtonClicked}
           >
             경로 등록
           </Button>
