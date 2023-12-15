@@ -16,9 +16,6 @@ function KakaoMap() {
   const [isButtonClicked, setIsButtonClicked] = useState(false); // 버튼 비활성화를 위한 상태 추가
   const [isLoading, setIsLoading] = useState(true); // 로딩창을 위해서 상태 추가
 
-  const [isButtonClicked, setIsButtonClicked] = useState(false); // 버튼 비활성화를 위한 상태 추가
-  const [isLoading, setIsLoading] = useState(true); // 로딩창을 위해서 상태 추가
-
   const { kakao } = window;
 
   const distanceOverlayRef = useRef(null);
