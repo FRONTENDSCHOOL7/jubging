@@ -14,7 +14,7 @@ export const PostImages = styled.div`
 
   img {
     width: 100%;
-    aspect-ratio: 304 / 228;
+    aspect-ratio: 304 / 304;
     object-fit: cover;
   }
 `;

@@ -14,11 +14,12 @@ import ProfileDetail from "./ProfileDetail";
 import styled from "styled-components";
 import { Logo } from "./ProfileDetailStyle";
 import thread from "../../assets/icons/icon-post-list.svg";
-import location from "../../assets/icons/icon-location.svg";
+import gallery from "../../assets/icons/icon-post-album.svg";
 import Posting from "../../components/Post/Posting";
 import Map from "../../components/kakaomap/MapComponent";
 
 import Loading from "../Loading/Loading";
+import PostGallery from "../../components/Post/PostMain/PostGallery";
 
 export default function Profile() {
   const { accountname } = useParams();
@@ -113,7 +114,7 @@ export default function Profile() {
             </ViewButton>
 
             <ViewButton onClick={handleGallery}>
-              <Logo src={location} />
+              <Logo src={gallery} />
             </ViewButton>
           </ViewButtonContainer>
 
@@ -144,13 +145,17 @@ export default function Profile() {
               </PostingContainer>
             </>
           ) : (
-            // 추천 코스 리스트
+            // 갤러리 형식
             <GalleryContainer>
-              {course.map((item) => (
-                <CourseLink to={`/profile/${item.id}/course`} key={item.id}>
-                  <Map data={item} />
-                </CourseLink>
-              ))}
+              {feed
+                .filter((post) => post.image !== null)
+                .map((post) => (
+                  <PostGallery
+                    key={post.id}
+                    postId={post.id}
+                    postImage={post.image}
+                  ></PostGallery>
+                ))}
             </GalleryContainer>
           )}
         </>
@@ -167,10 +172,14 @@ export const ViewButtonContainer = styled.header`
 export const ViewButton = styled.button`
   width: 195px;
   height: 44px;
+  border-top: 1px solid #dbdbdb;
   border-bottom: 1px solid #dbdbdb;
 
   &:focus {
-    border-bottom: 1.2px solid ${(props) => props.theme.colors.mainColor};
+    img {
+      filter: invert(71%) sepia(25%) saturate(5570%) hue-rotate(172deg)
+        brightness(93%) contrast(86%);
+    }
   }
 `;
 
@@ -181,10 +190,6 @@ const PostingContainer = styled.section`
 export const GalleryContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 13px;
+  gap: 8px;
   padding: 28px 17px;
-`;
-
-export const CourseLink = styled(Link)`
-  height: 120px;
 `;
