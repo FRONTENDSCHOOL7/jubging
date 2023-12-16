@@ -106,4 +106,9 @@ export const ShareButton = styled.button`
 export const Logo = styled.img`
   width: 25px;
   height: 25px;
+
+  filter: ${(props) =>
+    props.Post
+      ? "invert(71%) sepia(25%) saturate(5570%) hue-rotate(172deg)brightness(93%) contrast(86%)"
+      : null};
 `;

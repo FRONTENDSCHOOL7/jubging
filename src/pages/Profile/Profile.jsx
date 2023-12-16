@@ -14,9 +14,9 @@ import ProfileDetail from "./ProfileDetail";
 import styled from "styled-components";
 import { Logo } from "./ProfileDetailStyle";
 import thread from "../../assets/icons/icon-post-list.svg";
-import location from "../../assets/icons/icon-location.svg";
+import location from "../../assets/icons/icon-post-album.svg";
 import Posting from "../../components/Post/Posting";
-import Map from "../../components/kakaomap/MapComponent";
+import PostGallery from "../../components/Post/PostMain/PostGallery";
 
 import Loading from "../Loading/Loading";
 
@@ -31,16 +31,19 @@ export default function Profile() {
   const [skip, setSkip] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [threadPost, setThreadPost] = useState(true);
+  const [galleryPost, setGalleryPost] = useState(false);
   const [accumulate, setAccumulate] = useState(0);
 
   // 스레드 클릭 이벤트
   const handleThread = () => {
     setThreadPost(true);
+    setGalleryPost(false);
   };
 
   // 갤러리 클릭 이벤트
   const handleGallery = () => {
     setThreadPost(false);
+    setGalleryPost(true);
   };
 
   // 개인프로필 가져오기
@@ -90,7 +93,7 @@ export default function Profile() {
         setAccumulate(sum);
       }
     } catch (error) {
-      console.log();
+      console.log(error);
     }
   }, [accountname]);
 
@@ -109,11 +112,11 @@ export default function Profile() {
 
           <ViewButtonContainer>
             <ViewButton onClick={handleThread}>
-              <Logo src={thread} />
+              <Logo Post={threadPost} src={thread} />
             </ViewButton>
 
             <ViewButton onClick={handleGallery}>
-              <Logo src={location} />
+              <Logo Post={galleryPost} src={location} />
             </ViewButton>
           </ViewButtonContainer>
 
@@ -144,13 +147,17 @@ export default function Profile() {
               </PostingContainer>
             </>
           ) : (
-            // 추천 코스 리스트
+            // 갤러리 형식
             <GalleryContainer>
-              {course.map((item) => (
-                <CourseLink to={`/profile/${item.id}/course`} key={item.id}>
-                  <Map data={item} />
-                </CourseLink>
-              ))}
+              {feed
+                .filter((post) => post.image !== null)
+                .map((post) => (
+                  <PostGallery
+                    key={post.id}
+                    postId={post.id}
+                    postImage={post.image}
+                  ></PostGallery>
+                ))}
             </GalleryContainer>
           )}
         </>
@@ -167,24 +174,19 @@ export const ViewButtonContainer = styled.header`
 export const ViewButton = styled.button`
   width: 195px;
   height: 44px;
+  border-top: 1px solid #dbdbdb;
   border-bottom: 1px solid #dbdbdb;
-
-  &:focus {
-    border-bottom: 1.2px solid ${(props) => props.theme.colors.mainColor};
-  }
 `;
 
 const PostingContainer = styled.section`
   margin-bottom: 60px;
 `;
 
-export const GalleryContainer = styled.div`
+export const GalleryContainer = styled.section`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 13px;
-  padding: 28px 17px;
-`;
+  gap: 8px;
 
-export const CourseLink = styled(Link)`
-  height: 120px;
+  padding: 28px 17px;
+  margin-bottom: 60px;
 `;
