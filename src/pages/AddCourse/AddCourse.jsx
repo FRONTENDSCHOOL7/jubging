@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { userInfoAtom } from "../../recoil/userAtom";
@@ -28,11 +28,9 @@ const AddCourse = ({ nickname }) => {
   const [courseLength, setCourseLength] = useState("");
   const [courseReview, setCourseReview] = useState("");
 
-  console.log(location.state.distance);
-
   // 지도
   useEffect(() => {
-    if (location.state.data) {
+    if (location.state && location.state.data) {
       const container = document.getElementById("newMap");
       const mapInfo = JSON.parse(location.state.data.map);
       const lineInfo = JSON.parse(location.state.data.line);
@@ -62,27 +60,33 @@ const AddCourse = ({ nickname }) => {
         strokeOpacity: 1,
         strokeStyle: "solid",
       });
-      // console.log("lineInfo : ", lineInfo);
-      // console.log("mapinfo : ", mapInfo);
     }
-  }, [location.state.data]);
+  }, [location.state]);
 
-  // console.log(JSON.stringify(location.state.data));
-
-  const handleSubmitMap = async (event) => {
-    event.preventDefault();
-
-    const mapData = {
-      product: {
-        itemName: courseName,
-        price: parseInt(location.state.distance),
-        link: courseReview,
-        itemImage: JSON.stringify(location.state.data),
-      },
-    };
-    const response = await postCourseUpload(mapData);
-    response && navigate(`/profile/${userInfo.accountname}`);
-  };
+  const handleSubmitMap = useCallback(
+    async (event) => {
+      event.preventDefault();
+      try {
+        if (!location.state) {
+          console.log("location.state is null");
+          return;
+        }
+        const mapData = {
+          product: {
+            itemName: courseName,
+            price: parseInt(location.state.distance),
+            link: courseReview,
+            itemImage: JSON.stringify(location.state.data),
+          },
+        };
+        const response = await postCourseUpload(mapData);
+        response && navigate(`/profile/${userInfo.accountname}`);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    [courseName, courseReview, location.state, navigate, userInfo.accountname]
+  );
 
   return (
     <>
@@ -93,7 +97,7 @@ const AddCourse = ({ nickname }) => {
           플로깅 코스를 입력해주세요.
         </Title>
 
-        {location.state.data ? (
+        {location.state && location.state.data ? (
           <MapCanvas id="newMap" />
         ) : (
           <MapCanvas>
@@ -129,9 +133,9 @@ const AddCourse = ({ nickname }) => {
             label="코스 길이"
             type="number"
             name="courseLength"
-            value={location.state.distance}
-            onChange={(e) => setCourseLength(e.target.value)}
-            placeholder="1 이상의 숫자만 입력 가능합니다."
+            value={location.state ? location.state.distance : ""}
+            // onChange={(e) => setCourseLength(e.target.value)}
+            placeholder="코스입력 시 자동입력됩니다."
             disabled
           />
           <Input

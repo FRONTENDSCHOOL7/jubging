@@ -169,7 +169,7 @@ export default function ProfileDetail({ profile, accumulate }) {
           type="button"
           size="sm"
           variant="white"
-          onClick={() => navigate(`/`)}
+          onClick={() => navigate(`/profile/${userInfo.accountname}/addcourse`)}
         >
           거리 보러가기
         </Button>
