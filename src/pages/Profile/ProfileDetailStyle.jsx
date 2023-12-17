@@ -111,4 +111,6 @@ export const Logo = styled.img`
     props.Post
       ? "invert(71%) sepia(25%) saturate(5570%) hue-rotate(172deg)brightness(93%) contrast(86%)"
       : null};
+
+  transition: all 0.1s ease-in-out;
 `;

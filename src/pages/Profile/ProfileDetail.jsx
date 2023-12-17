@@ -11,6 +11,7 @@ import Button from "../../components/common/Button/Button";
 import chat from "../../assets/icons/icon-chat.svg";
 import share from "../../assets/icons/icon-share.svg";
 import baseprofile from "../../assets/icons/baseprofile.svg";
+import TierCard from "../../components/common/Tier/TierCard";
 import {
   ChatLink,
   DistanceContanier,
@@ -117,21 +118,6 @@ export default function ProfileDetail({ profile, accumulate }) {
           >
             프로필 수정
           </Button>
-
-          {/* <Button
-            type="button"
-            size="md"
-            variant="white"
-            onClick={() =>
-              navigate(`/profile/${profile.accountname}/addcourse`, {
-                state: {
-                  userData: profile,
-                },
-              })
-            }
-          >
-            추천 코스 등록
-          </Button> */}
         </ProfileButtonContainer>
       ) : (
         <FollowButtonContainer>
@@ -163,17 +149,7 @@ export default function ProfileDetail({ profile, accumulate }) {
           </ShareButton>
         </FollowButtonContainer>
       )}
-      <DistanceContanier>
-        {accumulate}Km 만큼 뛰었어요!
-        <Button
-          type="button"
-          size="sm"
-          variant="white"
-          onClick={() => navigate(`/profile/${userInfo.accountname}/addcourse`)}
-        >
-          거리 보러가기
-        </Button>
-      </DistanceContanier>
+      <TierCard accumulate={accumulate}></TierCard>
     </>
   );
 }
