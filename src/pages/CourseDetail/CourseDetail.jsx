@@ -1,5 +1,5 @@
 // import { useEffect, useState, useRef } from "react";
-// import { useParams } from "react-router-dom";
+// import { useNavigate, useParams } from "react-router-dom";
 
 // import { Map, Polyline } from "react-kakao-maps-sdk";
 // import { getCoutseDetail } from "../../api/postAPI";
@@ -7,6 +7,9 @@
 // import Loading from "../Loading/Loading";
 // import Navbar from "../../components/common/Navbar/Navbar";
 // import BackSpaceHeader from "../../components/common/Header/BackSpaceHeader";
+
+// import CourseHeader from "../../components/CourseDetail/CourseDetailHeader";
+
 // import {
 //   Title,
 //   Label,
@@ -19,6 +22,7 @@
 //   const { courseId } = useParams();
 //   const [courseInfo, setCourseInfo] = useState({});
 //   const [isLoading, setIsLoading] = useState(true);
+//   const [product, setproduct] = useState();
 
 //   const { kakao } = window;
 
@@ -47,6 +51,7 @@
 //         setIsLoading(false);
 //         console.log("response: ", response);
 //         setCourseInfo(response.product);
+//         setproduct(response.product); //product 넘기기  product.author product 안에 author 넘기는 것
 //       } catch (error) {
 //         console.log(error);
 //       }
@@ -80,9 +85,13 @@
 //         <>
 //           <BackSpaceHeader />
 //           <Title>
-//             {courseInfo.author.username} 님 만의
+//             {/* {courseInfo.author.username} 님 만의
 //             <br />
-//             {courseInfo.itemName} 플로깅 코스
+//             {courseInfo.itemName} 플로깅 코스 */}
+//             <CourseHeader
+//               product={product} //product 값 전체 넘김
+//               courseId={courseId}
+//             />
 //           </Title>
 //           <MapCanvas>
 //             {mapCenter && (
@@ -139,9 +148,8 @@ import { getCoutseDetail } from "../../api/postAPI";
 
 import Loading from "../Loading/Loading";
 import Navbar from "../../components/common/Navbar/Navbar";
-import BackSpaceHeader from "../../components/common/Header/BackSpaceHeader";
-
-import CourseHeader from "../../components/CourseDetail/CourseDetailHeader";
+import MoreHeader from "../../components/common/Header/Header";
+import Header from "../../components/common/Header/Header";
 
 import {
   Title,
@@ -149,6 +157,8 @@ import {
   Detail,
   MapCanvas,
   Container,
+  UsernameBox,
+  TitleBox,
 } from "./CourseDetailStyle";
 
 const CourseDetail = () => {
@@ -216,15 +226,12 @@ const CourseDetail = () => {
         <Loading />
       ) : (
         <>
-          <BackSpaceHeader />
+          <Header product={product} />
           <Title>
+            <UsernameBox>{product.author.username} 님 만의</UsernameBox>
+            <TitleBox>{product.itemName} 플로깅 코스</TitleBox>
             {/* {courseInfo.author.username} 님 만의
-            <br />
             {courseInfo.itemName} 플로깅 코스 */}
-            <CourseHeader
-              product={product} //product 값 전체 넘김
-              courseId={courseId}
-            />
           </Title>
           <MapCanvas>
             {mapCenter && (
