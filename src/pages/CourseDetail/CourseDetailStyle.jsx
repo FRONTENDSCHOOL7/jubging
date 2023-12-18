@@ -6,6 +6,7 @@ export const Title = styled.h1`
   font-size: 16px;
   color: ${(props) => props.theme.colors.blackColor};
   line-height: 20px;
+  display: flex;
 `;
 
 export const Container = styled.section`

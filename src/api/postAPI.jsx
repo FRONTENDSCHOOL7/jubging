@@ -144,6 +144,16 @@ export const getCoutseDetail = async (courseId) => {
   }
 };
 
+// 코스 삭제
+export const getCourseDelete = async (courseId) => {
+  try {
+    const response = await authAxios.delete(`/product/${courseId}`);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 // 좋아요
 export const postLike = async (token, postId) => {
   try {
