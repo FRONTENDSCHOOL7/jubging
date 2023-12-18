@@ -149,7 +149,7 @@ export default function ProfileDetail({ profile, accumulate }) {
           </ShareButton>
         </FollowButtonContainer>
       )}
-      <TierCard accumulate={accumulate}></TierCard>
+      <TierCard accumulate={accumulate} accountname={accountname}></TierCard>
     </>
   );
 }

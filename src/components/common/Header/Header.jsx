@@ -1,6 +1,7 @@
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 import { userInfoAtom } from "../../../recoil/userAtom";
+import { getCourseDelete } from "../../../api/postAPI";
 import { loginAtom } from "../../../recoil/loginAtom";
 import { useRecoilValue, useResetRecoilState } from "recoil";
 
@@ -10,8 +11,16 @@ import {
   ExitChat,
   Modal,
   ProfileModal,
+  FeedModal,
+  AnotherfeedModal,
 } from "../Modal/Modal";
-import { Alert, AlertExitChat, AlertLogout, AlertReport } from "../Alert/Alert";
+import {
+  Alert,
+  AlertExitChat,
+  AlertLogout,
+  AlertReport,
+  AlertDeleteFeed,
+} from "../Alert/Alert";
 
 import Button from "../Button/Button";
 import BackButton from "../Button/BackButton";
@@ -19,7 +28,7 @@ import MoreButton from "../Button/MoreButton";
 import SearchButton from "../Button/SearchButton";
 import { Container, SearchBar, Title } from "./HeaderStyle";
 
-function Header({ children, onChange, variant, disabled }) {
+function Header({ children, onChange, variant, disabled, product }) {
   const {
     isModalOpen,
     isAlertOpen,
@@ -34,6 +43,7 @@ function Header({ children, onChange, variant, disabled }) {
 
   const navigate = useNavigate();
   const { accountname } = useParams();
+  const { courseId } = useParams();
   const { pathname } = useLocation();
 
   const userInfo = useRecoilValue(userInfoAtom);
@@ -51,6 +61,26 @@ function Header({ children, onChange, variant, disabled }) {
     resetUserInfo();
     resetLogin();
     navigate("/");
+  };
+
+  // 코스 삭제 클릭이벤트
+  const handleDeleteCourse = async () => {
+    try {
+      const response = await getCourseDelete(courseId);
+      handleAlertClose();
+      navigate(`/home`); // url 수정 예정
+      console.log("course:", courseId);
+      console.log("repose".response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // 코스 수정 클릭이벤트
+  const handleEditPost = () => {
+    // navigate(`/product/${courseId}/edit`, {
+    //   state: { postData },
+    // });
   };
 
   return (
@@ -150,6 +180,35 @@ function Header({ children, onChange, variant, disabled }) {
                 onClose={handleAlertClose}
                 exit={handleAlertExit}
               ></AlertExitChat>
+            </Alert>
+          )}
+        </>
+      )}
+
+      {/* 코스 */}
+      {pathname === `/ploggingrecord/${courseId}/course` && (
+        <>
+          <MoreButton onClick={handleOpenModal} />
+          {/* 모달 */}
+          {isModalOpen && (
+            <Modal onClose={handleCloseModal}>
+              {userInfo.accountname === product.author.accountname ? (
+                <FeedModal
+                  modify={handleEditPost}
+                  deleteFeed={handleOpenAlert}
+                />
+              ) : (
+                <AnotherfeedModal report={handleReport} />
+              )}
+            </Modal>
+          )}
+          {/* 경고창 */}
+          {isAlertOpen && (
+            <Alert message="게시글을 삭제할까요?">
+              <AlertDeleteFeed
+                deleteFeed={handleDeleteCourse}
+                onClose={handleAlertClose}
+              />
             </Alert>
           )}
         </>

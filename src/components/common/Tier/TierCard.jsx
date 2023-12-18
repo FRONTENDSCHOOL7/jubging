@@ -12,7 +12,7 @@ import {
   DistanseInfo,
 } from "./TierCardStyle";
 
-export default function TierCard({ accumulate }) {
+export default function TierCard({ accumulate, accountname }) {
   const navigate = useNavigate();
   const [acc, setAcc] = useState(0);
   const [tier, setTier] = useState("");
@@ -20,18 +20,40 @@ export default function TierCard({ accumulate }) {
   useEffect(() => {
     setAcc(accumulate);
 
-    if (acc < 10) {
-      setTier("브론즈");
-    } else if (10 <= acc && acc < 50) {
-      setTier("실버");
-    } else if (50 <= acc && acc < 80) {
-      setTier("골드");
-    } else if (80 <= acc && acc < 150) {
+    if (acc < 50) {
+      setTier("씨앗");
+    } else if (50 <= acc && acc < 500) {
+      setTier("새싹");
+    } else if (500 <= acc && acc < 1500) {
+      setTier("잎새");
+    } else if (1500 <= acc && acc < 5000) {
+      setTier("가지");
+    } else if (5000 <= acc && acc < 7500) {
       setTier("플레티넘");
-    } else if (150 <= acc && acc < 300) {
-      setTier("다이아");
-    } else if (300 <= acc) {
+    } else if (7500 <= acc && acc < 10000) {
+      setTier("다이아몬드");
+    } else if (acc >= 10000) {
       setTier("챌린저");
+    }
+
+    switch (true) {
+      case acc < 50:
+        setTier("씨앗");
+        break;
+      case acc < 500:
+        setTier("새싹");
+        break;
+      case acc < 1500:
+        setTier("잎새");
+        break;
+      case acc < 5000:
+        setTier("가지");
+        break;
+      case acc < 10000:
+        setTier("나무");
+        break;
+      default:
+        setTier("열매");
     }
   }, [accumulate, acc]);
 
@@ -47,9 +69,9 @@ export default function TierCard({ accumulate }) {
           type="button"
           size="sm"
           variant="white"
-          onClick={() => navigate(`/`)}
+          onClick={() => navigate(`/ploggingrecord/${accountname}`)}
         >
-          거리 보러가기 {`>`}
+          기록 보러가기 {`>`}
         </Button>
       </ContentContainer>
     </TierCardContainer>

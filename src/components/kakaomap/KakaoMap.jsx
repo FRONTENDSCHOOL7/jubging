@@ -122,9 +122,9 @@ function KakaoMap() {
             const path = clickLine.getPath();
 
             const distance =
-              "총 거리 : " + Math.round(clickLine.getLength()) + " m";
+              "총 거리 : " + Math.round(clickLine.getLength() / 1000) + " km";
 
-            setDistanse(Math.round(clickLine.getLength() * 0.001));
+            setDistanse(Math.round(clickLine.getLength()));
             const newDistanceOverlay = new kakao.maps.CustomOverlay({
               position: path[path.length - 1],
               content:

@@ -7,6 +7,7 @@ export const Title = styled.h1`
   color: ${(props) => props.theme.colors.blackColor};
   line-height: 20px;
   display: flex;
+  flex-direction: column;
 `;
 
 export const Container = styled.section`
@@ -36,3 +37,7 @@ export const MapCanvas = styled.section`
   overflow: hidden;
   background-color: ${(props) => props.theme.colors.placeHolderColor};
 `;
+
+export const UsernameBox = styled.div``;
+
+export const TitleBox = styled.div``;

@@ -51,14 +51,17 @@ function PloggingRecord() {
         <RecordList>
           {course.map((item) => (
             <RecordItem>
-              <RecordLink to={`/profile/${item.id}/course`} key={item.id}>
+              <RecordLink
+                to={`/ploggingrecord/${item.id}/course`}
+                key={item.id}
+              >
                 <MapImage>
                   <MapComponet data={item} />
                 </MapImage>
                 <RecordDetail>
                   <div>
                     <RecordTitle>{item.itemName}</RecordTitle>
-                    <MapLength>{item.price}m</MapLength>
+                    <MapLength>{item.price / 1000}km</MapLength>
                   </div>
                   <RecordReview>{item.link}</RecordReview>
                 </RecordDetail>
