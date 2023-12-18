@@ -11,10 +11,10 @@ import { userInfoAtom } from "../../recoil/userAtom";
 import { useRecoilState } from "recoil";
 
 import { Form, ModificationContainer } from "./ProfileModificationStyle";
+import { Alert, AlertChange } from "../../components/common/Alert/Alert";
 import UserProfile from "../../components/common/Profile/ProfileImage";
 import Input from "../../components/common/Input/Input";
-import UploadHeader from "../../components/common/Header/UploadHeader";
-import { Alert, AlertChange } from "../../components/common/Alert/Alert";
+import Header from "../../components/common/Header/Header";
 
 const ProfileStartPage = () => {
   const navigate = useNavigate();
@@ -136,11 +136,9 @@ const ProfileStartPage = () => {
   return (
     <>
       <Form onSubmit={handleModifyProfile}>
-        <UploadHeader
-          type={"submit"}
-          disabled={!enableEdit}
-          bgColor={enableEdit ? "#40A6DE" : "#94CEF8"}
-        />
+        <Header variant={enableEdit && "primary"} disabled={!enableEdit}>
+          프로필 작성
+        </Header>
         <ModificationContainer>
           <UserProfile handleImgUpload={handleImgUpload} profileImage={image} />
           <Input

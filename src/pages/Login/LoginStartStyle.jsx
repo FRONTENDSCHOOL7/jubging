@@ -10,7 +10,7 @@ export const LoginBox = styled.div`
   padding: 0 4.25rem;
 
   Button {
-    flex: 1 0 6.25rem;
+    flex: 1 0 7.8rem;
   }
 `;
 

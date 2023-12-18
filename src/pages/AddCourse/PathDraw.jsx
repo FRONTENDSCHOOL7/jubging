@@ -1,16 +1,16 @@
 import { userInfoAtom } from "../../recoil/userAtom";
 import { useRecoilValue } from "recoil";
 
-import KakaoMap from "../../components/kakaomap/KakaoMap";
 import { Wrapper, Title, MapCanvas } from "./PathDrawStyle";
-import BackSpaceHeader from "../../components/common/Header/BackSpaceHeader";
+import KakaoMap from "../../components/kakaomap/KakaoMap";
+import Header from "../../components/common/Header/Header";
 
 const PathDraw = ({ nickname }) => {
   const userInfo = useRecoilValue(userInfoAtom);
 
   return (
     <>
-      <BackSpaceHeader />
+      <Header>경로 등록</Header>
       <Wrapper>
         <Title>
           {userInfo.username} 님 만의 <br />

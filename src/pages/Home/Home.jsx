@@ -7,8 +7,8 @@ import { getFollowFeed } from "../../api/postAPI";
 import Loading from "./../Loading/Loading";
 import NoFollowHome from "./NoFollowHome";
 import Posting from "../../components/Post/Posting";
-import HeaderBar from "../../components/common/Header/HomeHeader";
 import Navbar from "../../components/common/Navbar/Navbar";
+import Header from "../../components/common/Header/Header";
 
 function Home() {
   const limit = 10;
@@ -45,7 +45,7 @@ function Home() {
 
   return (
     <>
-      <HeaderBar />
+      <Header>줍깅피드</Header>
       {isLoading ? (
         <Loading />
       ) : data.length === 0 ? (

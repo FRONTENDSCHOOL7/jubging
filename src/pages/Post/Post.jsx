@@ -7,9 +7,9 @@ import { getPostDetail } from "../../api/postAPI";
 
 import Loading from "../Loading/Loading";
 import PostComment from "./PostComment";
-import BackSpaceHeader from "../../components/common/Header/BackSpaceHeader";
 import Posting from "../../components/Post/Posting";
 import CommentInput from "./CommentInput";
+import Header from "../../components/common/Header/Header";
 
 function Post() {
   const { postId } = useParams();
@@ -51,7 +51,7 @@ function Post() {
 
   return (
     <>
-      <BackSpaceHeader />
+      {data && <Header>@{data.author.accountname}</Header>}
       {isLoading ? (
         <Loading />
       ) : (

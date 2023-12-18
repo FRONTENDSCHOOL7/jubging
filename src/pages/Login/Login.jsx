@@ -10,8 +10,8 @@ import { userInfoAtom } from "../../recoil/userAtom";
 import { loginAtom } from "../../recoil/loginAtom";
 
 import { Title, EmailSignUp, Form, ErrMsg } from "./LoginStyle";
+import Header from "../../components/common/Header/Header";
 import Input from "../../components/common/Input/Input";
-import BackSpaceHeader from "../../components/common/Header/BackSpaceHeader";
 import Button from "../../components/common/Button/Button";
 
 // 이메일 유효성 검사 함수
@@ -115,7 +115,7 @@ const Login = () => {
 
   return (
     <>
-      <BackSpaceHeader />
+      <Header />
       <Form onSubmit={handleLogin}>
         <Title>로그인</Title>
         <Input

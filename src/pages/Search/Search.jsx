@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { getUserSearch } from "../../api/profileAPI";
 import useDebounce from "../../hook/useDebounce";
 
-import SearchHeader from "../../components/common/Header/SearchHeader";
+import Header from "../../components/common/Header/Header";
 import Navbar from "../../components/common/Navbar/Navbar";
 import UserListBox from "../../components/common/UserList/UserListBox";
 
@@ -52,7 +52,7 @@ const Search = () => {
 
   return (
     <>
-      <SearchHeader onChange={handleSearchId} />
+      <Header onChange={handleSearchId} />
       {inputTxt && result.length === 0 ? (
         <NoResult>검색 결과가 없습니다.</NoResult>
       ) : (

@@ -5,17 +5,11 @@ import { userInfoAtom } from "../../recoil/userAtom";
 import { useRecoilValue } from "recoil";
 import { postCourseUpload } from "../../api/postAPI";
 
-import UploadHeader from "../../components/common/Header/UploadHeader";
+import { Form, Title, MapCanvas, InputContainer } from "./AddCourseStyle";
 import Navbar from "../../components/common/Navbar/Navbar";
-import {
-  Form,
-  Title,
-  MapCanvas,
-  InputContainer,
-  CourseLink,
-} from "./AddCourseStyle";
 import Input from "../../components/common/Input/Input";
 import Button from "../../components/common/Button/Button";
+import Header from "../../components/common/Header/Header";
 
 const { kakao } = window;
 
@@ -91,7 +85,7 @@ const AddCourse = ({ nickname }) => {
   return (
     <>
       <Form onSubmit={handleSubmitMap}>
-        <UploadHeader type={"submit"} />
+        <Header>플로깅 기록</Header>
         <Title>
           {userInfo.username} 님 만의 <br />
           플로깅 코스를 입력해주세요.
