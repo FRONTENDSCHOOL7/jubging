@@ -16,6 +16,7 @@ import Upload from "../pages/Upload/Upload";
 import NewsLetter from "../pages/NewsLetter/NewsLetter";
 import Profile from "../pages/Profile/Profile";
 import ProfileModification from "../pages/Profile/ProfileModification";
+import PloggingRecord from "../pages/PloggingRecord/PloggingRecord";
 import AddCourse from "../pages/AddCourse/AddCourse";
 import DrawCourse from "../pages/AddCourse/PathDraw";
 import CourseDetail from "../pages/CourseDetail/CourseDetail";
@@ -47,6 +48,10 @@ export default function AppRouter() {
             <Route path="/post/:postId" element={<Post />} />
             <Route path="/post/upload" element={<Upload />} />
             <Route path="/post/:postId/edit" element={<PostEdit />} />
+            <Route
+              path="/ploggingrecord/:accountname"
+              element={<PloggingRecord />}
+            />
             <Route path="/newsletter" element={<NewsLetter />} />
             <Route path="/chat" element={<ChatListPage />} />
             <Route path="/chat/room" element={<Chat />} />
