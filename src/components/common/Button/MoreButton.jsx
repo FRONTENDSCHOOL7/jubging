@@ -5,7 +5,7 @@ import more from "../../../assets/icons/icon-more-vertical.svg";
 
 export default function MoreButton({ onClick }) {
   return (
-    <Button size="sm" onClick={onClick}>
+    <Button size="sm" onClick={onClick} $rmargin={0}>
       <MoreIcon src={more} />
     </Button>
   );

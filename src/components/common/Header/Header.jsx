@@ -28,7 +28,14 @@ import MoreButton from "../Button/MoreButton";
 import SearchButton from "../Button/SearchButton";
 import { Container, SearchBar, Title } from "./HeaderStyle";
 
-function Header({ children, onChange, variant, disabled, product }) {
+function Header({
+  children,
+  onChange,
+  variant,
+  disabled,
+  product,
+  courseData,
+}) {
   const {
     isModalOpen,
     isAlertOpen,
@@ -77,10 +84,10 @@ function Header({ children, onChange, variant, disabled, product }) {
   };
 
   // 코스 수정 클릭이벤트
-  const handleEditPost = () => {
-    // navigate(`/product/${courseId}/edit`, {
-    //   state: { postData },
-    // });
+  const handleEditCourse = () => {
+    navigate(`/ploggingrecord/${courseId}/edit`, {
+      state: { courseData },
+    });
   };
 
   return (
@@ -194,7 +201,7 @@ function Header({ children, onChange, variant, disabled, product }) {
             <Modal onClose={handleCloseModal}>
               {userInfo.accountname === product.author.accountname ? (
                 <FeedModal
-                  modify={handleEditPost}
+                  modify={handleEditCourse}
                   deleteFeed={handleOpenAlert}
                 />
               ) : (
@@ -203,14 +210,21 @@ function Header({ children, onChange, variant, disabled, product }) {
             </Modal>
           )}
           {/* 경고창 */}
-          {isAlertOpen && (
-            <Alert message="게시글을 삭제할까요?">
-              <AlertDeleteFeed
-                deleteFeed={handleDeleteCourse}
-                onClose={handleAlertClose}
-              />
-            </Alert>
-          )}
+          {isAlertOpen &&
+            (userInfo.accountname === product.author.accountname ? (
+              <Alert message="게시글을 삭제할까요?">
+                <AlertDeleteFeed
+                  deleteFeed={handleDeleteCourse}
+                  onClose={handleAlertClose}
+                />
+              </Alert>
+            ) : (
+              <Alert
+                message={`${product.author.accountname}님이 신고되었습니다.`}
+              >
+                <AlertReport onClose={handleAlertClose} />
+              </Alert>
+            ))}
         </>
       )}
     </Container>

@@ -144,6 +144,33 @@ export const getCoutseDetail = async (courseId) => {
   }
 };
 
+// 코스 수정
+export const postCourseEdit = async (
+  courseId,
+  itemName,
+  price,
+  link,
+  itemImage
+) => {
+  try {
+    const CourseeditData = {
+      product: {
+        itemName: itemName,
+        price: price,
+        link: link,
+        itemImage: itemImage,
+      },
+    };
+    const response = await authAxios.put(
+      `/product/${courseId}`,
+      CourseeditData
+    );
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 // 코스 삭제
 export const getCourseDelete = async (courseId) => {
   try {

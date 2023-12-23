@@ -230,8 +230,6 @@ const CourseDetail = () => {
           <Title>
             <UsernameBox>{product.author.username} 님 만의</UsernameBox>
             <TitleBox>{product.itemName} 플로깅 코스</TitleBox>
-            {/* {courseInfo.author.username} 님 만의
-            {courseInfo.itemName} 플로깅 코스 */}
           </Title>
           <MapCanvas>
             {mapCenter && (

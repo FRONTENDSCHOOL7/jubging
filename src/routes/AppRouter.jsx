@@ -18,6 +18,7 @@ import Profile from "../pages/Profile/Profile";
 import ProfileModification from "../pages/Profile/ProfileModification";
 import PloggingRecord from "../pages/PloggingRecord/PloggingRecord";
 import AddCourse from "../pages/AddCourse/AddCourse";
+import CourseDetailEdit from "../pages/CourseDetail/CourseDetailEdit";
 import DrawCourse from "../pages/AddCourse/PathDraw";
 import CourseDetail from "../pages/CourseDetail/CourseDetail";
 import ChatListPage from "./../pages/ChatList/ChatListPage";
@@ -79,6 +80,10 @@ export default function AppRouter() {
             <Route
               path="ploggingrecord/:courseId/course"
               element={<CourseDetail />}
+            />
+            <Route
+              path="ploggingrecord/:courseId/edit"
+              element={<CourseDetailEdit />}
             />
             <Route path="/search" element={<Search />} />
             <Route path="/*" element={<NotFound />} />
