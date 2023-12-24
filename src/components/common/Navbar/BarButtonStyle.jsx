@@ -8,7 +8,7 @@ export const NavUl = styled.ul`
 `;
 
 export const Navli = styled.li`
-  width: 78px;
+  flex: 1 1 78px;
 `;
 
 export const NavbarLink = styled(NavLink)`
