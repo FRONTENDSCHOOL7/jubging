@@ -1,6 +1,9 @@
 import { useState, useEffect, useCallback } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
+
+import { useRecoilValue } from "recoil";
+import { userInfoAtom } from "../../recoil/userAtom";
 
 import { getUserProfile } from "../../api/profileAPI";
 import { getUserFeed, getUserCourse } from "../../api/postAPI";
@@ -18,10 +21,10 @@ import Loading from "../Loading/Loading";
 
 export default function Profile() {
   const { accountname } = useParams();
+  const userInfo = useRecoilValue(userInfoAtom);
 
   const [profile, setProfile] = useState({});
   const [feed, setFeed] = useState([]);
-  const [course, setCourse] = useState([]);
   const [skip, setSkip] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [threadPost, setThreadPost] = useState(true);
@@ -76,10 +79,6 @@ export default function Profile() {
       const response = await getUserCourse(accountname);
 
       if (response.length > 0) {
-        setCourse(() => {
-          return [...response];
-        });
-
         let sum = 0;
         response.forEach((course) => {
           sum += course.price;
@@ -97,7 +96,11 @@ export default function Profile() {
 
   return (
     <>
-      <Header>@{accountname}</Header>
+      {userInfo.accountname === accountname ? (
+        <Header>마이페이지</Header>
+      ) : (
+        <Header>{accountname}</Header>
+      )}
       {isLoading ? (
         <Loading />
       ) : (
@@ -166,7 +169,7 @@ export const ViewButtonContainer = styled.header`
 `;
 
 export const ViewButton = styled.button`
-  width: 195px;
+  width: 50%;
   height: 44px;
   border-top: 1px solid #dbdbdb;
   border-bottom: 1px solid #dbdbdb;
