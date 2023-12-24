@@ -107,7 +107,7 @@ const AddCourse = ({ nickname }) => {
             <Button
               size="md"
               variant="primary"
-              onClick={() => navigate("/profile/addcourse/drawcourse")}
+              onClick={() => navigate("/ploggingrecord/addcourse/drawcourse")}
             >
               경로 등록하러 가기
             </Button>

@@ -51,7 +51,7 @@ function Post() {
 
   return (
     <>
-      {data && <Header>@{data.author.accountname}</Header>}
+      <Header />
       {isLoading ? (
         <Loading />
       ) : (

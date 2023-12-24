@@ -9,6 +9,7 @@ import NoFollowHome from "./NoFollowHome";
 import Posting from "../../components/Post/Posting";
 import Navbar from "../../components/common/Navbar/Navbar";
 import Header from "../../components/common/Header/Header";
+import AddButton from "../../components/common/Button/AddButton";
 
 function Home() {
   const limit = 10;
@@ -74,6 +75,7 @@ function Home() {
           </PostingContainer>
         </>
       )}
+      <AddButton />
       <Navbar />
     </>
   );

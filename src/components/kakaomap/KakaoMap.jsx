@@ -220,7 +220,7 @@ function KakaoMap() {
       };
 
       setMapInfo(mapInfo);
-      navigate(`/profile/${userInfo.accountname}/addcourse`, {
+      navigate(`/ploggingrecord/${userInfo.accountname}/addcourse`, {
         state: { data: mapInfo, distance: distance },
       });
     }

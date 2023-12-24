@@ -1,31 +1,20 @@
 import styled from "styled-components";
+import info from "../../../assets/icons/icon-info.svg";
 
-export const TierCardContainer = styled.article`
-  position: relative;
+export const CardContainer = styled.article`
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 1.875rem;
-
-  margin-top: 1.625rem;
-  padding: 1cap;
-
-  width: 90%;
-
-  border-radius: 10px;
-  background: #fffdfd;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-
-  left: 50%;
-  transform: translate(-50%, 0);
+  gap: 20px;
+  padding: 2.2rem 1.45rem;
 `;
 
 export const ImageContainer = styled.div`
   position: relative;
-  width: 110px;
+  min-width: 110px;
   height: 110px;
   border-radius: 50%;
   overflow: hidden;
+  flex: 1 0 0;
 `;
 
 export const TierCardImage = styled.img`
@@ -42,24 +31,41 @@ export const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 0.625rem;
+  gap: 21px;
   height: 100%;
-
-  button {
-    vertical-align: top;
-  }
+  flex: 2 0 0;
 `;
 
-export const TierName = styled.p`
+export const ContentTitle = styled.h3`
+  margin-bottom: 8px;
   font-size: ${(props) => props.theme.fontSize.large};
 `;
 
-export const DistanseInfo = styled.p`
+export const ContentDetail = styled.p`
   font-size: ${(props) => props.theme.fontSize.medium};
   color: ${(props) => props.theme.colors.textColor};
+
+  img {
+    width: 25px;
+    margin-right: 5px;
+  }
 `;
 
-export const AccDistanse = styled.p`
-  font-size: ${(props) => props.theme.fontSize.medium};
-  color: ${(props) => props.theme.colors.blackColor};
+export const TierContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 5px;
+`;
+
+export const TierInfoBtn = styled.button`
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  margin-bottom: 11px;
+  transition: 0.3s;
+  background: url(${info}) no-repeat center;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+  }
 `;
