@@ -31,7 +31,7 @@ export default function MapComponet({ data }) {
         <Map
           draggable={false}
           zoomable={false}
-          isableDoubleClick={false}
+          disableDoubleClick={false}
           disableDoubleClickZoom={false}
           center={{ lat: mapCenter.getLat(), lng: mapCenter.getLng() }}
           level={8}
