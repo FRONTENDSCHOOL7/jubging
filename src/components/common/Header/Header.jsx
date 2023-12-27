@@ -113,7 +113,7 @@ function Header({ children, onChange, variant, disabled, product }) {
       )}
 
       {/* 플로깅 기록 */}
-      {pathname === `/profile/${userInfo.accountname}/addcourse` && (
+      {pathname === `/ploggingrecord/${userInfo.accountname}/addcourse` && (
         <>
           <Button size="md" variant="primary">
             저장
