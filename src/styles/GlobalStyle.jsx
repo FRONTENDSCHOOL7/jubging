@@ -11,8 +11,10 @@ const GlobalStyle = createGlobalStyle`
 }
 
 :root {
+  position: relative;
   font-size: 16px;
   font-family: 'GmarketSansMedium';
+  background-color: #F0F2F3;
 }
 
 body {
@@ -74,4 +76,5 @@ img {
   border: 0;
 }
 `;
+
 export default GlobalStyle;

@@ -12,11 +12,15 @@ export default function ProfileChange({ handleImgUpload, profileImage }) {
     handleImgUpload(imageFile);
   };
 
+  const handleFileUpload = (e) => {
+    e.preventDefault();
+    document.getElementById("upload-button-file").click();
+  };
+
   return (
     <Container>
       <ImageContainer>
         <UserImage $profileImage={profileImage} alt="프로필 이미지" />
-
         <input
           type="file"
           style={{ display: "none" }}
@@ -25,13 +29,7 @@ export default function ProfileChange({ handleImgUpload, profileImage }) {
           accept=".jpg, .jpeg, .png, .bmp"
         />
       </ImageContainer>
-
-      <ImageButton
-        onClick={(event) => {
-          event.preventDefault();
-          document.getElementById("upload-button-file").click();
-        }}
-      />
+      <ImageButton onClick={handleFileUpload} />
     </Container>
   );
 }

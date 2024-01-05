@@ -79,7 +79,7 @@ const Search = () => {
 };
 
 const UerListContainer = styled.section`
-  padding: 16px 16px 60px 0;
+  padding: 16px 16px 60px;
 
   a {
     margin-bottom: 16px;

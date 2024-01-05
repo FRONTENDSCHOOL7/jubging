@@ -14,7 +14,6 @@ import baseprofile from "../../assets/icons/baseprofile.svg";
 import TierCard from "../../components/common/Tier/TierCard";
 import {
   ChatLink,
-  DistanceContanier,
   FollowButtonContainer,
   FollowNum,
   FollowTitle,

@@ -6,6 +6,7 @@ export const Container = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 5px;
   position: sticky;
   top: 0;
   padding: 10px;
@@ -27,10 +28,10 @@ export const Title = styled.div`
 `;
 
 export const SearchBar = styled.input`
-  width: 325px;
+  width: 100%;
   height: 30px;
-  border-radius: 32px;
   padding: 0 10px;
+  border-radius: 32px;
   background-color: #f2f2f2;
   font-size: ${(props) => props.theme.fontSize.medium};
 

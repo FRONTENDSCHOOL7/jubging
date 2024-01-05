@@ -19,9 +19,12 @@ function AddButton() {
 const BtnContainer = styled.div`
   position: fixed;
   bottom: 60px;
-  max-width: 390px;
   width: 100%;
   height: 60px;
+
+  @media screen and (min-width: 769px) {
+    max-width: 390px;
+  }
 `;
 
 const AddBtn = styled(Link)`

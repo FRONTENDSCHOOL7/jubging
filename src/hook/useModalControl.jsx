@@ -40,11 +40,15 @@ const ModalContent = styled.div`
   position: fixed;
   bottom: 0;
   padding-top: 16px;
-
+  width: 100%;
   background-color: white;
   border-radius: 10px 10px 0 0;
   box-shadow: 0 2px 40px rgba(0, 0, 0, 0.15);
   animation: ${moveTop} 0.7s ease-in-out;
+
+  @media screen and (min-width: 769px) {
+    max-width: 390px;
+  }
 `;
 
 export const ModalBar = styled.div`

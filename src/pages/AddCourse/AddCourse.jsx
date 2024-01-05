@@ -74,7 +74,7 @@ const AddCourse = ({ nickname }) => {
           },
         };
         const response = await postCourseUpload(mapData);
-        response && navigate(`/profile/${userInfo.accountname}`);
+        response && navigate(`/ploggingrecord/${userInfo.accountname}`);
       } catch (error) {
         console.log(error);
       }

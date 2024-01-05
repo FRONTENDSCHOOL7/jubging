@@ -6,14 +6,13 @@ export const PostContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 340px;
-  margin: 20px auto 0;
+  margin: 20px 20px 0;
 `;
 
 export const ImagePreview = styled.img`
   width: 100%;
   object-fit: cover;
-  aspect-ratio: 3 / 2;
+  aspect-ratio: 1 / 1;
 `;
 
 export const TextArea = styled.textarea`
@@ -53,7 +52,7 @@ export const ImageContainer = styled.div`
   position: relative;
   width: 100%;
   object-fit: cover;
-  aspect-ratio: 3 / 2;
+  aspect-ratio: 1 / 1;
   border: 1px solid #dbdbdb;
   border-radius: 10px;
   overflow: hidden;
