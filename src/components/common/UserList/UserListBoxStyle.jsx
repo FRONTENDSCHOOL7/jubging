@@ -5,7 +5,6 @@ export const ProfileLink = styled(Link)`
   display: flex;
   align-items: center;
   width: 100%;
-  padding-left: 16px;
 `;
 
 export const Maindiv = styled.div`

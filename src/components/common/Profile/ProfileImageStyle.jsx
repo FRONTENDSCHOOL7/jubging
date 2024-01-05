@@ -4,7 +4,12 @@ import profileicon from "../../../assets/icons/icon-photo.svg";
 
 export const Container = styled.section`
   position: relative;
-  margin-bottom: 37px;
+  width: 110px;
+  height: 110px;
+  /* left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%); */
+  margin: 37px auto;
 `;
 
 export const ImageContainer = styled.div`
@@ -14,7 +19,6 @@ export const ImageContainer = styled.div`
   margin: 0 auto;
   overflow: hidden;
   border-radius: 50%;
-  border: 1px solid #dbdbdb;
 `;
 
 export const UserImage = styled.img.attrs((props) => ({
@@ -34,7 +38,7 @@ export const ImageButton = styled.button`
   width: 36px;
   height: 36px;
   position: absolute;
-  right: 100px;
+  right: 0;
   bottom: 0;
   z-index: 999;
 `;

@@ -77,7 +77,7 @@ export const FollowButtonContainer = styled.div`
   padding: 0 4.75rem;
 
   :nth-child(2) {
-    flex: 1 0 0;
+    flex: 1 0 100px;
   }
 `;
 

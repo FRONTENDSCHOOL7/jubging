@@ -38,10 +38,15 @@ export const ModalContent = styled.div`
   bottom: 0;
   padding-top: 16px;
 
+  width: 100%;
   background-color: white;
   border-radius: 10px 10px 0 0;
   box-shadow: 0 2px 40px rgba(0, 0, 0, 0.15);
   animation: ${moveTop} 0.5s ease-in-out;
+
+  @media screen and (min-width: 769px) {
+    max-width: 390px;
+  }
 `;
 
 export const ModalBar = styled.div`
@@ -59,7 +64,7 @@ export const ModalBox = styled.div`
   flex-direction: column;
   align-items: center;
 
-  width: 390px;
+  width: 100%;
 
   .modalList {
     display: flex;
@@ -67,9 +72,7 @@ export const ModalBox = styled.div`
     justify-content: center;
     align-items: center;
     gap: 28px;
-
-    width: 390px;
-
+    width: 100%;
     padding: 16px 0 14px;
 
     background-color: white;

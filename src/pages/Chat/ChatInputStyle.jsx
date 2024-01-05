@@ -1,26 +1,26 @@
 import styled from "styled-components";
 
-export const ChatBar = styled.div`
+export const ChatBar = styled.section`
   display: flex;
   justify-content: space-around;
+  align-items: center;
+  gap: 10px;
   position: fixed;
   bottom: 0;
-  width: 390px;
-  height: 60px;
-  border-top: 1px solid #dfdfdf;
-`;
-
-export const InputWrapper = styled.div`
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  height: 60px;
+  padding: 0 12px;
+  border-top: 1px solid #dfdfdf;
+  background-color: #ffffff;
+
+  @media screen and (min-width: 769px) {
+    max-width: 390px;
+  }
 `;
 
 export const Button = styled.button`
+  flex-shrink: 0;
   background-color: transparent;
-  border: none;
-  margin: 0 13px;
   color: ${(props) =>
     props.$active
       ? props.theme.colors.mainColor

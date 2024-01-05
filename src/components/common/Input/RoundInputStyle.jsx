@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const InputField = styled.input`
-  width: 284px;
+  width: 100%;
   height: 37px;
   padding: 0 15px;
   border-radius: 20px;
@@ -21,5 +21,5 @@ export const InputField = styled.input`
 export const ErrorMessage = styled.div`
   color: ${(props) => props.theme.colors.alertColor};
   font-size: ${(props) => props.theme.fontSize.small};
-  margin-top: 0.5em; // space above the error message
+  margin-top: 0.5em;
 `;
