@@ -1,13 +1,13 @@
 import ReactDom from "react-dom";
 
-import seed from "../../../assets/images/seed.png";
-import sprout from "../../../assets/images/sprout.png";
-import leaf from "../../../assets/images/leaf.png";
-import branch from "../../../assets/images/branch.png";
-import tree from "../../../assets/images/tree.png";
-import fruit from "../../../assets/images/fruit.png";
+import seed from "../../assets/images/seed.png";
+import sprout from "../../assets/images/sprout.png";
+import leaf from "../../assets/images/leaf.png";
+import branch from "../../assets/images/branch.png";
+import tree from "../../assets/images/tree.png";
+import fruit from "../../assets/images/fruit.png";
 
-import { ModalBackground } from "../Modal/ModalStyle";
+import { ModalBackground } from "../common/Modal/ModalStyle";
 import {
   TierContainer,
   TierDistanse,

@@ -2,7 +2,7 @@ import { userInfoAtom } from "../../recoil/userAtom";
 import { useRecoilValue } from "recoil";
 
 import { Wrapper, Title, MapCanvas } from "./PathDrawStyle";
-import KakaoMap from "../../components/kakaomap/KakaoMap";
+import KakaoMap from "../../components/Map/KakaoMap";
 import Header from "../../components/common/Header/Header";
 
 const PathDraw = ({ nickname }) => {

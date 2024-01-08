@@ -7,8 +7,8 @@ import { useRecoilValue } from "recoil";
 import { userInfoAtom } from "../../recoil/userAtom";
 
 import noFollowRabbit from "../../assets/images/crying-bear.svg";
-import MapComponet from "./../../components/kakaomap/MapComponent";
-import PloggingRecordCard from "../../components/common/Tier/PloggingRecordCard";
+import MapComponet from "../../components/Map/MapComponent";
+import PloggingRecordCard from "../../components/Tier/PloggingRecordCard";
 import Header from "../../components/common/Header/Header";
 import Navbar from "./../../components/common/Navbar/Navbar";
 import Loading from "../Loading/Loading";

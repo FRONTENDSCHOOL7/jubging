@@ -6,7 +6,7 @@ import { postSignUp } from "../../api/signupAPI";
 import { postImgUpload } from "../../api/imageAPI";
 
 import { Title, Form, Selfchange } from "./ProfileStartStyle";
-import UserProfile from "../../components/common/Profile/ProfileImage";
+import UserProfile from "../../components/Profile/ProfileImage";
 import Input from "../../components/common/Input/Input";
 import Header from "../../components/common/Header/Header";
 import Button from "../../components/common/Button/Button";

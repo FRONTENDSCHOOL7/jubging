@@ -1,14 +1,11 @@
 import styled from "styled-components";
-import baseprofile from "../../../assets/icons/baseprofile.svg";
-import profileicon from "../../../assets/icons/icon-photo.svg";
+import baseprofile from "../../assets/icons/baseprofile.svg";
+import profileicon from "../../assets/icons/icon-photo.svg";
 
 export const Container = styled.section`
   position: relative;
   width: 110px;
   height: 110px;
-  /* left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%); */
   margin: 37px auto;
 `;
 

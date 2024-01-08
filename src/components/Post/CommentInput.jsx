@@ -6,7 +6,7 @@ import { postComment } from "../../api/commentAPI";
 
 import { userInfoAtom } from "../../recoil/userAtom";
 
-import RoundInput from "../../components/common/Input/RoundInput";
+import RoundInput from "../common/Input/RoundInput";
 import { Button, ChatBar, ProfileImage } from "./CommentInputStyle";
 
 function CommentInput({ onCommentPosted }) {

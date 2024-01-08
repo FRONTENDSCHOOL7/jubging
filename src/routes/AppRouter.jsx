@@ -15,12 +15,12 @@ import PostEdit from "../pages/Post/PostEdit";
 import Upload from "../pages/Upload/Upload";
 import NewsLetter from "../pages/NewsLetter/NewsLetter";
 import Profile from "../pages/Profile/Profile";
-import ProfileModification from "../pages/Profile/ProfileModification";
+import ProfileEdit from "../pages/Profile/ProfileEdit";
 import PloggingRecord from "../pages/PloggingRecord/PloggingRecord";
 import AddCourse from "../pages/AddCourse/AddCourse";
 import DrawCourse from "../pages/AddCourse/PathDraw";
 import CourseDetail from "../pages/CourseDetail/CourseDetail";
-import ChatListPage from "./../pages/ChatList/ChatListPage";
+import ChatList from "../pages/Chat/ChatList";
 import Chat from "../pages/Chat/Chat";
 import Followrs from "./../pages/Follow/Followers";
 import Following from "./../pages/Follow/Following";
@@ -53,7 +53,7 @@ export default function AppRouter() {
               element={<PloggingRecord />}
             />
             <Route path="/newsletter" element={<NewsLetter />} />
-            <Route path="/chat" element={<ChatListPage />} />
+            <Route path="/chat" element={<ChatList />} />
             <Route path="/chat/room" element={<Chat />} />
             <Route path="/profile/:accountname" element={<Profile />} />
             <Route
@@ -66,7 +66,7 @@ export default function AppRouter() {
             />
             <Route
               path="/profile/:accountname/edit"
-              element={<ProfileModification />}
+              element={<ProfileEdit />}
             />
             <Route
               path="/ploggingrecord/:accountname/addcourse"

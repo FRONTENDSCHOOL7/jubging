@@ -1,6 +1,6 @@
-import useTier from "../../../hook/useTier";
+import useTier from "../../hook/useTier";
 
-import bear from "../../../assets/images/big-bear.svg";
+import bear from "../../assets/images/big-bear.svg";
 import {
   CardContainer,
   ContentContainer,
@@ -11,7 +11,7 @@ import {
 } from "./PloggingRecordCardStyle";
 import { ImageContainer, TierCardImage } from "./TierCardStyle";
 
-import useModal from "../../../hook/useModal";
+import useModal from "../../hook/useModal";
 import TierModal, { InfoTierModal } from "./TierModal";
 
 function PloggingRecordCard({ accumulate }) {

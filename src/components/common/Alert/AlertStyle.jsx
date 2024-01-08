@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { colors } from "./../../../styles/Theme";
 
 export const AlertContainer = styled.div`
   position: fixed;
@@ -37,21 +38,20 @@ export const Message = styled.p`
 `;
 
 export const ButtonWrraper = styled.div`
+  width: 100%;
   border-top: 0.5px solid #dbdbdb;
 
   button {
-    border-bottom-right-radius: 10px;
-    border-top-right-radius: 0px;
-    background-color: #ffffff;
+    width: 50%;
   }
 
   button:first-child {
     border-right: 0.5px solid #dbdbdb;
-    border-bottom-right-radius: 0px;
-    border-bottom-left-radius: 10px;
+    border-radius: 0 0 0 10px;
   }
 
   button:last-child {
-    border-bottom-right-radius: 10px;
+    color: ${(props) => props.theme.colors.mainColor};
+    border-radius: 0 0 10px 0;
   }
 `;
