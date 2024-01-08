@@ -1,11 +1,7 @@
 import ReactDOM from "react-dom";
 import ButtonContainer from "../Button/ButtonContainer";
-import {
-  AlertContainer,
-  AlertBox,
-  Message,
-  ButtonWrraper,
-} from "./AlertStyled";
+import { AlertContainer, AlertBox, Message, ButtonWrraper } from "./AlertStyle";
+import Button from "../Button/Button";
 
 export function Alert({ isAlertOpen, onClose, children, message }) {
   if (isAlertOpen === false) {
@@ -26,12 +22,12 @@ export function Alert({ isAlertOpen, onClose, children, message }) {
 export function AlertDeleteFeed({ onClose, deleteFeed }) {
   return (
     <>
-      <ButtonContainer onClick={onClose} width={"126px"} color={"#000000"}>
+      <Button onClick={onClose} size="lg">
         취소
-      </ButtonContainer>
-      <ButtonContainer onClick={deleteFeed} width={"126px"} color={"#41A6DE"}>
+      </Button>
+      <Button onClick={deleteFeed} size="lg">
         삭제
-      </ButtonContainer>
+      </Button>
     </>
   );
 }
@@ -39,12 +35,12 @@ export function AlertDeleteFeed({ onClose, deleteFeed }) {
 export function AlertDeleteCourse({ onClose, deleteCourse }) {
   return (
     <>
-      <ButtonContainer onClick={onClose} width={"126px"} color={"#000000"}>
+      <Button onClick={onClose} size="lg">
         취소
-      </ButtonContainer>
-      <ButtonContainer onClick={deleteCourse} width={"126px"} color={"#41A6DE"}>
+      </Button>
+      <Button onClick={deleteCourse} size="lg">
         삭제
-      </ButtonContainer>
+      </Button>
     </>
   );
 }
@@ -52,40 +48,51 @@ export function AlertDeleteCourse({ onClose, deleteCourse }) {
 export function AlertLogout({ onClose, logout }) {
   return (
     <>
-      <ButtonContainer onClick={onClose} width={"126px"} color={"#000000"}>
+      <Button onClick={onClose} size="lg">
         취소
-      </ButtonContainer>
-      <ButtonContainer onClick={logout} width={"126px"} color={"#41A6DE"}>
+      </Button>
+      <Button onClick={logout} size="lg">
         로그아웃
-      </ButtonContainer>
+      </Button>
     </>
   );
 }
 
 export function AlertReport({ onClose }) {
   return (
-    <ButtonContainer color={"#41A6DE"} width={"252px"} onClick={onClose}>
-      확인
-    </ButtonContainer>
+    <>
+      <Button onClick={onClose} size="lg">
+        취소
+      </Button>
+      <Button onClick={onClose} size="lg">
+        확인
+      </Button>
+    </>
   );
 }
-export function AlertChange({ onChange }) {
+
+export function AlertChange({ onClose, onChange }) {
   return (
-    <ButtonContainer color={"#41A6DE"} width={"252px"} onClick={onChange}>
-      확인
-    </ButtonContainer>
+    <>
+      <Button onClick={onClose} size="lg">
+        취소
+      </Button>
+      <Button onClick={onChange} size="lg">
+        확인
+      </Button>
+    </>
   );
 }
 
 export function AlertUploadMap({ onClose, upload }) {
   return (
     <>
-      <ButtonContainer width={"126px"} color={"#000000"} onClick={onClose}>
+      <Button onClick={onClose} size="lg">
         취소
-      </ButtonContainer>
-      <ButtonContainer width={"126px"} color={"#41A6DE"} onClick={upload}>
+      </Button>
+      <Button onClick={upload} size="lg">
         확인
-      </ButtonContainer>
+      </Button>
     </>
   );
 }
@@ -93,12 +100,12 @@ export function AlertUploadMap({ onClose, upload }) {
 export function AlertExitChat({ onClose, exit }) {
   return (
     <>
-      <ButtonContainer width={"126px"} color={"#000000"} onClick={onClose}>
+      <Button onClick={onClose} size="lg">
         취소
-      </ButtonContainer>
-      <ButtonContainer width={"126px"} color={"#41A6DE"} onClick={exit}>
+      </Button>
+      <Button onClick={exit} size="lg">
         확인
-      </ButtonContainer>
+      </Button>
     </>
   );
 }
