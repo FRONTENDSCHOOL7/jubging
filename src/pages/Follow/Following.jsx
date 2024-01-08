@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import styled from "styled-components";
 
 import {
   getFollowingList,
@@ -11,7 +12,6 @@ import { useRecoilValue } from "recoil";
 import { userInfoAtom } from "../../recoil/userAtom";
 
 import FollowerList from "../../components/FollowList/FollowerList";
-import styled from "styled-components";
 import NoFollowHome from "../Home/NoFollowHome";
 import Loading from "../Loading/Loading";
 import Button from "../../components/common/Button/Button";

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import chatdata from "../../components/common/ChatList/chatdata.json";
+import chatdata from "../../components/Chat/chatdata.json";
 import {
   Wrapper,
   RoomItem,
