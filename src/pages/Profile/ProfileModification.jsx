@@ -12,7 +12,7 @@ import { useRecoilState } from "recoil";
 
 import { Form, ModificationContainer } from "./ProfileModificationStyle";
 import { Alert, AlertChange } from "../../components/common/Alert/Alert";
-import UserProfile from "../../components/common/Profile/ProfileImage";
+import UserProfile from "../../components/Profile/ProfileImage";
 import Input from "../../components/common/Input/Input";
 import Header from "../../components/common/Header/Header";
 

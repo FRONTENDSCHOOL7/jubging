@@ -1,6 +1,6 @@
 import profile from "../../assets/images/rabbit-face.png";
 import Header from "../../components/common/Header/Header";
-import ChatInput from "../../components/common/Chat/ChatInput";
+import ChatInput from "../../components/Chat/ChatInput";
 
 import {
   Wrapper,
