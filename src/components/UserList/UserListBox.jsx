@@ -1,4 +1,4 @@
-import baseprofile from "../../../assets/icons/baseprofile.svg";
+import baseprofile from "../../assets/icons/baseprofile.svg";
 import {
   Maindiv,
   ProfileLink,

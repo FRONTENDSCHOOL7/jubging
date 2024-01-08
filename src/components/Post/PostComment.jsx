@@ -8,12 +8,9 @@ import { userInfoAtom } from "../../recoil/userAtom";
 import { useRecoilValue } from "recoil";
 import useModalControl from "../../hook/useModalControl";
 
-import MoreButton from "../../components/common/Button/MoreButton";
-import { Alert, AlertReport } from "../../components/common/Alert/Alert";
-import {
-  AnotherfeedModal,
-  CommentModal,
-} from "../../components/common/Modal/Modal";
+import MoreButton from "../common/Button/MoreButton";
+import { Alert, AlertReport } from "../common/Alert/Alert";
+import { AnotherfeedModal, CommentModal } from "../common/Modal/Modal";
 import {
   CommentGroup,
   CommentHeaderGroup,

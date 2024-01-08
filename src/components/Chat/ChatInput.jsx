@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { ChatBar, Button } from "./ChatInputStyle";
-import RoundInput from "../../components/common/Input/RoundInput";
+import RoundInput from "../common/Input/RoundInput";
 import PlusIcon from "../../assets/icons/icon-plus.svg";
 
 function ChatInput() {

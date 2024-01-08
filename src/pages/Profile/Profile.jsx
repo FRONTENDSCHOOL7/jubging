@@ -10,8 +10,8 @@ import { getUserFeed, getUserCourse } from "../../api/postAPI";
 
 import Header from "../../components/common/Header/Header";
 import Navbar from "../../components/common/Navbar/Navbar";
-import ProfileDetail from "./ProfileDetail";
-import { Logo } from "./ProfileDetailStyle";
+import ProfileDetail from "../../components/Profile/ProfileDetail";
+import { Logo } from "../../components/Profile/ProfileDetailStyle";
 import thread from "../../assets/icons/icon-post-list.svg";
 import location from "../../assets/icons/icon-post-album.svg";
 import Posting from "../../components/Post/Posting";

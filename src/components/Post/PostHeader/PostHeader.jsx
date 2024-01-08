@@ -7,7 +7,7 @@ import { userInfoAtom } from "../../../recoil/userAtom";
 import { useRecoilValue } from "recoil";
 
 import MoreButton from "../../common/Button/MoreButton";
-import UserListBox from "../../common/UserList/UserListBox";
+import UserListBox from "../../UserList/UserListBox";
 import { PostHeaderContaniner } from "./PostHeaderStyle";
 import { AnotherfeedModal, FeedModal, Modal } from "../../common/Modal/Modal";
 import { Alert, AlertDeleteFeed, AlertReport } from "../../common/Alert/Alert";

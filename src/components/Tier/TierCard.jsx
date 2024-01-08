@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import useTier from "../../../hook/useTier";
+import useTier from "../../hook/useTier";
 
-import Button from "../Button/Button";
+import Button from "../common/Button/Button";
 import {
   TierCardContainer,
   ImageContainer,
