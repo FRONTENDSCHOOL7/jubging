@@ -141,14 +141,13 @@
 // export default CourseDetail;
 
 import { useEffect, useState, useRef } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import { Map, Polyline } from "react-kakao-maps-sdk";
 import { getCoutseDetail } from "../../api/postAPI";
 
 import Loading from "../Loading/Loading";
 import Navbar from "../../components/common/Navbar/Navbar";
-import MoreHeader from "../../components/common/Header/Header";
 import Header from "../../components/common/Header/Header";
 
 import {
