@@ -1,5 +1,4 @@
 import ReactDOM from "react-dom";
-import ButtonContainer from "../Button/ButtonContainer";
 import { AlertContainer, AlertBox, Message, ButtonWrraper } from "./AlertStyle";
 import Button from "../Button/Button";
 
