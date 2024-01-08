@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import info from "../../../assets/icons/icon-info.svg";
+import info from "../../assets/icons/icon-info.svg";
 
 export const CardContainer = styled.article`
   display: flex;
