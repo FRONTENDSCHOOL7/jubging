@@ -15,7 +15,7 @@ import PostEdit from "../pages/Post/PostEdit";
 import Upload from "../pages/Upload/Upload";
 import NewsLetter from "../pages/NewsLetter/NewsLetter";
 import Profile from "../pages/Profile/Profile";
-import ProfileModification from "../pages/Profile/ProfileModification";
+import ProfileEdit from "../pages/Profile/ProfileEdit";
 import PloggingRecord from "../pages/PloggingRecord/PloggingRecord";
 import AddCourse from "../pages/AddCourse/AddCourse";
 import DrawCourse from "../pages/AddCourse/PathDraw";
@@ -66,7 +66,7 @@ export default function AppRouter() {
             />
             <Route
               path="/profile/:accountname/edit"
-              element={<ProfileModification />}
+              element={<ProfileEdit />}
             />
             <Route
               path="/ploggingrecord/:accountname/addcourse"

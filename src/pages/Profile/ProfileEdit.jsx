@@ -10,7 +10,7 @@ import { userInfoAtom } from "../../recoil/userAtom";
 
 import { useRecoilState } from "recoil";
 
-import { Form, ModificationContainer } from "./ProfileModificationStyle";
+import { Form, ModificationContainer } from "./ProfileEditStyle";
 import { Alert, AlertChange } from "../../components/common/Alert/Alert";
 import UserProfile from "../../components/Profile/ProfileImage";
 import Input from "../../components/common/Input/Input";

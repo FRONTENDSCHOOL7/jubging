@@ -6,9 +6,9 @@ import { getComment } from "../../api/commentAPI";
 import { getPostDetail } from "../../api/postAPI";
 
 import Loading from "../Loading/Loading";
-import PostComment from "./PostComment";
+import PostComment from "../../components/Post/PostComment";
 import Posting from "../../components/Post/Posting";
-import CommentInput from "./CommentInput";
+import CommentInput from "../../components/Post/CommentInput";
 import Header from "../../components/common/Header/Header";
 
 function Post() {
