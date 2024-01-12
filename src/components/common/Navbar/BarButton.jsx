@@ -6,7 +6,7 @@ import home from "../../../assets/icons/icon-home.svg";
 import chat from "../../../assets/icons/icon-chat.svg";
 import profile from "../../../assets/icons/icon-profile.svg";
 import post from "../../../assets/icons/icon-post.svg";
-import newsLetter from "../../../assets/icons/icon-news-letter.svg";
+import newsLetter from "../../../assets/images/earth.svg";
 import {
   NavUl,
   Navli,
