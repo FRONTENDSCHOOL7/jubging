@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
 
-import baseprofile from "../../assets/icons/baseprofile.svg";
+import baseprofile from "../../assets/images/base-profile.webp";
 import {
   ProfileLink,
   Section,

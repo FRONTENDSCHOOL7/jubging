@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import baseprofile from "../../assets/icons/baseprofile.svg";
+import baseprofile from "../../assets/images/base-profile.webp";
 import profileicon from "../../assets/icons/icon-photo.svg";
 
 export const Container = styled.section`
