@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-import noFollowRabbit from "../../assets/images/crying-rabbit.svg";
+import noFollowRabbit from "../../assets/images/crying-rabbit.webp";
 import Button from "../../components/common/Button/Button";
 import {
   NoFollowHomeGroup,

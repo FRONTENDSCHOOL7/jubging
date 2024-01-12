@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-import logo from "../../assets/images/logo-white.png";
+import logo from "../../assets/images/logo-white.webp";
 import Bear from "../../components/Splash/Character/Bear";
 import Rabbit from "../../components/Splash/Character/Rabbit";
 import Dog from "../../components/Splash/Character/Dog";

@@ -33,7 +33,7 @@ const ModalContainer = styled.div`
   align-items: center;
   z-index: 9999;
 
-  animation: ${fadeIn} 0.7s ease-in-out;
+  animation: ${fadeIn} 0.3s ease-in-out;
 `;
 
 const ModalContent = styled.div`
@@ -44,7 +44,7 @@ const ModalContent = styled.div`
   background-color: white;
   border-radius: 10px 10px 0 0;
   box-shadow: 0 2px 40px rgba(0, 0, 0, 0.15);
-  animation: ${moveTop} 0.7s ease-in-out;
+  animation: ${moveTop} 0.3s ease-in-out;
 
   @media screen and (min-width: 769px) {
     max-width: 390px;

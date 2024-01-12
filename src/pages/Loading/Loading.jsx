@@ -1,8 +1,8 @@
 import styled, { keyframes } from "styled-components";
 
-import faceBear from "../../assets/images/bear-face.png";
-import faceRabbit from "../../assets/images/rabbit-face.png";
-import faceDog from "../../assets/images/dog-face.png";
+import faceBear from "../../assets/images/bear-face.webp";
+import faceRabbit from "../../assets/images/rabbit-face.webp";
+import faceDog from "../../assets/images/dog-face.webp";
 
 const pingBear = keyframes`
   0% {
@@ -100,21 +100,20 @@ const ImageBox = styled.section`
 const FaceBear = styled.img`
   width: 60px;
   height: 60px;
-
-  animation: ${pingBear} 2s infinite linear;
+  animation: ${pingBear} 1s infinite linear;
 `;
 
 const FaceRabbit = styled.img`
   margin-bottom: 10px;
   width: 60px;
   height: 60px;
-  animation: ${pingRabbit} 2s infinite linear;
+  animation: ${pingRabbit} 1s infinite linear;
 `;
 
 const FaceDog = styled.img`
   width: 60px;
   height: 60px;
-  animation: ${pingDog} 2s infinite linear;
+  animation: ${pingDog} 1s infinite linear;
 `;
 
 const LoadingText = styled.p`

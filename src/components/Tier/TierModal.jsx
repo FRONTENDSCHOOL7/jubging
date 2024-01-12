@@ -1,11 +1,11 @@
 import ReactDom from "react-dom";
 
-import seed from "../../assets/images/seed.png";
-import sprout from "../../assets/images/sprout.png";
-import leaf from "../../assets/images/leaf.png";
-import branch from "../../assets/images/branch.png";
-import tree from "../../assets/images/tree.png";
-import fruit from "../../assets/images/fruit.png";
+import seed from "../../assets/images/seed.webp";
+import sprout from "../../assets/images/sprout.webp";
+import leaf from "../../assets/images/leaf.webp";
+import branch from "../../assets/images/branch.webp";
+import tree from "../../assets/images/tree.webp";
+import fruit from "../../assets/images/fruit.webp";
 
 import { ModalBackground } from "../common/Modal/ModalStyle";
 import {
@@ -48,7 +48,7 @@ export function InfoTierModal() {
     <TierContainer>
       {tierImg.map((data) => (
         <TierImageBox>
-          <img src={data.img} alt={`${data}`} />
+          <img src={data.img} alt={`${data.title} 등급`} />
           <TierTitle>{data.title}</TierTitle>
           <TierDistanse>{data.ditance}</TierDistanse>
         </TierImageBox>

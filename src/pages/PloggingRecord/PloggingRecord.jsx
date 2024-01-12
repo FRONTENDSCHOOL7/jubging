@@ -6,7 +6,7 @@ import { getUserCourse } from "../../api/postAPI";
 import { useRecoilValue } from "recoil";
 import { userInfoAtom } from "../../recoil/userAtom";
 
-import noFollowRabbit from "../../assets/images/crying-bear.svg";
+import noFollowRabbit from "../../assets/images/crying-bear.webp";
 import MapComponet from "../../components/Map/MapComponent";
 import PloggingRecordCard from "../../components/Tier/PloggingRecordCard";
 import Header from "../../components/common/Header/Header";

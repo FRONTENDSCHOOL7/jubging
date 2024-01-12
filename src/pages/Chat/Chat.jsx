@@ -1,4 +1,4 @@
-import profile from "../../assets/images/rabbit-face.png";
+import profile from "../../assets/images/rabbit-face.webp";
 import Header from "../../components/common/Header/Header";
 import ChatInput from "../../components/Chat/ChatInput";
 
@@ -11,7 +11,7 @@ import {
   Time,
 } from "./ChatStyle";
 
-function ChatPage() {
+function Chat() {
   return (
     <>
       <Header>다 버리는 동주</Header>
@@ -42,4 +42,4 @@ function ChatPage() {
   );
 }
 
-export default ChatPage;
+export default Chat;
