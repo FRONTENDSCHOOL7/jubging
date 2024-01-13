@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
-import { BASE_URL } from "../../api/axios";
+import useImageUploader from "../../hook/useImageUploader";
 import { postSignUp } from "../../api/signupAPI";
-import { postImgUpload } from "../../api/imageAPI";
 
 import { Title, Form, Selfchange } from "./ProfileStartStyle";
 import UserProfile from "../../components/Profile/ProfileImage";
@@ -11,12 +10,13 @@ import Input from "../../components/common/Input/Input";
 import Header from "../../components/common/Header/Header";
 import Button from "../../components/common/Button/Button";
 
-const ProfileStart = () => {
+function ProfileStart() {
   const location = useLocation();
   const navigate = useNavigate();
 
+  const { image, handleImgUpload } = useImageUploader();
+
   const [intro, setIntro] = useState("");
-  const [image, setImage] = useState("");
 
   const username = location.state.username;
   const password = location.state.password;
@@ -35,20 +35,6 @@ const ProfileStart = () => {
       image
     );
     navigate("/login");
-  };
-
-  // 이미지 업로드 핸들러
-  const handleImgUpload = async (imageFile) => {
-    const form = new FormData();
-    form.append("image", imageFile);
-
-    try {
-      const imageData = await postImgUpload(form);
-      const imageUrl = BASE_URL + imageData.filename;
-      setImage(imageUrl);
-    } catch (error) {
-      console.log(error);
-    }
   };
 
   return (
@@ -75,6 +61,6 @@ const ProfileStart = () => {
       </Form>
     </>
   );
-};
+}
 
 export default ProfileStart;

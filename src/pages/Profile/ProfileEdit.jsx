@@ -15,16 +15,18 @@ import { Alert, AlertChange } from "../../components/common/Alert/Alert";
 import UserProfile from "../../components/Profile/ProfileImage";
 import Input from "../../components/common/Input/Input";
 import Header from "../../components/common/Header/Header";
+import useImageUploader from "../../hook/useImageUploader";
 
 const ProfileStartPage = () => {
   const navigate = useNavigate();
   const [userInfo, setUserInfo] = useRecoilState(userInfoAtom);
 
+  const { image, setImage, handleImgUpload } = useImageUploader();
+
   const [username, setUsername] = useState("");
   const [accountname, setAccountname] = useState("");
   const [intro, setIntro] = useState("");
   const [submitState, setSubmitState] = useState(false);
-  const [image, setImage] = useState("");
   const [enableEdit, setEnableEdit] = useState(false);
   const [accountnameErrorMsg, setAccountnameErrorMsg] = useState("");
   const [isCheckingAccountname, setIsCheckingAccountname] = useState(false);
@@ -39,20 +41,6 @@ const ProfileStartPage = () => {
       setIsCheckingAccountname(true);
     }
   }, [userInfo]);
-
-  // 이미지 업로드 핸들러
-  const handleImgUpload = async (imageFile) => {
-    const form = new FormData();
-    form.append("image", imageFile);
-
-    try {
-      const imageData = await postImgUpload(form);
-      const imageUrl = BASE_URL + imageData.filename;
-      setImage(imageUrl);
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   const handleChange = () => {
     navigate(`/profile/${userInfo.accountname}`);
