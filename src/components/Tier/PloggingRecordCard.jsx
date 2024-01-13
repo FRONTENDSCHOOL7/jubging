@@ -21,7 +21,7 @@ function PloggingRecordCard({ accumulate }) {
     <>
       <CardContainer>
         <ImageContainer>
-          <TierCardImage src={tierImage} />
+          <TierCardImage src={tierImage} alt="등급" />
         </ImageContainer>
         <ContentContainer>
           <div>

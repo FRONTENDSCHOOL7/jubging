@@ -46,6 +46,7 @@ export const Logo = styled.img`
 `;
 
 export const NewsLetter = styled.img`
-  width: 50px;
-  height: 50px;
+  width: 42px;
+  height: 42px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 `;

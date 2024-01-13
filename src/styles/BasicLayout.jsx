@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import intro from "../assets/images/intro-qr.png";
+import intro from "../assets/images/intro-qr.webp";
 
 const BasicContainer = styled.div`
   position: relative;

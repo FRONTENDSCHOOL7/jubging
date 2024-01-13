@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-import { BASE_URL } from "../../api/axios";
-import { postImgUpload } from "../../api/imageAPI";
 import { postUpload, putEditPost } from "../../api/postAPI";
+import useImageUploader from "../../hook/useImageUploader";
 
 import Header from "../../components/common/Header/Header";
 import {
@@ -21,8 +20,10 @@ function UploadPage({ editData }) {
   const { postId } = useParams();
   const navigate = useNavigate();
 
+  const { image, setImage, handleImgUpload } = useImageUploader();
+
   const [content, setContent] = useState("");
-  const [image, setImage] = useState(null);
+  //const [image, setImage] = useState(null);
   const [enableUpload, setEnableUpload] = useState(false);
 
   // editData가 있으면 게시글 불러오기
@@ -44,20 +45,6 @@ function UploadPage({ editData }) {
         const postData = await postUpload(content, image);
         postData && navigate(`/profile/${postData.post.author.accountname}`);
       }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  // 이미지 업로드
-  const handleImgUpload = async (imageFile) => {
-    const form = new FormData();
-    form.append("image", imageFile);
-
-    try {
-      const imageData = await postImgUpload(form);
-      const imageUrl = BASE_URL + imageData.filename;
-      setImage(imageUrl);
     } catch (error) {
       console.log(error);
     }
@@ -86,7 +73,10 @@ function UploadPage({ editData }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <Header variant={enableUpload && "primary"} disabled={!enableUpload}>
+      <Header
+        variant={enableUpload ? "primary" : "default"}
+        disabled={!enableUpload}
+      >
         피드 작성
       </Header>
       <PostContainer>

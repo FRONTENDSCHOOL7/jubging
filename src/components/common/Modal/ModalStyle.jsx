@@ -30,7 +30,7 @@ export const ModalBackground = styled.div`
   align-items: center;
   z-index: 9999;
 
-  animation: ${fadeIn} 0.7s ease-in-out;
+  animation: ${fadeIn} 0.5s ease-in-out;
 `;
 
 export const ModalContent = styled.div`

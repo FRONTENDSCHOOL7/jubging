@@ -10,7 +10,7 @@ import { useRecoilValue } from "recoil";
 import Button from "../common/Button/Button";
 import chat from "../../assets/icons/icon-chat.svg";
 import share from "../../assets/icons/icon-share.svg";
-import baseprofile from "../../assets/icons/baseprofile.svg";
+import baseprofile from "../../assets/images/base-profile.webp";
 import TierCard from "../Tier/TierCard";
 import {
   ChatLink,

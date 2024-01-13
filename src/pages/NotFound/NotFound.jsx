@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import cryBear from "../../assets/images/crying-bear.svg";
-import cryRabbit from "../../assets/images/crying-rabbit.svg";
-import cryDog from "../../assets/images/crying-dog.svg";
+import cryBear from "../../assets/images/crying-bear.webp";
+import cryRabbit from "../../assets/images/crying-rabbit.webp";
+import cryDog from "../../assets/images/crying-dog.webp";
 import Button from "../../components/common/Button/Button";
 
 export default function NotFound() {
@@ -39,11 +39,11 @@ const ImageBox = styled.section`
 `;
 const CryBear = styled.img`
   position: relative;
-  z-index: -10;
   top: -20px;
   left: 30%;
   width: 94px;
   height: 60px;
+  z-index: 10;
 `;
 const CryRabbit = styled.img`
   position: relative;
@@ -51,12 +51,12 @@ const CryRabbit = styled.img`
   left: 5px;
   width: 75px;
   height: 95px;
+  z-index: 20;
 `;
 const CryDog = styled.img`
   position: relative;
   top: 5px;
   right: 70px;
-  z-index: -20;
   width: 90px;
   height: 65px;
 `;
