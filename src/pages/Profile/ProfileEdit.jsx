@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { BASE_URL } from "../../api/axios";
-import { postImgUpload } from "../../api/imageAPI";
 import { setUserProfile } from "../../api/profileAPI";
 import { checkAccountname } from "../../api/signupAPI";
 
