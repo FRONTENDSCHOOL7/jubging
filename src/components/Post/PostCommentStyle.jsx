@@ -52,6 +52,6 @@ export const CommentText = styled.p`
   letter-spacing: -0.28px;
   word-break: break-all;
   line-height: 18px;
-  font-family: "GmarketSansLight";
+  font-weight: 300;
   font-size: ${(props) => props.theme.fontSize.medium};
 `;

@@ -12,7 +12,7 @@ export default function BackButton() {
   }
 
   return (
-    <Button size="sm" onClick={goBack}>
+    <Button size="sm" onClick={goBack} type="button">
       <BackIcon src={back} />
     </Button>
   );

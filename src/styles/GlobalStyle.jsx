@@ -13,7 +13,7 @@ const GlobalStyle = createGlobalStyle`
 :root {
   position: relative;
   font-size: 16px;
-  font-family: 'GmarketSansMedium';
+  font-family: 'GmarketSans', serif;
   background-color: #F0F2F3;
 }
 

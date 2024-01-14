@@ -27,5 +27,5 @@ export const PostText = styled.p`
   font-size: ${(props) => props.theme.fontSize.medium};
   letter-spacing: -0.28px;
   line-height: 18px;
-  font-family: "GmarketSansLight";
+  font-weight: 300;
 `;
