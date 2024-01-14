@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
   justify-content: space-between;
 
   &:hover {
-    cursor:pointer; 
+    cursor: pointer;
   }
 `;
 
@@ -29,10 +29,10 @@ export const ProfilePhoto = styled.div`
   border-radius: 50%;
   overflow: hidden;
   margin-left: 16px;
-  
+
   img {
-    width :100%; 
-    height :100%; 
+    width: 100%;
+    height: 100%;
   }
 `;
 
@@ -48,9 +48,8 @@ export const ActiveStatus = styled.div`
 
 export const ChatName = styled.h3`
   font-size: ${(props) => props.theme.fontSize.medium};
-  font-weight: bold;
 `;
-  
+
 export const ChatGroup = styled.div`
   display: flex;
   flex-direction: column;

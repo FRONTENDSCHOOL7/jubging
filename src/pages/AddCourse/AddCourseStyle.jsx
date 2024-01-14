@@ -22,7 +22,6 @@ export const MapCanvas = styled.section`
   h3 {
     margin-bottom: 10px;
     font-size: ${(props) => props.theme.fontSize.small};
-    font-weight: bold;
   }
 
   ul {
@@ -36,7 +35,6 @@ export const MapCanvas = styled.section`
   li {
     list-style-type: disc;
     font-size: ${(props) => props.theme.fontSize.xsmall};
-    font-weight: normal;
     margin: 11px 0 10px 15px;
   }
 
