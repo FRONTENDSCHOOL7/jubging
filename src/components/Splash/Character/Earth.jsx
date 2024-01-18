@@ -24,5 +24,5 @@ const ImgEarth = styled.img`
 `;
 
 export default function Earth({ splashScreen }) {
-  return <ImgEarth src={earth} $splashScreen={splashScreen} />;
+  return <ImgEarth src={earth} alt="지구" $splashScreen={splashScreen} />;
 }

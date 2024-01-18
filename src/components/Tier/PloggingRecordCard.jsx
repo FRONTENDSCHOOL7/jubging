@@ -21,7 +21,7 @@ function PloggingRecordCard({ accumulate }) {
     <>
       <CardContainer>
         <ImageContainer>
-          <TierCardImage src={tierImage} alt="등급" />
+          <TierCardImage src={tierImage} alt={`${tier} 등급 이미지`} />
         </ImageContainer>
         <ContentContainer>
           <div>
@@ -36,7 +36,7 @@ function PloggingRecordCard({ accumulate }) {
             <ContentDetail>{accumulate}Km</ContentDetail>
           </div>
           <ContentDetail>
-            <img src={bear} alt="" />
+            <img src={bear} alt="플로깅하는 곰" />
             {nextTier}까지 {nextTierDistance}Km 남았어요
           </ContentDetail>
         </ContentContainer>
