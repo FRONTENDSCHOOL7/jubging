@@ -7,7 +7,7 @@ import Button from "./Button";
 export default function SearchButton() {
   return (
     <Button size="sm" as={Link} to="/search">
-      <SearchIcon src={search} />
+      <SearchIcon src={search} alt="검색 버튼" />
     </Button>
   );
 }
