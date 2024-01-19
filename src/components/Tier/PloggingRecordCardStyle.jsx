@@ -1,14 +1,14 @@
 import styled from "styled-components";
 import info from "../../assets/icons/icon-info.svg";
 
-export const CardContainer = styled.article`
+export const CardContainer = styled.section`
   display: flex;
   align-items: center;
   gap: 20px;
   padding: 2.2rem 1.45rem;
 `;
 
-export const ImageContainer = styled.div`
+export const ImageContainer = styled.article`
   position: relative;
   min-width: 110px;
   height: 110px;
@@ -27,7 +27,7 @@ export const TierCardImage = styled.img`
   object-fit: cover;
 `;
 
-export const ContentContainer = styled.div`
+export const ContentContainer = styled.article`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -36,7 +36,7 @@ export const ContentContainer = styled.div`
   flex: 2 0 0;
 `;
 
-export const ContentTitle = styled.h3`
+export const ContentTitle = styled.h2`
   margin-bottom: 8px;
   font-size: ${(props) => props.theme.fontSize.large};
 `;

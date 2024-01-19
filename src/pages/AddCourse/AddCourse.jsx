@@ -5,7 +5,7 @@ import { userInfoAtom } from "../../recoil/userAtom";
 import { useRecoilValue } from "recoil";
 import { postCourseUpload } from "../../api/postAPI";
 
-import { Form, Title, MapCanvas, InputContainer } from "./AddCourseStyle";
+import { Title, MapCanvas, InputContainer } from "./AddCourseStyle";
 import Navbar from "../../components/common/Navbar/Navbar";
 import Input from "../../components/common/Input/Input";
 import Button from "../../components/common/Button/Button";
@@ -13,13 +13,12 @@ import Header from "../../components/common/Header/Header";
 
 const { kakao } = window;
 
-const AddCourse = ({ nickname }) => {
+const AddCourse = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const userInfo = useRecoilValue(userInfoAtom);
 
   const [courseName, setCourseName] = useState("");
-  const [courseLength, setCourseLength] = useState("");
   const [courseReview, setCourseReview] = useState("");
 
   // 지도
@@ -84,7 +83,7 @@ const AddCourse = ({ nickname }) => {
 
   return (
     <>
-      <Form onSubmit={handleSubmitMap}>
+      <form onSubmit={handleSubmitMap}>
         <Header>플로깅 기록</Header>
         <Title>
           {userInfo.username} 님 만의 <br />
@@ -141,7 +140,7 @@ const AddCourse = ({ nickname }) => {
             placeholder="한 줄 평을 적어주세요."
           />
         </InputContainer>
-      </Form>
+      </form>
       <Navbar />
     </>
   );

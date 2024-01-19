@@ -6,10 +6,11 @@ import {
   ContentContainer,
   ContentDetail,
   ContentTitle,
+  ImageContainer,
+  TierCardImage,
   TierContainer,
   TierInfoBtn,
 } from "./PloggingRecordCardStyle";
-import { ImageContainer, TierCardImage } from "./TierCardStyle";
 
 import useModal from "../../hook/useModal";
 import TierModal, { InfoTierModal } from "./TierModal";

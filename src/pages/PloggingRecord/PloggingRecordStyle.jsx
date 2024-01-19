@@ -33,13 +33,13 @@ export const RecordLink = styled(Link)`
   gap: 19px;
 `;
 
-export const MapImage = styled.div`
+export const MapImage = styled.article`
   width: 120px;
   height: 120px;
   flex-shrink: 0;
 `;
 
-export const RecordDetail = styled.div`
+export const RecordDetail = styled.article`
   display: flex;
   flex-direction: column;
   justify-content: space-between;

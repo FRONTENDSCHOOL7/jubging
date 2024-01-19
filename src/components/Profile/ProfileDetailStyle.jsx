@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export const ProfileContainer = styled.section`
+export const ProfileContainer = styled.article`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -39,7 +39,7 @@ export const UserImage = styled.img`
   object-fit: cover;
 `;
 
-export const UserInfoContainer = styled.div`
+export const UserInfoContainer = styled.article`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -48,7 +48,7 @@ export const UserInfoContainer = styled.div`
   padding: 0 30px;
 `;
 
-export const UserName = styled.p``;
+export const UserName = styled.strong``;
 
 export const UserId = styled.p`
   font-size: ${(props) => props.theme.fontSize.small};

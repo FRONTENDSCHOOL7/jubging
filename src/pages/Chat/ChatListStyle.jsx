@@ -1,17 +1,6 @@
 import styled from "styled-components";
 
-export const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-
-  &:hover {
-    cursor: pointer;
-  }
-`;
-
-export const RoomItem = styled.div`
+export const RoomItem = styled.article`
   display: flex;
   align-items: center;
   width: 100%;
@@ -46,7 +35,7 @@ export const ActiveStatus = styled.div`
   background-color: ${(props) => props.theme.colors.mainColor};
 `;
 
-export const ChatName = styled.h3`
+export const ChatName = styled.h2`
   font-size: ${(props) => props.theme.fontSize.medium};
 `;
 
@@ -64,12 +53,12 @@ export const ChatInfoGroup = styled.div`
   margin-top: 5px;
 `;
 
-export const LastMessage = styled.span`
+export const LastMessage = styled.p`
   font-size: ${(props) => props.theme.fontSize.small};
   color: ${(props) => props.theme.colors.textColor};
 `;
 
-export const ChatDate = styled.span`
+export const ChatDate = styled.time`
   font-size: ${(props) => props.theme.fontSize.xsmall};
-  color: #dbdbdb;
+  color: ${(props) => props.theme.colors.textColor};
 `;

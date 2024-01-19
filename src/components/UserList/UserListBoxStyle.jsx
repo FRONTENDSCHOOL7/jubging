@@ -39,7 +39,7 @@ export const Section = styled.section`
   margin: auto;
 `;
 
-export const UserName = styled.p`
+export const UserName = styled.strong`
   margin-bottom: 6px;
   color: ${(props) => props.theme.colors.blackColor};
   font-size: ${(props) => props.theme.fontSize.medium};
