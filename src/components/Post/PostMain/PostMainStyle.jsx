@@ -6,7 +6,7 @@ export const PostContainer = styled.div`
   padding-right: 23px;
 `;
 
-export const PostImages = styled.div`
+export const PostImages = styled.figure`
   width: 100%;
   border-radius: 10px;
   background-color: ${(props) => props.theme.colors.placeHolderColor};
@@ -19,7 +19,7 @@ export const PostImages = styled.div`
   }
 `;
 
-export const PostText = styled.p`
+export const PostText = styled.figcaption`
   margin-top: 12px;
   word-break: break-all;
   white-space: pre-line;

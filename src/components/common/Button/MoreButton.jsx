@@ -6,7 +6,7 @@ import more from "../../../assets/icons/icon-more-vertical.svg";
 export default function MoreButton({ onClick }) {
   return (
     <Button size="sm" onClick={onClick}>
-      <MoreIcon src={more} />
+      <MoreIcon src={more} alt="더보기 버튼" />
     </Button>
   );
 }

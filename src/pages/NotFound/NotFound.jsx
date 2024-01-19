@@ -12,9 +12,9 @@ export default function NotFound() {
   return (
     <NotFoundPage>
       <ImageBox>
-        <CryBear src={cryBear} />
-        <CryRabbit src={cryRabbit} />
-        <CryDog src={cryDog} />
+        <CryBear src={cryBear} alt="우는 곰" />
+        <CryRabbit src={cryRabbit} alt="우는 토끼" />
+        <CryDog src={cryDog} alt="우는 강아지" />
       </ImageBox>
       <NotFoundText>페이지를 찾을 수 없습니다 :(</NotFoundText>
       <Button size="md" variant="primary" onClick={() => navigate("/home")}>

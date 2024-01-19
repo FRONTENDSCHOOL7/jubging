@@ -107,56 +107,62 @@ export default function Profile() {
         <>
           <ProfileDetail profile={profile} accumulate={accumulate} />
 
-          <ViewButtonContainer>
-            <ViewButton onClick={handleThread}>
-              <Logo Post={threadPost} src={thread} />
-            </ViewButton>
+          <section>
+            <ViewButtonContainer>
+              <ViewButton onClick={handleThread}>
+                <Logo Post={threadPost} src={thread} alt="게시글 쓰레드" />
+              </ViewButton>
 
-            <ViewButton onClick={handleGallery}>
-              <Logo Post={galleryPost} src={location} />
-            </ViewButton>
-          </ViewButtonContainer>
+              <ViewButton onClick={handleGallery}>
+                <Logo
+                  Post={galleryPost}
+                  src={location}
+                  alt="게시글 리스트 보기"
+                />
+              </ViewButton>
+            </ViewButtonContainer>
 
-          {threadPost ? (
-            <>
-              <PostingContainer>
+            {threadPost ? (
+              <>
+                <PostingContainer>
+                  {feed
+                    .filter((post) => post.author.accountname === accountname)
+                    .map((post) => (
+                      // 게시글
+                      <Posting
+                        key={post.id}
+                        pageName="Home"
+                        accountName={post.author.accountname}
+                        profileImage={post.author.image}
+                        userName={post.author.username}
+                        postImage={post.image}
+                        postText={post.content}
+                        postId={post.id}
+                        heartCount={post.heartCount}
+                        commentCount={post.commentCount}
+                        postDate={post.createdAt}
+                        hearted={post.hearted}
+                        data={post}
+                        fetch={fetchUserFeed}
+                      />
+                    ))}
+                </PostingContainer>
+              </>
+            ) : (
+              // 갤러리 형식
+              <GalleryContainer>
                 {feed
-                  .filter((post) => post.author.accountname === accountname)
+                  .filter((post) => post.image !== null)
                   .map((post) => (
-                    // 게시글
-                    <Posting
+                    <PostGallery
                       key={post.id}
-                      pageName="Home"
-                      accountName={post.author.accountname}
-                      profileImage={post.author.image}
-                      userName={post.author.username}
-                      postImage={post.image}
-                      postText={post.content}
                       postId={post.id}
-                      heartCount={post.heartCount}
-                      commentCount={post.commentCount}
-                      postDate={post.createdAt}
-                      hearted={post.hearted}
-                      data={post}
-                      fetch={fetchUserFeed}
-                    />
+                      postImage={post.image}
+                    ></PostGallery>
                   ))}
-              </PostingContainer>
-            </>
-          ) : (
-            // 갤러리 형식
-            <GalleryContainer>
-              {feed
-                .filter((post) => post.image !== null)
-                .map((post) => (
-                  <PostGallery
-                    key={post.id}
-                    postId={post.id}
-                    postImage={post.image}
-                  ></PostGallery>
-                ))}
-            </GalleryContainer>
-          )}
+              </GalleryContainer>
+            )}
+          </section>
         </>
       )}
       <Navbar />

@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 import chatdata from "../../components/Chat/chatdata.json";
 import {
-  Wrapper,
   RoomItem,
   ProfileGroup,
   ProfilePhoto,
@@ -29,23 +28,21 @@ function ChatList() {
       <Header>채팅</Header>
       {chatList.map((chat) => (
         <Link to={`/chat/room/`}>
-          <Wrapper>
-            <RoomItem>
-              <ProfileGroup>
-                <ActiveStatus />
-                <ProfilePhoto>
-                  <img src={chat.profilePhoto} alt="프로필 사진" />
-                </ProfilePhoto>
-              </ProfileGroup>
-              <ChatGroup>
-                <ChatName>{chat.nickname}</ChatName>
-                <ChatInfoGroup>
-                  <LastMessage>{chat.lastMessage}</LastMessage>
-                  <ChatDate>{chat.lastMessageDate}</ChatDate>
-                </ChatInfoGroup>
-              </ChatGroup>
-            </RoomItem>
-          </Wrapper>
+          <RoomItem>
+            <ProfileGroup>
+              <ActiveStatus />
+              <ProfilePhoto>
+                <img src={chat.profilePhoto} alt="프로필 사진" />
+              </ProfilePhoto>
+            </ProfileGroup>
+            <ChatGroup>
+              <ChatName>{chat.nickname}</ChatName>
+              <ChatInfoGroup>
+                <LastMessage>{chat.lastMessage}</LastMessage>
+                <ChatDate>{chat.lastMessageDate}</ChatDate>
+              </ChatInfoGroup>
+            </ChatGroup>
+          </RoomItem>
         </Link>
       ))}
       <Navbar />

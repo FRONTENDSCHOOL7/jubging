@@ -13,7 +13,7 @@ export default function BackButton() {
 
   return (
     <Button size="sm" onClick={goBack} type="button">
-      <BackIcon src={back} />
+      <BackIcon src={back} alt="뒤로가기 버튼" />
     </Button>
   );
 }

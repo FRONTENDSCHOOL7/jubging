@@ -55,5 +55,5 @@ const BigBear = styled.img`
 `;
 
 export default function Bear({ splashScreen }) {
-  return <BigBear src={bigBear} $splashScreen={splashScreen} />;
+  return <BigBear src={bigBear} alt="곰" $splashScreen={splashScreen} />;
 }

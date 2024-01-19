@@ -4,7 +4,7 @@ export const Wrapper = styled.div`
   margin-top: 20px;
 `;
 
-export const Title = styled.h1`
+export const Title = styled.h2`
   font-size: 1.2rem;
   margin: 0 0 20px 20px;
   text-align: left;

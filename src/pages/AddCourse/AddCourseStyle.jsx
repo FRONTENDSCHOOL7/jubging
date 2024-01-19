@@ -1,9 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export const Form = styled.form``;
-
-export const Title = styled.h1`
+export const Title = styled.h2`
   font-size: 1.2rem;
   padding: 22px 30px 0;
   margin-bottom: 15px;

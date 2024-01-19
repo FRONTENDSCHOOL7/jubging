@@ -71,7 +71,7 @@ export default function ProfileDetail({ profile, accumulate }) {
   };
 
   return (
-    <>
+    <section>
       <ProfileContainer>
         <Link
           to={`/profile/${profile.accountname}/follower`}
@@ -149,6 +149,6 @@ export default function ProfileDetail({ profile, accumulate }) {
         </FollowButtonContainer>
       )}
       <TierCard accumulate={accumulate} accountname={accountname}></TierCard>
-    </>
+    </section>
   );
 }

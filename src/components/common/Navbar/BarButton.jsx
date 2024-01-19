@@ -31,7 +31,7 @@ export default function BarButton() {
 
       <Navli>
         <NavbarLink to={`/ploggingrecord/${userInfo.accountname}`}>
-          <Logo src={post} alt="게시물 작성" />
+          <Logo src={post} alt="플로깅 기록" />
           <Title>플로깅 기록</Title>
         </NavbarLink>
       </Navli>

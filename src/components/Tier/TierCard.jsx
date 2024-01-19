@@ -18,7 +18,10 @@ export default function TierCard({ accumulate, accountname }) {
   return (
     <TierCardContainer>
       <ImageContainer>
-        <TierCardImage src={tierImage}></TierCardImage>
+        <TierCardImage
+          src={tierImage}
+          alt={`${tier} 등급 이미지`}
+        ></TierCardImage>
       </ImageContainer>
       <ContentContainer>
         <TierName>플로깅 {tier}</TierName>

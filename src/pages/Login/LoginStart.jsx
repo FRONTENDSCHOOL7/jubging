@@ -25,7 +25,7 @@ export default function LoginStart() {
 
   return (
     <Container>
-      <MainTitle src={logo} />
+      <MainTitle src={logo} alt="로고 이미지" />
       <SubTitle>깨끗한 지구 함께 만들어가요</SubTitle>
 
       <LoginBox>
