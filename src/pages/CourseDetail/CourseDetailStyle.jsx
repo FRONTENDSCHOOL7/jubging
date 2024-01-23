@@ -37,7 +37,3 @@ export const MapCanvas = styled.section`
   overflow: hidden;
   background-color: ${(props) => props.theme.colors.placeHolderColor};
 `;
-
-export const UsernameBox = styled.div``;
-
-export const TitleBox = styled.div``;

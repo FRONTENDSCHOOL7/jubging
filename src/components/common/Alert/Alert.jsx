@@ -21,10 +21,10 @@ export function Alert({ isAlertOpen, onClose, children, message }) {
 export function AlertDeleteFeed({ onClose, deleteFeed }) {
   return (
     <>
-      <Button onClick={onClose} size="lg">
+      <Button type="button" onClick={onClose} size="lg">
         취소
       </Button>
-      <Button onClick={deleteFeed} size="lg">
+      <Button type="button" onClick={deleteFeed} size="lg">
         삭제
       </Button>
     </>
@@ -34,10 +34,10 @@ export function AlertDeleteFeed({ onClose, deleteFeed }) {
 export function AlertDeleteCourse({ onClose, deleteCourse }) {
   return (
     <>
-      <Button onClick={onClose} size="lg">
+      <Button type="button" onClick={onClose} size="lg">
         취소
       </Button>
-      <Button onClick={deleteCourse} size="lg">
+      <Button type="button" onClick={deleteCourse} size="lg">
         삭제
       </Button>
     </>
@@ -47,10 +47,10 @@ export function AlertDeleteCourse({ onClose, deleteCourse }) {
 export function AlertLogout({ onClose, logout }) {
   return (
     <>
-      <Button onClick={onClose} size="lg">
+      <Button type="button" onClick={onClose} size="lg">
         취소
       </Button>
-      <Button onClick={logout} size="lg">
+      <Button type="button" onClick={logout} size="lg">
         로그아웃
       </Button>
     </>
@@ -60,10 +60,10 @@ export function AlertLogout({ onClose, logout }) {
 export function AlertReport({ onClose }) {
   return (
     <>
-      <Button onClick={onClose} size="lg">
+      <Button type="button" onClick={onClose} size="lg">
         취소
       </Button>
-      <Button onClick={onClose} size="lg">
+      <Button type="button" onClick={onClose} size="lg">
         확인
       </Button>
     </>
@@ -73,10 +73,10 @@ export function AlertReport({ onClose }) {
 export function AlertChange({ onClose, onChange }) {
   return (
     <>
-      <Button onClick={onClose} size="lg">
+      <Button type="button" onClick={onClose} size="lg">
         취소
       </Button>
-      <Button onClick={onChange} size="lg">
+      <Button type="button" onClick={onChange} size="lg">
         확인
       </Button>
     </>
@@ -86,10 +86,10 @@ export function AlertChange({ onClose, onChange }) {
 export function AlertUploadMap({ onClose, upload }) {
   return (
     <>
-      <Button onClick={onClose} size="lg">
+      <Button type="button" onClick={onClose} size="lg">
         취소
       </Button>
-      <Button onClick={upload} size="lg">
+      <Button type="button" onClick={upload} size="lg">
         확인
       </Button>
     </>
@@ -99,10 +99,10 @@ export function AlertUploadMap({ onClose, upload }) {
 export function AlertExitChat({ onClose, exit }) {
   return (
     <>
-      <Button onClick={onClose} size="lg">
+      <Button type="button" onClick={onClose} size="lg">
         취소
       </Button>
-      <Button onClick={exit} size="lg">
+      <Button type="button" onClick={exit} size="lg">
         확인
       </Button>
     </>

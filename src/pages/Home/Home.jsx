@@ -10,6 +10,7 @@ import Posting from "../../components/Post/Posting";
 import Navbar from "../../components/common/Navbar/Navbar";
 import Header from "../../components/common/Header/Header";
 import AddButton from "../../components/common/Button/AddButton";
+import A11yHidden from "../../components/common/A11yHidden/A11yHidden";
 
 function Home() {
   const limit = 10;
@@ -52,28 +53,29 @@ function Home() {
       ) : data.length === 0 ? (
         <NoFollowHome message="유저를 검색해 팔로우 해보세요!" />
       ) : (
-        <>
-          <PostingContainer>
-            {data.map((post) => (
-              <Posting
-                key={post.id}
-                pageName="Home"
-                accountName={post.author.accountname}
-                profileImage={post.author.image}
-                userName={post.author.username}
-                postImage={post.image}
-                postText={post.content}
-                postId={post.id}
-                heartCount={post.heartCount}
-                commentCount={post.commentCount}
-                postDate={post.createdAt}
-                hearted={post.hearted}
-                dataPost={data}
-              />
-            ))}
-            <div ref={ref} />
-          </PostingContainer>
-        </>
+        <PostingContainer>
+          <h2>
+            <A11yHidden>홈 피드</A11yHidden>
+          </h2>
+          {data.map((post) => (
+            <Posting
+              key={post.id}
+              pageName="Home"
+              accountName={post.author.accountname}
+              profileImage={post.author.image}
+              userName={post.author.username}
+              postImage={post.image}
+              postText={post.content}
+              postId={post.id}
+              heartCount={post.heartCount}
+              commentCount={post.commentCount}
+              postDate={post.createdAt}
+              hearted={post.hearted}
+              dataPost={data}
+            />
+          ))}
+          <div ref={ref} />
+        </PostingContainer>
       )}
       <AddButton />
       <Navbar />

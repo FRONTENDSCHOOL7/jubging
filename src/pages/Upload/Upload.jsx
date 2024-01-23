@@ -23,7 +23,6 @@ function UploadPage({ editData }) {
   const { image, setImage, handleImgUpload } = useImageUploader();
 
   const [content, setContent] = useState("");
-  //const [image, setImage] = useState(null);
   const [enableUpload, setEnableUpload] = useState(false);
 
   // editData가 있으면 게시글 불러오기
@@ -105,7 +104,9 @@ function UploadPage({ editData }) {
         <ImgUploadButton
           type="button"
           onClick={() => document.getElementById("upload-button-file").click()}
-        ></ImgUploadButton>
+        >
+          <A11yHidden>이미지 등록</A11yHidden>
+        </ImgUploadButton>
       </PostContainer>
     </form>
   );

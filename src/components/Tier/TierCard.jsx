@@ -10,6 +10,7 @@ import {
   TierName,
   DistanseInfo,
 } from "./TierCardStyle";
+import A11yHidden from "../common/A11yHidden/A11yHidden";
 
 export default function TierCard({ accumulate, accountname }) {
   const navigate = useNavigate();
@@ -17,6 +18,9 @@ export default function TierCard({ accumulate, accountname }) {
 
   return (
     <TierCardContainer>
+      <h3>
+        <A11yHidden>플로깅 티어 정보</A11yHidden>
+      </h3>
       <ImageContainer>
         <TierCardImage
           src={tierImage}

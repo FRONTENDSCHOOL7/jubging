@@ -156,9 +156,8 @@ import {
   Detail,
   MapCanvas,
   Container,
-  UsernameBox,
-  TitleBox,
 } from "./CourseDetailStyle";
+import A11yHidden from "../../components/common/A11yHidden/A11yHidden";
 
 const CourseDetail = () => {
   const { courseId } = useParams();
@@ -225,14 +224,17 @@ const CourseDetail = () => {
         <Loading />
       ) : (
         <>
-          <Header product={product} />
+          <Header product={product}>{product.itemName}</Header>
           <Title>
-            <UsernameBox>{product.author.username} 님 만의</UsernameBox>
-            <TitleBox>{product.itemName} 플로깅 코스</TitleBox>
+            <p>{product.author.username} 님 만의</p>
+            <p>{product.itemName} 플로깅 코스</p>
             {/* {courseInfo.author.username} 님 만의
             {courseInfo.itemName} 플로깅 코스 */}
           </Title>
           <MapCanvas>
+            <h3>
+              <A11yHidden>경로 지도 정보</A11yHidden>
+            </h3>
             {mapCenter && (
               <Map
                 draggable={true}
@@ -257,6 +259,9 @@ const CourseDetail = () => {
           </MapCanvas>
 
           <Container>
+            <h3>
+              <A11yHidden>경로 상세 정보</A11yHidden>
+            </h3>
             <div>
               <Label>코스 이름</Label>
               <Detail> {courseInfo.itemName}</Detail>

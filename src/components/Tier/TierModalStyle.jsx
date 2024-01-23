@@ -17,7 +17,7 @@ export const TierModalContent = styled.div`
   transform: translate(-50%, -50%);
 `;
 
-export const TierModalTitle = styled.div`
+export const TierModalTitle = styled.h1`
   margin-top: 20px;
   text-align: center;
   color: ${(props) => props.theme.colors.blackColor};
@@ -42,7 +42,8 @@ export const TierImageBox = styled.div`
   }
 `;
 
-export const TierTitle = styled.p`
+export const TierTitle = styled.strong`
+  display: block;
   color: ${(props) => props.theme.colors.blackColor};
   font-size: ${(props) => props.theme.fontSize.medium};
 

@@ -1,6 +1,7 @@
 import { Link, useLocation, useParams } from "react-router-dom";
 import styled from "styled-components";
 import addIcon from "../../../assets/icons/add-btn.svg";
+import A11yHidden from "../A11yHidden/A11yHidden";
 
 function AddButton() {
   const { accountname } = useParams();
@@ -8,6 +9,7 @@ function AddButton() {
 
   return (
     <BtnContainer>
+      <A11yHidden>게시글 추가하기</A11yHidden>
       {(pathname === "/" || "/home") && <AddBtn to={"/post/upload"} />}
       {pathname === `/ploggingrecord/${accountname}` && (
         <AddBtn to={`/ploggingrecord/${accountname}/addcourse`} />

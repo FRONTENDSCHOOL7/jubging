@@ -43,10 +43,7 @@ function ProfileStart() {
       <Form onSubmit={handleProfileSignup}>
         <Title>프로필 설정</Title>
         <Selfchange>나중에 언제든지 변경할 수 있습니다.</Selfchange>
-        <UserProfile
-          handleImgUpload={handleImgUpload}
-          profileImage={image}
-        ></UserProfile>
+        <UserProfile handleImgUpload={handleImgUpload} profileImage={image} />
         <Input
           id="intro"
           label="소개"

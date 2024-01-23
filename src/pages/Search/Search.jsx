@@ -7,6 +7,7 @@ import useDebounce from "../../hook/useDebounce";
 import Header from "../../components/common/Header/Header";
 import Navbar from "../../components/common/Navbar/Navbar";
 import UserListBox from "../../components/UserList/UserListBox";
+import A11yHidden from "../../components/common/A11yHidden/A11yHidden";
 
 const Search = () => {
   let limitedData = [];
@@ -52,11 +53,16 @@ const Search = () => {
 
   return (
     <>
-      <Header onChange={handleSearchId} />
+      <Header onChange={handleSearchId}>
+        <A11yHidden>계정 검색</A11yHidden>
+      </Header>
       {inputTxt && result.length === 0 ? (
         <NoResult>검색 결과가 없습니다.</NoResult>
       ) : (
         <UerListContainer>
+          <h2>
+            <A11yHidden>계정 검색 결과</A11yHidden>
+          </h2>
           {limitedData.map((item) => (
             <UserListBox
               key={limitedData.id}
