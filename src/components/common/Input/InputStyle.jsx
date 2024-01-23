@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const InputContainer = styled.div`
   display: flex;
@@ -9,6 +9,20 @@ export const InputContainer = styled.div`
 export const Label = styled.label`
   font-size: ${(props) => props.theme.fontSize.small};
   color: ${(props) => props.theme.colors.textColor};
+
+  ${({ hidden }) => {
+    hidden &&
+      css`
+        clip: rect(1px, 1px, 1px, 1px);
+        clip-path: inset(50%);
+        width: 1px;
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+      `;
+  }}
 `;
 
 export const InputField = styled.input`

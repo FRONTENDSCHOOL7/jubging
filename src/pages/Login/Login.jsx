@@ -119,18 +119,18 @@ const Login = () => {
       <Form onSubmit={handleLogin}>
         <Title>로그인</Title>
         <Input
+          id="email"
           label="이메일"
           type="text"
-          name="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="이메일를 입력하세요."
           error={emailErrorMsg}
         />
         <Input
+          id="password"
           label="비밀번호"
           type="password"
-          name="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="비밀번호를 입력하세요."

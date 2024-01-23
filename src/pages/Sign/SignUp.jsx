@@ -151,36 +151,36 @@ const SignUp = () => {
       <Form onSubmit={handleSignup}>
         <Title>이메일 회원가입</Title>
         <Input
+          id="email"
           label="이메일"
           type="text"
-          name="email"
           value={email}
           onChange={handleEmailChange}
           placeholder="이메일를 입력하세요."
           error={emailErrorMsg}
         />
         <Input
+          id="password"
           label="비밀번호"
           type="password"
-          name="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="비밀번호를 입력하세요."
           error={passwordErrorMsg}
         />
         <Input
+          id="username"
           label="이름"
           type="text"
-          name="username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           placeholder="2~10자 이내여야 합니다."
           error={usernameErrorMsg}
         />
         <Input
+          id="accountname"
           label="계정ID"
           type="text"
-          name="accountname"
           value={accountname}
           onChange={handleAccountnameChange}
           placeholder="영문, 숫자, 특수문자(.),(_)만 사용 가능합니다."

@@ -115,26 +115,26 @@ const AddCourse = () => {
 
         <InputContainer>
           <Input
+            id="courseName"
             label="코스 이름"
             type="text"
-            name="courseName"
             value={courseName}
             onChange={(e) => setCourseName(e.target.value)}
             placeholder="2~15자 이내여야 합니다."
           />
           <Input
+            id="courseLength"
             label="코스 길이"
             type="number"
-            name="courseLength"
             value={location.state ? location.state.distance : ""}
             // onChange={(e) => setCourseLength(e.target.value)}
             placeholder="코스입력 시 자동입력됩니다."
             disabled
           />
           <Input
+            id="courseReview"
             label="한줄평"
             type="text"
-            name="courseReview"
             value={courseReview}
             onChange={(e) => setCourseReview(e.target.value)}
             placeholder="한 줄 평을 적어주세요."

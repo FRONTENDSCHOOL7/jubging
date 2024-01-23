@@ -67,7 +67,7 @@ const Search = () => {
             />
           ))}
           {result && result.length > resultShow && (
-            <MoreBtn type="button" onClick={handleLoadMore} hoverFilter>
+            <MoreBtn type="button" onClick={handleLoadMore}>
               더보기
             </MoreBtn>
           )}

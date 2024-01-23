@@ -19,7 +19,6 @@ const Input = ({
       <InputField
         id={id}
         type={type}
-        name={name}
         value={value}
         onChange={onChange}
         maxLength={maxLength}

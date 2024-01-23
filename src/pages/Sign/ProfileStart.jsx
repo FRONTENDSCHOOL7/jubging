@@ -48,9 +48,9 @@ function ProfileStart() {
           profileImage={image}
         ></UserProfile>
         <Input
+          id="intro"
           label="소개"
           type="text"
-          name="intro"
           value={intro}
           onChange={(e) => setIntro(e.target.value)}
           placeholder="한 줄 소개를 입력해주세요."
