@@ -131,7 +131,6 @@ const ProfileStartPage = () => {
             id="username"
             label="이름"
             type="text"
-            name="username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             placeholder="2~10자 이내여야 합니다."
@@ -143,7 +142,6 @@ const ProfileStartPage = () => {
             id="accountname"
             label="계정ID"
             type="text"
-            name="userId"
             value={accountname}
             onChange={handleAccountnameChange}
             placeholder="영문, 숫자, 특수문자(.),(_)만 사용 가능합니다."
@@ -154,7 +152,6 @@ const ProfileStartPage = () => {
             id="intro"
             label="소개"
             type="text"
-            name="selfIntroduction"
             value={intro || ""}
             onChange={(e) => setIntro(e.target.value)}
             placeholder="한 줄 소개를 입력해주세요."

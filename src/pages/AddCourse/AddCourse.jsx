@@ -118,7 +118,6 @@ const AddCourse = () => {
             id="courseName"
             label="코스 이름"
             type="text"
-            name="courseName"
             value={courseName}
             onChange={(e) => setCourseName(e.target.value)}
             placeholder="2~15자 이내여야 합니다."
