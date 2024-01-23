@@ -15,6 +15,7 @@ import {
 } from "./ChatListStyle";
 import Header from "../../components/common/Header/Header";
 import Navbar from "../../components/common/Navbar/Navbar";
+import A11yHidden from "../../components/common/A11yHidden/A11yHidden";
 
 function ChatList() {
   const [chatList, setChatList] = useState([]);
@@ -29,6 +30,9 @@ function ChatList() {
       {chatList.map((chat) => (
         <Link to={`/chat/room/`}>
           <RoomItem>
+            <h2>
+              <A11yHidden>{chat.nickname}님과의 채팅방</A11yHidden>
+            </h2>
             <ProfileGroup>
               <ActiveStatus />
               <ProfilePhoto>

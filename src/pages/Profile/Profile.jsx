@@ -8,16 +8,17 @@ import { userInfoAtom } from "../../recoil/userAtom";
 import { getUserProfile } from "../../api/profileAPI";
 import { getUserFeed, getUserCourse } from "../../api/postAPI";
 
+import thread from "../../assets/icons/icon-post-list.svg";
+import location from "../../assets/icons/icon-post-album.svg";
+
+import { Logo } from "../../components/Profile/ProfileDetailStyle";
+import Loading from "../Loading/Loading";
 import Header from "../../components/common/Header/Header";
 import Navbar from "../../components/common/Navbar/Navbar";
 import ProfileDetail from "../../components/Profile/ProfileDetail";
-import { Logo } from "../../components/Profile/ProfileDetailStyle";
-import thread from "../../assets/icons/icon-post-list.svg";
-import location from "../../assets/icons/icon-post-album.svg";
 import Posting from "../../components/Post/Posting";
 import PostGallery from "../../components/Post/PostMain/PostGallery";
-
-import Loading from "../Loading/Loading";
+import A11yHidden from "../../components/common/A11yHidden/A11yHidden";
 
 export default function Profile() {
   const { accountname } = useParams();
@@ -108,17 +109,18 @@ export default function Profile() {
           <ProfileDetail profile={profile} accumulate={accumulate} />
 
           <section>
+            <h2>
+              <A11yHidden>회원 피드</A11yHidden>
+            </h2>
             <ViewButtonContainer>
-              <ViewButton onClick={handleThread}>
+              <ViewButton type="button" onClick={handleThread}>
+                <A11yHidden>게시글 쓰레드로 보기</A11yHidden>
                 <Logo Post={threadPost} src={thread} alt="게시글 쓰레드" />
               </ViewButton>
 
-              <ViewButton onClick={handleGallery}>
-                <Logo
-                  Post={galleryPost}
-                  src={location}
-                  alt="게시글 리스트 보기"
-                />
+              <ViewButton type="button" onClick={handleGallery}>
+                <A11yHidden>게시글 갤러리로 보기</A11yHidden>
+                <Logo Post={galleryPost} src={location} alt="게시글 갤러리" />
               </ViewButton>
             </ViewButtonContainer>
 
@@ -131,7 +133,6 @@ export default function Profile() {
                       // 게시글
                       <Posting
                         key={post.id}
-                        pageName="Home"
                         accountName={post.author.accountname}
                         profileImage={post.author.image}
                         userName={post.author.username}

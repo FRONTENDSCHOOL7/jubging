@@ -10,6 +10,7 @@ import Navbar from "../../components/common/Navbar/Navbar";
 import Input from "../../components/common/Input/Input";
 import Button from "../../components/common/Button/Button";
 import Header from "../../components/common/Header/Header";
+import A11yHidden from "../../components/common/A11yHidden/A11yHidden";
 
 const { kakao } = window;
 
@@ -104,6 +105,7 @@ const AddCourse = () => {
             </ul>
 
             <Button
+              type="button"
               size="md"
               variant="primary"
               onClick={() => navigate("/ploggingrecord/addcourse/drawcourse")}
@@ -114,6 +116,9 @@ const AddCourse = () => {
         )}
 
         <InputContainer>
+          <h2>
+            <A11yHidden>플로깅 기록 입력</A11yHidden>
+          </h2>
           <Input
             id="courseName"
             label="코스 이름"

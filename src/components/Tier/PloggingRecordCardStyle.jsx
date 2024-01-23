@@ -14,7 +14,6 @@ export const ImageContainer = styled.article`
   height: 110px;
   border-radius: 50%;
   overflow: hidden;
-  flex: 1 0 0;
 `;
 
 export const TierCardImage = styled.img`
@@ -36,7 +35,7 @@ export const ContentContainer = styled.article`
   flex: 2 0 0;
 `;
 
-export const ContentTitle = styled.h2`
+export const ContentTitle = styled.h3`
   margin-bottom: 8px;
   font-size: ${(props) => props.theme.fontSize.large};
 `;

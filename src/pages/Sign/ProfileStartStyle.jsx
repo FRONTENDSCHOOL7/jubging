@@ -15,7 +15,7 @@ export const Title = styled.h1`
   color: ${(props) => props.theme.colors.blackColor};
 `;
 
-export const Selfchange = styled.h2`
+export const Selfchange = styled.p`
   font-size: ${(props) => props.theme.fontSize.medium};
   color: ${(props) => props.theme.colors.textColor};
   text-align: center;

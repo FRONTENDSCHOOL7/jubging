@@ -57,7 +57,7 @@ export const SnsLogo = styled.div`
   justify-content: center;
   gap: 17px;
 
-  margin-bottom: 18px;
+  margin-bottom: 100px;
 `;
 
 export const Kakao = styled.button`
@@ -80,11 +80,4 @@ export const Google = styled.button`
   background-image: url(${google});
   background-size: contain;
   background-repeat: no-repeat;
-`;
-
-export const FindIdPassword = styled.div`
-  margin-bottom: 100px;
-
-  color: ${(props) => props.theme.colors.textColor};
-  font-size: ${(props) => props.theme.fontSize.medium};
 `;

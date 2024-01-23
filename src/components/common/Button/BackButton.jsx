@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import Button from "./Button";
 import back from "../../../assets/icons/icon-arrow-left.svg";
+import A11yHidden from "../A11yHidden/A11yHidden";
 
 export default function BackButton() {
   const navigate = useNavigate();
@@ -13,6 +14,7 @@ export default function BackButton() {
 
   return (
     <Button size="sm" onClick={goBack} type="button">
+      <A11yHidden>뒤로가기</A11yHidden>
       <BackIcon src={back} alt="뒤로가기 버튼" />
     </Button>
   );

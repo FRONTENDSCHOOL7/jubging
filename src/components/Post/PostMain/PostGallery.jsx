@@ -17,7 +17,7 @@ export default function PostGallery({ postId, postImage }) {
 
 const PostContainer = styled.article`
   &:hover {
-    transform: scale(1.1);
+    transform: scale(1.03);
     z-index: 10;
   }
   transition: all 0.1s ease-out;
