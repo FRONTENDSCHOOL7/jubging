@@ -7,7 +7,7 @@ import Loading from "../../pages/Loading/Loading";
 import { Alert, AlertUploadMap } from "../common/Alert/Alert";
 import Button from "../common/Button/Button";
 
-function KakaoMap() {
+function KakaoMapEdit() {
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
   const [linePoints, setLinePoints] = useState([]);
@@ -220,7 +220,7 @@ function KakaoMap() {
       };
 
       setMapInfo(mapInfo);
-      navigate(`/ploggingrecord/${userInfo.accountname}/addcourse`, {
+      navigate(`/ploggingrecord/${userInfo.accountname}/edit`, {
         state: { data: mapInfo, distance: distance },
       });
     }
@@ -273,4 +273,4 @@ function KakaoMap() {
   );
 }
 
-export default KakaoMap;
+export default KakaoMapEdit;

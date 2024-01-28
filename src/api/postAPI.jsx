@@ -154,6 +154,21 @@ export const getCourseDelete = async (courseId) => {
   }
 };
 
+//코스 수정
+export const putEditCourse = async (courseId, product, token) => {
+  try {
+    const response = await authAxios.put(`/product/${courseId}`, product, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 // 좋아요
 export const postLike = async (token, postId) => {
   try {

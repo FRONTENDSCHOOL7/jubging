@@ -1,9 +1,9 @@
 import { useState, useEffect, useCallback } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 import { userInfoAtom } from "../../recoil/userAtom";
 import { useRecoilValue } from "recoil";
-import { postCourseUpload } from "../../api/postAPI";
+import { postCourseUpload, putEditCourse } from "../../api/postAPI";
 
 import { Form, Title, MapCanvas, InputContainer } from "./AddCourseStyle";
 import Navbar from "../../components/common/Navbar/Navbar";
@@ -13,14 +13,60 @@ import Header from "../../components/common/Header/Header";
 
 const { kakao } = window;
 
-const AddCourse = ({ nickname }) => {
+const AddCourse = ({ nickname, editData, isEdit }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const userInfo = useRecoilValue(userInfoAtom);
+  const { courseId } = useParams();
 
   const [courseName, setCourseName] = useState("");
   const [courseLength, setCourseLength] = useState("");
   const [courseReview, setCourseReview] = useState("");
+
+  // 코스 수정 및 업로드
+  useEffect(() => {
+    console.log(editData);
+    if (editData) {
+      setCourseName(editData.courseName);
+      setCourseLength(editData.courseLength);
+      setCourseReview(editData.courseReview);
+    }
+  }, [editData]);
+
+  const handleSubmitMap = useCallback(
+    async (event) => {
+      event.preventDefault();
+      try {
+        const mapData = {
+          product: {
+            itemName: courseName,
+            price: parseInt(location.state.distance),
+            link: courseReview,
+            itemImage: JSON.stringify(location.state.data),
+          },
+        };
+        let response;
+        if (editData) {
+          response = await putEditCourse(courseId, mapData);
+        } else {
+          // 코스 업로드 API를 호출
+          response = await postCourseUpload(mapData);
+        }
+        response && navigate(`/ploggingrecord/${userInfo.accountname}`);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    [
+      courseName,
+      courseReview,
+      location.state,
+      navigate,
+      userInfo.accountname,
+      editData,
+      courseId,
+    ]
+  );
 
   // 지도
   useEffect(() => {
@@ -57,30 +103,30 @@ const AddCourse = ({ nickname }) => {
     }
   }, [location.state]);
 
-  const handleSubmitMap = useCallback(
-    async (event) => {
-      event.preventDefault();
-      try {
-        if (!location.state) {
-          console.log("location.state is null");
-          return;
-        }
-        const mapData = {
-          product: {
-            itemName: courseName,
-            price: parseInt(location.state.distance),
-            link: courseReview,
-            itemImage: JSON.stringify(location.state.data),
-          },
-        };
-        const response = await postCourseUpload(mapData);
-        response && navigate(`/ploggingrecord/${userInfo.accountname}`);
-      } catch (error) {
-        console.log(error);
-      }
-    },
-    [courseName, courseReview, location.state, navigate, userInfo.accountname]
-  );
+  // const handleSubmitMap = useCallback(
+  //   async (event) => {
+  //     event.preventDefault();
+  //     try {
+  //       if (!location.state) {
+  //         console.log("location.state is null");
+  //         return;
+  //       }
+  //       const mapData = {
+  //         product: {
+  //           itemName: courseName,
+  //           price: parseInt(location.state.distance),
+  //           link: courseReview,
+  //           itemImage: JSON.stringify(location.state.data),
+  //         },
+  //       };
+  //       const response = await postCourseUpload(mapData);
+  //       response && navigate(`/ploggingrecord/${userInfo.accountname}`);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   },
+  //   [courseName, courseReview, location.state, navigate, userInfo.accountname]
+  // );
 
   return (
     <>
@@ -107,7 +153,11 @@ const AddCourse = ({ nickname }) => {
             <Button
               size="md"
               variant="primary"
-              onClick={() => navigate("/ploggingrecord/addcourse/drawcourse")}
+              onClick={() =>
+                isEdit
+                  ? navigate("/ploggingrecord/addcourse/drawcourseedit")
+                  : navigate("/ploggingrecord/addcourse/drawcourse")
+              }
             >
               경로 등록하러 가기
             </Button>
