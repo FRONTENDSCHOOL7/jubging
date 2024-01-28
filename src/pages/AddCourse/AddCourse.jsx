@@ -14,9 +14,9 @@ import A11yHidden from "../../components/common/A11yHidden/A11yHidden";
 
 const { kakao } = window;
 
-const AddCourse = ({ nickname, editData, isEdit }) => {
+//const AddCourse = ({ nickname, editData, isEdit }) => {
 // 충돌 부분 임시 주석처리
-// const AddCourse = () => {
+ const AddCourse = () => {
 
   const location = useLocation();
   const navigate = useNavigate();
