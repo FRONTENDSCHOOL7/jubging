@@ -1,3 +1,4 @@
+import A11yHidden from "../common/A11yHidden/A11yHidden";
 import {
   ImageContainer,
   UserImage,
@@ -19,6 +20,9 @@ export default function ProfileChange({ handleImgUpload, profileImage }) {
 
   return (
     <Container>
+      <h2>
+        <A11yHidden>프로필 이미지 등록</A11yHidden>
+      </h2>
       <ImageContainer>
         <UserImage $profileImage={profileImage} alt="프로필 이미지" />
         <input
@@ -29,7 +33,9 @@ export default function ProfileChange({ handleImgUpload, profileImage }) {
           accept=".jpg, .jpeg, .png, .bmp"
         />
       </ImageContainer>
-      <ImageButton onClick={handleFileUpload} />
+      <ImageButton type="button" onClick={handleFileUpload}>
+        <A11yHidden>프로필 이미지 등록하기</A11yHidden>
+      </ImageButton>
     </Container>
   );
 }

@@ -1,4 +1,5 @@
 import useTier from "../../hook/useTier";
+import useModal from "../../hook/useModal";
 
 import bear from "../../assets/images/big-bear.svg";
 import {
@@ -6,13 +7,14 @@ import {
   ContentContainer,
   ContentDetail,
   ContentTitle,
+  ImageContainer,
+  TierCardImage,
   TierContainer,
   TierInfoBtn,
 } from "./PloggingRecordCardStyle";
-import { ImageContainer, TierCardImage } from "./TierCardStyle";
 
-import useModal from "../../hook/useModal";
 import TierModal, { InfoTierModal } from "./TierModal";
+import A11yHidden from "../common/A11yHidden/A11yHidden";
 
 function PloggingRecordCard({ accumulate }) {
   const { tier, tierImage, nextTier, nextTierDistance } = useTier(accumulate);
@@ -20,14 +22,19 @@ function PloggingRecordCard({ accumulate }) {
   return (
     <>
       <CardContainer>
+        <h2>
+          <A11yHidden>플로깅 등급 정보</A11yHidden>
+        </h2>
         <ImageContainer>
-          <TierCardImage src={tierImage} alt="등급" />
+          <TierCardImage src={tierImage} alt={`${tier} 등급 이미지`} />
         </ImageContainer>
         <ContentContainer>
           <div>
             <TierContainer>
               <ContentTitle>등급</ContentTitle>
-              <TierInfoBtn onClick={handleOpenModal} />
+              <TierInfoBtn onClick={handleOpenModal}>
+                <A11yHidden>모든 플로깅 등급 정보 보기</A11yHidden>
+              </TierInfoBtn>
             </TierContainer>
             <ContentDetail>{tier}</ContentDetail>
           </div>
@@ -36,7 +43,7 @@ function PloggingRecordCard({ accumulate }) {
             <ContentDetail>{accumulate}Km</ContentDetail>
           </div>
           <ContentDetail>
-            <img src={bear} alt="" />
+            <img src={bear} alt="플로깅하는 곰" />
             {nextTier}까지 {nextTierDistance}Km 남았어요
           </ContentDetail>
         </ContentContainer>

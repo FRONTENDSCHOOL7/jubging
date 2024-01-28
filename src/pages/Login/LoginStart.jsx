@@ -16,17 +16,17 @@ import {
   SnsLogo,
   LoginSection,
   SnsLoginText,
-  FindIdPassword,
   LoginBox,
 } from "./LoginStartStyle";
+import A11yHidden from "../../components/common/A11yHidden/A11yHidden";
 
 export default function LoginStart() {
   const navigate = useNavigate();
 
   return (
     <Container>
-      <MainTitle src={logo} />
-      <SubTitle>깨끗한 지구 함께 만들어가요</SubTitle>
+      <MainTitle src={logo} alt="로고 이미지" />
+      <SubTitle>지구를 위한 나의 발자국</SubTitle>
 
       <LoginBox>
         <Button
@@ -48,13 +48,21 @@ export default function LoginStart() {
       </LoginBox>
 
       <LoginSection>
+        <h2>
+          <A11yHidden>SNS로그인 및 회원정보 찾기</A11yHidden>
+        </h2>
         <SnsLoginText>SNS로 로그인 하기</SnsLoginText>
         <SnsLogo>
-          <Kakao />
-          <Google />
-          <Facebook />
+          <Kakao type="button" disabled>
+            <A11yHidden>카카오 로그인</A11yHidden>
+          </Kakao>
+          <Google type="button" disabled>
+            <A11yHidden>구글 로그인</A11yHidden>
+          </Google>
+          <Facebook type="button" disabled>
+            <A11yHidden>구글 로그인</A11yHidden>
+          </Facebook>
         </SnsLogo>
-        <FindIdPassword>아이디 찾기 | 비밀번호 찾기</FindIdPassword>
       </LoginSection>
 
       <Imagebox splashScreen={false}>

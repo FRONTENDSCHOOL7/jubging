@@ -1,9 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export const Form = styled.form``;
-
-export const Title = styled.h1`
+export const Title = styled.h2`
   font-size: 1.2rem;
   padding: 22px 30px 0;
   margin-bottom: 15px;
@@ -22,7 +20,6 @@ export const MapCanvas = styled.section`
   h3 {
     margin-bottom: 10px;
     font-size: ${(props) => props.theme.fontSize.small};
-    font-weight: bold;
   }
 
   ul {
@@ -36,7 +33,6 @@ export const MapCanvas = styled.section`
   li {
     list-style-type: disc;
     font-size: ${(props) => props.theme.fontSize.xsmall};
-    font-weight: normal;
     margin: 11px 0 10px 15px;
   }
 

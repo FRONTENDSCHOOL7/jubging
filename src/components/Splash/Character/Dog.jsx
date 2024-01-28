@@ -55,5 +55,5 @@ export const BigDog = styled.img`
 `;
 
 export default function Dog({ splashScreen }) {
-  return <BigDog src={bigDog} $splashScreen={splashScreen} />;
+  return <BigDog src={bigDog} alt="강아지" $splashScreen={splashScreen} />;
 }

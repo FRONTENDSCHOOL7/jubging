@@ -54,5 +54,5 @@ const BigRabbit = styled.img`
 `;
 
 export default function Rabbit({ splashScreen }) {
-  return <BigRabbit src={bigRabbit} $splashScreen={splashScreen} />;
+  return <BigRabbit src={bigRabbit} alt="토끼" $splashScreen={splashScreen} />;
 }

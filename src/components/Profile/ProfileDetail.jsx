@@ -28,6 +28,7 @@ import {
   UserIntro,
   UserName,
 } from "./ProfileDetailStyle";
+import A11yHidden from "../common/A11yHidden/A11yHidden";
 
 export default function ProfileDetail({ profile, accumulate }) {
   const numberRegex =
@@ -71,7 +72,10 @@ export default function ProfileDetail({ profile, accumulate }) {
   };
 
   return (
-    <>
+    <section>
+      <h2>
+        <A11yHidden>회원 정보</A11yHidden>
+      </h2>
       <ProfileContainer>
         <Link
           to={`/profile/${profile.accountname}/follower`}
@@ -111,6 +115,7 @@ export default function ProfileDetail({ profile, accumulate }) {
       {userInfo.accountname === profile.accountname ? (
         <ProfileButtonContainer>
           <Button
+            type="button"
             size="md"
             variant="primary"
             onClick={() => navigate(`/profile/${userInfo.accountname}/edit`)}
@@ -149,6 +154,6 @@ export default function ProfileDetail({ profile, accumulate }) {
         </FollowButtonContainer>
       )}
       <TierCard accumulate={accumulate} accountname={accountname}></TierCard>
-    </>
+    </section>
   );
 }

@@ -8,16 +8,17 @@ import { userInfoAtom } from "../../recoil/userAtom";
 import { getUserProfile } from "../../api/profileAPI";
 import { getUserFeed, getUserCourse } from "../../api/postAPI";
 
+import thread from "../../assets/icons/icon-post-list.svg";
+import location from "../../assets/icons/icon-post-album.svg";
+
+import { Logo } from "../../components/Profile/ProfileDetailStyle";
+import Loading from "../Loading/Loading";
 import Header from "../../components/common/Header/Header";
 import Navbar from "../../components/common/Navbar/Navbar";
 import ProfileDetail from "../../components/Profile/ProfileDetail";
-import { Logo } from "../../components/Profile/ProfileDetailStyle";
-import thread from "../../assets/icons/icon-post-list.svg";
-import location from "../../assets/icons/icon-post-album.svg";
 import Posting from "../../components/Post/Posting";
 import PostGallery from "../../components/Post/PostMain/PostGallery";
-
-import Loading from "../Loading/Loading";
+import A11yHidden from "../../components/common/A11yHidden/A11yHidden";
 
 export default function Profile() {
   const { accountname } = useParams();
@@ -107,56 +108,62 @@ export default function Profile() {
         <>
           <ProfileDetail profile={profile} accumulate={accumulate} />
 
-          <ViewButtonContainer>
-            <ViewButton onClick={handleThread}>
-              <Logo Post={threadPost} src={thread} />
-            </ViewButton>
+          <section>
+            <h2>
+              <A11yHidden>회원 피드</A11yHidden>
+            </h2>
+            <ViewButtonContainer>
+              <ViewButton type="button" onClick={handleThread}>
+                <A11yHidden>게시글 쓰레드로 보기</A11yHidden>
+                <Logo Post={threadPost} src={thread} alt="게시글 쓰레드" />
+              </ViewButton>
 
-            <ViewButton onClick={handleGallery}>
-              <Logo Post={galleryPost} src={location} />
-            </ViewButton>
-          </ViewButtonContainer>
+              <ViewButton type="button" onClick={handleGallery}>
+                <A11yHidden>게시글 갤러리로 보기</A11yHidden>
+                <Logo Post={galleryPost} src={location} alt="게시글 갤러리" />
+              </ViewButton>
+            </ViewButtonContainer>
 
-          {threadPost ? (
-            <>
-              <PostingContainer>
+            {threadPost ? (
+              <>
+                <PostingContainer>
+                  {feed
+                    .filter((post) => post.author.accountname === accountname)
+                    .map((post) => (
+                      // 게시글
+                      <Posting
+                        key={post.id}
+                        accountName={post.author.accountname}
+                        profileImage={post.author.image}
+                        userName={post.author.username}
+                        postImage={post.image}
+                        postText={post.content}
+                        postId={post.id}
+                        heartCount={post.heartCount}
+                        commentCount={post.commentCount}
+                        postDate={post.createdAt}
+                        hearted={post.hearted}
+                        data={post}
+                        fetch={fetchUserFeed}
+                      />
+                    ))}
+                </PostingContainer>
+              </>
+            ) : (
+              // 갤러리 형식
+              <GalleryContainer>
                 {feed
-                  .filter((post) => post.author.accountname === accountname)
+                  .filter((post) => post.image !== null)
                   .map((post) => (
-                    // 게시글
-                    <Posting
+                    <PostGallery
                       key={post.id}
-                      pageName="Home"
-                      accountName={post.author.accountname}
-                      profileImage={post.author.image}
-                      userName={post.author.username}
-                      postImage={post.image}
-                      postText={post.content}
                       postId={post.id}
-                      heartCount={post.heartCount}
-                      commentCount={post.commentCount}
-                      postDate={post.createdAt}
-                      hearted={post.hearted}
-                      data={post}
-                      fetch={fetchUserFeed}
-                    />
+                      postImage={post.image}
+                    ></PostGallery>
                   ))}
-              </PostingContainer>
-            </>
-          ) : (
-            // 갤러리 형식
-            <GalleryContainer>
-              {feed
-                .filter((post) => post.image !== null)
-                .map((post) => (
-                  <PostGallery
-                    key={post.id}
-                    postId={post.id}
-                    postImage={post.image}
-                  ></PostGallery>
-                ))}
-            </GalleryContainer>
-          )}
+              </GalleryContainer>
+            )}
+          </section>
         </>
       )}
       <Navbar />

@@ -47,7 +47,7 @@ export const Message = styled.div`
   padding: 10px;
   line-height: 18px;
   letter-spacing: -0.28px;
-  font-family: "GmarketSansLight";
+  font-weight: 300;
   color: ${(props) => (props.$isMine ? "#FFFFFF" : "#000000")};
   background-color: ${(props) =>
     props.$isMine ? props.theme.colors.mainColor : "#FFFFFF"};

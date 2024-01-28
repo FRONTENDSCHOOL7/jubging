@@ -1,7 +1,6 @@
 import styled, { css } from "styled-components";
 
 export const ImgBox = styled.section`
-  /* background-color: red; */
   width: 100%;
 
   display: flex;

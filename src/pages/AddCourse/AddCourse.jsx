@@ -5,22 +5,25 @@ import { userInfoAtom } from "../../recoil/userAtom";
 import { useRecoilValue } from "recoil";
 import { postCourseUpload, putEditCourse } from "../../api/postAPI";
 
-import { Form, Title, MapCanvas, InputContainer } from "./AddCourseStyle";
+import { Title, MapCanvas, InputContainer } from "./AddCourseStyle";
 import Navbar from "../../components/common/Navbar/Navbar";
 import Input from "../../components/common/Input/Input";
 import Button from "../../components/common/Button/Button";
 import Header from "../../components/common/Header/Header";
+import A11yHidden from "../../components/common/A11yHidden/A11yHidden";
 
 const { kakao } = window;
 
 const AddCourse = ({ nickname, editData, isEdit }) => {
+// 충돌 부분 임시 주석처리
+// const AddCourse = () => {
+
   const location = useLocation();
   const navigate = useNavigate();
   const userInfo = useRecoilValue(userInfoAtom);
   const { courseId } = useParams();
 
   const [courseName, setCourseName] = useState("");
-  const [courseLength, setCourseLength] = useState("");
   const [courseReview, setCourseReview] = useState("");
 
   // 코스 수정 및 업로드
@@ -130,7 +133,7 @@ const AddCourse = ({ nickname, editData, isEdit }) => {
 
   return (
     <>
-      <Form onSubmit={handleSubmitMap}>
+      <form onSubmit={handleSubmitMap}>
         <Header>플로깅 기록</Header>
         <Title>
           {userInfo.username} 님 만의 <br />
@@ -151,6 +154,7 @@ const AddCourse = ({ nickname, editData, isEdit }) => {
             </ul>
 
             <Button
+              type="button"
               size="md"
               variant="primary"
               onClick={() =>
@@ -165,33 +169,36 @@ const AddCourse = ({ nickname, editData, isEdit }) => {
         )}
 
         <InputContainer>
+          <h2>
+            <A11yHidden>플로깅 기록 입력</A11yHidden>
+          </h2>
           <Input
+            id="courseName"
             label="코스 이름"
             type="text"
-            name="courseName"
             value={courseName}
             onChange={(e) => setCourseName(e.target.value)}
             placeholder="2~15자 이내여야 합니다."
           />
           <Input
+            id="courseLength"
             label="코스 길이"
             type="number"
-            name="courseLength"
             value={location.state ? location.state.distance : ""}
             // onChange={(e) => setCourseLength(e.target.value)}
             placeholder="코스입력 시 자동입력됩니다."
             disabled
           />
           <Input
+            id="courseReview"
             label="한줄평"
             type="text"
-            name="courseReview"
             value={courseReview}
             onChange={(e) => setCourseReview(e.target.value)}
             placeholder="한 줄 평을 적어주세요."
           />
         </InputContainer>
-      </Form>
+      </form>
       <Navbar />
     </>
   );

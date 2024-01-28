@@ -70,9 +70,9 @@ export default function Loading({ color }) {
   return (
     <LoadingPage>
       <ImageBox>
-        <FaceBear src={faceBear} />
-        <FaceRabbit src={faceRabbit} />
-        <FaceDog src={faceDog} />
+        <FaceBear src={faceBear} alt="곰 얼굴" />
+        <FaceRabbit src={faceRabbit} alt="토끼 얼굴" />
+        <FaceDog src={faceDog} alt="강아지 얼굴" />
       </ImageBox>
       <LoadingText color={color}>잠시만 기다려주세요.</LoadingText>
     </LoadingPage>

@@ -111,7 +111,7 @@ function Header({ children, onChange, variant, disabled, product }) {
         {pathname !== "/" &&
           pathname !== "/home" &&
           pathname !== "/newsletter" && <BackButton />}
-        {children && <h2>{children}</h2>}
+        {children && <h1>{children}</h1>}
       </Title>
 
       {/* 홈 */}

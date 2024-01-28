@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 
 import { setUserProfile } from "../../api/profileAPI";
 import { checkAccountname } from "../../api/signupAPI";
@@ -8,7 +9,6 @@ import { userInfoAtom } from "../../recoil/userAtom";
 
 import { useRecoilState } from "recoil";
 
-import { Form, ModificationContainer } from "./ProfileEditStyle";
 import { Alert, AlertChange } from "../../components/common/Alert/Alert";
 import UserProfile from "../../components/Profile/ProfileImage";
 import Input from "../../components/common/Input/Input";
@@ -121,7 +121,7 @@ const ProfileStartPage = () => {
 
   return (
     <>
-      <Form onSubmit={handleModifyProfile}>
+      <form onSubmit={handleModifyProfile}>
         <Header variant={enableEdit && "primary"} disabled={!enableEdit}>
           프로필 작성
         </Header>
@@ -131,7 +131,6 @@ const ProfileStartPage = () => {
             id="username"
             label="이름"
             type="text"
-            name="username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             placeholder="2~10자 이내여야 합니다."
@@ -143,7 +142,6 @@ const ProfileStartPage = () => {
             id="accountname"
             label="계정ID"
             type="text"
-            name="userId"
             value={accountname}
             onChange={handleAccountnameChange}
             placeholder="영문, 숫자, 특수문자(.),(_)만 사용 가능합니다."
@@ -154,13 +152,12 @@ const ProfileStartPage = () => {
             id="intro"
             label="소개"
             type="text"
-            name="selfIntroduction"
             value={intro || ""}
             onChange={(e) => setIntro(e.target.value)}
             placeholder="한 줄 소개를 입력해주세요."
           />
         </ModificationContainer>
-      </Form>
+      </form>
 
       {enableEdit && submitState && (
         <Alert message="프로필이 변경되었습니다.">
@@ -170,5 +167,9 @@ const ProfileStartPage = () => {
     </>
   );
 };
+
+const ModificationContainer = styled.section`
+  padding: 0 34px;
+`;
 
 export default ProfileStartPage;

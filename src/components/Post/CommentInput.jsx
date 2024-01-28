@@ -32,12 +32,14 @@ function CommentInput({ onCommentPosted }) {
         <img src={userInfo.image} alt="프로필 사진" />
       </ProfileImage>
       <RoundInput
-        label=""
+        id="comment"
+        label="댓글 등록"
         type="text"
         name="message"
         placeholder="댓글 입력하기..."
         value={message}
         onChange={(e) => setMessage(e.target.value)}
+        hidden
       />
       <Button $active={message !== ""} onClick={handlePostComment}>
         등록

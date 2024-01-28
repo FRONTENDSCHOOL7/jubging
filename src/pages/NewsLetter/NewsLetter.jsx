@@ -12,6 +12,7 @@ import Navbar from "../../components/common/Navbar/Navbar";
 import Loading from "../Loading/Loading";
 import NoFollowHome from "../Home/NoFollowHome";
 import Header from "../../components/common/Header/Header";
+import A11yHidden from "../../components/common/A11yHidden/A11yHidden";
 
 function NewsLetter() {
   const limit = 10;
@@ -60,6 +61,9 @@ function NewsLetter() {
       ) : (
         <>
           <NewsLetterContainer>
+            <h2>
+              <A11yHidden>뉴스레터 피드</A11yHidden>
+            </h2>
             {data.map((post) => (
               <NewsPosting
                 key={post.id}
