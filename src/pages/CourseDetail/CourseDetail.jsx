@@ -77,15 +77,13 @@ const CourseDetail = () => {
         <>
           <Header product={product}>{product.itemName}</Header>
           <Title>
-
-            //<UsernameBox>{product.author.username} 님 만의</UsernameBox>
-            //<TitleBox>{product.itemName} 플로깅 코스</TitleBox>
-            // 233 코스수정이랑 develop 충돌 일단 임시 처리
+            {/* <UsernameBox>{product.author.username} 님 만의</UsernameBox> */}
+            {/* <TitleBox>{product.itemName} 플로깅 코스</TitleBox> */}
+            {/* 233 코스수정이랑 develop 충돌 일단 임시 처리 */}
             <p>{product.author.username} 님 만의</p>
             <p>{product.itemName} 플로깅 코스</p>
-            //{/* {courseInfo.author.username} 님 만의
+            {/* {courseInfo.author.username} 님 만의
             //{courseInfo.itemName} 플로깅 코스 */}
-
           </Title>
           <MapCanvas>
             <h3>

@@ -16,12 +16,15 @@ const { kakao } = window;
 
 //const AddCourse = ({ nickname, editData, isEdit }) => {
 // 충돌 부분 임시 주석처리
- const AddCourse = () => {
-
+const AddCourse = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const userInfo = useRecoilValue(userInfoAtom);
   const { courseId } = useParams();
+
+  const editData = location.state?.editData;
+  const isEdit = location.state?.isEdit;
+  const [courseLength, setCourseLength] = useState("");
 
   const [courseName, setCourseName] = useState("");
   const [courseReview, setCourseReview] = useState("");
@@ -61,6 +64,7 @@ const { kakao } = window;
       }
     },
     [
+      courseLength,
       courseName,
       courseReview,
       location.state,
