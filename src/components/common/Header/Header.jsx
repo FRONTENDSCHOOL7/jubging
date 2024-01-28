@@ -1,7 +1,8 @@
+import { useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 import { userInfoAtom } from "../../../recoil/userAtom";
-import { getCourseDelete } from "../../../api/postAPI";
+import { getCourseDelete, putEditCourse } from "../../../api/postAPI";
 import { loginAtom } from "../../../recoil/loginAtom";
 import { useRecoilValue, useResetRecoilState } from "recoil";
 
@@ -42,10 +43,13 @@ function Header({ children, onChange, variant, disabled, product }) {
   } = useModal();
 
   const navigate = useNavigate();
-  const { accountname } = useParams();
+  const { accountname, postId } = useParams();
   const { courseId } = useParams();
   const { pathname } = useLocation();
 
+  const token = localStorage.getItem("token");
+
+  const [courseInfo, setCourseInfo] = useState({});
   const userInfo = useRecoilValue(userInfoAtom);
   const resetUserInfo = useResetRecoilState(userInfoAtom);
   const resetLogin = useResetRecoilState(loginAtom);
@@ -70,18 +74,36 @@ function Header({ children, onChange, variant, disabled, product }) {
       handleAlertClose();
       navigate(`/home`); // url 수정 예정
       console.log("course:", courseId);
-      console.log("repose".response);
+      console.log("response".response);
     } catch (error) {
       console.log(error);
     }
   };
 
   // 코스 수정 클릭이벤트
-  const handleEditPost = () => {
-    // navigate(`/product/${courseId}/edit`, {
-    //   state: { postData },
-    // });
+  const handleEditCourse = async () => {
+    try {
+      const productData = {
+        itemName: courseInfo.itemName,
+        price: courseInfo.price,
+        link: courseInfo.link,
+        itemImage: courseInfo.itemImage,
+      };
+      const response = await putEditCourse(courseId, productData, token);
+      // API 호출이 성공적으로 완료되면, 코스 수정 페이지로 이동합니다.
+      navigate(`/ploggingrecord/${userInfo.accountname}/edit`);
+      console.log("course:", courseId);
+      console.log("response:", response);
+    } catch (error) {
+      console.log(error);
+    }
   };
+
+  // const handleEditCourse = () => {
+  //   navigate(`/product/${courseId}/edit`, {
+  //     state: { product },
+  //   });
+  // };
 
   return (
     <Container>
@@ -112,8 +134,25 @@ function Header({ children, onChange, variant, disabled, product }) {
         </>
       )}
 
+      {/* 게시물 수정 */}
+      {pathname === `/post/${postId}/edit` && (
+        <>
+          <Button size="md" variant={variant} disabled={disabled}>
+            저장
+          </Button>
+        </>
+      )}
+
       {/* 플로깅 기록 */}
       {pathname === `/ploggingrecord/${userInfo.accountname}/addcourse` && (
+        <>
+          <Button size="md" variant="primary">
+            저장
+          </Button>
+        </>
+      )}
+      {/* 플로깅 기록 수정 */}
+      {pathname === `/ploggingrecord/${userInfo.accountname}/edit` && (
         <>
           <Button size="md" variant="primary">
             저장
@@ -194,7 +233,7 @@ function Header({ children, onChange, variant, disabled, product }) {
             <Modal onClose={handleCloseModal}>
               {userInfo.accountname === product.author.accountname ? (
                 <FeedModal
-                  modify={handleEditPost}
+                  modify={handleEditCourse}
                   deleteFeed={handleOpenAlert}
                 />
               ) : (
@@ -203,14 +242,19 @@ function Header({ children, onChange, variant, disabled, product }) {
             </Modal>
           )}
           {/* 경고창 */}
-          {isAlertOpen && (
-            <Alert message="게시글을 삭제할까요?">
-              <AlertDeleteFeed
-                deleteFeed={handleDeleteCourse}
-                onClose={handleAlertClose}
-              />
-            </Alert>
-          )}
+          {isAlertOpen &&
+            (userInfo.accountname === product.author.accountname ? (
+              <Alert message="게시글을 삭제할까요?">
+                <AlertDeleteFeed
+                  deleteFeed={handleDeleteCourse}
+                  onClose={handleAlertClose}
+                />
+              </Alert>
+            ) : (
+              <Alert message="신고되었습니다.">
+                <AlertReport onClose={handleAlertClose} />
+              </Alert>
+            ))}
         </>
       )}
     </Container>
